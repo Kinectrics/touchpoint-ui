@@ -1,0 +1,31 @@
+.SearchBar .searchButton{
+	background-color: transparent;
+	border: none;
+	color: var(--mainTextColor);
+	font-size: 13pt;
+	transition: all 0.1s;
+	outline: none !important;
+	transform: translateX(-35px);
+	padding-top: 5px;
+	position: absolute;
+}
+
+.SearchBar input{
+	padding-right: 32px;
+	width: 100%;
+}
+
+.SearchBar .searchButton:hover{
+	font-size: 14pt;
+}
+
+.SearchBar .searchButton:active{
+	transition: none;
+	font-size: 13pt;
+}
+
+.SearchBar.locked .searchButton{
+	background-color: transparent;
+	border: none;
+	color: var(--lockedTextColor);
+}

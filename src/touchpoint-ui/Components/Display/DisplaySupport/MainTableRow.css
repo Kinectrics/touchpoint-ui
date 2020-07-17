@@ -1,0 +1,49 @@
+.MainTableRow{
+	width:100%;
+	background-color: transparent;
+	padding: 4px 10px;
+	height: 40px;
+	transition: all 0.2s;
+	box-sizing: border-box;
+}
+
+.MainTableRow.pointer{
+	cursor: pointer;
+}
+
+.MainTableRow.dynamic:hover{
+	padding: 1px 0;
+}
+
+.MainTableRow.dynamic:active{
+	transition: all 0.05s ease-out;
+	padding: 3px 7px;
+}
+
+.MainTableRow span{
+	transition: inherit;
+	overflow: hidden;
+}
+
+.MainTableRow .rowContainer{
+	width: 100%;
+	height: 100%;
+	background-color: var(--cardBG);
+	padding: 4px 15px;
+	border-radius: 10px;
+	box-shadow: var(--cardShadow);
+	transition: all 0.3s, color 0.15s ease-out;	
+	overflow: hidden;
+}
+
+.MainTableRow.dynamic .rowContainer:hover{
+	box-shadow: var(--dynamicCardShadow);
+	padding-left: 20px;
+	padding-top: 6px;
+}
+
+.MainTableRow .active{
+	color: var(--tableActiveColor);
+}
+
+

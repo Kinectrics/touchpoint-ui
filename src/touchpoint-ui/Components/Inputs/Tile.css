@@ -1,0 +1,73 @@
+.Tile{
+	height: 150px;
+	width: 150px;
+	background-color: var(--cardBG);
+	margin: 30px;
+	transition: all 0.3s;
+	font-size: 12pt;
+	text-align: center;
+	color: var(--mainTextColor);
+	border-radius: 15px;
+	border-style: solid;
+	border-color: var(--bodyAltBG);
+	border-width: 1px;
+	
+}
+
+.Tile .logo{
+	height: 80%;
+	font-size: 60pt;
+	color: var(--labelColor)
+}
+
+.Tile:hover{
+	height: 160px;
+	width: 160px;
+	background-color: var(--navColor);
+	margin: 25px;
+	cursor: pointer;
+	color: var(--navTextColor);
+	box-shadow: var(--dynamicCardShadow);
+}
+
+.Tile:hover > .logo{
+	color: var(--navTextColor);
+	transition: all 0.25s ease-in-out;
+}
+
+.Tile img{
+	height:85px;
+}
+
+.Tile:hover img, .Tile.splashScreen img{
+	filter: brightness(0) saturate(100%) invert(100%);
+}
+
+.Tile:active{
+	height: 140px;
+	width: 140px;
+	margin: 35px;
+	transition: all 0.05s;
+}
+
+.Tile.splashScreen{
+	height: 100vh;
+	width: 100vw;
+	margin: 0;
+	z-index: 998;
+	transition: all 0.4s;
+	position: fixed;
+	right:0;
+	top:0;
+	border-radius: 0;
+	cursor: default;
+	background-color: var(--navColor);
+	color: var(--navTextColor);
+	border:none;
+}
+
+.Tile.splashScreen > .logo{
+	color: var(--navTextColor);
+	transition: all 0.25s;
+}
+

@@ -1,0 +1,23 @@
+.ControlBar{
+	width:100%;
+	background-color: var(--navColor);	
+	padding: 10px;
+	padding-top: 5px;
+	color: var(--navTextColor);
+	height: var(--controlBarHeight);
+	box-sizing: border-box;
+}
+
+.ControlBar .buttonContainer{
+	box-sizing: border-box;
+	width: 80%;
+}
+
+.ControlBar .searchContainer{
+	box-sizing: border-box;
+	width: 20%;
+}
+
+.ControlBar .SearchBar{
+	width: 100%;
+}

@@ -1,0 +1,108 @@
+:root{
+	/*Theme Variables*/
+	
+	/* Nav */
+	--navColor: #008ae6;
+	--navTextColor: white;
+	--navHoverColor: rgb(196, 196, 196);
+	--navClickedColor: rgb(177, 177, 177);
+	
+	/* Body Background */
+	--bodyAltBG: rgb(224, 230, 245);
+	
+	/* Text */
+	--mainTextColor: rgb(26, 26, 26);
+	--labelColor: var(--navColor);
+	--lockedTextColor: rgb(122, 122, 122);
+	
+	/* Cards */
+	--cardBG: white;
+	/* --dynamicCardShadow: 5px 5px 50px -9px var(--shadowColor);
+	--shadowColor: rgba(0, 0, 0, 0.521); */
+	
+	/* Main Table */
+	--tableActiveColor: rgb(2, 187, 219);
+	
+	/* FreeButtons */
+	--freeButtonNeutralBG: var(--labelColor);
+	--freeButtonPositiveBG: var(--navColor);
+	--freeButtonNegativeBG: var(--navColor);
+	--freeButtonTextColor: white;
+	
+	/* Inputs */
+	--inputColor: rgb(238, 238, 238);
+	
+	/* Structure Variables */
+	--systemToolbarHeight: 30px;
+	--controlBarHeight: 49px;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+	  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+	  sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	height: 100%;
+	width: 100%;
+}
+
+a{
+	color: var(--labelColor)
+}
+
+/* App Structure CSS */
+.TouchPointApp{
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	background-color: var(--navColor);
+}
+
+.moduleContainer{
+	overflow: hidden;
+	background-color: var(--bodyAltBG);
+	margin: 0;
+	padding: 0;
+}
+
+.screenBlocker{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100vw;
+	height: 100vh;
+	z-index: 999;
+}
+
+/* Screen Effects */
+.screenEffect{
+	width:100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.blurScreenEffect{
+	transition: filter 200ms ease-in-out;
+	filter: blur(8px) brightness(90%);
+}
+
+
+/* Quick Styles */
+.flexCenter{ 
+	/*Centers content inside a div in both directions*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.flexY{ 
+	/*Centers content inside a div in both directions*/
+	display: flex;
+	align-items: center;
+}

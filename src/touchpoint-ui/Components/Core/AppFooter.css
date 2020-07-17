@@ -1,0 +1,32 @@
+.AppFooter{
+	width: 100%;
+	padding-top: 2px;
+	background-color: var(--navColor) !important;
+	box-sizing: border-box;
+	position: absolute;
+	bottom:0px;
+	height: var(--systemToolbarHeight);
+	font-size: 13pt;
+	color: var(--navTextColor);
+	text-align: right;
+	z-index: 3;
+	
+}
+
+.AppFooter .leftSide{
+	position: absolute;
+	left: 0;
+	padding: 0 10px;
+	text-align: left;
+	max-width: calc(50% - 20px);
+	overflow-x: hidden;
+}
+
+.AppFooter .rightSide{
+	position: absolute;
+	right: 0;
+	padding: 0 10px;
+	text-align: right;
+	max-width: calc(50% - 20px);
+	overflow-x: hidden;
+}

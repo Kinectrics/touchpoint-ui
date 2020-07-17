@@ -1,0 +1,34 @@
+.systemPopupBackdrop{
+	z-index: 900;
+	background-color: var(--overlayBackdropColor);
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top:0;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	transition: opacity 300ms ease-out;
+}
+
+.systemPopupBackdrop:Hover{
+	cursor: pointer;
+}
+
+.systemPopupBackdrop.forceOpen:Hover{
+	cursor: default;
+}
+
+.systemPopupBackdrop.transparent{
+	opacity: 0;
+}
+
+.systemPopupBackdrop>.InfoCard{
+	width: 30%;
+	height: 20%;
+	cursor: default;	
+}
+
+

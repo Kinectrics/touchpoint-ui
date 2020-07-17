@@ -1,0 +1,11 @@
+.CloseButton{
+	border: none;
+	background-color: transparent;
+	outline: none !important;
+	position: relative;
+	color: var(--lockedTextColor);
+}
+
+.CloseButton:active{
+	filter: brightness(70%);
+}

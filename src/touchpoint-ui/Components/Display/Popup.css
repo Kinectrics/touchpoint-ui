@@ -1,0 +1,12 @@
+.Popup .InfoCard{
+	max-width: 85%;
+	max-width: 90%;
+}
+
+.Popup .cardContainer{
+	border: 1px solid var(--labelColor);
+	box-sizing: var(--dynamicCardShadow);
+}
+
+
+

@@ -1,0 +1,24 @@
+/* Styles for all Input type components */
+
+.input{
+	background-color: var(--inputColor);
+	color: var(--mainTextColor);
+	outline: none !important;
+	padding: 5px 15px;
+	border-radius: 20px;
+	border: none;
+	font-size: 12pt;
+}
+
+.input:hover, .input:focus{
+	filter: brightness(102%);
+}
+
+.input.locked, .locked .input
+.input.locked:hover, .locked .input:hover
+.input.locked:focus, .locked .input:focus{
+	cursor: default !important;
+	filter: grayscale(50%);
+	opacity: 85%;
+	color: var(--lockedTextColor);
+}

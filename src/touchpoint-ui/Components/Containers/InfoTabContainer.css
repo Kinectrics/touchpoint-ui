@@ -1,0 +1,76 @@
+.InfoTabContainer{
+	background-color: var(--bodyAltBG);
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.InfoTabContainer .tab-content{
+	overflow-y: auto;
+	color: var(--mainTextColor);
+	width: 100%;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	height: calc(100% - var(--systemToolbarHeight) - 10px);
+}
+
+.InfoTabContainer .tab-pane{
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.InfoTabContainer .nav-tabs{
+	background-color: var(--navColor);
+	overflow: hidden;
+	border: none;
+	padding-left: 0px;
+}
+
+.InfoTabContainer .nav-tabs a{
+	padding: 6px 30px;
+	padding-top: 0;
+	background-color: var(--navColor);
+	color: 	var(--navTextColor);
+	border-top-right-radius: 9px;
+	border-top-left-radius: 9px;
+	outline: none !important;
+	border: none;
+	margin-right: 8px;
+	margin-left: 8px;
+	text-align: center;
+	font-size: 14pt;
+	box-sizing: border-box;
+}
+
+.InfoTabContainer .nav-tabs a.active{
+	background-color: var(--navColor);
+	color: 	var(--navTextColor);
+	
+	text-shadow: 1px 0px 0px var(--navTextColor);
+	
+	border-bottom-style: solid;
+	border-bottom-color: var(--navTextColor);
+	border-bottom-width: 6px;
+}
+
+.InfoTabContainer .nav-tabs a:hover{
+	color:var(--navHoverColor);
+}
+
+.InfoTabContainer .nav-tabs a.active:hover{
+	text-shadow: 1px 0px 0px var(--navHoverColor);
+}
+
+
+.InfoTabContainer .InfoTab{
+	overflow: hidden;
+	width: 100%;
+}
+
+/* InfoCard components styled differntly */
+.InfoTabContainer .InfoCard{
+	padding: 10px !important;
+}
+

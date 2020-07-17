@@ -1,0 +1,15 @@
+.RadioButton label, .RadioButton .input{
+	cursor: pointer;
+}
+
+.RadioButton input{
+	margin-right: 5px;
+}	
+
+.RadioButton label{
+	color: var(--mainTextColor);
+}
+
+.RadioButton .locked{
+	cursor: default !important;
+}

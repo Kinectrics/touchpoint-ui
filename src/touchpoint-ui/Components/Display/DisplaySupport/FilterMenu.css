@@ -1,0 +1,19 @@
+.FilterMenu{
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: inherit;
+	position: relative;
+}
+
+.FilterMenu .topMenu{
+	position: sticky;
+	top: 0px;
+	margin-top: 0 !important;
+	z-index: 3;
+	background-color: var(--cardBG);
+}
+
+.FilterMenu .selectAll{
+	font-weight: bold;
+}

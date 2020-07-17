@@ -1,0 +1,73 @@
+.AppToolbar{
+	background-color: var(--navColor) !important;
+	
+	width: 100%;
+	color: var(--navTextColor);
+	padding: 0 30px 0 10px;
+	z-index: 3;
+}
+
+.AppToolbar .buttonContainer{
+	box-sizing: border-box;
+	position: relative;
+	height: var(--systemToolbarHeight);
+	width: 70%;
+	float: left;
+}
+
+.AppToolbar .brandingContainer{
+	box-sizing: border-box;
+	position: relative;
+	width: 30%;
+	text-align: right;
+	font-weight: bold;
+}
+
+.AppToolbar button{
+	padding: 0;
+	background-color: transparent !important;
+	border: none;
+	font-size: 13pt;
+	margin-bottom: 4px;
+	margin-right: 40px;
+	color: var(--navTextColor);
+	height: 100%;
+}
+
+.AppToolbar button::after{
+	content: none;
+}
+
+.AppToolbar button:hover{
+	color: var(--navHoverColor);
+}
+
+.AppToolbar button:active, .AppToolbar button:focus{
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	color: var(--navClickedColor) !important;
+}
+
+.AppToolbar .homeButton{
+	margin-top: 2px;
+	padding-left: 4px;
+	background-color: var(--navColor) !important;
+	border: none;
+	color: var(--navTextColor);
+}
+
+.AppToolbar a{
+	background-color: var(--cardBG) !important;
+	color: var(--mainTextColor) !important;
+}
+
+.AppToolbar a:hover{
+	filter: brightness(95%);
+}
+
+.AppToolbar .dropdown-menu{
+	background-color: var(--cardBG) !important;
+}
+
+

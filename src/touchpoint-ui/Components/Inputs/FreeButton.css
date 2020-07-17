@@ -1,0 +1,47 @@
+.FreeButton{
+	outline: none !important;
+	border: none;
+	border-radius: 15px;
+	
+	color: var(--freeButtonTextColor);
+	
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 8px 17px;
+	border-radius: 30px;
+	margin:10px;
+	box-sizing: border-box;
+}
+
+.FreeButton.wide{
+	width: 100%;
+	display: block;
+	margin: 0;
+}
+
+.FreeButton.neutral{
+	background-color: var(--freeButtonNeutralBG);
+}
+
+.FreeButton.positive{
+	background-color: var(--freeButtonPositiveBG);
+	
+}
+
+.FreeButton.negative{
+	background-color: var(--freeButtonNegativeBG);
+}
+
+.FreeButton:hover{
+	filter: brightness(110%);
+}
+
+.FreeButton:active{
+	filter: brightness(95%);
+}
+
+.FreeButton.locked{
+	cursor: default !important;
+	filter: grayscale(95%) brightness(70%) !important;
+	opacity: 50% !important;
+}

@@ -1,0 +1,135 @@
+.menuButtonContainer{
+	padding: 0;
+	margin: 0;
+}
+
+.MenuButton{
+	outline: none !important;
+	border: none;
+	background-color: transparent;
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	box-sizing: border-box;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.MenuButton.locked{
+	cursor: default;
+}
+
+.MenuButton .smallIcon{
+	font-size: 8pt;
+}
+
+.dropdown-menu{
+	background-color: var(--cardBG);
+	padding-top: 1px;
+}
+
+.Menu{
+	background-color: var(--cardBG);
+	color: var(--mainTextColor);
+	padding-top: 7px;
+	padding-top: 0;
+	position: relative;
+	z-index: 10;
+}
+
+.MenuContainer{
+	overflow-x: visible;
+}
+
+/* Buttons and links */
+.Menu a, .Menu button:not(.FreeButton){
+	width: 100%;
+	color: var(--mainTextColor);
+	background-color: var(--cardBG);
+	border: none;
+	outline: none !important;
+	text-align: left;
+	padding: 5px 20px;
+	cursor: pointer;
+	margin: 3px 0;
+	white-space: nowrap;
+}
+
+.Menu a:hover, .Menu button:not(.FreeButton):hover{
+	filter: brightness(95%);
+	color: var(--mainTextColor);
+}
+
+.Menu .FreeButton{
+	width: 100% - 20px;
+	margin: 0;
+}
+
+.Menu>div{
+	max-height: inherit;
+}
+
+/* Inputs */
+.Menu .TextBox{
+	width: calc(100% - 20px);
+	margin: 0 10px;
+	
+}
+
+/* Tabbed menus */
+.Menu .InfoTabContainer{
+	background-color: transparent;
+}
+
+.Menu .nav{
+	padding: 0 10px;
+	margin: 0 !important;
+	position: sticky;
+	top:0;
+	width: 100% !important;
+}
+
+.Menu .InfoTabContainer .nav-tabs,
+.Menu .InfoTabContainer .nav-tabs a{
+	width: fit-content;
+	background-color:var(--cardBG);
+	color: var(--labelColor) !important;
+	text-align: left;
+	padding: 0;
+	margin-left: 10px;
+	z-index: 3;
+	filter: none;
+}
+
+.Menu .InfoTabContainer .nav-tabs a.active{
+	text-shadow: 1px 0px 0px var(--labelColor);
+	
+	border-bottom-color: var(--labelColor) !important;
+	border-bottom-width: 5px !important;
+}
+
+.Menu .InfoTabContainer, .tab-content, .tab-pane, 
+.InfoTab{
+	max-height: inherit;
+}
+
+.Menu .InfoTabContainer{
+	overflow-y: hidden;
+	
+}
+
+/* Submenus */
+
+.Menu .MenuButton{
+	position: relative;
+}
+
+.Menu .subMenuIcon{
+	position: absolute;	
+	right: 5px;
+	background-color: var(--cardBG);
+}
+
+.Menu .menuButtonContainer{
+	width: 100%;
+}

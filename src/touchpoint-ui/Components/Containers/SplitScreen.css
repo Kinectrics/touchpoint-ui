@@ -1,0 +1,43 @@
+.SplitScreen{
+	height: 100%;
+	display: flex;
+	width: 100%;
+	background-color: transparent;
+	position: fixed;
+	pointer-events: none;
+	z-index: 1;
+	box-sizing: border-box;
+	bottom: 0;
+}
+
+.SplitScreen .topView{
+	background-color: transparent;
+	pointer-events: none;
+}
+
+.SplitScreen .bottomView{
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	background-color: var(--bodyAltBG);
+	color: var(--mainTextColor);
+	pointer-events: all;
+}
+
+.SplitScreen .gutter{
+	width: 100vw;
+	background-color: var(--navColor);
+	cursor: n-resize;
+	pointer-events: all;
+	transition: all 100ms;
+}
+
+/* InfoCard components styled differntly */
+.SplitScreen .InfoCard{
+	padding: 10px !important;
+}
+
+.SplitScreen .MainTable{
+	padding-bottom: 0;
+}
