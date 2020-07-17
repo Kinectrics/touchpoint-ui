@@ -13,7 +13,9 @@ export default function RadioGroup(props) {
 	const [groupName] = useState(uuid())
 	
 	function onChange(value){
-		if(props.onChange){props.onChange(value)}
+		if(props.onChange){
+			props.onChange(value, props.groupID)
+		}
 	}
 	
 	const radioData = {
@@ -35,4 +37,5 @@ RadioGroup.propTypes = {
 	defaultValue: PropTypes.string,
 	onChange: PropTypes.func,
 	locked: PropTypes.bool,
+	groupID: PropTypes.any,
 }
