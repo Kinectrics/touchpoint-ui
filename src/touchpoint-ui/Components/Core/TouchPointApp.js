@@ -77,7 +77,7 @@ export default function TouchPointApp(props) {
 		},
 		
 		closePopup: () => {
-			if(activePopup.props.onClose){activePopup.props.onClose()}
+			// if(activePopup.props.onClose){activePopup.props.onClose()}
 			setPopupEffect('transparent')
 			setTimeout(()=>setPopup(null), 250)
 			setScreenEffect('')

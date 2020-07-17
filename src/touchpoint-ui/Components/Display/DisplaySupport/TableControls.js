@@ -3,12 +3,18 @@ import TableSettings from './TableSettings'
 import MenuButton from '../MenuButton'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faTimesCircle, faFilter, faSortAmountUp } from '@fortawesome/free-solid-svg-icons'
+import Popup from '../Popup'
+import TextBox from '../../Inputs/TextBox'
+import FreeButton from '../../Inputs/FreeButton'
+import useSystem from '../../../Hooks/UseSystem'
 
 export default function TableControls(props) {
 	let clearFilterButton = null
 	let sortButton = null
 	let filterButton = null
 	let settingsButton = null
+	
+	const System = useSystem()
 
 	if (props.hasFilter && !props.noFilter) {
 		clearFilterButton = <button
@@ -18,7 +24,28 @@ export default function TableControls(props) {
 
 	if (!props.noFilter) {
 		filterButton = <MenuButton menuContent = {
-			<button>Filter and Such</button>
+			<div>
+				<MenuButton menuContent={
+					<div>
+						<button>Outstanding Tasks</button>
+						<button>Assigned To Me</button>
+						<button>Due Soon</button>
+					</div>
+				}>Saved Filters</MenuButton>
+				
+				<button onClick = {()=>{
+					System.openPopup(<Popup title = 'Save Filter'>
+						<label>Filter Name: </label><TextBox/>
+						<FreeButton
+							onClick={()=>{
+								System.closePopup()
+							}}
+						>Save</FreeButton>
+					</Popup>)
+				}}
+				>Save Current Filter</button>
+				
+			</div>
 		}>
 			<span className='smallIcon'>
 				<FontAwesomeIcon icon={faFilter} />
