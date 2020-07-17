@@ -47,7 +47,9 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "rollup -c",
+		"build": "react-scripts build",
+		"compile": "rollup -c",
+		"deploy": "((npm run compile) & npm version patch) & npm publish",
 		"test": "react-scripts test"
 	},
 	"eslintConfig": {
