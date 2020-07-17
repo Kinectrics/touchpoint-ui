@@ -5,6 +5,7 @@ import SystemModuleContainer from '../../SystemComponents/SystemModuleContainer'
 import systemContext from '../../Contexts/SystemContext'
 import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
+import { HashRouter } from 'react-router-dom'
 
 export default function TouchPointApp(props) {
 	
@@ -50,7 +51,8 @@ export default function TouchPointApp(props) {
 		openModule: (moduleName) => {
 			
 			if(props.modules[moduleName]){
-				setActiveModule(moduleName)
+				//setActiveModule(moduleName)
+				window.location.href = '#/' + moduleName
 			}
 		},
 		
@@ -110,7 +112,7 @@ export default function TouchPointApp(props) {
 	return (
 		<div className={"TouchPointApp "}>
 			<systemContext.Provider value ={System}>
-				
+				<HashRouter>
 				{screenBlocker}
 				
 				<div className={'screenEffect ' + screenEffect}>
@@ -125,8 +127,8 @@ export default function TouchPointApp(props) {
 					system = {System} 
 					activePopup = {activePopup}
 					popupEffect = {popupEffect}
-				/>
-				
+					/>
+				</HashRouter>
 			</systemContext.Provider>
 		</div>
 	);

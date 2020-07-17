@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch } from 'react-router';
 import lockedContext from '../Contexts/LockedContext'
 	
 export default function SystemModuleContainer(props) {
@@ -23,12 +24,21 @@ export default function SystemModuleContainer(props) {
 	} else if(!ActiveModule){ //If there's no home module render the first module in the list
 		ActiveModule = Object.keys(props.system.getModules())[0]
 	}
-		
+
+	const moduleList = props.system.getModules();
+
 	//Render the chosen module
 	return(
 		<lockedContext.Provider value = {ActiveModule.locked || props.locked}>
-			<div className = {"moduleContainer"} style = {styleSettings}>
-				<ActiveModule.component />
+			<div className={"moduleContainer"} style={styleSettings}>
+				<Switch>
+					{/*<ActiveModule.component /> */}
+
+					{Object.keys(moduleList).map(m => {
+						return <Route path={'/' + m} component={moduleList[m].component} />
+					})}
+					<Route path='/' component={moduleList[props.system.getHomeModule()].component} />
+				</Switch>
 			</div>
 		</lockedContext.Provider>
 	)
