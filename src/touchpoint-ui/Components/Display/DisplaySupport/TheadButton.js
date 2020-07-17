@@ -51,7 +51,7 @@ export default function TheadButton(props){
 	let iconClass = ''
 	if (props.header.hasFilter()) { 
 		icon = <FontAwesomeIcon icon={faFilter} />
-		iconClass = 'smallIcon'
+		iconClass = 'smallerIcon'
 	}
 	
 	if(props.noSort && props.noFilter) { 

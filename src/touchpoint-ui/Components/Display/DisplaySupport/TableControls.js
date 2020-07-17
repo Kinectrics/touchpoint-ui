@@ -20,7 +20,7 @@ export default function TableControls(props) {
 		filterButton = <MenuButton menuContent = {
 			<button>Filter and Such</button>
 		}>
-			<span className='smallerIcon'>
+			<span className='smallIcon'>
 				<FontAwesomeIcon icon={faFilter} />
 			</span> Filter
 		</MenuButton>

@@ -130,8 +130,11 @@
 	height: 100%;
 }
 
-.MainTable .smallIcon, .MainTable .smallerIcon{
+.MainTable .smallIcon{
 	font-size: 10pt;
 }
 
+.MainTable .smallerIcon{
+	font-size: 9pt;
+}
 
