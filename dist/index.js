@@ -1,5 +1,7 @@
-import React$1, { createContext, useState, useEffect, useContext as useContext$1 } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { Switch, Route } from 'react-router';
 import PropTypes from 'prop-types';
+import { HashRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DropdownButton, Dropdown, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -224,15 +226,24 @@ function SystemModuleContainer(props) {
   } else if (!ActiveModule) {
     //If there's no home module render the first module in the list
     ActiveModule = Object.keys(props.system.getModules())[0];
-  } //Render the chosen module
+  }
 
+  var moduleList = props.system.getModules(); //Render the chosen module
 
-  return /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: ActiveModule.locked || props.locked
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "moduleContainer",
     style: styleSettings
-  }, /*#__PURE__*/React$1.createElement(ActiveModule.component, null)));
+  }, /*#__PURE__*/React.createElement(Switch, null, Object.keys(moduleList).map(function (m) {
+    return /*#__PURE__*/React.createElement(Route, {
+      path: '/' + m,
+      component: moduleList[m].component
+    });
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/",
+    component: moduleList[props.system.getHomeModule()].component
+  }))));
 }
 
 //Context hooks for variable and functions that are system wide
@@ -437,7 +448,8 @@ function TouchPointApp(props) {
     //Interacting with the parent app
     openModule: function openModule(moduleName) {
       if (props.modules[moduleName]) {
-        setActiveModule(moduleName);
+        //setActiveModule(moduleName)
+        window.location.href = '#/' + moduleName;
       }
     },
     disableInput: function disableInput(forTime) {
@@ -493,26 +505,26 @@ function TouchPointApp(props) {
   var screenBlocker = null;
 
   if (screenBlock) {
-    screenBlocker = /*#__PURE__*/React$1.createElement("div", {
+    screenBlocker = /*#__PURE__*/React.createElement("div", {
       className: "screenBlocker"
     });
   } else screenBlocker = null; //The App JSX itself
 
 
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "TouchPointApp "
-  }, /*#__PURE__*/React$1.createElement(systemContext.Provider, {
+  }, /*#__PURE__*/React.createElement(systemContext.Provider, {
     value: System
-  }, screenBlocker, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement(HashRouter, null, screenBlocker, /*#__PURE__*/React.createElement("div", {
     className: 'screenEffect ' + screenEffect
-  }, props.children, /*#__PURE__*/React$1.createElement(SystemModuleContainer, {
+  }, props.children, /*#__PURE__*/React.createElement(SystemModuleContainer, {
     system: System,
     locked: props.locked
-  })), /*#__PURE__*/React$1.createElement(SystemPopupHandler, {
+  })), /*#__PURE__*/React.createElement(SystemPopupHandler, {
     system: System,
     activePopup: activePopup,
     popupEffect: popupEffect
-  })));
+  }))));
 } //Proptypes
 
 TouchPointApp.propTypes = {
@@ -526,7 +538,7 @@ TouchPointApp.propTypes = {
 var css_248z$2 = ".AppToolbar{\n\tbackground-color: var(--navColor) !important;\n\t\n\twidth: 100%;\n\tcolor: var(--navTextColor);\n\tpadding: 0 30px 0 10px;\n\tz-index: 3;\n}\n\n.AppToolbar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\theight: var(--systemToolbarHeight);\n\twidth: 70%;\n\tfloat: left;\n}\n\n.AppToolbar .brandingContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\twidth: 30%;\n\ttext-align: right;\n\tfont-weight: bold;\n}\n\n.AppToolbar button{\n\tpadding: 0;\n\tbackground-color: transparent !important;\n\tborder: none;\n\tfont-size: 13pt;\n\tmargin-bottom: 4px;\n\tmargin-right: 40px;\n\tcolor: var(--navTextColor);\n\theight: 100%;\n}\n\n.AppToolbar button::after{\n\tcontent: none;\n}\n\n.AppToolbar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.AppToolbar button:active, .AppToolbar button:focus{\n\tborder: none !important;\n\toutline: none !important;\n\tbox-shadow: none !important;\n\tcolor: var(--navClickedColor) !important;\n}\n\n.AppToolbar .homeButton{\n\tmargin-top: 2px;\n\tpadding-left: 4px;\n\tbackground-color: var(--navColor) !important;\n\tborder: none;\n\tcolor: var(--navTextColor);\n}\n\n.AppToolbar a{\n\tbackground-color: var(--cardBG) !important;\n\tcolor: var(--mainTextColor) !important;\n}\n\n.AppToolbar a:hover{\n\tfilter: brightness(95%);\n}\n\n.AppToolbar .dropdown-menu{\n\tbackground-color: var(--cardBG) !important;\n}\n\n\n";
 styleInject(css_248z$2);
 
-function useSystem$1() {
+function useSystem() {
   return useContext(systemContext);
 }
 
@@ -543,7 +555,7 @@ function usePresence(componentName) {
 }
 
 function AppToolbar(props) {
-  var System = useSystem$1();
+  var System = useSystem();
   var devMode = '';
 
   if (process.env.NODE_ENV === 'development') {
@@ -553,50 +565,50 @@ function AppToolbar(props) {
 
   usePresence('AppToolbar');
   var moduleList = System.getModules();
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "AppToolbar flexY"
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "buttonContainer flexY"
-  }, /*#__PURE__*/React$1.createElement("button", {
+  }, /*#__PURE__*/React.createElement("button", {
     className: "homeButton",
     onClick: function onClick(e) {
       System.openModule(System.getHomeModule());
       e.target.blur();
     }
-  }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faHome
-  }), " Home"), /*#__PURE__*/React$1.createElement(DropdownButton, {
+  }), " Home"), /*#__PURE__*/React.createElement(DropdownButton, {
     title: "Application"
   }, Object.keys(moduleList).map(function (m) {
     if (m !== System.getHomeModule()) {
-      return /*#__PURE__*/React$1.createElement(Dropdown.Item, {
+      return /*#__PURE__*/React.createElement(Dropdown.Item, {
         onClick: function onClick() {
           return System.openModule(m);
         },
         key: 'SystemToolBarOpenModule' + m
       }, moduleList[m].name);
     } else return null;
-  })), /*#__PURE__*/React$1.createElement(DropdownButton, {
+  })), /*#__PURE__*/React.createElement(DropdownButton, {
     title: "Tools"
-  }, /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "Class V Estimation")), /*#__PURE__*/React$1.createElement(DropdownButton, {
+  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "Class V Estimation")), /*#__PURE__*/React.createElement(DropdownButton, {
     title: "Settings"
-  }, /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "User Delegation"), /*#__PURE__*/React$1.createElement(Dropdown.Item, {
+  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "User Delegation"), /*#__PURE__*/React.createElement(Dropdown.Item, {
     onClick: function onClick() {
       return System.setTheme('blue');
     }
-  }, "Blue Theme"), /*#__PURE__*/React$1.createElement(Dropdown.Item, {
+  }, "Blue Theme"), /*#__PURE__*/React.createElement(Dropdown.Item, {
     onClick: function onClick() {
       return System.setTheme('orange');
     }
-  }, "Orange Theme"), /*#__PURE__*/React$1.createElement(Dropdown.Item, {
+  }, "Orange Theme"), /*#__PURE__*/React.createElement(Dropdown.Item, {
     onClick: function onClick() {
       return System.setTheme('dark');
     }
-  }, "Dark Theme")), /*#__PURE__*/React$1.createElement(DropdownButton, {
+  }, "Dark Theme")), /*#__PURE__*/React.createElement(DropdownButton, {
     title: "Support"
-  }, /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "Request Change"), /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "Report Bug"), /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "Contact Dev Team")), /*#__PURE__*/React$1.createElement(DropdownButton, {
+  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "Request Change"), /*#__PURE__*/React.createElement(Dropdown.Item, null, "Report Bug"), /*#__PURE__*/React.createElement(Dropdown.Item, null, "Contact Dev Team")), /*#__PURE__*/React.createElement(DropdownButton, {
     title: "Help"
-  }, /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "View Help Files"), /*#__PURE__*/React$1.createElement(Dropdown.Item, null, "About DMS"))), /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "View Help Files"), /*#__PURE__*/React.createElement(Dropdown.Item, null, "About DMS"))), /*#__PURE__*/React.createElement("div", {
     className: "brandingContainer"
   }, "Bruce Power DMS ", devMode));
 }
@@ -605,15 +617,15 @@ var css_248z$3 = ".AppFooter{\n\twidth: 100%;\n\tpadding-top: 2px;\n\tbackground
 styleInject(css_248z$3);
 
 function AppFooter(props) {
-  var System = useSystem$1();
+  var System = useSystem();
   var v = System.io.getVersion(); //Declare itself to the app so the modules can be fit around it
 
   usePresence('AppFooter');
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "AppFooter"
-  }, /*#__PURE__*/React$1.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
     className: "leftSide"
-  }, System.io.getActiveUser(), " | Security Profile: ", System.io.getSecurityProfile(), " | Version: ", v.number + ' - ' + v.environment), /*#__PURE__*/React$1.createElement("span", {
+  }, System.io.getActiveUser(), " | Security Profile: ", System.io.getSecurityProfile(), " | Version: ", v.number + ' - ' + v.environment), /*#__PURE__*/React.createElement("span", {
     className: "rightSide"
   }));
 }
@@ -623,7 +635,7 @@ styleInject(css_248z$4);
 
 function CoreButton(props) {
   //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
   var lockedClass = '';
 
@@ -639,7 +651,7 @@ function CoreButton(props) {
   }
 
   if (!props.hidden) {
-    return /*#__PURE__*/React$1.createElement("button", {
+    return /*#__PURE__*/React.createElement("button", {
       className: 'CoreButton ' + lockedClass + ' ' + props.className,
       onClick: clickHandler
     }, props.children);
@@ -670,7 +682,7 @@ function FreeButton(props) {
     wideClass = 'wide ';
   }
 
-  return /*#__PURE__*/React$1.createElement(CoreButton, {
+  return /*#__PURE__*/React.createElement(CoreButton, {
     locked: props.locked,
     onClick: props.onClick,
     hidden: props.hidden,
@@ -696,7 +708,7 @@ function Tile(props) {
       splash = _useState2[0],
       setSplash = _useState2[1];
 
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
   function clickHandler() {
@@ -710,12 +722,12 @@ function Tile(props) {
     }
   }
 
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "Tile " + splash,
     onClick: clickHandler
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "logo flexCenter"
-  }, /*#__PURE__*/React$1.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     src: props.icon
   })), props.title);
 } //Proptypes
@@ -733,7 +745,7 @@ styleInject(css_248z$7);
 
 function TextBox(props) {
   //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
   var lockedClass = '';
 
@@ -761,7 +773,7 @@ function TextBox(props) {
     }
   }
 
-  return /*#__PURE__*/React$1.createElement("input", {
+  return /*#__PURE__*/React.createElement("input", {
     type: "text",
     className: "input TextBox " + lockedClass,
     defaultValue: props.defaultValue,
@@ -793,7 +805,7 @@ function SearchBar(props) {
       setSearchText = _useState2[1]; //deccides if the component is locked based on props and parents in the tree
 
 
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined; //Search button click event
 
   function searchHandler(e) {
@@ -811,9 +823,9 @@ function SearchBar(props) {
     }
   }
 
-  return /*#__PURE__*/React$1.createElement("span", {
+  return /*#__PURE__*/React.createElement("span", {
     className: "SearchBar"
-  }, /*#__PURE__*/React$1.createElement(TextBox, {
+  }, /*#__PURE__*/React.createElement(TextBox, {
     locked: props.locked,
     defaultValue: props.defaultValue,
     onChange: changeHandler,
@@ -821,10 +833,10 @@ function SearchBar(props) {
     onEnter: props.onSearch,
     placeholder: "Search",
     onBlur: props.onBlur
-  }), /*#__PURE__*/React$1.createElement("button", {
+  }), /*#__PURE__*/React.createElement("button", {
     className: "searchButton",
     onClick: searchHandler
-  }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faSearch
   })));
 } //Proptypes
@@ -844,7 +856,7 @@ var radioContext = /*#__PURE__*/createContext('');
 
 function RadioGroup(props) {
   //decides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
   var _useState = useState(v4()),
@@ -863,7 +875,7 @@ function RadioGroup(props) {
     locked: locked,
     defaultValue: props.defaultValue
   };
-  return /*#__PURE__*/React$1.createElement(radioContext.Provider, {
+  return /*#__PURE__*/React.createElement(radioContext.Provider, {
     value: radioData
   }, props.children);
 } //Proptypes
@@ -878,7 +890,7 @@ var css_248z$9 = ".RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n
 styleInject(css_248z$9);
 
 function RadioButton(props) {
-  var radioData = useContext$1(radioContext);
+  var radioData = useContext(radioContext);
 
   var _useState = useState(v4()),
       _useState2 = _slicedToArray(_useState, 1),
@@ -900,9 +912,9 @@ function RadioButton(props) {
   }
 
   var defaultChecked = radioData.defaultValue === props.value;
-  return /*#__PURE__*/React$1.createElement("span", {
+  return /*#__PURE__*/React.createElement("span", {
     className: "RadioButton flexY " + lockedClass
-  }, /*#__PURE__*/React$1.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     type: "radio",
     className: 'input ' + lockedClass,
     defaultChecked: defaultChecked,
@@ -910,7 +922,7 @@ function RadioButton(props) {
     name: radioData.groupName,
     value: props.value,
     id: id
-  }), /*#__PURE__*/React$1.createElement("label", {
+  }), /*#__PURE__*/React.createElement("label", {
     className: lockedClass,
     htmlFor: id
   }, props.labelValue));
@@ -924,7 +936,7 @@ var css_248z$a = ".ControlButton{\n\toutline: none !important;\n\tborder: none;\
 styleInject(css_248z$a);
 
 function ControlButton(props) {
-  return /*#__PURE__*/React$1.createElement(CoreButton, {
+  return /*#__PURE__*/React.createElement(CoreButton, {
     locked: props.locked,
     onClick: props.onClick,
     hidden: props.hidden,
@@ -948,9 +960,9 @@ var moduleContext = /*#__PURE__*/createContext({
 });
 
 function ControlBar(props) {
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  var moduleData = useContext$1(moduleContext);
+  var moduleData = useContext(moduleContext);
 
   var _useState = useState(function () {}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -972,25 +984,25 @@ function ControlBar(props) {
   }
 
   if (props.searchBar) {
-    return /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+    return /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "ControlBar flexY"
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "buttonContainer"
-    }, props.children), /*#__PURE__*/React$1.createElement("div", {
+    }, props.children), /*#__PURE__*/React.createElement("div", {
       className: "searchContainer"
-    }, /*#__PURE__*/React$1.createElement(SearchBar, {
+    }, /*#__PURE__*/React.createElement(SearchBar, {
       locked: false,
       onChange: changeHandler,
       onSearch: searchHandler
     }))));
   } else {
-    return /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+    return /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "ControlBar flexY"
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "buttonContainer"
     }, props.children)));
   }
@@ -1007,7 +1019,7 @@ styleInject(css_248z$c);
 
 function CommentBox(props) {
   //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
   var lockedClass = '';
 
@@ -1037,7 +1049,7 @@ function CommentBox(props) {
     }
   }
 
-  return /*#__PURE__*/React$1.createElement("textarea", {
+  return /*#__PURE__*/React.createElement("textarea", {
     className: "input CommentBox " + lockedClass,
     defaultValue: props.defaultValue,
     onChange: changeHandler,
@@ -1066,7 +1078,7 @@ styleInject(css_248z$d);
 
 function ComboBox(props) {
   //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
   var lockedClass = '';
 
@@ -1085,14 +1097,14 @@ function ComboBox(props) {
   var kids = props.children;
 
   if (locked) {
-    kids = /*#__PURE__*/React$1.createElement("option", null, props.defaultValue);
+    kids = /*#__PURE__*/React.createElement("option", null, props.defaultValue);
   } //If it's hidden, don't render anything
 
 
   if (props.hidden) {
     return null;
   } else {
-    return /*#__PURE__*/React$1.createElement("select", {
+    return /*#__PURE__*/React.createElement("select", {
       className: "ComboBox input " + lockedClass,
       defaultValue: props.defaultValue,
       onChange: changeHandler,
@@ -1105,12 +1117,12 @@ var css_248z$e = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparen
 styleInject(css_248z$e);
 
 function CloseButton(props) {
-  return /*#__PURE__*/React$1.createElement(CoreButton, {
+  return /*#__PURE__*/React.createElement(CoreButton, {
     className: "CloseButton",
     onClick: props.onClick,
     locked: props.locked,
     hidden: props.hidden
-  }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faTimes
   }));
 } //Proptypes
@@ -1123,7 +1135,7 @@ CloseButton.propTypes = {
 
 function CheckBox(props) {
   //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
   var lockedClass = '';
 
@@ -1145,15 +1157,15 @@ function CheckBox(props) {
     }
   }
 
-  return /*#__PURE__*/React$1.createElement("label", {
+  return /*#__PURE__*/React.createElement("label", {
     className: "CheckBox flexY"
-  }, /*#__PURE__*/React$1.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     className: 'input ' + lockedClass,
     defaultChecked: props.defaultValue,
     onChange: changeHandler,
     onClick: clickHandler
-  }), /*#__PURE__*/React$1.createElement("span", {
+  }), /*#__PURE__*/React.createElement("span", {
     className: "checkmark"
   }), props.label);
 }
@@ -1164,7 +1176,7 @@ styleInject(css_248z$f);
 function InfoCard(props) {
   //locking the item. If a component somewhere above in the tree is locked, the context will 
   //cause this card to be locked as well
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined; //Assign classes based on props 
 
   var stripe = ''; //Adds a stripe down the left side
@@ -1202,13 +1214,13 @@ function InfoCard(props) {
   var titleBar;
 
   if (props.title) {
-    titleBar = /*#__PURE__*/React$1.createElement("h1", null, props.title);
+    titleBar = /*#__PURE__*/React.createElement("h1", null, props.title);
   }
 
   var closeButton;
 
   if (props.onClose) {
-    closeButton = /*#__PURE__*/React$1.createElement(CloseButton, {
+    closeButton = /*#__PURE__*/React.createElement(CloseButton, {
       onClick: closeHandler
     });
   } //if 'hidden' prop is true then dont show the component
@@ -1221,15 +1233,15 @@ function InfoCard(props) {
       width: props.width,
       height: props.height
     };
-    return /*#__PURE__*/React$1.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "InfoCard " + dynamic + ' ' + props.className,
       onClick: clickHandler,
       style: styleSettings
-    }, /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+    }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "cardContainer"
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "textBox " + stripe
     }, closeButton, titleBar, props.children))));
   }
@@ -1253,8 +1265,8 @@ var css_248z$g = ".Popup .InfoCard{\n\tmax-width: 85%;\n\tmax-width: 90%;\n}\n\n
 styleInject(css_248z$g);
 
 function Popup(props) {
-  var system = useSystem$1();
-  var lockedFromAbove = useContext$1(lockedContext);
+  var system = useSystem();
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined; //Clicking the background closes the popup
 
   var handleCloseButton;
@@ -1267,9 +1279,9 @@ function Popup(props) {
     };
   }
 
-  return /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: locked
-  }, /*#__PURE__*/React$1.createElement(InfoCard, {
+  }, /*#__PURE__*/React.createElement(InfoCard, {
     className: 'Popup ',
     stripe: true,
     title: props.title,
@@ -1292,12 +1304,12 @@ Popup.propTypes = {
 
 var menuContext = /*#__PURE__*/createContext({});
 
-var css_248z$h = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding-top: 1px;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n}\n\n.MenuContainer{\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 5px 20px;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, .Menu button:not(.FreeButton):hover{\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG);\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
+var css_248z$h = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding-top: 1px;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n}\n\n.MenuContainer{\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px !important;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, .Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:active, .Menu button:not(.FreeButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
 styleInject(css_248z$h);
 
 function MenuButton(props) {
   //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
   var lockedClass;
 
@@ -1326,13 +1338,13 @@ function MenuButton(props) {
   } //check if it's inside of another menu, if so render as a submenu
 
 
-  var parentMenuData = useContext$1(menuContext);
+  var parentMenuData = useContext(menuContext);
   var icon = null;
 
   if (parentMenuData.submenu) {
-    icon = /*#__PURE__*/React$1.createElement("span", {
+    icon = /*#__PURE__*/React.createElement("span", {
       className: "subMenuIcon"
-    }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faCaretRight
     }));
   }
@@ -1344,7 +1356,7 @@ function MenuButton(props) {
   } //button
 
 
-  var dropButton = /*#__PURE__*/React$1.forwardRef(function (_ref, ref) {
+  var dropButton = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
     var onClick = _ref.onClick;
 
     function clickHandler(e) {
@@ -1352,7 +1364,7 @@ function MenuButton(props) {
       onClick(e);
     }
 
-    return /*#__PURE__*/React$1.createElement("button", {
+    return /*#__PURE__*/React.createElement("button", {
       className: 'MenuButton ' + props.className + ' ' + lockedClass,
       onClick: clickHandler,
       ref: ref
@@ -1364,20 +1376,20 @@ function MenuButton(props) {
     width: props.width,
     height: props.height
   };
-  var dropMenu = /*#__PURE__*/React$1.forwardRef(function (_ref2, ref) {
+  var dropMenu = /*#__PURE__*/React.forwardRef(function (_ref2, ref) {
     var style = _ref2.style,
         className = _ref2.className;
-    return /*#__PURE__*/React$1.createElement(menuContext.Provider, {
+    return /*#__PURE__*/React.createElement(menuContext.Provider, {
       value: {
         submenu: true
       }
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       ref: ref,
       style: {
         menuStyle: menuStyle
       },
       className: className + ' MenuContainer'
-    }, /*#__PURE__*/React$1.createElement("div", _defineProperty({
+    }, /*#__PURE__*/React.createElement("div", _defineProperty({
       style: style,
       className: 'Menu'
     }, "style", menuStyle), props.menuContent)));
@@ -1386,14 +1398,14 @@ function MenuButton(props) {
   if (locked) {
     return dropButton;
   } else {
-    return /*#__PURE__*/React$1.createElement("span", {
+    return /*#__PURE__*/React.createElement("span", {
       className: "menuButtonContainer"
-    }, /*#__PURE__*/React$1.createElement(Dropdown, {
+    }, /*#__PURE__*/React.createElement(Dropdown, {
       drop: direction,
       onToggle: toggleHandler
-    }, /*#__PURE__*/React$1.createElement(Dropdown.Toggle, {
+    }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
       as: dropButton
-    }), /*#__PURE__*/React$1.createElement(Dropdown.Menu, {
+    }), /*#__PURE__*/React.createElement(Dropdown.Menu, {
       as: dropMenu
     })));
   }
@@ -1409,7 +1421,7 @@ MenuButton.propTypes = {
   onClose: PropTypes.func
 };
 
-var css_248z$i = ".MainTable{\n\toverflow-x: auto;\n\tpadding: 0px 10px;\n\twidth:100%;\n\tbackground-color: var(--bodyAltBG);\n\theight: 100%;\n\tpadding-bottom: 75vh;\n\tcolor: var(--mainTextColor);\n\tposition: relative;\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .titleBar{\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .topBar{\n\tdisplay: flex;\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\t\n}\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding-top: 4px;\n\tpadding-bottom: 4px;\n\tpadding-left: 0;\n\tfont-size: 11.5pt;\n\ttransition: none;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n\n.MainTable .tableControls{\n\twidth: 50%;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\twidth: 50%;\n\tright: 0;\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon, .MainTable .smallerIcon{\n\tfont-size: 10pt;\n}\n\n\n";
+var css_248z$i = ".MainTable{\n\toverflow-x: auto;\n\tpadding: 0px 10px;\n\twidth:100%;\n\tbackground-color: var(--bodyAltBG);\n\theight: 100%;\n\tpadding-bottom: 75vh;\n\tcolor: var(--mainTextColor);\n\tposition: relative;\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .titleBar{\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .topBar{\n\tdisplay: flex;\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\t\n}\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding-top: 4px;\n\tpadding-bottom: 4px;\n\tpadding-left: 0;\n\tfont-size: 11.5pt;\n\ttransition: none;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n\n.MainTable .tableControls{\n\twidth: 50%;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\twidth: 50%;\n\tright: 0;\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n}\n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}\n\n";
 styleInject(css_248z$i);
 
 var css_248z$j = ".MainTableRow{\n\twidth:100%;\n\tbackground-color: transparent;\n\tpadding: 4px 10px;\n\theight: 40px;\n\ttransition: all 0.2s;\n\tbox-sizing: border-box;\n}\n\n.MainTableRow.pointer{\n\tcursor: pointer;\n}\n\n.MainTableRow.dynamic:hover{\n\tpadding: 1px 0;\n}\n\n.MainTableRow.dynamic:active{\n\ttransition: all 0.05s ease-out;\n\tpadding: 3px 7px;\n}\n\n.MainTableRow span{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow .rowContainer{\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: var(--cardBG);\n\tpadding: 4px 15px;\n\tborder-radius: 10px;\n\tbox-shadow: var(--cardShadow);\n\ttransition: all 0.3s, color 0.15s ease-out;\t\n\toverflow: hidden;\n}\n\n.MainTableRow.dynamic .rowContainer:hover{\n\tbox-shadow: var(--dynamicCardShadow);\n\tpadding-left: 20px;\n\tpadding-top: 6px;\n}\n\n.MainTableRow .active{\n\tcolor: var(--tableActiveColor);\n}\n\n\n";
@@ -1443,7 +1455,7 @@ function InputCell(props) {
 
   switch (props.dataHeader.dataType.kind) {
     default:
-      return /*#__PURE__*/React$1.createElement("input", {
+      return /*#__PURE__*/React.createElement("input", {
         className: "InputCell cellTextBox input",
         defaultValue: props.defaultValue,
         onKeyDown: keyHandler,
@@ -1510,7 +1522,7 @@ function MainTableRow(props) {
         var cellContent = props.dataRow[hdr.headerID];
 
         if (!props.locked && hdr.onEdit && !hdr.locked) {
-          cellContent = /*#__PURE__*/React$1.createElement(InputCell, {
+          cellContent = /*#__PURE__*/React.createElement(InputCell, {
             dataHeader: hdr,
             defaultValue: cellContent,
             dataRow: props.dataRow
@@ -1519,7 +1531,7 @@ function MainTableRow(props) {
 
 
         if (!hdr.styling) {
-          return /*#__PURE__*/React$1.createElement("span", {
+          return /*#__PURE__*/React.createElement("span", {
             key: hdr.headerID + props.rowKey,
             style: {
               width: hdr.width + '%'
@@ -1531,7 +1543,7 @@ function MainTableRow(props) {
           return (
             /*#__PURE__*/
             //with coniditional formatting
-            React$1.createElement("span", {
+            React.createElement("span", {
               className: "badge",
               key: hdr.headerID + props.rowKey,
               style: {
@@ -1549,10 +1561,10 @@ function MainTableRow(props) {
 
 
   if (renderRow) {
-    return /*#__PURE__*/React$1.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: 'MainTableRow ' + dynamicClass + ' ' + pointerClass,
       onClick: rowClickHandler
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "rowContainer " + activeClass
     }, row));
   } else return null;
@@ -1567,13 +1579,13 @@ MainTableRow.propTypes = {
 };
 
 function InfoTab(props) {
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
   if (!props.hidden) {
-    return /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+    return /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
-    }, /*#__PURE__*/React$1.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: 'InfoTab ' + props.tabID
     }, props.children));
   } else return null;
@@ -1588,13 +1600,13 @@ var css_248z$l = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\tw
 styleInject(css_248z$l);
 
 function InfoTabContainer(props) {
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  return /*#__PURE__*/React$1.createElement(lockedContext.Provider, {
+  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: locked
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "InfoTabContainer"
-  }, /*#__PURE__*/React$1.createElement(Tabs, {
+  }, /*#__PURE__*/React.createElement(Tabs, {
     defaultActiveKey: props.defaultTab,
     transition: false,
     onSelect: function onSelect(tabID) {
@@ -1602,9 +1614,9 @@ function InfoTabContainer(props) {
         props.onTabChange(tabID, locked);
       }
     }
-  }, React$1.Children.map(props.children, function (child) {
+  }, React.Children.map(props.children, function (child) {
     if (!child.props.hidden) {
-      return /*#__PURE__*/React$1.createElement(Tab, {
+      return /*#__PURE__*/React.createElement(Tab, {
         eventKey: child.props.tabID,
         title: child.props.tabTitle
       }, child);
@@ -1652,29 +1664,29 @@ function FilterMenu(props) {
     props.data.filter();
   }
 
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "FilterMenu"
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "topMenu"
-  }, props.children, /*#__PURE__*/React$1.createElement("button", {
+  }, props.children, /*#__PURE__*/React.createElement("button", {
     onClick: selectAll,
     className: "selectAll"
-  }, /*#__PURE__*/React$1.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     defaultChecked: !props.header.hasFilter(),
     id: props.header.headerID + 'selectAll',
     style: {
       cursor: 'pointer'
     }
-  }), ' Select All')), /*#__PURE__*/React$1.createElement("div", {
+  }), ' Select All')), /*#__PURE__*/React.createElement("div", {
     className: "filterOptions"
   }, Object.keys(values).map(function (v, i) {
-    return /*#__PURE__*/React$1.createElement("button", {
+    return /*#__PURE__*/React.createElement("button", {
       key: props.header.id + 'fv' + i,
       onClick: function onClick(e) {
         return clickHandler(e, props.header.headerID + 'fcb' + i);
       }
-    }, /*#__PURE__*/React$1.createElement("input", {
+    }, /*#__PURE__*/React.createElement("input", {
       type: "checkbox",
       defaultChecked: values[v],
       id: props.header.headerID + 'fcb' + i,
@@ -1695,56 +1707,56 @@ function TheadButton(props) {
 
 
   var filterMenu = null;
-  filterMenu = /*#__PURE__*/React$1.createElement(InfoTab, {
+  filterMenu = /*#__PURE__*/React.createElement(InfoTab, {
     tabID: "filter",
     tabTitle: "Filter",
     hidden: props.noFilter
-  }, /*#__PURE__*/React$1.createElement(FilterMenu, {
+  }, /*#__PURE__*/React.createElement(FilterMenu, {
     dataHeaders: props.dataHeaders,
     header: props.header,
     data: props.data
-  }, /*#__PURE__*/React$1.createElement("button", null, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faPlus
-  }), /*#__PURE__*/React$1.createElement("span", {
+  }), /*#__PURE__*/React.createElement("span", {
     style: {
       paddingLeft: '10px'
     }
   }, "More Filters")))); //Sort tab - if the correct props are available to enable sorting
 
-  var sortMenu = /*#__PURE__*/React$1.createElement(InfoTab, {
+  var sortMenu = /*#__PURE__*/React.createElement(InfoTab, {
     tabID: "sort",
     tabTitle: "Sort",
     hidden: props.noSort
-  }, /*#__PURE__*/React$1.createElement("button", null, "Sort Test")); //Combine available tabs - if at least one is avilable
+  }, /*#__PURE__*/React.createElement("button", null, "Sort Test")); //Combine available tabs - if at least one is avilable
 
-  var overallMenu = /*#__PURE__*/React$1.createElement("div", null, /*#__PURE__*/React$1.createElement(InfoTabContainer, {
+  var overallMenu = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(InfoTabContainer, {
     defaultTab: defaultTab,
     onTabChange: function onTabChange(tabID) {
       setDefaultTab(tabID);
     }
   }, filterMenu, sortMenu)); //if there is a menu, add a dropdown icon
 
-  var icon = /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+  var icon = /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faCaretDown
   });
   var iconClass = '';
 
   if (props.header.hasFilter()) {
-    icon = /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+    icon = /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faFilter
     });
-    iconClass = 'smallIcon';
+    iconClass = 'smallerIcon';
   }
 
   if (props.noSort && props.noFilter) {
     return props.children;
   } else {
-    return /*#__PURE__*/React$1.createElement(MenuButton, {
+    return /*#__PURE__*/React.createElement(MenuButton, {
       className: "TheadButton",
       locked: false,
       menuContent: overallMenu,
       maxHeight: "50vh"
-    }, props.children, /*#__PURE__*/React$1.createElement("span", {
+    }, props.children, /*#__PURE__*/React.createElement("span", {
       className: iconClass
     }, icon));
   }
@@ -1767,11 +1779,14 @@ function CheckButton(props) {
     }
   }
 
-  return /*#__PURE__*/React$1.createElement("button", {
+  return /*#__PURE__*/React.createElement("button", {
     onClick: function onClick(e) {
       return clickHandler(e, checkID);
+    },
+    style: {
+      color: 'var(--mainTextColor'
     }
-  }, /*#__PURE__*/React$1.createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     defaultChecked: props.defaultChecked,
     id: checkID,
@@ -1811,10 +1826,10 @@ function TableSettings(props) {
     }, 0);
   }
 
-  return /*#__PURE__*/React$1.createElement(MenuButton, {
+  return /*#__PURE__*/React.createElement(MenuButton, {
     locked: false,
-    menuContent: /*#__PURE__*/React$1.createElement("div", null, props.headers.get().map(function (h) {
-      return /*#__PURE__*/React$1.createElement(CheckButton, {
+    menuContent: /*#__PURE__*/React.createElement("div", null, props.headers.get().map(function (h) {
+      return /*#__PURE__*/React.createElement(CheckButton, {
         key: 'customizeHeader' + h.headerID,
         disabled: h.required,
         defaultChecked: h.visible,
@@ -1822,7 +1837,7 @@ function TableSettings(props) {
         onClick: clickHandler
       }, h.displayName);
     }))
-  }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faCog
   }), " Table Settings");
 }
@@ -1834,42 +1849,42 @@ function TableControls(props) {
   var settingsButton = null;
 
   if (props.hasFilter && !props.noFilter) {
-    clearFilterButton = /*#__PURE__*/React$1.createElement("button", {
+    clearFilterButton = /*#__PURE__*/React.createElement("button", {
       onClick: props.clearFilter
-    }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faTimesCircle
     }), " Clear Filter");
   }
 
   if (!props.noFilter) {
-    filterButton = /*#__PURE__*/React$1.createElement(MenuButton, {
-      menuContent: /*#__PURE__*/React$1.createElement("button", null, "Filter and Such")
-    }, /*#__PURE__*/React$1.createElement("span", {
-      className: "smallerIcon"
-    }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+    filterButton = /*#__PURE__*/React.createElement(MenuButton, {
+      menuContent: /*#__PURE__*/React.createElement("button", null, "Filter and Such")
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "smallIcon"
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faFilter
     })), " Filter");
   }
 
   if (!props.noSort) {
-    sortButton = /*#__PURE__*/React$1.createElement(MenuButton, {
-      menuContent: /*#__PURE__*/React$1.createElement(MenuButton, {
-        menuContent: /*#__PURE__*/React$1.createElement("div", null, /*#__PURE__*/React$1.createElement("button", null, "test2"), /*#__PURE__*/React$1.createElement("button", null, "test2"), /*#__PURE__*/React$1.createElement("button", null, "test2"))
+    sortButton = /*#__PURE__*/React.createElement(MenuButton, {
+      menuContent: /*#__PURE__*/React.createElement(MenuButton, {
+        menuContent: /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", null, "test2"), /*#__PURE__*/React.createElement("button", null, "test2"), /*#__PURE__*/React.createElement("button", null, "test2"))
       }, "test")
-    }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faSortAmountUp
     }), " Sort");
   }
 
   if (!props.noOptions) {
-    settingsButton = /*#__PURE__*/React$1.createElement(TableSettings, {
+    settingsButton = /*#__PURE__*/React.createElement(TableSettings, {
       headers: props.dataHeaders,
       data: props.data,
       setTransitionClass: props.setTransitionClass
     });
   }
 
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "tableControls"
   }, settingsButton, sortButton, filterButton, clearFilterButton);
 }
@@ -1924,7 +1939,7 @@ function MainTable(props) {
   } //deccides if the component is locked based on props and parents in the tree
 
 
-  var lockedFromAbove = useContext$1(lockedContext);
+  var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined; //If clicking sets the active record then its animated
   //if there are editable cells the animations will be cancelled
 
@@ -1953,7 +1968,7 @@ function MainTable(props) {
     }
   }); //access the parent module context for searching 
 
-  var moduleData = useContext$1(moduleContext);
+  var moduleData = useContext(moduleContext);
   var searchText;
 
   if (props.searchable) {
@@ -1973,9 +1988,9 @@ function MainTable(props) {
 
   function BackButton() {
     if (activePage > 0) {
-      return /*#__PURE__*/React$1.createElement("button", {
+      return /*#__PURE__*/React.createElement("button", {
         onClick: pageBack
-      }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+      }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
         icon: faCaretLeft
       }));
     } else return null;
@@ -1991,9 +2006,9 @@ function MainTable(props) {
 
   function ForwardButton() {
     if (activePage < Math.floor(dataLength / pageSize) - 1) {
-      return /*#__PURE__*/React$1.createElement("button", {
+      return /*#__PURE__*/React.createElement("button", {
         onClick: pageForward
-      }, /*#__PURE__*/React$1.createElement(FontAwesomeIcon, {
+      }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
         icon: faCaretRight
       }));
     } else return null;
@@ -2010,11 +2025,11 @@ function MainTable(props) {
 
   function PageControls() {
     if (dataLength > pageSize) {
-      return /*#__PURE__*/React$1.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "pageControls"
-      }, /*#__PURE__*/React$1.createElement(BackButton, null), /*#__PURE__*/React$1.createElement("button", {
+      }, /*#__PURE__*/React.createElement(BackButton, null), /*#__PURE__*/React.createElement("button", {
         className: "textButton"
-      }, "Showing ", 1 + activePage * pageSize, "-", Math.min((1 + activePage) * pageSize, dataLength) + ' ', "of ", "  ".concat(dataLength)), /*#__PURE__*/React$1.createElement(ForwardButton, null));
+      }, "Showing ", 1 + activePage * pageSize, "-", Math.min((1 + activePage) * pageSize, dataLength) + ' ', "of ", "  ".concat(dataLength)), /*#__PURE__*/React.createElement(ForwardButton, null));
     } else return null;
   }
 
@@ -2024,13 +2039,13 @@ function MainTable(props) {
       setTransitionClass = _useState4[1]; //Render
 
 
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "MainTable " + transitionClass
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "titleBar"
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "topBar"
-  }, /*#__PURE__*/React$1.createElement(TableControls, {
+  }, /*#__PURE__*/React.createElement(TableControls, {
     hasFilter: hasFilter,
     noFilter: noFilter,
     noSort: noSort,
@@ -2039,18 +2054,18 @@ function MainTable(props) {
     dataHeaders: props.dataHeaders,
     data: props.data,
     setTransitionClass: setTransitionClass
-  }), /*#__PURE__*/React$1.createElement(PageControls, null)), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement(PageControls, null)), /*#__PURE__*/React.createElement("div", {
     className: "theadBar"
   }, props.dataHeaders.get().map(function (hdr) {
     hdr.width = 99 * (hdr.width / totalWidth);
 
     if (hdr.visible) {
-      return /*#__PURE__*/React$1.createElement("span", {
+      return /*#__PURE__*/React.createElement("span", {
         style: {
           width: hdr.width + '%'
         },
         key: 'header' + hdr.headerID
-      }, /*#__PURE__*/React$1.createElement(TheadButton, {
+      }, /*#__PURE__*/React.createElement(TheadButton, {
         header: hdr,
         data: props.data,
         dataHeaders: props.dataHeaders,
@@ -2058,12 +2073,12 @@ function MainTable(props) {
         noSort: noSort
       }, hdr.displayName + ' '));
     } else return null;
-  }))), /*#__PURE__*/React$1.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("div", {
     className: 'tableBody ' + props.data.lastResolved
   }, data.map(function (dr) {
     //render the allowed numebr of rows, on th selected page
     if (i > activePage * pageSize && i <= (1 + activePage) * pageSize) {
-      var r = /*#__PURE__*/React$1.createElement(MainTableRow, {
+      var r = /*#__PURE__*/React.createElement(MainTableRow, {
         dataRow: dr,
         dataHeaders: props.dataHeaders.get(),
         setActiveRecord: props.setActiveRecord,
@@ -2116,9 +2131,9 @@ function Module(props) {
     searchText: searchText,
     setSearchText: setSearchText
   };
-  return /*#__PURE__*/React$1.createElement(moduleContext.Provider, {
+  return /*#__PURE__*/React.createElement(moduleContext.Provider, {
     value: moduleData
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: 'Module ' + props.moduleName
   }, props.children));
 } //Proptypes
@@ -2137,17 +2152,17 @@ function SplitScreen(props) {
     splitSize = props.defaultSize;
   }
 
-  return /*#__PURE__*/React$1.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "SplitScreen"
-  }, /*#__PURE__*/React$1.createElement(Split, {
+  }, /*#__PURE__*/React.createElement(Split, {
     direction: "vertical",
     sizes: [100 - splitSize, splitSize],
     minSize: 150,
     gutterSize: 8,
     snapOffset: 1
-  }, /*#__PURE__*/React$1.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "topView"
-  }), /*#__PURE__*/React$1.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "bottomView"
   }, props.children)));
 } //Proptypes
@@ -2543,5 +2558,5 @@ function useHeaders() {
   };
 }
 
-export { AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ControlBar, ControlButton, CoreButton, DataHeader, DataType, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable, MenuButton, Module, Popup, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useHeaders, useSystem$1 as useSystem };
+export { AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ControlBar, ControlButton, CoreButton, DataHeader, DataType, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable, MenuButton, Module, Popup, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useHeaders, useSystem };
 //# sourceMappingURL=index.js.map
