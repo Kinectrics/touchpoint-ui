@@ -1,3 +1,4 @@
+import React from 'react'
 import './SystemPopupHandler.css'
 
 export default function SystemPopupHandler(props) {

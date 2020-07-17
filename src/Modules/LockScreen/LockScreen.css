@@ -1,0 +1,48 @@
+.LockScreen{
+	background-color: var(--bodyAltBG);
+}
+
+.LockScreen .notificationPane{
+	width: 32%;
+	height: 100%;
+	float: left;
+	background-origin: border-box;
+	box-sizing: border-box;
+	overflow-y: auto;
+	padding-top: 8px;
+	background-color: var(--bodyAltBG);
+}
+
+.LockScreen .notificationPane::-webkit-scrollbar {
+	display: none;
+}
+
+.LockScreen h2{
+	color: var(--labelColor);
+	margin: 6px 15px;
+}
+
+.LockScreen .mainArea{
+	background-color: var(--bodyAltBG);
+	width: 68%;
+	height: 100%;
+	float: right;
+	padding-left: 0;
+}
+
+.LockScreen .iconLayer{
+	background-color: transparent;
+	padding-bottom: 200px;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	box-sizing: border-box;
+	border-radius: 15px;
+	flex-wrap: wrap;
+}
+
+.LockScreen .LoginBox .ComboBox{
+	width: 65%;
+}
+
+

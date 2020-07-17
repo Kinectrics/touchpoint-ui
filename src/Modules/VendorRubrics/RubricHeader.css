@@ -1,0 +1,25 @@
+.RubricHeader{
+	width:100%;
+	display: flex;
+	padding: 7px;
+	display: flex;
+	
+}
+
+.RubricHeader .largeContainer{
+	width: 70%;
+	box-sizing: border-box;
+}
+
+.RubricHeader .smallContainer{
+	width: 30%;
+	box-sizing: border-box;
+}
+
+.RubricHeader .InfoCard tr{
+	height: 40px;
+}
+
+.RubricHeader .InfoCard td{
+	padding-right: 20px;
+}
