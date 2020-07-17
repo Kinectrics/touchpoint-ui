@@ -44,20 +44,26 @@
 /* Buttons and links */
 .Menu a, .Menu button:not(.FreeButton){
 	width: 100%;
-	color: var(--mainTextColor);
+	color: var(--mainTextColor) !important;
 	background-color: var(--cardBG);
 	border: none;
 	outline: none !important;
 	text-align: left;
-	padding: 5px 20px;
+	padding: 4px 20px !important;
+	margin: 0 !important;
 	cursor: pointer;
 	margin: 3px 0;
 	white-space: nowrap;
 }
 
 .Menu a:hover, .Menu button:not(.FreeButton):hover{
+	background-color: var(--cardBG);
 	filter: brightness(95%);
 	color: var(--mainTextColor);
+}
+
+.Menu a:active, .Menu button:not(.FreeButton):active{
+	filter: brightness(91%) !important;
 }
 
 .Menu .FreeButton{
@@ -92,7 +98,7 @@
 .Menu .InfoTabContainer .nav-tabs,
 .Menu .InfoTabContainer .nav-tabs a{
 	width: fit-content;
-	background-color:var(--cardBG);
+	background-color:var(--cardBG) !important;
 	color: var(--labelColor) !important;
 	text-align: left;
 	padding: 0;

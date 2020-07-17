@@ -17,6 +17,7 @@ export default function CheckButton(props) {
 	
 	return (<button
 		onClick={(e) => clickHandler(e, checkID)}
+		style ={{color: 'var(--mainTextColor'}}
 	>
 
 		<input

@@ -19,7 +19,6 @@ const moduleList = {
 	VendorRubrics: {
 		name: 'Vendor Rubrics',
 		component: VendorRubrics,
-		path: '/VendorRubrics',
 		icon: VRIcon,
 		locked: false,
 		hidden: false,

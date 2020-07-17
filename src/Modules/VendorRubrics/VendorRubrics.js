@@ -10,6 +10,8 @@ import PBI from '../../Temp/PBI.jpg'
 import './StatusLog'
 import StatusLog from './StatusLog'
 
+
+
 //And begin
 export default function VendorRubrics(){
 	
@@ -28,14 +30,14 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = useHeaders([
-		new DataHeader('id','ID',50, new DataType('string'), true),
-		new DataHeader('vendor','My Vendor',200,new DataType('string')),
-		new DataHeader('project','Project',200, new DataType('string')),
-		new DataHeader('projectName','Project Name',300,new DataType('string')),
-		new DataHeader('status','Status',200, new DataType('string'), true, statusStyle),
-		new DataHeader('due','Due',200, new DataType('string')),
-		new DataHeader('SM','SM',300, new DataType('string')),
-		new DataHeader('intern','Intern',300,new DataType('string'), false),
+		new DataHeader('id','ID', 50, new DataType('string'), true),
+		new DataHeader('vendor','My Vendor', 200,new DataType('string')),
+		new DataHeader('project','Project', 200, new DataType('string')),
+		new DataHeader('projectName','Project Name', 300,new DataType('string')),
+		new DataHeader('status','Status', 200, new DataType('string'), true, statusStyle),
+		new DataHeader('due','Due', 200, new DataType('string')),
+		new DataHeader('SM','SM', 300, new DataType('string')),
+		new DataHeader('intern','Intern', 300,new DataType('string'), false),
 	])
 	
 	//Data from the 'server'
