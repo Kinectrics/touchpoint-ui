@@ -477,10 +477,7 @@ function TouchPointApp(props) {
       }, 0);
     },
     closePopup: function closePopup() {
-      if (activePopup.props.onClose) {
-        activePopup.props.onClose();
-      }
-
+      // if(activePopup.props.onClose){activePopup.props.onClose()}
       setPopupEffect('transparent');
       setTimeout(function () {
         return setPopup(null);
@@ -865,7 +862,7 @@ function RadioGroup(props) {
 
   function onChange(value) {
     if (props.onChange) {
-      props.onChange(value);
+      props.onChange(value, props.groupID);
     }
   }
 
@@ -883,7 +880,8 @@ function RadioGroup(props) {
 RadioGroup.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
-  locked: PropTypes.bool
+  locked: PropTypes.bool,
+  groupID: PropTypes.any
 };
 
 var css_248z$9 = ".RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
@@ -1847,6 +1845,7 @@ function TableControls(props) {
   var sortButton = null;
   var filterButton = null;
   var settingsButton = null;
+  var System = useSystem();
 
   if (props.hasFilter && !props.noFilter) {
     clearFilterButton = /*#__PURE__*/React.createElement("button", {
@@ -1858,7 +1857,19 @@ function TableControls(props) {
 
   if (!props.noFilter) {
     filterButton = /*#__PURE__*/React.createElement(MenuButton, {
-      menuContent: /*#__PURE__*/React.createElement("button", null, "Filter and Such")
+      menuContent: /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(MenuButton, {
+        menuContent: /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", null, "Outstanding Tasks"), /*#__PURE__*/React.createElement("button", null, "Assigned To Me"), /*#__PURE__*/React.createElement("button", null, "Due Soon"))
+      }, "Saved Filters"), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          System.openPopup( /*#__PURE__*/React.createElement(Popup, {
+            title: "Save Filter"
+          }, /*#__PURE__*/React.createElement("label", null, "Filter Name: "), /*#__PURE__*/React.createElement(TextBox, null), /*#__PURE__*/React.createElement(FreeButton, {
+            onClick: function onClick() {
+              System.closePopup();
+            }
+          }, "Save")));
+        }
+      }, "Save Current Filter"))
     }, /*#__PURE__*/React.createElement("span", {
       className: "smallIcon"
     }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {

@@ -39,3 +39,4 @@ RadioGroup.propTypes = {
 	locked: PropTypes.bool,
 	groupID: PropTypes.any,
 }
+
