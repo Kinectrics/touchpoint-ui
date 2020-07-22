@@ -1,6 +1,6 @@
 {
-	"name": "@youssof707/touchpoint-ui",
-	"version": "0.1.4",
+	"name": "touchpoint-ui",
+	"version": "0.1.5",
 	"description": "Library for building modular apps with React",
 	"input": "src/touchpoint-ui/index.js",
 	"main": "dist/index.js",
@@ -70,8 +70,5 @@
 	},
 	"files": [
 		"dist"
-	],
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/"
-	}
+	]
 }

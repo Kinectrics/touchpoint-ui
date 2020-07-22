@@ -35,7 +35,7 @@ export default function SystemModuleContainer(props) {
 					{/*<ActiveModule.component /> */}
 
 					{Object.keys(moduleList).map(m => {
-						return <Route path={'/' + m} component={moduleList[m].component} />
+						return <Route path={'/' + m} key={'routeFor' + m} component={moduleList[m].component} />
 					})}
 					<Route path='/' component={moduleList[props.system.getHomeModule()].component} />
 				</Switch>

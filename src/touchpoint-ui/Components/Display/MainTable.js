@@ -61,10 +61,8 @@ export default function MainTable(props){
 	if(props.setActiveRecord){dynamic = true} 
 	
 	//Normalize column widths to ensure they always add up to 100%
-	let totalWidth = 0
 	let hasFilter = false
 	props.dataHeaders.get().forEach(hdr => {
-		if(hdr.visible){totalWidth = totalWidth + hdr.width}
 		
 		//if you have input cells in the table, hover effects will be cancelled
 		if(hdr.onEdit){dynamic = false}
@@ -162,11 +160,10 @@ export default function MainTable(props){
 				
 				<div className="theadBar">
 					{props.dataHeaders.get().map((hdr) => {
-						hdr.width = 99 * (hdr.width/totalWidth)
-						
+						console.log(hdr.width)
 						if(hdr.visible){return(
 							<span style={{width: hdr.width + '%'}} key = {'header'+hdr.headerID}>
-								
+									
 								<TheadButton
 									header = {hdr}
 									data = {props.data}

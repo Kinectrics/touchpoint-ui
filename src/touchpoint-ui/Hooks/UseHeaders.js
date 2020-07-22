@@ -1,14 +1,22 @@
 import {useState} from 'react'
 import produce from 'immer'
+import DataHeader  from '../DataObjects/DataHeader'
 
 
 //Crates a set of DataHeaders, for use with a mainTable
 export default function useHeaders(dataHeaders = []) {
-
-	//add an index prop to each DataHeader object, so it's easier to locate in the array 
-	function setIndex(hdr, i) {
-		hdr.index = i
-		return hdr
+	
+	function normalize(headerArray){
+		let totalWidth = 0
+		headerArray.forEach((hdr)=>{
+			if(hdr.visible){totalWidth = totalWidth + hdr.width}
+		})
+		
+		return headerArray.map((hdr, i)=>{
+			hdr.width = 99 * (hdr.width / totalWidth)
+			hdr.index = i
+			return hdr
+		})
 	}
 
 	//Saves a list of unique values in each column (header) - to be used in the filter dropdowns
@@ -21,11 +29,13 @@ export default function useHeaders(dataHeaders = []) {
 		}))
 	}
 
-	const [headers, setHeaders] = useState(dataHeaders.map(setIndex))
+	const [headers, setHeaders] = useState(normalize(dataHeaders.map((hdr)=>{
+		return(new DataHeader(hdr))
+	})))
 
 	return ({
-		get: () => { return headers },
-		set: (val) => { setHeaders(val.map(setIndex)) },
+		get: () => {return headers},
+		set: (val) => {setHeaders(normalize(val))},
 		embedData: embedData
 	})
 }

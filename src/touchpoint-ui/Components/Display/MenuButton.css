@@ -56,13 +56,14 @@
 	white-space: nowrap;
 }
 
-.Menu a:hover, .Menu button:not(.FreeButton):hover{
+.Menu a:hover, 
+.Menu button:not(.FreeButton):hover{
 	background-color: var(--cardBG);
 	filter: brightness(95%);
 	color: var(--mainTextColor);
 }
 
-.Menu a:active, .Menu button:not(.FreeButton):active{
+.Menu a:not(.nav-item):active, .Menu button:not(.FreeButton):active{
 	filter: brightness(91%) !important;
 }
 
@@ -93,6 +94,7 @@
 	position: sticky;
 	top:0;
 	width: 100% !important;
+	background-color: var(--cardBG);
 }
 
 .Menu .InfoTabContainer .nav-tabs,

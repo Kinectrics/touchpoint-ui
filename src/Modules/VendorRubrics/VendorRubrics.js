@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Module, ControlBar, SplitScreen, Popup, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
-import {DataType, DataHeader, useSystem, useHeaders, useDataset} from '../../touchpoint-ui'
+import {useSystem, useHeaders, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt} from "@fortawesome/free-solid-svg-icons"
 import {getTableData} from '../../SQLSimulator/SQLSimulator'
@@ -30,14 +30,14 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = useHeaders([
-		new DataHeader('id','ID', 50, new DataType('string'), true),
-		new DataHeader('vendor','My Vendor', 200,new DataType('string')),
-		new DataHeader('project','Project', 200, new DataType('string')),
-		new DataHeader('projectName','Project Name', 300,new DataType('string')),
-		new DataHeader('status','Status', 200, new DataType('string'), true, statusStyle),
-		new DataHeader('due','Due', 200, new DataType('string')),
-		new DataHeader('SM','SM', 300, new DataType('string')),
-		new DataHeader('intern','Intern', 300,new DataType('string'), false),
+		{ headerID:'id',displayName:'ID', width: 50, required: true},
+		{ headerID: 'vendor', displayName:'My Vendor', width: 200},
+		{ headerID: 'project', displayName:'Project', width: 200},
+		{ headerID: 'projectName', displayName:'Project Name', width: 300},
+		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
+		{ headerID: 'due', displayName:'Due', width: 200},
+		{ headerID: 'SM', displayName:'SM', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300},
 	])
 	
 	//Data from the 'server'

@@ -2,31 +2,32 @@ import DataType from "./DataType"
 
 export default class DataHeader{
 	
-	constructor(headerID, displayName, width, dataType, required = false, styling, onEdit, locked, visible = true){
-		this.headerID = headerID
-		this.displayName = displayName
-		this.width = width
-		this.required = required
-		this.visible = visible
+	constructor(options){
 		
+		this.headerID = options.headerID
+		this.displayName = options.displayName
+		this.width = options.width ? options.width : 10
+		this.required = options.required ? options.required : false
+		this.visible = (!options.visible === undefined) ? options.visible : true
+		this.index = options.index
+		this.onEdit = options.onEdit ? options.onEdit : null
+		this.locked = options.locked ? options.locked : false
+		this.dataType = options.dataType ? options.dataType : new DataType('string') 
+		this.styling = options.styling ? options.styling : null
 		this.uniqueValues = {}
 		
 		//Default filter list only has 1 functions (array filter)
 		//By default no values are selected, which is the same as saying 'select all'
 		this.filterList = {
-			arrayFilter: {func: (cellValue)=>{
-				return (this.uniqueValues[cellValue] || this.uniqueValues[cellValue] === undefined)
-			}, displayName: 'Array Filter'}
+			arrayFilter: {
+				func: (cellValue) => {
+					return (this.uniqueValues[cellValue] || this.uniqueValues[cellValue] === undefined)
+				}, displayName: 'Array Filter'
+			}
 		}
 		
-		this.onEdit = onEdit
-		this.locked = locked
-		
-		//default dataType is String
-		if(dataType){ this.dataType = dataType }else{ this.dataType = new DataType('string') }
-		
-		this.styling = styling
 	}
+
 	
 	
 	filter(cellValue, dataRow){
