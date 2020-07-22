@@ -160,7 +160,6 @@ export default function MainTable(props){
 				
 				<div className="theadBar">
 					{props.dataHeaders.get().map((hdr) => {
-						console.log(hdr.width)
 						if(hdr.visible){return(
 							<span style={{width: hdr.width + '%'}} key = {'header'+hdr.headerID}>
 									
