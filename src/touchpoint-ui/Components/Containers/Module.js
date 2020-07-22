@@ -5,21 +5,11 @@ import PropTypes from 'prop-types'
 
 export default function Module(props) {
 
-	const [searchText, setSearchText] = useState('')
-	
-	const moduleData ={
-		searchText: searchText,
-		setSearchText: setSearchText
-	}
 	
 	return (
-		<moduleContext.Provider value ={moduleData}>
-			
-			<div className={'Module ' + props.moduleName}>
-				{props.children}	
-			</div>
-			
-		</moduleContext.Provider>
+		<div className={'Module ' + props.moduleName}>
+			{props.children}	
+		</div>
 	)
 }
 

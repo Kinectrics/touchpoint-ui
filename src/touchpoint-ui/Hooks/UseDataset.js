@@ -1,5 +1,6 @@
-import {useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import produce from 'immer'
+import moduleContext from '../Contexts/ModuleContext'
 
 
 //Initialises a Dataset and caches the value
@@ -13,9 +14,30 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [lastResolved, setLastResolved] = useState()
 	const [lastRejected, setLastRejected] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
+	
+	const {searchText} = useContext(moduleContext)
+	
+	useEffect(() => {
+		
+		setData(produce(data, draftData => {
+			draftData.map((r) => {
+
+				r.TouchPointMetaSearchHide = false
+				
+				if(searchText.trim()){
+					r.TouchPointMetaSearchHide = !headers.get().some((hdr) => {
+						return hdr.dataType.search(r[hdr.headerID], searchText)
+					})
+				}
+
+				return r
+			})
+		}))
+		
+	}, [searchText])
 
 	//Filters the data based on given headers
-	function filterData(values) {
+	function filterData(values){
 
 		//Apply the filters to the data (define what rows are visible)
 		return produce(values, (draftValues) => {
@@ -24,8 +46,10 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 				r.TouchPointMetaFilteredBy = ''
 
 				let noRender = false
-
+				
 				headers.get().forEach((h) => {
+					
+					//filter
 					if (!h.filter(r[h.headerID], r)) {
 						noRender = true
 						r.TouchPointMetaFilteredBy = r.TouchPointMetaFilteredBy + [h.headerID] + ';'
@@ -33,7 +57,6 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 				})
 
 				r.TouchPointMetaVisible = !noRender
-
 				return r
 			})
 		})
@@ -92,6 +115,6 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			const newData = filterData(data)
 			setData(newData)
 			headers.embedData(newData)
-		}
+		},
 	})
 }

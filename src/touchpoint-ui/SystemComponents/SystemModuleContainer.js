@@ -1,6 +1,7 @@
-import React from 'react';
-import { Route, Switch } from 'react-router';
+import React, {useState} from 'react'
+import { Route, Switch } from 'react-router'
 import lockedContext from '../Contexts/LockedContext'
+import moduleContext from '../Contexts/ModuleContext'
 	
 export default function SystemModuleContainer(props) {
 	
@@ -26,20 +27,31 @@ export default function SystemModuleContainer(props) {
 	}
 
 	const moduleList = props.system.getModules();
+	
+	const [searchText, setSearchText] = useState('')
+
+	const moduleData = {
+		searchText: searchText,
+		setSearchText: setSearchText
+	}
 
 	//Render the chosen module
 	return(
 		<lockedContext.Provider value = {ActiveModule.locked || props.locked}>
-			<div className={"moduleContainer"} style={styleSettings}>
-				<Switch>
-					{/*<ActiveModule.component /> */}
+			<moduleContext.Provider value={moduleData}>
+				
+				<div className={"moduleContainer"} style={styleSettings}>
+					<Switch>
+						{/*<ActiveModule.component /> */}
 
-					{Object.keys(moduleList).map(m => {
-						return <Route path={'/' + m} key={'routeFor' + m} component={moduleList[m].component} />
-					})}
-					<Route path='/' component={moduleList[props.system.getHomeModule()].component} />
-				</Switch>
-			</div>
+						{Object.keys(moduleList).map(m => {
+							return <Route path={'/' + m} key={'routeFor' + m} component={moduleList[m].component} />
+						})}
+						<Route path='/' component={moduleList[props.system.getHomeModule()].component} />
+					</Switch>
+				</div>
+				
+			</moduleContext.Provider>
 		</lockedContext.Provider>
 	)
 	

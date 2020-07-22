@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import './MainTable.css'
 import MainTableRow from './DisplaySupport/MainTableRow'
 import lockedContext from '../../Contexts/LockedContext'
-import moduleContext from '../../Contexts/ModuleContext'
 import TheadButton from './DisplaySupport/TheadButton' 
 import produce from 'immer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons'
 import TableControls from './DisplaySupport/TableControls'
+
 
 export default function MainTable(props){
 	
@@ -37,10 +37,10 @@ export default function MainTable(props){
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)
 	
-	//get the length of the data with teh filter applied
+	//get the length of the data with the filter applied
 	let dataLength = 0
 	data.forEach((r)=>{
-		if(r.TouchPointMetaVisible){dataLength = dataLength + 1}
+		if (r.TouchPointMetaVisible && !r.TouchPointMetaSearchHide){dataLength = dataLength + 1}
 	})
 	
 	//if there's no way to set the active record, then no record is active
@@ -53,7 +53,7 @@ export default function MainTable(props){
 	
 	//deccides if the component is locked based on props and parents in the tree
 	const lockedFromAbove = useContext(lockedContext)
-	const locked = props.locked || (lockedFromAbove && props.locked ===undefined)
+	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled
@@ -63,18 +63,12 @@ export default function MainTable(props){
 	//Normalize column widths to ensure they always add up to 100%
 	let hasFilter = false
 	props.dataHeaders.get().forEach(hdr => {
-		
 		//if you have input cells in the table, hover effects will be cancelled
 		if(hdr.onEdit){dynamic = false}
 		
 		//check if any headers have active filters (to show a clear filter button)
 		if(hdr.hasFilter()){hasFilter = true}
 	})
-	
-	//access the parent module context for searching 
-	const moduleData = useContext(moduleContext)
-	let searchText
-	if(props.searchable){searchText = moduleData.searchText}
 	
 	//Counter for rendered rows
 	let i = 1
@@ -118,7 +112,6 @@ export default function MainTable(props){
 				hdr.clearFilter()
 			})
 		}))
-		
 		props.data.filter()
 	}
 	
@@ -167,7 +160,7 @@ export default function MainTable(props){
 									header = {hdr}
 									data = {props.data}
 									dataHeaders = {props.dataHeaders}
-									noFilter = {noFilter}
+									noFilter = {noFilter}o
 									noSort = {noSort}
 								>
 									{hdr.displayName + ' '}
@@ -184,22 +177,29 @@ export default function MainTable(props){
 				{data.map((dr) => {
 					//render the allowed numebr of rows, on th selected page
 					if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
-						const r = <MainTableRow
-							dataRow = {dr}
-							dataHeaders={props.dataHeaders.get()}
-							setActiveRecord = {props.setActiveRecord}
-							activeRecord = {activeRecord}
-							rowKey = {'MainTableRow'+i}
-							key = {'MainTableRow'+i}
-							locked = {locked}
-							dynamic = {dynamic}
-							searchText = {searchText}
-							noFilter = {noFilter}
-						/>
+						
+						let renderRow = true
+						if(props.searchable){
+							renderRow = !dr.TouchPointMetaSearchHide
+						}
+						
+						renderRow = renderRow && (dr.TouchPointMetaVisible || props.noFilter)
+						
+						const r = renderRow ? 
+							<MainTableRow
+								dataRow = {dr}
+								dataHeaders={props.dataHeaders.get()}
+								setActiveRecord = {props.setActiveRecord}
+								activeRecord = {activeRecord}
+								rowKey = {'MainTableRow'+i}
+								key = {'MainTableRow'+i}
+								locked = {locked}
+								dynamic = {dynamic}
+							/> : null
 						
 						if(r){i++}//Count the number of rows actually renedered (not filtered out)
 						
-						return(r)
+						return r
 					} else if(i <= (1 + activePage)*pageSize){i++}
 					
 					return null
@@ -228,4 +228,3 @@ MainTable.propTypes = {
 	noFilter: PropTypes.bool,
 	noOptions: PropTypes.bool,
 }
-
