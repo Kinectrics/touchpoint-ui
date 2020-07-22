@@ -1,6 +1,6 @@
 {
 	"name": "touchpoint-ui",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"description": "Library for building modular apps with React",
 	"input": "src/touchpoint-ui/index.js",
 	"main": "dist/index.js",
