@@ -238,6 +238,7 @@ function SystemModuleContainer(props) {
   }, /*#__PURE__*/React.createElement(Switch, null, Object.keys(moduleList).map(function (m) {
     return /*#__PURE__*/React.createElement(Route, {
       path: '/' + m,
+      key: 'routeFor' + m,
       component: moduleList[m].component
     });
   }), /*#__PURE__*/React.createElement(Route, {
@@ -1302,7 +1303,7 @@ Popup.propTypes = {
 
 var menuContext = /*#__PURE__*/createContext({});
 
-var css_248z$h = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding-top: 1px;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n}\n\n.MenuContainer{\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px !important;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, .Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:active, .Menu button:not(.FreeButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
+var css_248z$h = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding-top: 1px;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n}\n\n.MenuContainer{\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px !important;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):active, .Menu button:not(.FreeButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
 styleInject(css_248z$h);
 
 function MenuButton(props) {
@@ -1961,14 +1962,9 @@ function MainTable(props) {
   } //Normalize column widths to ensure they always add up to 100%
 
 
-  var totalWidth = 0;
   var hasFilter = false;
   props.dataHeaders.get().forEach(function (hdr) {
-    if (hdr.visible) {
-      totalWidth = totalWidth + hdr.width;
-    } //if you have input cells in the table, hover effects will be cancelled
-
-
+    //if you have input cells in the table, hover effects will be cancelled
     if (hdr.onEdit) {
       dynamic = false;
     } //check if any headers have active filters (to show a clear filter button)
@@ -2068,7 +2064,7 @@ function MainTable(props) {
   }), /*#__PURE__*/React.createElement(PageControls, null)), /*#__PURE__*/React.createElement("div", {
     className: "theadBar"
   }, props.dataHeaders.get().map(function (hdr) {
-    hdr.width = 99 * (hdr.width / totalWidth);
+    console.log(hdr.width);
 
     if (hdr.visible) {
       return /*#__PURE__*/React.createElement("span", {
@@ -2255,22 +2251,21 @@ var DataType = /*#__PURE__*/function () {
 }();
 
 var DataHeader = /*#__PURE__*/function () {
-  function DataHeader(headerID, displayName, width, dataType) {
+  function DataHeader(options) {
     var _this = this;
-
-    var required = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    var styling = arguments.length > 5 ? arguments[5] : undefined;
-    var onEdit = arguments.length > 6 ? arguments[6] : undefined;
-    var locked = arguments.length > 7 ? arguments[7] : undefined;
-    var visible = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : true;
 
     _classCallCheck(this, DataHeader);
 
-    this.headerID = headerID;
-    this.displayName = displayName;
-    this.width = width;
-    this.required = required;
-    this.visible = visible;
+    this.headerID = options.headerID;
+    this.displayName = options.displayName;
+    this.width = options.width ? options.width : 10;
+    this.required = options.required ? options.required : false;
+    this.visible = !options.visible === undefined ? options.visible : true;
+    this.index = options.index;
+    this.onEdit = options.onEdit ? options.onEdit : null;
+    this.locked = options.locked ? options.locked : false;
+    this.dataType = options.dataType ? options.dataType : new DataType('string');
+    this.styling = options.styling ? options.styling : null;
     this.uniqueValues = {}; //Default filter list only has 1 functions (array filter)
     //By default no values are selected, which is the same as saying 'select all'
 
@@ -2282,16 +2277,6 @@ var DataHeader = /*#__PURE__*/function () {
         displayName: 'Array Filter'
       }
     };
-    this.onEdit = onEdit;
-    this.locked = locked; //default dataType is String
-
-    if (dataType) {
-      this.dataType = dataType;
-    } else {
-      this.dataType = new DataType('string');
-    }
-
-    this.styling = styling;
   }
 
   _createClass(DataHeader, [{
@@ -2537,10 +2522,18 @@ function useDataset(fetchFunction) {
 function useHeaders() {
   var dataHeaders = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-  //add an index prop to each DataHeader object, so it's easier to locate in the array 
-  function setIndex(hdr, i) {
-    hdr.index = i;
-    return hdr;
+  function normalize(headerArray) {
+    var totalWidth = 0;
+    headerArray.forEach(function (hdr) {
+      if (hdr.visible) {
+        totalWidth = totalWidth + hdr.width;
+      }
+    });
+    return headerArray.map(function (hdr, i) {
+      hdr.width = 99 * (hdr.width / totalWidth);
+      hdr.index = i;
+      return hdr;
+    });
   } //Saves a list of unique values in each column (header) - to be used in the filter dropdowns
 
 
@@ -2553,7 +2546,9 @@ function useHeaders() {
     }));
   }
 
-  var _useState = useState(dataHeaders.map(setIndex)),
+  var _useState = useState(normalize(dataHeaders.map(function (hdr) {
+    return new DataHeader(hdr);
+  }))),
       _useState2 = _slicedToArray(_useState, 2),
       headers = _useState2[0],
       setHeaders = _useState2[1];
@@ -2563,7 +2558,7 @@ function useHeaders() {
       return headers;
     },
     set: function set(val) {
-      setHeaders(val.map(setIndex));
+      setHeaders(normalize(val));
     },
     embedData: embedData
   };
