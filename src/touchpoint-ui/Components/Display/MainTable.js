@@ -9,7 +9,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons'
 import TableControls from './DisplaySupport/TableControls'
 
-
 export default function MainTable(props){
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
@@ -183,7 +182,7 @@ export default function MainTable(props){
 							renderRow = !dr.TouchPointMetaSearchHide
 						}
 						
-						renderRow = renderRow && (dr.TouchPointMetaVisible || props.noFilter)
+						renderRow = renderRow && (dr.TouchPointMetaVisible || noFilter)
 						
 						const r = renderRow ? 
 							<MainTableRow
