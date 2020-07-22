@@ -2064,8 +2064,6 @@ function MainTable(props) {
   }), /*#__PURE__*/React.createElement(PageControls, null)), /*#__PURE__*/React.createElement("div", {
     className: "theadBar"
   }, props.dataHeaders.get().map(function (hdr) {
-    console.log(hdr.width);
-
     if (hdr.visible) {
       return /*#__PURE__*/React.createElement("span", {
         style: {
