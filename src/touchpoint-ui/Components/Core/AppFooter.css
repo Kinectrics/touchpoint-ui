@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 	position: absolute;
 	bottom:0px;
-	height: var(--systemToolbarHeight);
+	height: var(--appToolbarHeight);
 	font-size: 13pt;
 	color: var(--navTextColor);
 	text-align: right;

@@ -10,7 +10,7 @@
 .AppToolbar .buttonContainer{
 	box-sizing: border-box;
 	position: relative;
-	height: var(--systemToolbarHeight);
+	height: var(--appToolbarHeight);
 	width: 70%;
 	float: left;
 }

@@ -12,13 +12,18 @@
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
-	height: calc(100% - var(--systemToolbarHeight) - 10px);
+	height: 100%;
 }
 
 .InfoTabContainer .tab-pane{
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
+}
+
+.InfoTabContainer .InfoTab{
+	overflow: hidden;
+	width: 100%;
 }
 
 .InfoTabContainer .nav-tabs{
@@ -63,14 +68,8 @@
 	text-shadow: 1px 0px 0px var(--navHoverColor);
 }
 
-
-.InfoTabContainer .InfoTab{
-	overflow: hidden;
-	width: 100%;
-}
-
 /* InfoCard components styled differntly */
 .InfoTabContainer .InfoCard{
-	padding: 10px !important;
+	padding: 10px;
 }
 

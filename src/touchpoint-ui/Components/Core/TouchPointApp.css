@@ -33,7 +33,7 @@
 	--inputColor: rgb(238, 238, 238);
 	
 	/* Structure Variables */
-	--systemToolbarHeight: 30px;
+	--appToolbarHeight: 30px;
 	--controlBarHeight: 49px;
 }
 
