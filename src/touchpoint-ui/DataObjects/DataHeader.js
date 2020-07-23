@@ -103,11 +103,17 @@ function uniqueByColumn(data, columnID, oldValues) {
 			//New vales added as true, old values keep their value
 			if (oldValues[r[columnID]] === undefined){
 				res[r[columnID]] = true
-			} else{ 
+			} else{
 				res[r[columnID]] = oldValues[r[columnID]]
 			}
 		}
 	})
+	
+	const orderedRes = {}
+	
+	Object.keys(res).sort().forEach((key)=>{
+		orderedRes[key] = res[key];
+	})
 
-	return res
+	return orderedRes
 }
