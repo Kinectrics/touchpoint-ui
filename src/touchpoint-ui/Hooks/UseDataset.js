@@ -61,8 +61,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			})
 		})
 	}
-
-
+	
 	//Fetch data and update state once the operation is complete. Keep the old value in the meantime
 	async function fetchData() {
 		setStatus('Pending')

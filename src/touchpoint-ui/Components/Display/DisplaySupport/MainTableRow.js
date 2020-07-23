@@ -47,7 +47,8 @@ export default function MainTableRow(props) {
 			>
 				{cellContent}
 			</span>)
-			} else { 
+			
+			} else{
 				
 				//apply the styling function in the header object
 				const myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow)
@@ -62,7 +63,6 @@ export default function MainTableRow(props) {
 					}}>
 						{cellContent}
 					</span>
-					
 				)
 			}
 		}

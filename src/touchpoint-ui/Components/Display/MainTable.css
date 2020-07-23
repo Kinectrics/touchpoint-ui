@@ -77,6 +77,11 @@
 	padding-left: 0;
 	font-size: 11.5pt;
 	transition: none;
+	display: inline-block;
+}
+
+.MainTable .badge:empty{
+	background-color: transparent !important;
 }
 
 .MainTable span:first-child{
@@ -84,7 +89,6 @@
 }
 
 /* Controls */
-
 .MainTable .tableControls{
 	width: 50%;
 	color: var(--lockedTextColor);

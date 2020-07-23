@@ -24,12 +24,12 @@ export function queryNotifications(userName, moduleName){
 export function getTableData(){
 	const data = []
 	
-	const vendors = ['Kinectrics', 'BWXT','SNC','ES Fox','Aecon']
-	const SMs = ['Sid Das', 'Olivia Krucko Gorski','Rushanth Raveendran']
-	const projectNames = ['Cooling Things and such', 'Heating steam and making power','Radiation protection etc.']
-	const statuses = ['Complete', 'Pending','Open']
-	const dues = ['1-May-20', '2-Apr-21','1-Jan-20']
-	const interns = ['Youssof Fahmy', 'Clara Birch','Claire Del Fatti']
+	const vendors = ['Kinectrics', 'BWXT','','ES Fox','Aecon']
+	const SMs = ['', 'Olivia Krucko Gorski','Rushanth Raveendran']
+	const projectNames = ['Cooling Things and such', '','Radiation protection etc.']
+	const statuses = ['Complete', '','Open']
+	const dues = ['1-May-20', '','1-Jan-20']
+	const interns = ['', 'Clara Birch','Claire Del Fatti']
 	const project = [36527,39568,38735,36815,39202,39548]
 	const scr = [
 		[99876,88767, 5909873, 776378, 88282,747224,4289042,27427924],[99383,88393],[83729],[99557]
@@ -71,7 +71,6 @@ export function getTableData(){
 			approvedBy: preparedBy[i % 2],
 			preparedDate: '1-Jan-20',
 			approvedDate: '1-May-20',
-			
 			scrList: scr[i % 4],
 		})
 	}
