@@ -166,7 +166,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t/* --dynamicCardShadow: 5px 5px 50px -9px var(--shadowColor);\n\t--shadowColor: rgba(0, 0, 0, 0.521); */\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: var(--navColor);\n\t--freeButtonNegativeBG: var(--navColor);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t\n\t/* Structure Variables */\n\t--systemToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100%;\n\twidth: 100%;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}";
+var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t/* --dynamicCardShadow: 5px 5px 50px -9px var(--shadowColor);\n\t--shadowColor: rgba(0, 0, 0, 0.521); */\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: var(--navColor);\n\t--freeButtonNegativeBG: var(--navColor);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t\n\t/* Structure Variables */\n\t--appToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100%;\n\twidth: 100%;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}";
 styleInject(css_248z);
 
 var css_248z$1 = ".systemPopupBackdrop{\n\tz-index: 900;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100vw;\n\theight: 100vh;\n\tposition: fixed;\n\ttop:0;\n\t\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\t\n\ttransition: opacity 300ms ease-out;\n}\n\n.systemPopupBackdrop:Hover{\n\tcursor: pointer;\n}\n\n.systemPopupBackdrop.forceOpen:Hover{\n\tcursor: default;\n}\n\n.systemPopupBackdrop.transparent{\n\topacity: 0;\n}\n\n.systemPopupBackdrop>.InfoCard{\n\twidth: 30%;\n\theight: 20%;\n\tcursor: default;\t\n}\n\n\n";
@@ -202,20 +202,26 @@ function SystemPopupHandler(props) {
 
 var lockedContext = /*#__PURE__*/createContext(false);
 
+//Context hooks for variable and functions that are system wide
+
+var moduleContext = /*#__PURE__*/createContext({
+  searchText: ''
+});
+
 function SystemModuleContainer(props) {
   var n = 0;
 
-  if (props.system.layout.hasSystemToolbar) {
+  if (props.system.layout.hasAppToolbar) {
     n++;
   }
 
-  if (props.system.layout.hasSystemFooter) {
+  if (props.system.layout.hasAppFooter) {
     n++;
   } //Adjusts the module container to fit between the system toolbars
 
 
   var styleSettings = {
-    height: 'calc(100vh - ' + n + ' * var(--systemToolbarHeight))',
+    height: 'calc(100vh - ' + n + ' * var(--appToolbarHeight))',
     width: '100vw'
   }; //Get the active module
 
@@ -228,10 +234,22 @@ function SystemModuleContainer(props) {
     ActiveModule = Object.keys(props.system.getModules())[0];
   }
 
-  var moduleList = props.system.getModules(); //Render the chosen module
+  var moduleList = props.system.getModules();
+
+  var _useState = useState(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      searchText = _useState2[0],
+      setSearchText = _useState2[1];
+
+  var moduleData = {
+    searchText: searchText,
+    setSearchText: setSearchText
+  }; //Render the chosen module
 
   return /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: ActiveModule.locked || props.locked
+  }, /*#__PURE__*/React.createElement(moduleContext.Provider, {
+    value: moduleData
   }, /*#__PURE__*/React.createElement("div", {
     className: "moduleContainer",
     style: styleSettings
@@ -244,7 +262,7 @@ function SystemModuleContainer(props) {
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/",
     component: moduleList[props.system.getHomeModule()].component
-  }))));
+  })))));
 }
 
 //Context hooks for variable and functions that are system wide
@@ -533,7 +551,7 @@ TouchPointApp.propTypes = {
   io: PropTypes.any
 };
 
-var css_248z$2 = ".AppToolbar{\n\tbackground-color: var(--navColor) !important;\n\t\n\twidth: 100%;\n\tcolor: var(--navTextColor);\n\tpadding: 0 30px 0 10px;\n\tz-index: 3;\n}\n\n.AppToolbar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\theight: var(--systemToolbarHeight);\n\twidth: 70%;\n\tfloat: left;\n}\n\n.AppToolbar .brandingContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\twidth: 30%;\n\ttext-align: right;\n\tfont-weight: bold;\n}\n\n.AppToolbar button{\n\tpadding: 0;\n\tbackground-color: transparent !important;\n\tborder: none;\n\tfont-size: 13pt;\n\tmargin-bottom: 4px;\n\tmargin-right: 40px;\n\tcolor: var(--navTextColor);\n\theight: 100%;\n}\n\n.AppToolbar button::after{\n\tcontent: none;\n}\n\n.AppToolbar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.AppToolbar button:active, .AppToolbar button:focus{\n\tborder: none !important;\n\toutline: none !important;\n\tbox-shadow: none !important;\n\tcolor: var(--navClickedColor) !important;\n}\n\n.AppToolbar .homeButton{\n\tmargin-top: 2px;\n\tpadding-left: 4px;\n\tbackground-color: var(--navColor) !important;\n\tborder: none;\n\tcolor: var(--navTextColor);\n}\n\n.AppToolbar a{\n\tbackground-color: var(--cardBG) !important;\n\tcolor: var(--mainTextColor) !important;\n}\n\n.AppToolbar a:hover{\n\tfilter: brightness(95%);\n}\n\n.AppToolbar .dropdown-menu{\n\tbackground-color: var(--cardBG) !important;\n}\n\n\n";
+var css_248z$2 = ".AppToolbar{\n\tbackground-color: var(--navColor) !important;\n\t\n\twidth: 100%;\n\tcolor: var(--navTextColor);\n\tpadding: 0 30px 0 10px;\n\tz-index: 3;\n}\n\n.AppToolbar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\theight: var(--appToolbarHeight);\n\twidth: 70%;\n\tfloat: left;\n}\n\n.AppToolbar .brandingContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\twidth: 30%;\n\ttext-align: right;\n\tfont-weight: bold;\n}\n\n.AppToolbar button{\n\tpadding: 0;\n\tbackground-color: transparent !important;\n\tborder: none;\n\tfont-size: 13pt;\n\tmargin-bottom: 4px;\n\tmargin-right: 40px;\n\tcolor: var(--navTextColor);\n\theight: 100%;\n}\n\n.AppToolbar button::after{\n\tcontent: none;\n}\n\n.AppToolbar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.AppToolbar button:active, .AppToolbar button:focus{\n\tborder: none !important;\n\toutline: none !important;\n\tbox-shadow: none !important;\n\tcolor: var(--navClickedColor) !important;\n}\n\n.AppToolbar .homeButton{\n\tmargin-top: 2px;\n\tpadding-left: 4px;\n\tbackground-color: var(--navColor) !important;\n\tborder: none;\n\tcolor: var(--navTextColor);\n}\n\n.AppToolbar a{\n\tbackground-color: var(--cardBG) !important;\n\tcolor: var(--mainTextColor) !important;\n}\n\n.AppToolbar a:hover{\n\tfilter: brightness(95%);\n}\n\n.AppToolbar .dropdown-menu{\n\tbackground-color: var(--cardBG) !important;\n}\n\n\n";
 styleInject(css_248z$2);
 
 function useSystem() {
@@ -611,7 +629,7 @@ function AppToolbar(props) {
   }, "Bruce Power DMS ", devMode));
 }
 
-var css_248z$3 = ".AppFooter{\n\twidth: 100%;\n\tpadding-top: 2px;\n\tbackground-color: var(--navColor) !important;\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tbottom:0px;\n\theight: var(--systemToolbarHeight);\n\tfont-size: 13pt;\n\tcolor: var(--navTextColor);\n\ttext-align: right;\n\tz-index: 3;\n\t\n}\n\n.AppFooter .leftSide{\n\tposition: absolute;\n\tleft: 0;\n\tpadding: 0 10px;\n\ttext-align: left;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}\n\n.AppFooter .rightSide{\n\tposition: absolute;\n\tright: 0;\n\tpadding: 0 10px;\n\ttext-align: right;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}";
+var css_248z$3 = ".AppFooter{\n\twidth: 100%;\n\tpadding-top: 2px;\n\tbackground-color: var(--navColor) !important;\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tbottom:0px;\n\theight: var(--appToolbarHeight);\n\tfont-size: 13pt;\n\tcolor: var(--navTextColor);\n\ttext-align: right;\n\tz-index: 3;\n\t\n}\n\n.AppFooter .leftSide{\n\tposition: absolute;\n\tleft: 0;\n\tpadding: 0 10px;\n\ttext-align: left;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}\n\n.AppFooter .rightSide{\n\tposition: absolute;\n\tright: 0;\n\tpadding: 0 10px;\n\ttext-align: right;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}";
 styleInject(css_248z$3);
 
 function AppFooter(props) {
@@ -797,38 +815,33 @@ var css_248z$8 = ".SearchBar .searchButton{\n\tbackground-color: transparent;\n\
 styleInject(css_248z$8);
 
 function SearchBar(props) {
-  var _useState = useState(props.defaultValue),
+  var moduleData = useContext(moduleContext);
+
+  var _useState = useState(),
       _useState2 = _slicedToArray(_useState, 2),
-      searchText = _useState2[0],
-      setSearchText = _useState2[1]; //deccides if the component is locked based on props and parents in the tree
+      searchState = _useState2[0],
+      setSearchState = _useState2[1]; //search
 
-
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined; //Search button click event
 
   function searchHandler(e) {
-    if (!locked && props.onSearch) {
-      props.onSearch(e, searchText);
-    }
+    moduleData.setSearchText(e.target.value);
   } //handles the onChange event. Only fires if component is not locked
 
 
   function changeHandler(e) {
-    setSearchText(e.target.value);
-
-    if (!locked && props.onChange) {
-      props.onChange(e);
-    }
+    clearTimeout(searchState);
+    e.persist();
+    setSearchState(setTimeout(function () {
+      searchHandler(e);
+    }, 250));
   }
 
   return /*#__PURE__*/React.createElement("span", {
     className: "SearchBar"
   }, /*#__PURE__*/React.createElement(TextBox, {
     locked: props.locked,
-    defaultValue: props.defaultValue,
     onChange: changeHandler,
-    hidden: props.hdden,
-    onEnter: props.onSearch,
+    onEnter: searchHandler,
     placeholder: "Search",
     onBlur: props.onBlur
   }), /*#__PURE__*/React.createElement("button", {
@@ -840,12 +853,7 @@ function SearchBar(props) {
 } //Proptypes
 
 SearchBar.propTypes = {
-  locked: PropTypes.bool,
-  defaultValue: PropTypes.string,
-  onChange: PropTypes.func,
-  hidden: PropTypes.bool,
-  onSearch: PropTypes.func,
-  onBlur: PropTypes.func
+  defaultValue: PropTypes.string
 };
 
 //Context hooks for variable and functions that are system wide
@@ -952,35 +960,9 @@ ControlButton.propTypes = {
 var css_248z$b = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 10px;\n\tpadding-top: 5px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\twidth: 80%;\n}\n\n.ControlBar .searchContainer{\n\tbox-sizing: border-box;\n\twidth: 20%;\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}";
 styleInject(css_248z$b);
 
-//Context hooks for variable and functions that are system wide
-
-var moduleContext = /*#__PURE__*/createContext({
-  searchText: ''
-});
-
 function ControlBar(props) {
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  var moduleData = useContext(moduleContext);
-
-  var _useState = useState(function () {}),
-      _useState2 = _slicedToArray(_useState, 2),
-      searchState = _useState2[0],
-      setSearchState = _useState2[1]; //search
-
-
-  function searchHandler(e) {
-    moduleData.setSearchText(e.target.value);
-  } //start searching after thet person has finished typing, using a 1 second delay
-
-
-  function changeHandler(e) {
-    clearTimeout(searchState);
-    e.persist();
-    setSearchState(setTimeout(function () {
-      searchHandler(e);
-    }, 250));
-  }
 
   if (props.searchBar) {
     return /*#__PURE__*/React.createElement(lockedContext.Provider, {
@@ -991,11 +973,7 @@ function ControlBar(props) {
       className: "buttonContainer"
     }, props.children), /*#__PURE__*/React.createElement("div", {
       className: "searchContainer"
-    }, /*#__PURE__*/React.createElement(SearchBar, {
-      locked: false,
-      onChange: changeHandler,
-      onSearch: searchHandler
-    }))));
+    }, /*#__PURE__*/React.createElement(SearchBar, null))));
   } else {
     return /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
@@ -1420,7 +1398,7 @@ MenuButton.propTypes = {
   onClose: PropTypes.func
 };
 
-var css_248z$i = ".MainTable{\n\toverflow-x: auto;\n\tpadding: 0px 10px;\n\twidth:100%;\n\tbackground-color: var(--bodyAltBG);\n\theight: 100%;\n\tpadding-bottom: 75vh;\n\tcolor: var(--mainTextColor);\n\tposition: relative;\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .titleBar{\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .topBar{\n\tdisplay: flex;\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\t\n}\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding-top: 4px;\n\tpadding-bottom: 4px;\n\tpadding-left: 0;\n\tfont-size: 11.5pt;\n\ttransition: none;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n\n.MainTable .tableControls{\n\twidth: 50%;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\twidth: 50%;\n\tright: 0;\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n}\n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}\n\n";
+var css_248z$i = ".MainTable{\n\toverflow-x: auto;\n\tpadding: 0px 10px;\n\twidth:100%;\n\tbackground-color: var(--bodyAltBG);\n\theight: 100%;\n\tpadding-bottom: 75vh;\n\tcolor: var(--mainTextColor);\n\tposition: relative;\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .titleBar{\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .topBar{\n\tdisplay: flex;\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\t\n}\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding-top: 4px;\n\tpadding-bottom: 4px;\n\tpadding-left: 0;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n}\n\n.MainTable .badge:empty{\n\tbackground-color: transparent !important;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .tableControls{\n\twidth: 50%;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\twidth: 50%;\n\tright: 0;\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n}\n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}\n\n";
 styleInject(css_248z$i);
 
 var css_248z$j = ".MainTableRow{\n\twidth:100%;\n\tbackground-color: transparent;\n\tpadding: 4px 10px;\n\theight: 40px;\n\ttransition: all 0.2s;\n\tbox-sizing: border-box;\n}\n\n.MainTableRow.pointer{\n\tcursor: pointer;\n}\n\n.MainTableRow.dynamic:hover{\n\tpadding: 1px 0;\n}\n\n.MainTableRow.dynamic:active{\n\ttransition: all 0.05s ease-out;\n\tpadding: 3px 7px;\n}\n\n.MainTableRow span{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow .rowContainer{\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: var(--cardBG);\n\tpadding: 4px 15px;\n\tborder-radius: 10px;\n\tbox-shadow: var(--cardShadow);\n\ttransition: all 0.3s, color 0.15s ease-out;\t\n\toverflow: hidden;\n}\n\n.MainTableRow.dynamic .rowContainer:hover{\n\tbox-shadow: var(--dynamicCardShadow);\n\tpadding-left: 20px;\n\tpadding-top: 6px;\n}\n\n.MainTableRow .active{\n\tcolor: var(--tableActiveColor);\n}\n\n\n";
@@ -1469,7 +1447,6 @@ InputCell.propTypes = {
 };
 
 function MainTableRow(props) {
-  var renderRow = true;
   var dynamicClass = '';
   var pointerClass = '';
 
@@ -1501,72 +1478,56 @@ function MainTableRow(props) {
     } else {
       setActiveClass('');
     }
-  }, [props.activeRecord, props.dataRow]); //check if it's filtered out by the search term 
+  }, [props.activeRecord, props.dataRow]); //Only continue building the row if it's actually required
 
-  renderRow = props.dataHeaders.some(function (hdr) {
-    if (props.searchText) {
-      return hdr.dataType.search(props.dataRow[hdr.headerID], props.searchText);
-    } else {
-      return true;
-    }
-  }); //Only continue building the row if it's actually required
+  var row = props.dataHeaders.map(function (hdr) {
+    if (hdr.visible) {
+      //Decide if the cell is editable or not based on the locked status, and the header onEdit function
+      var cellContent = props.dataRow[hdr.headerID];
 
-  var row;
-
-  if (renderRow) {
-    row = props.dataHeaders.map(function (hdr) {
-      if (hdr.visible) {
-        renderRow = renderRow && props.dataRow.TouchPointMetaVisible || props.noFilter; //Decide if the cell is editable or not based on the locked status, and the header onEdit function
-
-        var cellContent = props.dataRow[hdr.headerID];
-
-        if (!props.locked && hdr.onEdit && !hdr.locked) {
-          cellContent = /*#__PURE__*/React.createElement(InputCell, {
-            dataHeader: hdr,
-            defaultValue: cellContent,
-            dataRow: props.dataRow
-          });
-        } //No conditional formatting
+      if (!props.locked && hdr.onEdit && !hdr.locked) {
+        cellContent = /*#__PURE__*/React.createElement(InputCell, {
+          dataHeader: hdr,
+          defaultValue: cellContent,
+          dataRow: props.dataRow
+        });
+      } //No conditional formatting
 
 
-        if (!hdr.styling) {
-          return /*#__PURE__*/React.createElement("span", {
+      if (!hdr.styling) {
+        return /*#__PURE__*/React.createElement("span", {
+          key: hdr.headerID + props.rowKey,
+          style: {
+            width: hdr.width + '%'
+          }
+        }, cellContent);
+      } else {
+        //apply the styling function in the header object
+        var myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow);
+        return (
+          /*#__PURE__*/
+          //with coniditional formatting
+          React.createElement("span", {
+            className: "badge",
             key: hdr.headerID + props.rowKey,
             style: {
-              width: hdr.width + '%'
+              width: 'calc(' + hdr.width + '% - 23px',
+              color: myStyle.textColor,
+              backgroundColor: myStyle.badgeColor,
+              marginLeft: '23px'
             }
-          }, cellContent);
-        } else {
-          //apply the styling function in the header object
-          var myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow);
-          return (
-            /*#__PURE__*/
-            //with coniditional formatting
-            React.createElement("span", {
-              className: "badge",
-              key: hdr.headerID + props.rowKey,
-              style: {
-                width: 'calc(' + hdr.width + '% - 23px',
-                color: myStyle.textColor,
-                backgroundColor: myStyle.badgeColor,
-                marginLeft: '23px'
-              }
-            }, cellContent)
-          );
-        }
+          }, cellContent)
+        );
       }
-    });
-  } // only the row if it passes the filter
+    }
+  }); // only the row if it passes the filter
 
-
-  if (renderRow) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: 'MainTableRow ' + dynamicClass + ' ' + pointerClass,
-      onClick: rowClickHandler
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "rowContainer " + activeClass
-    }, row));
-  } else return null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: 'MainTableRow ' + dynamicClass + ' ' + pointerClass,
+    onClick: rowClickHandler
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "rowContainer " + activeClass
+  }, row));
 } //Proptypes
 
 MainTableRow.propTypes = {
@@ -1595,7 +1556,7 @@ InfoTab.propTypes = {
   tabID: PropTypes.string.isRequired
 };
 
-var css_248z$l = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .tab-content{\n\toverflow-y: auto;\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\toverflow-x: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\theight: calc(100% - var(--systemToolbarHeight) - 10px);\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n}\n\n.InfoTabContainer .nav-tabs a{\n\tpadding: 6px 30px;\n\tpadding-top: 0;\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\tborder-top-right-radius: 9px;\n\tborder-top-left-radius: 9px;\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\t\n\tborder-bottom-style: solid;\n\tborder-bottom-color: var(--navTextColor);\n\tborder-bottom-width: 6px;\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\ttext-shadow: 1px 0px 0px var(--navHoverColor);\n}\n\n\n.InfoTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px !important;\n}\n\n";
+var css_248z$l = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 10;\n}\n\n.InfoTabContainer .nav-tabs a{\n\tpadding: 6px 30px;\n\tpadding-top: 0;\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\tborder-top-right-radius: 9px;\n\tborder-top-left-radius: 9px;\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\t\n\tborder-bottom-style: solid;\n\tborder-bottom-color: var(--navTextColor);\n\tborder-bottom-width: 6px;\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\ttext-shadow: 1px 0px 0px var(--navHoverColor);\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
 styleInject(css_248z$l);
 
 function InfoTabContainer(props) {
@@ -1663,6 +1624,10 @@ function FilterMenu(props) {
     props.data.filter();
   }
 
+  var spanStyle = {
+    textAlign: 'left',
+    paddingLeft: '7px'
+  };
   return /*#__PURE__*/React.createElement("div", {
     className: "FilterMenu"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1677,7 +1642,9 @@ function FilterMenu(props) {
     style: {
       cursor: 'pointer'
     }
-  }), ' Select All')), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("span", {
+    style: spanStyle
+  }, 'Select All'))), /*#__PURE__*/React.createElement("div", {
     className: "filterOptions"
   }, Object.keys(values).map(function (v, i) {
     return /*#__PURE__*/React.createElement("button", {
@@ -1693,7 +1660,9 @@ function FilterMenu(props) {
       style: {
         cursor: 'pointer'
       }
-    }), ' ' + v);
+    }), /*#__PURE__*/React.createElement("span", {
+      style: spanStyle
+    }, v !== 0 && !v ? 'Blank' : v));
   })));
 }
 
@@ -1778,6 +1747,10 @@ function CheckButton(props) {
     }
   }
 
+  var spanStyle = {
+    textAlign: 'left',
+    paddingLeft: '7px'
+  };
   return /*#__PURE__*/React.createElement("button", {
     onClick: function onClick(e) {
       return clickHandler(e, checkID);
@@ -1794,7 +1767,9 @@ function CheckButton(props) {
       cursor: 'pointer'
     },
     disabled: props.disabled
-  }), ' ', props.children);
+  }), /*#__PURE__*/React.createElement("span", {
+    style: spanStyle
+  }, props.children));
 }
 CheckButton.propTypes = {
   defaultChecked: PropTypes.bool,
@@ -1927,12 +1902,12 @@ function MainTable(props) {
   var _useState = useState(0),
       _useState2 = _slicedToArray(_useState, 2),
       activePage = _useState2[0],
-      setActivePage = _useState2[1]; //get the length of the data with teh filter applied
+      setActivePage = _useState2[1]; //get the length of the data with the filter applied
 
 
   var dataLength = 0;
   data.forEach(function (r) {
-    if (r.TouchPointMetaVisible) {
+    if (r.TouchPointMetaVisible && !r.TouchPointMetaSearchHide) {
       dataLength = dataLength + 1;
     }
   }); //if there's no way to set the active record, then no record is active
@@ -1973,15 +1948,7 @@ function MainTable(props) {
     if (hdr.hasFilter()) {
       hasFilter = true;
     }
-  }); //access the parent module context for searching 
-
-  var moduleData = useContext(moduleContext);
-  var searchText;
-
-  if (props.searchable) {
-    searchText = moduleData.searchText;
-  } //Counter for rendered rows
-
+  }); //Counter for rendered rows
 
   var i = 1; //Buttons for page controls
 
@@ -2075,6 +2042,7 @@ function MainTable(props) {
         data: props.data,
         dataHeaders: props.dataHeaders,
         noFilter: noFilter,
+        o: true,
         noSort: noSort
       }, hdr.displayName + ' '));
     } else return null;
@@ -2083,7 +2051,14 @@ function MainTable(props) {
   }, data.map(function (dr) {
     //render the allowed numebr of rows, on th selected page
     if (i > activePage * pageSize && i <= (1 + activePage) * pageSize) {
-      var r = /*#__PURE__*/React.createElement(MainTableRow, {
+      var renderRow = true;
+
+      if (props.searchable) {
+        renderRow = !dr.TouchPointMetaSearchHide;
+      }
+
+      renderRow = renderRow && (dr.TouchPointMetaVisible || noFilter);
+      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
         dataRow: dr,
         dataHeaders: props.dataHeaders.get(),
         setActiveRecord: props.setActiveRecord,
@@ -2091,10 +2066,8 @@ function MainTable(props) {
         rowKey: 'MainTableRow' + i,
         key: 'MainTableRow' + i,
         locked: locked,
-        dynamic: dynamic,
-        searchText: searchText,
-        noFilter: noFilter
-      });
+        dynamic: dynamic
+      }) : null;
 
       if (r) {
         i++;
@@ -2127,27 +2100,16 @@ var css_248z$n = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\
 styleInject(css_248z$n);
 
 function Module(props) {
-  var _useState = useState(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      searchText = _useState2[0],
-      setSearchText = _useState2[1];
-
-  var moduleData = {
-    searchText: searchText,
-    setSearchText: setSearchText
-  };
-  return /*#__PURE__*/React.createElement(moduleContext.Provider, {
-    value: moduleData
-  }, /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: 'Module ' + props.moduleName
-  }, props.children));
+  }, props.children);
 } //Proptypes
 
 Module.propTypes = {
   moduleName: PropTypes.string
 };
 
-var css_248z$o = ".SplitScreen{\n\theight: 100%;\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: fixed;\n\tpointer-events: none;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.SplitScreen .topView{\n\tbackground-color: transparent;\n\tpointer-events: none;\n}\n\n.SplitScreen .bottomView{\n\tbox-sizing: border-box;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n\tbackground-color: var(--bodyAltBG);\n\tcolor: var(--mainTextColor);\n\tpointer-events: all;\n}\n\n.SplitScreen .gutter{\n\twidth: 100vw;\n\tbackground-color: var(--navColor);\n\tcursor: n-resize;\n\tpointer-events: all;\n\ttransition: all 100ms;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
+var css_248z$o = ".SplitScreen{\n\theight: 100%;\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tpointer-events: none;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.SplitScreen .topView{\n\tbackground-color: transparent;\n\tpointer-events: none;\n}\n\n.SplitScreen .bottomView{\n\tbox-sizing: border-box;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n\tbackground-color: var(--bodyAltBG);\n\tcolor: var(--mainTextColor);\n\tpointer-events: all;\n}\n\n.SplitScreen .gutter{\n\twidth: 100vw;\n\tbackground-color: var(--navColor);\n\tcursor: n-resize;\n\tpointer-events: all;\n\ttransition: all 100ms;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
 styleInject(css_248z$o);
 
 function SplitScreen(props) {
@@ -2373,7 +2335,11 @@ function uniqueByColumn(data, columnID, oldValues) {
       }
     }
   });
-  return res;
+  var orderedRes = {};
+  Object.keys(res).sort().forEach(function (key) {
+    orderedRes[key] = res[key];
+  });
+  return orderedRes;
 }
 
 function useDataset(fetchFunction) {
@@ -2417,8 +2383,26 @@ function useDataset(fetchFunction) {
   }),
       _useState14 = _slicedToArray(_useState13, 2),
       headers = _useState14[0],
-      setHeaders = _useState14[1]; //Filters the data based on given headers
+      setHeaders = _useState14[1];
 
+  var _useContext = useContext(moduleContext),
+      searchText = _useContext.searchText;
+
+  useEffect(function () {
+    setData(produce(data, function (draftData) {
+      draftData.map(function (r) {
+        r.TouchPointMetaSearchHide = false;
+
+        if (searchText.trim()) {
+          r.TouchPointMetaSearchHide = !headers.get().some(function (hdr) {
+            return hdr.dataType.search(r[hdr.headerID], searchText);
+          });
+        }
+
+        return r;
+      });
+    }));
+  }, [searchText]); //Filters the data based on given headers
 
   function filterData(values) {
     //Apply the filters to the data (define what rows are visible)
@@ -2427,6 +2411,7 @@ function useDataset(fetchFunction) {
         r.TouchPointMetaFilteredBy = '';
         var noRender = false;
         headers.get().forEach(function (h) {
+          //filter
           if (!h.filter(r[h.headerID], r)) {
             noRender = true;
             r.TouchPointMetaFilteredBy = r.TouchPointMetaFilteredBy + [h.headerID] + ';';
