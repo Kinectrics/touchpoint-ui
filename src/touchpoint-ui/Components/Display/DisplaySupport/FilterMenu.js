@@ -34,6 +34,11 @@ export default function FilterMenu(props){
 		props.data.filter()
 	}
 	
+	const spanStyle = {
+		textAlign: 'left',
+		paddingLeft: '7px',
+	}
+	
 	return (
 		<div className = 'FilterMenu'>
 			
@@ -48,7 +53,7 @@ export default function FilterMenu(props){
 						id={props.header.headerID + 'selectAll'}
 						style={{ cursor: 'pointer' }}
 					/>
-					{' Select All'}
+					<span style={spanStyle}>{'Select All'}</span>
 
 				</button>
 			</div>
@@ -68,7 +73,7 @@ export default function FilterMenu(props){
 							value = {v}
 							style= {{cursor:'pointer'}}
 						/>
-						{' ' + v}
+						<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
 						
 					</button>)
 				})}

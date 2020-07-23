@@ -112,7 +112,7 @@ function uniqueByColumn(data, columnID, oldValues) {
 	const orderedRes = {}
 	
 	Object.keys(res).sort().forEach((key)=>{
-		orderedRes[key] = res[key];
+		orderedRes[key] = res[key]
 	})
 
 	return orderedRes

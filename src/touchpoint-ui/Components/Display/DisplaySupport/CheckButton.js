@@ -15,6 +15,11 @@ export default function CheckButton(props) {
 		}
 	}
 	
+	const spanStyle = {
+		textAlign: 'left',
+		paddingLeft: '7px',
+	}
+	
 	return (<button
 		onClick={(e) => clickHandler(e, checkID)}
 		style ={{color: 'var(--mainTextColor'}}
@@ -28,8 +33,8 @@ export default function CheckButton(props) {
 			style={{cursor: 'pointer'}}
 			disabled = {props.disabled}
 		/>
-		{' '}
-		{props.children}
+		<span style={spanStyle}>{props.children}</span>
+		
 
 	</button>)
 	
