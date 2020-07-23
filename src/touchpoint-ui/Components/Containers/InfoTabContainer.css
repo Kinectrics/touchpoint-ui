@@ -2,17 +2,17 @@
 	background-color: var(--bodyAltBG);
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .InfoTabContainer .tab-content{
-	overflow-y: auto;
 	color: var(--mainTextColor);
 	width: 100%;
-	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	position: relative;
 }
 
 .InfoTabContainer .tab-pane{
@@ -31,6 +31,9 @@
 	overflow: hidden;
 	border: none;
 	padding-left: 0px;
+	position: sticky;
+	top: 0;
+	z-index: 10;
 }
 
 .InfoTabContainer .nav-tabs a{
