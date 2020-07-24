@@ -5,13 +5,12 @@ import SystemModuleContainer from '../../SystemComponents/SystemModuleContainer'
 import systemContext from '../../Contexts/SystemContext'
 import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
-import { HashRouter } from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
-export default function TouchPointApp(props) {
+export default function TouchPointApp(props){
 	
 	//System-wide state
 	const [activePopup, setPopup] = useState(null);
-	const [activeModule, setActiveModule] = useState(props.defaultModule)
 	
 	//Set moduleTransition to 'transition' while the modules are being switched out
 	const [screenEffect, setScreenEffect] = useState('')
@@ -22,12 +21,12 @@ export default function TouchPointApp(props) {
 	const [hasAppToolbar, setHasAppToolbar] = useState(false)
 	const [hasAppFooter, setHasAppFooter] = useState(false)
 	
+	const [moduleLock, setModuleLock] = useState(props.locked)
+	
 	//Functions that are available to all modules and can be used system-wode 
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
 	const System = {
-	
-		//Accessing system wide information
-		getActiveModule: () => {return(activeModule)},
+		
 		//Create a copy of props.modules, excluding any hidden modules. 
 		getModules: () => {
 			const modules = {}
@@ -53,6 +52,7 @@ export default function TouchPointApp(props) {
 			if(props.modules[moduleName]){
 				//setActiveModule(moduleName)
 				window.location.href = '#/' + moduleName
+				setModuleLock(props.modules[moduleName].locked)
 			}
 		},
 		
@@ -112,26 +112,29 @@ export default function TouchPointApp(props) {
 	return (
 		<div className={"TouchPointApp "}>
 			<systemContext.Provider value ={System}>
-				<HashRouter>
-				{screenBlocker}
-				
-				<div className={'screenEffect ' + screenEffect}>
+					<HashRouter>
+					{screenBlocker}
 					
-					{props.children}
+					<div className={'screenEffect ' + screenEffect}>
+						
+						{props.children}
+						
+						<SystemModuleContainer 
+							system = {System} 
+							locked = {props.locked || moduleLock}
+						/>
+						
+					</div>
 					
-					<SystemModuleContainer system = {System} locked = {props.locked}/>
-					
-				</div>
-				
-				<SystemPopupHandler 
-					system = {System} 
-					activePopup = {activePopup}
-					popupEffect = {popupEffect}
+					<SystemPopupHandler 
+						system = {System} 
+						activePopup = {activePopup}
+						popupEffect = {popupEffect}
 					/>
 				</HashRouter>
 			</systemContext.Provider>
 		</div>
-	);
+	)
 }
 
 //Proptypes

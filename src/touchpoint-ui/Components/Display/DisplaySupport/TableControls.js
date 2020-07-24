@@ -35,7 +35,7 @@ export default function TableControls(props) {
 				
 				<button onClick = {()=>{
 					System.openPopup(<Popup title = 'Save Filter'>
-						<label>Filter Name: </label><TextBox/>
+						<label>Filter Name: </label><TextBox autoFocus/>
 						<FreeButton
 							onClick={()=>{
 								System.closePopup()

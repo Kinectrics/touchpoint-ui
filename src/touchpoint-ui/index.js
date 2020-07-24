@@ -44,7 +44,7 @@ export {default as DataType} from "./DataObjects/DataType"
 
 
 //HOOKS
-
 export {default as useDataset} from "./Hooks/UseDataset"
 export {default as useHeaders} from "./Hooks/UseHeaders"
 export {default as useSystem} from "./Hooks/UseSystem"
+export {default as useModuleData} from "./Hooks/UseModuleData"

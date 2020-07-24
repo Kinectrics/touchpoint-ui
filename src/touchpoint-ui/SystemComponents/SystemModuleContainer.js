@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { Route, Switch } from 'react-router'
+import {Route, Switch} from 'react-router'
 import lockedContext from '../Contexts/LockedContext'
 import moduleContext from '../Contexts/ModuleContext'
 	
-export default function SystemModuleContainer(props) {
+export default function SystemModuleContainer(props){
 	
 	let n = 0
 	if(props.system.layout.hasAppToolbar){n++}
@@ -14,31 +14,17 @@ export default function SystemModuleContainer(props) {
 		height: 'calc(100vh - ' + n + ' * var(--appToolbarHeight))',
 		width: '100vw'
 	}
-	
-	//Get the active module
-	let ActiveModule = props.system.getModules()[props.system.getActiveModule()]
-	
-	//If there's no active module render the home module
-	if(!ActiveModule){
-		ActiveModule = props.system.getModules()[props.system.getHomeModule()]
-		
-	} else if(!ActiveModule){ //If there's no home module render the first module in the list
-		ActiveModule = Object.keys(props.system.getModules())[0]
-	}
 
 	const moduleList = props.system.getModules();
 	
 	const [searchText, setSearchText] = useState('')
 
-	const moduleData = {
-		searchText: searchText,
-		setSearchText: setSearchText
-	}
+	const moduleDataState = useState()
 
 	//Render the chosen module
 	return(
-		<lockedContext.Provider value = {ActiveModule.locked || props.locked}>
-			<moduleContext.Provider value={moduleData}>
+		<lockedContext.Provider value = {props.locked}>
+			<moduleContext.Provider value={moduleDataState}>
 				
 				<div className={"moduleContainer"} style={styleSettings}>
 					<Switch>

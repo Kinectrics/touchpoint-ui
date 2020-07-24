@@ -1,6 +1,6 @@
-import {useState, useContext, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import produce from 'immer'
-import moduleContext from '../Contexts/ModuleContext'
+import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
@@ -15,7 +15,8 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [lastRejected, setLastRejected] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
 	
-	const {searchText} = useContext(moduleContext)
+	const moduleData = useModuleData()
+	const searchText = moduleData.get('searchText')
 	
 	useEffect(() => {
 		

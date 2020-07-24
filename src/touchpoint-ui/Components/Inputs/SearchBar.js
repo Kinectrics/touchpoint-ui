@@ -1,40 +1,44 @@
-import React, {useState, useContext} from 'react'
-import moduleContext from '../../Contexts/ModuleContext'
+import React, {useState, useRef} from 'react'
+import useModuleData from '../../Hooks/UseModuleData'
 import TextBox from './TextBox'
 import PropTypes from 'prop-types'
 import './SearchBar.css'
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchBar(props) {
 	
-	const moduleData = useContext(moduleContext)
-	const [searchState, setSearchState] = useState()
+	const moduleData = useModuleData()
+	const [searchFunction, setSearchFunction] = useState()
+	const searchRef = useRef()
+	const [searchBarValue, setSearchBarValue] = useState('')
 	
 	//search
-	function searchHandler(e) {
-		moduleData.setSearchText(e.target.value)
+	function searchHandler(){
+		moduleData.set('searchText', searchBarValue)
+		searchRef.current.focus()
 	}
 	
 	//handles the onChange event. Only fires if component is not locked
 	function changeHandler(e) {
-		clearTimeout(searchState)
-		e.persist()
+		clearTimeout(searchFunction)
+		
+		setSearchBarValue(e.target.value)
 
-		setSearchState(setTimeout(() => {
-			searchHandler(e)
+		setSearchFunction(setTimeout(() => {
+			searchHandler()
 		}, 250))
 	}
 	
 	return (
 		<span className="SearchBar"> 
 			<TextBox 
-				locked = {props.locked}
+				locked = {false}
 				onChange= {changeHandler}
 				onEnter = {searchHandler}
 				placeholder = "Search"
-				onBlur = {props.onBlur}
+				value = {searchBarValue}
+				inputRef = {searchRef}
 			/>
 			
 			<button className="searchButton"

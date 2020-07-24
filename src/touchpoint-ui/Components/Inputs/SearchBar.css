@@ -15,15 +15,6 @@
 	width: 100%;
 }
 
-.SearchBar .searchButton:hover{
-	font-size: 14pt;
-}
-
-.SearchBar .searchButton:active{
-	transition: none;
-	font-size: 13pt;
-}
-
 .SearchBar.locked .searchButton{
 	background-color: transparent;
 	border: none;

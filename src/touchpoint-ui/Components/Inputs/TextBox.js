@@ -42,6 +42,8 @@ export default function TextBox(props) {
 			onKeyPress={keyPressHandler}
 			placeholder = {props.placeholder}
 			onBlur = {blurHandler}
+			ref = {props.inputRef}
+			autoFocus = {props.autoFocus}
 		/>
 	)
 }
@@ -55,5 +57,8 @@ TextBox.propTypes = {
 	onEnter: PropTypes.func,
 	placeholder: PropTypes.string,
 	className: PropTypes.string,
+	value: PropTypes.string,
+	inputRef: PropTypes.object,
+	autoFocus: PropTypes.bool,
 }
 
