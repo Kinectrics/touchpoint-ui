@@ -9,7 +9,7 @@ export default function useModuleContext(){
 		get: (key) => {return dataSource[key]},
 		
 		set: (key, value) => {
-			setDataSource.set(produce(dataSource, draftSource => {
+			setDataSource(produce(dataSource, draftSource => {
 				draftSource[key] = value
 			}))
 		},

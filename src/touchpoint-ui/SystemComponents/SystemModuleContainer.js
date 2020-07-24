@@ -16,10 +16,7 @@ export default function SystemModuleContainer(props){
 	}
 
 	const moduleList = props.system.getModules();
-	
-	const [searchText, setSearchText] = useState('')
-
-	const moduleDataState = useState()
+	const moduleDataState = useState({})
 
 	//Render the chosen module
 	return(

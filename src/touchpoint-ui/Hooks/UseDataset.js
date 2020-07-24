@@ -16,16 +16,15 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
 	
 	const moduleData = useModuleData()
-	const searchText = moduleData.get('searchText')
+	const searchText = moduleData.get('TouchPointSearchText')
 	
 	useEffect(() => {
-		
 		setData(produce(data, draftData => {
 			draftData.map((r) => {
 
 				r.TouchPointMetaSearchHide = false
 				
-				if(searchText.trim()){
+				if(searchText){
 					r.TouchPointMetaSearchHide = !headers.get().some((hdr) => {
 						return hdr.dataType.search(r[hdr.headerID], searchText)
 					})
@@ -34,7 +33,6 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 				return r
 			})
 		}))
-		
 	}, [searchText])
 
 	//Filters the data based on given headers

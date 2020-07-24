@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import useModuleData from '../../Hooks/UseModuleData'
 import TextBox from './TextBox'
 import PropTypes from 'prop-types'
@@ -15,7 +15,7 @@ export default function SearchBar(props) {
 	
 	//search
 	function searchHandler(){
-		moduleData.set('searchText', searchBarValue)
+		moduleData.set('TouchPointSearchText', searchRef.current.value)
 		searchRef.current.focus()
 	}
 	

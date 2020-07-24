@@ -5,12 +5,6 @@ import useModuleData from '../../Hooks/UseModuleData'
 
 export default function Module(props) {
 	
-	const moduleData = useModuleData()
-	
-	useEffect(()=>{
-		moduleData.clear()
-	}, [])
-	
 	return (
 		<div className={'Module ' + props.moduleName}>
 			{props.children}	
