@@ -5,6 +5,33 @@ import useModuleData from '../../Hooks/UseModuleData'
 
 export default function Module(props) {
 	
+	const moduleData = useModuleData()
+	
+	function keyDownHandler(e){
+		const isCtrl = e.ctrlKey || e.metaKey
+
+		if (isCtrl && e.keyCode === 70) {
+			e.preventDefault()
+			console.log(moduleData.get('TouchPointSearchRef'))
+
+			if (moduleData.get('TouchPointSearchRef')) {
+				moduleData.get('TouchPointSearchRef')()
+			}
+		}
+	}
+	
+	useEffect(()=>{
+		moduleData.clear()
+		
+		window.addEventListener('keydown', keyDownHandler)
+		
+		return(()=>{
+			moduleData.clear()
+			window.removeEventListener('keydown', keyDownHandler)
+		})
+		
+	}, [])
+	
 	return (
 		<div className={'Module ' + props.moduleName}>
 			{props.children}	
