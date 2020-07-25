@@ -141,7 +141,6 @@ export default function TouchPointApp(props){
 TouchPointApp.propTypes = {
 	locked: PropTypes.bool,
 	modules: PropTypes.object.isRequired,
-	activeUser: PropTypes.string.isRequired,
 	homeModule: PropTypes.string,
 	io: PropTypes.any
 }

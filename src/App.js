@@ -53,7 +53,6 @@ export default function App() {
 	return (
 		<TouchPointApp
 			modules = {moduleList}
-			activeUser = {activeUser}
 			homeModule = {'LockScreen'}
 			io = {io}
 		>
