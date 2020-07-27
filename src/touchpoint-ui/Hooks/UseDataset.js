@@ -4,14 +4,21 @@ import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
-export default function useDataset(fetchFunction, defaultValue = [{}]) {
-
+export default function useDataset(fetcher, defaultValue = [{}]) {
+	let fetchFunction = fetcher
+	
+	//If the dataset was spawned by another dataset, it is initialised slightly differently
+	if(fetcher.TouchPointIsSubdataset){
+		fetchFunction = fetcher.func
+	}
+	
 	//The array contains an empty object by default
 	const [data, setData] = useState(defaultValue)
 	const [metaData, setMetaData] = useState([{visible: true, filteredBy: ''}])
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
+	const [subs, setSubs] = useState([])
 	
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
@@ -91,19 +98,31 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		}
 	}
 	
+	async function refreshData(){
+		if (status !== 'Pending') {
+			await fetchData()
+			
+			subs.forEach((subRefresh)=>{
+				subRefresh()
+			})
+		}
+	}
+	
 	//Automatically run the fetching function the first time, then wait for a refresh
-	useEffect(()=>{ fetchData() },[])
+	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
+	useEffect(()=>{ 
+		fetchData() 
+		if(fetcher.TouchPointIsSubdataset){
+			fetcher.embedInParent(refreshData)
+		}
+	},[])
 
 	//Return a Dataset object
 	return ({
 		read: () => { return data },
 		getMetaData: ()=>{ return metaData },
 
-		refresh: () => {
-			if (status !== 'Pending') {
-				fetchData()
-			}
-		},
+		refresh:refreshData,
 
 		status: status,
 		lastResolved: lastResolved,
@@ -116,14 +135,22 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			headers.embedData(data, newMeta)
 		},
 		
+		
 		sub: (filterFunction) =>{
-			return async ()=>{
-				
-				if (status !== 'Pending') {
+			
+			return {
+				func: async () => {
 					await fetchData()
-				}
+					return (data.filter((r) => filterFunction(r)))
+				}, 
 				
-				return(data.filter( (r)=> filterFunction(r) ))
+				embedInParent: (refresher) => {
+					const newSubs = [...subs]
+					newSubs.push(refresher)
+					setSubs(newSubs)
+				}, 
+				
+				TouchPointIsSubdataset: true,
 			}
 		}
 	})
