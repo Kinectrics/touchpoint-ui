@@ -115,5 +115,16 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			setMetaData(newMeta)
 			headers.embedData(data, newMeta)
 		},
+		
+		sub: (filterFunction) =>{
+			return async ()=>{
+				
+				if (status !== 'Pending') {
+					await fetchData()
+				}
+				
+				return(data.filter( (r)=> filterFunction(r) ))
+			}
+		}
 	})
 }
