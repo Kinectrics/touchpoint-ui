@@ -16,21 +16,31 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
 	
-	useEffect(() => {
-		setData(produce(data, draftData => {
-			draftData.map((r) => {
+	function searchData(values){
+		
+		const newMetaData = []
 
-				r.TouchPointMetaSearchHide = false
+		values.forEach((r, idx) => {
+
+			const rowMeta = metaData[idx] ? metaData[idx] : {}
+			rowMeta.searchHidden = false
+
+			if (searchText) {
 				
-				if(searchText){
-					r.TouchPointMetaSearchHide = !headers.get().some((hdr) => {
-						return hdr.dataType.search(r[hdr.headerID], searchText)
-					})
-				}
-
-				return r
-			})
-		}))
+				rowMeta.searchHidden = !headers.get().some((hdr) => {
+					return hdr.dataType.search(r[hdr.headerID], searchText)
+				})
+			}
+			
+			newMetaData.push(rowMeta)
+		})
+		
+		return newMetaData
+	}
+	
+	
+	useEffect(()=>{
+		setMetaData(searchData(data))
 	}, [searchText])
 
 	//Filters the data based on given headers
@@ -38,10 +48,9 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		
 		const newMetaData = []
 		
-		values.forEach((r) => {
+		values.forEach((r, idx) => {
 			
-			const rowMeta = {}
-			
+			const rowMeta = metaData[idx] ? metaData[idx] : {}
 			rowMeta.filteredBy = ''
 			
 			let noRender = false
@@ -65,10 +74,11 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		setStatus('Pending')
 
 		try {
-			const value = await fetchFunction()
+			const res = await fetchFunction()
 			
-			setMetaData(filterData(value))
-			setData(value)
+			setMetaData(searchData(res))
+			setMetaData(filterData(res))
+			setData(res)
 			
 			setStatus('Resolved')
 			setLastResolved(Date())

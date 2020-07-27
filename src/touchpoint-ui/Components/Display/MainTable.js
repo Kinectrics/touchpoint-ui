@@ -182,9 +182,8 @@ export default function MainTable(props){
 						
 						let renderRow = true
 						if(props.searchable){
-							renderRow = !dr.TouchPointMetaSearchHide
+							renderRow = !metaData[idx].searchHidden
 						}
-						
 
 						renderRow = renderRow && (noFilter || metaData[idx].visible)
 						
