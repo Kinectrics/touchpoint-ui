@@ -20,11 +20,11 @@ export default function useHeaders(dataHeaders = []) {
 	}
 
 	//Saves a list of unique values in each column (header) - to be used in the filter dropdowns
-	function embedData(data) {
+	function embedData(data, metaData) {
 		//using Immer to edit the header state while keeping it immutable
 		setHeaders(produce(headers, (draft) => {
 			draft.map((hdr) => {
-				hdr.embedData(data)
+				hdr.embedData(data, metaData)
 			})
 		}))
 	}

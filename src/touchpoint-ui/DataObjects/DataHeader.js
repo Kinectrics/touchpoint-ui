@@ -50,8 +50,8 @@ export default class DataHeader{
 	
 	
 	//Saves a list of unique values in the column - to be used in the filter dropdowns
-	embedData(data){
-		this.uniqueValues = uniqueByColumn(data, this.headerID, this.uniqueValues)
+	embedData(data, metaData){
+		this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues)
 	}
 	
 	
@@ -95,11 +95,12 @@ export default class DataHeader{
 
 
 //Returns an array of unique values from a column of DataRow objects
-function uniqueByColumn(data, columnID, oldValues) {
+function uniqueByColumn(data, metaData, columnID, oldValues) {
 	const res = {}
 	
-	data.forEach((r) => {
-		if (r.TouchPointMetaVisible || r.TouchPointMetaFilteredBy === columnID + ';'){
+	data.forEach((r, idx) => {
+		
+		if (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';'){
 			//New vales added as true, old values keep their value
 			if (oldValues[r[columnID]] === undefined){
 				res[r[columnID]] = true

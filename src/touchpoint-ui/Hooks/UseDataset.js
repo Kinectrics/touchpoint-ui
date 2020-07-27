@@ -8,15 +8,13 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 
 	//The array contains an empty object by default
 	const [data, setData] = useState(defaultValue)
-	const [first, setFirst] = useState(true)
+	const [metaData, setMetaData] = useState([{visible: true, filteredBy: ''}])
 	const [status, setStatus] = useState('Pending')
-	const [rejection, setRejection] = useState()
 	const [lastResolved, setLastResolved] = useState()
-	const [lastRejected, setLastRejected] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
 	
-	const moduleData = useModuleData()
-	const searchText = moduleData.get('TouchPointSearchText')
+	//Search data on change
+	const searchText = useModuleData().get('TouchPointSearchText')
 	
 	useEffect(() => {
 		setData(produce(data, draftData => {
@@ -37,63 +35,59 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 
 	//Filters the data based on given headers
 	function filterData(values){
-
-		//Apply the filters to the data (define what rows are visible)
-		return produce(values, (draftValues) => {
-
-			draftValues.map((r) => {
-				r.TouchPointMetaFilteredBy = ''
-
-				let noRender = false
-				
-				headers.get().forEach((h) => {
-					
-					//filter
-					if (!h.filter(r[h.headerID], r)) {
-						noRender = true
-						r.TouchPointMetaFilteredBy = r.TouchPointMetaFilteredBy + [h.headerID] + ';'
-					}
-				})
-
-				r.TouchPointMetaVisible = !noRender
-				return r
+		
+		const newMetaData = []
+		
+		values.forEach((r) => {
+			
+			const rowMeta = {}
+			
+			rowMeta.filteredBy = ''
+			
+			let noRender = false
+			headers.get().forEach((h) => {
+				//filter
+				if (!h.filter(r[h.headerID], r)) {
+					noRender = true
+					rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';'
+				}
 			})
+
+			rowMeta.visible = !noRender 
+			newMetaData.push(rowMeta)
 		})
+		
+		return newMetaData
 	}
 	
 	//Fetch data and update state once the operation is complete. Keep the old value in the meantime
 	async function fetchData() {
 		setStatus('Pending')
-		const res = fetchFunction()
 
 		try {
-			const value = filterData(await res)
-
+			const value = await fetchFunction()
+			
+			setMetaData(filterData(value))
 			setData(value)
+			
 			setStatus('Resolved')
-			setRejection(null)
 			setLastResolved(Date())
 
 			return status
 		} catch (e) {
 			setStatus('Rejected')
-			setRejection(e)
-			setLastRejected(Date())
-
+			console.error(e)
 			return status
 		}
 	}
-
-
+	
 	//Automatically run the fetching function the first time, then wait for a refresh
-	if (first) {
-		setFirst(false)
-		fetchData()
-	}
+	useEffect(()=>{ fetchData() },[])
 
 	//Return a Dataset object
 	return ({
 		read: () => { return data },
+		getMetaData: ()=>{ return metaData },
 
 		refresh: () => {
 			if (status !== 'Pending') {
@@ -101,18 +95,15 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			}
 		},
 
-		set: (val) => { setData(val) },
-
 		status: status,
-		rejection: rejection,
 		lastResolved: lastResolved,
-		lastRejected: lastRejected,
 		setHeaders: setHeaders,
 		isDataset: true,
+		
 		filter: () => {
-			const newData = filterData(data)
-			setData(newData)
-			headers.embedData(newData)
+			const newMeta = filterData(data)
+			setMetaData(newMeta)
+			headers.embedData(data, newMeta)
 		},
 	})
 }

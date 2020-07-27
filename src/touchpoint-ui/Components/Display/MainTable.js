@@ -18,8 +18,11 @@ export default function MainTable(props){
 	
 	//support for dataSets or for just arrays
 	let data = props.data
-	if(!Array.isArray(props.data) ){
-		data = data.read()
+	let metaData = [{}]
+	
+	if(props.data.isDataset){
+		data = props.data.read()
+		metaData = props.data.getMetaData()
 	} else{
 		noSort = true
 		noFilter = true
@@ -28,7 +31,7 @@ export default function MainTable(props){
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(()=>{
 		if(!noFilter){
-			props.dataHeaders.embedData(data)
+			props.dataHeaders.embedData(data, metaData)
 			props.data.setHeaders(props.dataHeaders)
 		}
 	}, [props.data.lastResolved])
@@ -38,8 +41,8 @@ export default function MainTable(props){
 	
 	//get the length of the data with the filter applied
 	let dataLength = 0
-	data.forEach((r)=>{
-		if (r.TouchPointMetaVisible && !r.TouchPointMetaSearchHide){dataLength = dataLength + 1}
+	data.forEach((r, idx)=>{
+		if (metaData[idx].visible && !r.TouchPointMetaSearchHide){dataLength = dataLength + 1}
 	})
 	
 	//if there's no way to set the active record, then no record is active
@@ -173,7 +176,7 @@ export default function MainTable(props){
 			
 			{/* Table body data */}
 			<div className = {'tableBody ' + props.data.lastResolved}>
-				{data.map((dr) => {
+				{data.map((dr, idx) => {
 					//render the allowed numebr of rows, on th selected page
 					if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
 						
@@ -182,7 +185,8 @@ export default function MainTable(props){
 							renderRow = !dr.TouchPointMetaSearchHide
 						}
 						
-						renderRow = renderRow && (dr.TouchPointMetaVisible || noFilter)
+
+						renderRow = renderRow && (noFilter || metaData[idx].visible)
 						
 						const r = renderRow ? 
 							<MainTableRow
