@@ -40,9 +40,23 @@ export default function VendorRubrics(){
 		{ headerID: 'intern', displayName:'Intern', width: 300},
 	])
 	
+	//Headers for table
+	const subDataHeaders = useHeaders([
+		{ headerID:'id',displayName:'ID', width: 50, required: true},
+		{ headerID: 'vendor', displayName:'My Vendor', width: 200},
+		{ headerID: 'project', displayName:'Project', width: 200},
+		{ headerID: 'projectName', displayName:'Project Name', width: 300},
+		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
+		{ headerID: 'due', displayName:'Due', width: 200},
+		{ headerID: 'SM', displayName:'SM', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300},
+	])
+	
 	//Data from the 'server'
 	const data  = useDataset(getTableData, [{}])
 	const [activeRecord, setActiveRecord] = useState(data.read()[0])
+	
+	const subData =  useDataset(data.sub( (r)=> r.status === 'Complete'))
 	
 	return (
 		<Module moduleName = "VendorRubrics">
@@ -75,7 +89,7 @@ export default function VendorRubrics(){
 			</ControlBar>
 			
 			<SplitScreen defaultSize={55}>
-				<InfoTabContainer defaultTab='RubricHeader'>
+				<InfoTabContainer defaultTab='Test'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader activeRecord = {activeRecord} system={system}/>
@@ -86,11 +100,28 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						{/* <StatusLog
+						<StatusLog
 							dataRow={activeRecord}
 							statusStyle={statusStyle}
+						/>
+					</InfoTab>		
+						
+						
+						
+						
+						
+					<InfoTab tabID = "DataTest" tabTitle='Test'>
+						{/* <MainTable
+							data={subData}
+							dataHeaders={subDataHeaders}
+							setActiveRecord={setActiveRecord}
+							activeRecord={activeRecord}
+							pageSize={200}
+							searchable
 						/> */}
 					</InfoTab>			
+							
+							
 							
 				</InfoTabContainer>
 			</SplitScreen>

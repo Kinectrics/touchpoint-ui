@@ -42,7 +42,7 @@ export default function MainTable(props){
 	//get the length of the data with the filter applied
 	let dataLength = 0
 	data.forEach((r, idx)=>{
-		if (metaData[idx].visible && !r.TouchPointMetaSearchHide){dataLength = dataLength + 1}
+		if (metaData[idx].visible && !metaData[idx].searchHidden){ dataLength = dataLength + 1 }
 	})
 	
 	//if there's no way to set the active record, then no record is active

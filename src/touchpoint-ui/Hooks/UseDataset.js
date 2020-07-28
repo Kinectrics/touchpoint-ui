@@ -1,16 +1,11 @@
 import {useState, useEffect} from 'react'
-import produce from 'immer'
 import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
 export default function useDataset(fetcher, defaultValue = [{}]) {
-	let fetchFunction = fetcher
 	
-	//If the dataset was spawned by another dataset, it is initialised slightly differently
-	if(fetcher.TouchPointIsSubdataset){
-		fetchFunction = fetcher.func
-	}
+	const fetchFunction = fetcher.TouchPointIsSubdataset ? fetcher.func : fetcher 
 	
 	//The array contains an empty object by default
 	const [data, setData] = useState(defaultValue)
@@ -89,6 +84,10 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 			
 			setStatus('Resolved')
 			setLastResolved(Date())
+			
+			subs.forEach((subRefresh) => {
+				subRefresh()
+			})
 
 			return status
 		} catch (e) {
@@ -98,13 +97,12 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 		}
 	}
 	
+	//If it's a subdataset, forward the refresh request to the parent
 	async function refreshData(){
-		if (status !== 'Pending') {
-			await fetchData()
-			
-			subs.forEach((subRefresh)=>{
-				subRefresh()
-			})
+		if(fetcher.TouchPointIsSubdataset){
+			fetcher.refreshParent()
+		} else if (status !== 'Pending') {
+			fetchData()
 		}
 	}
 	
@@ -113,10 +111,10 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 	useEffect(()=>{ 
 		fetchData() 
 		if(fetcher.TouchPointIsSubdataset){
-			fetcher.embedInParent(refreshData)
+			fetcher.embedInParent(fetchData)
 		}
 	},[])
-
+	
 	//Return a Dataset object
 	return ({
 		read: () => { return data },
@@ -137,10 +135,8 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 		
 		
 		sub: (filterFunction) =>{
-			
 			return {
 				func: async () => {
-					await fetchData()
 					return (data.filter((r) => filterFunction(r)))
 				}, 
 				
@@ -149,6 +145,8 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 					newSubs.push(refresher)
 					setSubs(newSubs)
 				}, 
+				
+				refreshParent: refreshData,
 				
 				TouchPointIsSubdataset: true,
 			}
