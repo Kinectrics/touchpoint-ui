@@ -3,9 +3,7 @@ import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
-export default function useDataset(fetcher, defaultValue = [{}]) {
-	
-	const fetchFunction = fetcher.TouchPointIsSubdataset ? fetcher.func : fetcher 
+export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	
 	//The array contains an empty object by default
 	const [data, setData] = useState(defaultValue)
@@ -13,26 +11,34 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
-	const [subs, setSubs] = useState([])
-	
+
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
 	
+	function searchData(values) {
+
+		const newMetaData = []
+
+		values.forEach((r, idx) => {
+
+			const rowMeta = metaData[idx] ? metaData[idx] : {}
+			rowMeta.searchHidden = false
+
+			if (searchText) {
+
+				rowMeta.searchHidden = !headers.get().some((hdr) => {
+					return hdr.dataType.search(r[hdr.headerID], searchText)
+				})
+			}
+
+			newMetaData.push(rowMeta)
+		})
+
+		return newMetaData
+	}
+	
 	useEffect(() => {
-		setData(produce(data, draftData => {
-			draftData.map((r) => {
-
-				r.TouchPointMetaSearchHide = false
-				
-				if(searchText){
-					r.TouchPointMetaSearchHide = !headers.get().some((hdr) => {
-						return hdr.dataType.search(r[hdr.headerID], searchText)
-					})
-				}
-
-				return r
-			})
-		}))
+		setMetaData(searchData(data))
 	}, [searchText])
 
 	//Filters the data based on given headers
@@ -74,12 +80,8 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 			
 			setStatus('Resolved')
 			setLastResolved(Date())
-			
-			subs.forEach((subRefresh) => {
-				subRefresh()
-			})
-
 			return status
+			
 		} catch (e) {
 			setStatus('Rejected')
 			console.error(e)
@@ -88,10 +90,8 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 	}
 	
 	//If it's a subdataset, forward the refresh request to the parent
-	async function refreshData(){
-		if(fetcher.TouchPointIsSubdataset){
-			fetcher.refreshParent()
-		} else if (status !== 'Pending') {
+	function refreshData(){
+		if (status !== 'Pending') {
 			fetchData()
 		}
 	}
@@ -99,10 +99,7 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 	//Automatically run the fetching function the first time, then wait for a refresh
 	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 	useEffect(()=>{ 
-		fetchData() 
-		if(fetcher.TouchPointIsSubdataset){
-			fetcher.embedInParent(fetchData)
-		}
+		fetchData()
 	},[])
 	
 	//Return a Dataset object
@@ -110,7 +107,7 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 		read: () => { return data },
 		getMetaData: ()=>{ return metaData },
 
-		refresh:refreshData,
+		refresh: refreshData,
 
 		status: status,
 		lastResolved: lastResolved,
@@ -122,24 +119,5 @@ export default function useDataset(fetcher, defaultValue = [{}]) {
 			setMetaData(newMeta)
 			headers.embedData(data, newMeta)
 		},
-		
-		
-		sub: (filterFunction) =>{
-			return {
-				func: async () => {
-					return (data.filter((r) => filterFunction(r)))
-				}, 
-				
-				embedInParent: (refresher) => {
-					const newSubs = [...subs]
-					newSubs.push(refresher)
-					setSubs(newSubs)
-				}, 
-				
-				refreshParent: refreshData,
-				
-				TouchPointIsSubdataset: true,
-			}
-		}
 	})
 }

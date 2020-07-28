@@ -56,7 +56,7 @@ export default function VendorRubrics(){
 	const data  = useDataset(getTableData, [{}])
 	const [activeRecord, setActiveRecord] = useState(data.read()[0])
 	
-	const subData =  useDataset(data.sub( (r)=> r.status === 'Complete'))
+	// const subData =  useDataset(data.sub( (r)=> r.status === 'Complete'))
 	
 	return (
 		<Module moduleName = "VendorRubrics">
@@ -100,10 +100,10 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						<StatusLog
+						{/* <StatusLog
 							dataRow={activeRecord}
 							statusStyle={statusStyle}
-						/>
+						/> */}
 					</InfoTab>		
 						
 						
