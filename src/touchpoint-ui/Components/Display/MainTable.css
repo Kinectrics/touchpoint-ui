@@ -3,7 +3,7 @@
 	padding: 0px 10px;
 	width:100%;
 	background-color: var(--bodyAltBG);
-	height: 100%;
+	height: 100vh;
 	padding-bottom: 75vh;
 	color: var(--mainTextColor);
 	position: relative;
