@@ -15,6 +15,7 @@ export default function MainTable(props){
 	let noSort = props.noSort   
 	let noFilter = props.noFilter
 	let noOptions = props.noOptions
+	let searchable = props.searchable
 	
 	//support for dataSets or for just arrays
 	let data = props.data
@@ -26,6 +27,7 @@ export default function MainTable(props){
 	} else{
 		noSort = true
 		noFilter = true
+		searchable =  false
 	}
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
@@ -42,7 +44,12 @@ export default function MainTable(props){
 	//get the length of the data with the filter applied
 	let dataLength = 0
 	data.forEach((r, idx)=>{
-		if (metaData[idx].visible && !metaData[idx].searchHidden){ dataLength = dataLength + 1 }
+		if(metaData[idx]){
+			if (metaData[idx].visible && !metaData[idx].searchHidden){dataLength ++}
+		} else {
+			dataLength++
+		}
+		
 	})
 	
 	//if there's no way to set the active record, then no record is active
@@ -181,7 +188,7 @@ export default function MainTable(props){
 					if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
 						
 						let renderRow = true
-						if(props.searchable){
+						if(searchable){
 							renderRow = !metaData[idx].searchHidden
 						}
 						

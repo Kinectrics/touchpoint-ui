@@ -46,10 +46,9 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		
 		const newMetaData = []
 		
-		values.forEach((r) => {
+		values.forEach((r, idx) => {
 			
-			const rowMeta = {}
-			
+			const rowMeta = metaData[idx] ? metaData[idx] : {}
 			rowMeta.filteredBy = ''
 			
 			let noRender = false
@@ -75,6 +74,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		try {
 			const value = await fetchFunction()
 			
+			setMetaData(searchData(value))
 			setMetaData(filterData(value))
 			setData(value)
 			
