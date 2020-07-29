@@ -19,7 +19,7 @@ export default function usePresence(componentName, height, width) {
 		
 		Object.values(layout.widths).forEach((w)=>{
 			if(w){
-				heightCSS = heightCSS + ' - ' + w
+				widthCSS = widthCSS + ' - ' + w
 			}
 		})
 		

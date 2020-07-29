@@ -6,6 +6,8 @@
 	--navTextColor: white;
 	--navHoverColor: rgb(196, 196, 196);
 	--navClickedColor: rgb(177, 177, 177);
+	--dockColor: rgb(37, 37, 37);
+	--dockTextColor: var(--navTextColor);
 	
 	/* Body Background */
 	--bodyAltBG: rgb(224, 230, 245);
@@ -17,8 +19,6 @@
 	
 	/* Cards */
 	--cardBG: white;
-	/* --dynamicCardShadow: 5px 5px 50px -9px var(--shadowColor);
-	--shadowColor: rgba(0, 0, 0, 0.521); */
 	
 	/* Main Table */
 	--tableActiveColor: rgb(2, 187, 219);
@@ -35,6 +35,7 @@
 	/* Structure Variables */
 	--appToolbarHeight: 30px;
 	--controlBarHeight: 49px;
+	--dockWidth: 65px;
 }
 
 body {
@@ -67,6 +68,7 @@ a{
 	background-color: var(--bodyAltBG);
 	margin: 0;
 	padding: 0;
+	position: fixed;
 }
 
 .screenBlocker{

@@ -19,6 +19,7 @@ export {default as CommentBox} from "./Components/Inputs/CommentBox"
 export {default as ComboBox} from "./Components/Inputs/ComboBox"
 export {default as CloseButton} from "./Components/Inputs/CloseButton"
 export {default as CheckBox} from "./Components/Inputs/CheckBox"
+export {default as DockIcon} from "./Components/Inputs/DockIcon"
 
 //Display
 export {default as Popup} from "./Components/Display/Popup"
@@ -32,6 +33,7 @@ export {default as InfoTabContainer} from "./Components/Containers/InfoTabContai
 export {default as Module} from "./Components/Containers/Module"
 export {default as SplitScreen} from "./Components/Containers/SplitScreen"
 export {default as ControlledTabContainer} from "./Components/Containers/ControlledTabContainer"
+export {default as Dock} from "./Components/Containers/Dock"
 
 
 
@@ -43,9 +45,9 @@ export {default as DataType} from "./DataObjects/DataType"
 
 
 
-
 //HOOKS
 export {default as useDataset} from "./Hooks/UseDataset"
 export {default as useHeaders} from "./Hooks/UseHeaders"
 export {default as useSystem} from "./Hooks/UseSystem"
 export {default as useModuleData} from "./Hooks/UseModuleData"
+export {default as usePresence} from "./Hooks/UsePresence"

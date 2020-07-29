@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import {Module, ControlledTabContainer, InfoTab, FreeButton} from '../../touchpoint-ui'
+import {Module, Dock, DockIcon} from '../../touchpoint-ui'
 import './ETDB.css'
+import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 export default function ETDB() {
 	
@@ -13,21 +14,15 @@ export default function ETDB() {
 	return (
 		<Module moduleName = 'ETDB'>
 			
-			<div className="sideBar">
-				<FreeButton wide onClick = {tabClickHandler}>Emergent</FreeButton>
-				<FreeButton wide onClick = {tabClickHandler}>Scheduled</FreeButton>
-			</div>
+			<Dock locked = {false}>
+				<DockIcon faIcon={faBars} style={{marginBottom: '50px'}} />
+				<DockIcon faIcon={faFileSignature} title={'CSQ'} notifications={20}/>
+				<DockIcon faIcon={faExclamationCircle} title={'Emergent'} notifications={200}/>
+				<DockIcon faIcon={faLayerGroup} title={'All TDS'}/>
+				<DockIcon faIcon={faPlusSquare} title={'New TDS'} style={{ marginTop: '50px' }}/>
+				<DockIcon faIcon={faSearch} title={'Lookup'} />
+			</Dock>
 			
-			<div className="main">
-				
-				<ControlledTabContainer activeTab = {tab}>
-					
-					<InfoTab tabID = 'Emergent'>Emergent</InfoTab>
-					<InfoTab tabID = 'Scheduled'>Scheduled</InfoTab>
-					
-				</ControlledTabContainer>
-				
-			</div>
 			
 		</Module>
 	)

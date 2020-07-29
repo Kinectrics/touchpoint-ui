@@ -1,0 +1,43 @@
+.DockIcon{
+	width: var(--dockWidth);
+	color: var(--dockTextColor);
+	margin-bottom: 8px;
+	position: relative;
+}
+
+.DockIcon .pic{
+	width: 100%;
+	text-align: center;
+	margin-bottom: -2px;
+}
+
+.DockIcon .title{
+	font-size: 9pt;
+}
+
+.DockIcon:not(.locked):hover{
+	filter: brightness(75%);
+}
+
+.DockIcon:not(.locked):active{
+	filter: brightness(60%);
+}
+
+.DockIcon.locked{
+	opacity: 80%;
+	filter: brightness(70%);
+	cursor: default;
+}
+
+.DockIcon .notifications{
+	position: absolute;
+	top: -8px;
+	right: 5px;
+	
+	font-size: 9pt;
+	
+	background-color: red;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 0 3px;
+}
