@@ -187,7 +187,8 @@ export default function MainTable(props){
 					//render the allowed numebr of rows, on th selected page
 					if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
 						
-						let renderRow = true
+						let renderRow = dr !== []
+						
 						if(searchable){
 							renderRow = !metaData[idx].searchHidden
 						}

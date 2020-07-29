@@ -1,0 +1,37 @@
+.ControlledTabContainer{
+	background-color: var(--bodyAltBG);
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.ControlledTabContainer .tab-content{
+	color: var(--mainTextColor);
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	position: relative;
+}
+
+.ControlledTabContainer .tab-pane{
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.ControlledTabContainer .InfoTab{
+	overflow: hidden;
+	width: 100%;
+}
+
+.ControlledTabContainer .nav-tabs{
+	display: none;
+}
+
+/* InfoCard components styled differntly */
+.ControlledTabContainer .InfoCard{
+	padding: 10px;
+}
+

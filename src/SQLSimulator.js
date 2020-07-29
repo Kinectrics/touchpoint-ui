@@ -1,21 +1,16 @@
 //returns a lis of pending actions actions for a given user in a given module
 export function queryNotifications(userName, moduleName){
 	return([
-		{title: 'Kinectrics Support', action: 'Pending Approval', due: Date('10-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
+		{title: 'Support', action: 'Pending Approval', due: Date('10-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'Vendor Rubric 2', action: 'Pending Review', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'New Vendor Review', action: 'Approval Required', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'Vendor Review', action: 'Approval Required', due: Date('1-Jun-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
-		{title: 'Kinectrics Vendor Review', action: 'Approval Required', due: Date('1-Apr-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
-		{title: 'Kinectrics Support', action: 'Pending Approval', due: Date('10-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'Vendor Rubric 2', action: 'Pending Review', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'New Vendor Review', action: 'Approval Required', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'Vendor Review', action: 'Approval Required', due: Date('1-Jun-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
-		{title: 'Kinectrics Vendor Review', action: 'Approval Required', due: Date('1-Apr-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
-		{title: 'Kinectrics Support', action: 'Pending Approval', due: Date('10-May-20'), moduleName : 'Vendor Rubrics',moduleID:'VendorRubrics'},
 		{title: 'Vendor Rubric 2', action: 'Pending Review', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'New Vendor Review', action: 'Approval Required', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'Vendor Review', action: 'Approval Required', due: Date('1-Jun-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
-		{title: 'Kinectrics Vendor Review', action: 'Approval Required', due: Date('1-Apr-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 	]);
 }
 
@@ -24,12 +19,12 @@ export function queryNotifications(userName, moduleName){
 export function getTableData(){
 	const data = []
 	
-	const vendors = ['Kinectrics', 'BWXT','','ES Fox','Aecon']
-	const SMs = ['', 'Olivia Krucko Gorski','Rushanth Raveendran']
+	const vendors = ['Vendor 1', 'Vendor 2','Service','','']
+	const SMs = ['Sid Das', 'Olivia Krucko Gorski','Rushanth Raveendran']
 	const projectNames = ['Cooling Things and such', '','Radiation protection etc.']
 	const statuses = ['Complete', '','Open']
 	const dues = ['1-May-20', '','1-Jan-20']
-	const interns = ['', 'Clara Birch','Claire Del Fatti']
+	const interns = ['Youssof Fahmy', 'Clara Birch','Claire Del Fatti']
 	const project = [36527,39568,38735,36815,39202,39548]
 	const scr = [
 		[99876,88767, 5909873, 776378, 88282,747224,4289042,27427924],[99383,88393],[83729],[99557]

@@ -7,6 +7,7 @@ import {TouchPointApp}from './touchpoint-ui'
 import LockScreen from './Modules/LockScreen/LockScreen'
 import VendorRubrics from './Modules/VendorRubrics/VendorRubrics'
 import VRIcon from './Modules/VendorRubrics/VRIcon.svg'
+import ETDB from './Modules/ETDB/ETDB'
 
 //This list of modules available to the app
 const moduleList = {
@@ -22,7 +23,15 @@ const moduleList = {
 		icon: VRIcon,
 		locked: false,
 		hidden: false,
-	}
+	},
+	
+	ETDB: {
+		name: 'ETDB',
+		component: ETDB,
+		locked: false,
+		hidden: false,
+	},
+	
 }
 
 //The active user of the app. This will be requested from the server

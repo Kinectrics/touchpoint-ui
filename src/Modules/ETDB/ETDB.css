@@ -1,0 +1,12 @@
+.ETDB{
+	display: flex;
+}
+
+.ETDB .sideBar{
+	width: 20%;
+	background-color: rgb(79, 107, 114);
+}
+
+.ETDB .main{
+	width: 80%;
+}

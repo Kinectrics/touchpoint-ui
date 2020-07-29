@@ -1,7 +1,7 @@
 import React from 'react'
 import './LockScreen.css'
 import { Module, InfoCard, Tile} from '../../touchpoint-ui'
-import {queryNotifications} from '../../SQLSimulator/SQLSimulator'
+import {queryNotifications} from '../../SQLSimulator'
 import {useSystem} from '../../touchpoint-ui'
 import LoginBox from './LoginBox'
 

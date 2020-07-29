@@ -3,7 +3,7 @@ import {Module, ControlBar, SplitScreen, Popup, InfoTab, InfoTabContainer, Contr
 import {useSystem, useHeaders, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt} from "@fortawesome/free-solid-svg-icons"
-import {getTableData} from '../../SQLSimulator/SQLSimulator'
+import {getTableData} from '../../SQLSimulator'
 import RubricHeader from './RubricHeader'
 import RubricDetail  from './RubricDetail'
 import PBI from '../../Temp/PBI.jpg'

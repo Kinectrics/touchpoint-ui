@@ -31,6 +31,7 @@ export {default as InfoTab} from "./Components/Containers/InfoTab"
 export {default as InfoTabContainer} from "./Components/Containers/InfoTabContainer"
 export {default as Module} from "./Components/Containers/Module"
 export {default as SplitScreen} from "./Components/Containers/SplitScreen"
+export {default as ControlledTabContainer} from "./Components/Containers/ControlledTabContainer"
 
 
 

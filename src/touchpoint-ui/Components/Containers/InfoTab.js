@@ -20,6 +20,6 @@ export default function InfoTab(props) {
 
 //Proptypes
 InfoTab.propTypes = {
-	tabTitle: PropTypes.string.isRequired,
+	tabTitle: PropTypes.string,
 	tabID: PropTypes.string.isRequired,
 }
