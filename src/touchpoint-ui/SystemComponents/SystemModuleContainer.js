@@ -5,15 +5,12 @@ import moduleContext from '../Contexts/ModuleContext'
 	
 export default function SystemModuleContainer(props){
 	
-	let n = 0
-	if(props.system.layout.hasAppToolbar){n++}
-	if(props.system.layout.hasAppFooter){n++}
-	
 	//Adjusts the module container to fit between the system toolbars
 	const styleSettings = {
-		height: 'calc(100vh - ' + n + ' * var(--appToolbarHeight))',
-		width: '100vw'
+		height: props.system.layout.heightCSS,
+		width: props.system.layout.widthCSS
 	}
+
 
 	const moduleList = props.system.getModules();
 	const moduleDataState = useState({})

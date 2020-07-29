@@ -117,7 +117,7 @@ export default class SystemThemeEngine{
 	}
 	
 	//fethches the user's preferred theme and applies it
-	getUserTheme(userName){
+	getUserTheme(){
 		this.setTheme(localStorage.getItem('themeName'))
 	}
 }

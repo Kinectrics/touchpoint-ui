@@ -9,7 +9,7 @@ export default function AppFooter(props) {
 	const v = System.io.getVersion()
 	
 	//Declare itself to the app so the modules can be fit around it
-	usePresence('AppFooter')
+	usePresence('AppFooter','var(--appToolbarHeight)')
 	
 	return (
 		<div className="AppFooter">

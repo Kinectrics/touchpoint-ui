@@ -85,11 +85,11 @@ export default function TouchPointApp(props){
 		
 		//Internal variables for structuring the app
 		layout: {
-			hasAppToolbar: hasAppToolbar,
-			setHasAppToolbar: setHasAppToolbar,
+			heightCSS: '100%',
+			widthCSS: '100%',
 			
-			hasAppFooter: hasAppFooter,
-			setHasAppFooter: setHasAppFooter,
+			widths: {},
+			heights: {}
 		},
 		
 		io: props.io
@@ -98,7 +98,7 @@ export default function TouchPointApp(props){
 	//Initial setup. Initaializes the theme handler object, and sets the theme to the preffered user theme
 	useEffect(() => {
 		const themeEngine = new SystemThemeEngine()
-		themeEngine.getUserTheme(System.io.getActiveUser())
+		themeEngine.getUserTheme()
 	}, [])
 	
 	//Input blocker for clicks
