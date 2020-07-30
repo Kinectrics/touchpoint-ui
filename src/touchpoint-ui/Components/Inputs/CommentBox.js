@@ -21,13 +21,10 @@ export default function CommentBox(props) {
 	}
 	
 	//For the onEnter event
-	function keyPressHandler(e){
-		//need esc functionality here
-	}
-	
-	const styleSetings = {
-		height: props.height,
-		width: props.width,
+	function keyPressHandler(e) {
+		if (!locked && e.key === 'Enter' && props.onEnter !== undefined) {
+			props.onEnter(e)
+		}
 	}
 	
 	function blurHandler(e){
@@ -43,9 +40,10 @@ export default function CommentBox(props) {
 			onChange={changeHandler}
 			readOnly={locked}
 			onKeyPress={keyPressHandler}
-			style={styleSetings}
 			placeholder={props.placeholder}
 			onBlur = {blurHandler}
+			style = {props.style}
+			value={props.value}
 		></textarea>
 	)
 }
@@ -61,5 +59,7 @@ CommentBox.propTypes = {
 	className: PropTypes.string,
 	height: PropTypes.string,
 	width: PropTypes.string,
+	value: PropTypes.string,
+	onEscape: PropTypes.func,
 }
 

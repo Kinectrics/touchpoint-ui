@@ -24,7 +24,12 @@ export default function DockIcon(props) {
 	: null
 	
 	if(!props.hidden){return (
-		<CoreButton className = 'DockIcon' style = {props.style} locked = {props.locked}>
+		<CoreButton 
+			className = 'DockIcon' 
+			style = {props.style} 
+			locked = {props.locked}
+			onClick = {props.onClick}
+		>
 			{notificationBadge}
 			<div className='pic' style = {iconStyle}>{icon}</div>
 			<div className='title'>{props.title}</div>
@@ -40,5 +45,6 @@ DockIcon.propTypes = {
 	faIcon: PropTypes.object,
 	style: PropTypes.object,
 	notifications: PropTypes.number,
+	onClick: PropTypes.func,
 }
 

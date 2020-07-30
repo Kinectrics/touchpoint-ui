@@ -27,8 +27,10 @@ export default function TextBox(props) {
 	
 	//For the onEnter event
 	function keyPressHandler(e){
-		if(e.key === 'Enter' && props.onEnter!==undefined){
+		if(!locked && e.key === 'Enter' && props.onEnter!==undefined){
 			props.onEnter(e)
+		} else if (!locked && e.key === 'Escape' && props.onEscape !== undefined){
+			props.onEscape(e)
 		}
 	}
 	
@@ -44,6 +46,8 @@ export default function TextBox(props) {
 			onBlur = {blurHandler}
 			ref = {props.inputRef}
 			autoFocus = {props.autoFocus}
+			style = {props.style}
+			value = {props.value}
 		/>
 	)
 }
@@ -60,5 +64,7 @@ TextBox.propTypes = {
 	value: PropTypes.string,
 	inputRef: PropTypes.object,
 	autoFocus: PropTypes.bool,
+	value: PropTypes.string,
+	onEscape: PropTypes.func,
 }
 
