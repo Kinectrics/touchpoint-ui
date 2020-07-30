@@ -4,6 +4,7 @@
 export {default as TouchPointApp} from "./Components/Core/TouchPointApp"
 export {default as AppToolbar} from "./Components/Core/AppToolbar"
 export {default as AppFooter} from "./Components/Core/AppFooter"
+export {default as AppDrawer} from "./Components/Core/AppDrawer"
 
 //Inputs
 export {default as CoreButton} from "./Components/Inputs/CoreButton"

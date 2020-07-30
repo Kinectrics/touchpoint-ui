@@ -1,0 +1,19 @@
+.AppDrawer{
+	height: 100%;
+	width: 350px;
+	position: fixed;
+	transition: all 500ms ease;
+	z-index: 10;
+	background-color: var(--cardBG);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: 13px 0px 23px 0px rgba(107,107,107,0.10);
+	left: 0;
+}
+
+.AppDrawer .CloseButton{
+	position: absolute;
+	top:3px;
+	right: 5px;
+	font-size: 15pt;
+}

@@ -1,5 +1,5 @@
 .systemPopupBackdrop{
-	z-index: 900;
+	z-index: 300;
 	background-color: var(--overlayBackdropColor);
 	width: 100vw;
 	height: 100vh;

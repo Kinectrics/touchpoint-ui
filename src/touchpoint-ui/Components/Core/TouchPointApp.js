@@ -6,7 +6,7 @@ import systemContext from '../../Contexts/SystemContext'
 import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
-import { propTypes } from 'react-bootstrap/esm/Image'
+import SystemDrawerHandler from '../../SystemComponents/SystemDrawerHandler'
 
 export default function TouchPointApp(props){
 	
@@ -18,6 +18,8 @@ export default function TouchPointApp(props){
 	const [screenBlock, setScreenBlock] = useState(false) //if true, no clicks will register
 	const [popupEffect, setPopupEffect] = useState('')
 	const [moduleLock, setModuleLock] = useState(props.locked)
+	const [drawerIsOpen, setDrawerIsOpen] = useState(false)
+	const [drawerData, setDrawerData] = useState()
 	
 	//Functions that are available to all modules and can be used system-wode 
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
@@ -81,6 +83,21 @@ export default function TouchPointApp(props){
 			setScreenEffect('')
 		},
 		
+		drawer:{
+			open: ()=>{ if(!drawerIsOpen){
+				
+			}},
+			
+			close: () => { if(drawerIsOpen){
+				
+			}},
+			
+			data: drawerData,
+			setData: setDrawerData,
+			
+			drawerIsOpen: drawerIsOpen
+		},
+		
 		//Internal variables for structuring the app
 		layout: {
 			heightCSS: '100%',
@@ -129,6 +146,12 @@ export default function TouchPointApp(props){
 						activePopup = {activePopup}
 						popupEffect = {popupEffect}
 					/>
+					
+					<SystemDrawerHandler 
+						{...System.drawer.data} 
+						open = {System.drawer.drawerIsOpen}
+					/>
+					
 				</HashRouter>
 			</systemContext.Provider>
 		</div>
