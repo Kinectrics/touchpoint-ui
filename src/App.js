@@ -65,7 +65,7 @@ export default function App() {
 			homeModule = {'LockScreen'}
 			io = {io}
 		>
-			<AppDrawer defaultOpen>
+			<AppDrawer style={{padding: '10px'}}>
 				{activeUser}
 			</AppDrawer>
 			

@@ -18,10 +18,8 @@
 	border-bottom-right-radius: 11px;
 	left: 0;
 	cursor: default;
-}
-
-.AppDrawer.moving{
 	transition: all 500ms ease;
+	padding: 10px;
 }
 
 .AppDrawer .CloseButton{

@@ -5,6 +5,14 @@ import CloseButton from '../Components/Inputs/CloseButton'
 
 export default function AppDrawer(props) {
 	
+	
+	const trueLeft = props.style && props.style.width ? props.style.width : 'var(--drawerWidth)'
+	const [drawerLeft, setDrawerLeft] = useState(!props.drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null)
+	
+	useEffect(()=>{
+		setDrawerLeft(!props.drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null)
+	},[props.drawer.isOpen])
+	
 	//Clicking the background closes the popup
 	function clickBackdrop(e) {
 		if (e.target.classList.contains('SystemDrawerHandler')) {
@@ -12,26 +20,16 @@ export default function AppDrawer(props) {
 		}
 	}
 	
-	// const [drawerLeft, setDrawerLeft] = useState(props.drawer.isOpen ? 'calc( var(--drawerWidth) * -1 )' : null)
+	const handlerClass = props.drawer.isOpen ? 'SystemDrawerHandler' : ''
 	
-	// useEffect(() => {
-		
-	// 	setDrawerLeft(props.drawer.isOpen ? 'calc( var(--drawerWidth) * -1 )' : null)
-		
-	// 	if(props.drawer.isOpen){
-			
-	// 	}
-	// }, [props.drawer.isOpen])
-	
-	
-	if(props.exists && props.drawer.isOpen){
+	if(props.exists){
 		
 		return (
-			<div className="SystemDrawerHandler" onClick = {clickBackdrop}>
+			<div className={handlerClass} onClick = {clickBackdrop}>
 				
 				<div 
 					className={'AppDrawer'} 
-					style={{...props.style}}
+					style={{...props.style, left: drawerLeft}}
 				>
 					<lockedContext.Provider value={props.locked}>
 
