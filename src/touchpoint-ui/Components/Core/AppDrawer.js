@@ -33,7 +33,7 @@ export default function AppDrawer(props){
 	},[props.children, props.style, props.locked])
 		
 	
-	return null 
+	return(null)
 	//Doesn't render aything here, 
 	//sends the props to System, which passes them to the SystemDrawerHandler to render outside the effect area
 }

@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import useSystem from './UseSystem'
 
 //Allows a system component (like the app-wide toolbar) to declare its presence, so the module container 
@@ -27,17 +26,15 @@ export default function usePresence(componentName, height, width) {
 		layout.widthCSS = widthCSS + ')'
 	}
 	
-	useEffect(() => {
-		layout.widths[componentName] = width
-		layout.heights[componentName] = height
+	layout.widths[componentName] = width
+	layout.heights[componentName] = height
+	
+	refreshCSS()
+	
+	return (() => {
+		layout.widths[componentName] = 0
+		layout.heights[componentName] = 0
 		
 		refreshCSS()
-
-		return (() => {
-			layout.widths[componentName] = 0
-			layout.heights[componentName] = 0
-			
-			refreshCSS()
-		})
-	}, [])
+	})
 }

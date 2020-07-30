@@ -65,12 +65,11 @@ export default function App() {
 			homeModule = {'LockScreen'}
 			io = {io}
 		>
-			<AppDrawer style={{padding: '10px'}}>
-				{activeUser}
-			</AppDrawer>
 			
-			<AppToolbar/>
-			<AppFooter/>
+			<AppToolbar />
+			<AppFooter />
+			
+			<AppDrawer style={{padding: '10px'}}/>
 			
 		</TouchPointApp>
 	)
