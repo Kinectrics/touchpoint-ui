@@ -724,16 +724,14 @@ function usePresence(componentName, height, width) {
     layout.widthCSS = widthCSS + ')';
   }
 
-  useEffect(function () {
-    layout.widths[componentName] = width;
-    layout.heights[componentName] = height;
+  layout.widths[componentName] = width;
+  layout.heights[componentName] = height;
+  refreshCSS();
+  return function () {
+    layout.widths[componentName] = 0;
+    layout.heights[componentName] = 0;
     refreshCSS();
-    return function () {
-      layout.widths[componentName] = 0;
-      layout.heights[componentName] = 0;
-      refreshCSS();
-    };
-  }, []);
+  };
 }
 
 function AppToolbar(props) {
