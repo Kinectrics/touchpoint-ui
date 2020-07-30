@@ -6,6 +6,7 @@ import systemContext from '../../Contexts/SystemContext'
 import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
+import { propTypes } from 'react-bootstrap/esm/Image'
 
 export default function TouchPointApp(props){
 	
@@ -16,11 +17,6 @@ export default function TouchPointApp(props){
 	const [screenEffect, setScreenEffect] = useState('')
 	const [screenBlock, setScreenBlock] = useState(false) //if true, no clicks will register
 	const [popupEffect, setPopupEffect] = useState('')
-	
-	//Layout state - allows modules to fit available space between system toolbars
-	const [hasAppToolbar, setHasAppToolbar] = useState(false)
-	const [hasAppFooter, setHasAppFooter] = useState(false)
-	
 	const [moduleLock, setModuleLock] = useState(props.locked)
 	
 	//Functions that are available to all modules and can be used system-wode 
@@ -53,6 +49,8 @@ export default function TouchPointApp(props){
 				//setActiveModule(moduleName)
 				window.location.href = '#/' + moduleName
 				setModuleLock(props.modules[moduleName].locked)
+				
+				if(props.onOpenModule){ props.onOpenModule(moduleName) }
 			}
 		},
 		
@@ -142,5 +140,6 @@ TouchPointApp.propTypes = {
 	locked: PropTypes.bool,
 	modules: PropTypes.object.isRequired,
 	homeModule: PropTypes.string,
-	io: PropTypes.any
+	io: PropTypes.any,
+	onOpenModule: PropTypes.func,
 }
