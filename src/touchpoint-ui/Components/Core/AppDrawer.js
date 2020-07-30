@@ -15,13 +15,22 @@ export default function AppDrawer(props){
 		
 		const newProps = { ...props }
 		newProps.locked = locked
+		newProps.exists = true
 		drawer.setData(newProps)
+		
+		
+		if(props.defaultOpen){
+			setTimeout(()=>{
+				drawer.open()
+			}, 100)
+		}
 		
 		
 		return () => {
 			drawer.setData({})
+			newProps.exists = false
 		}
-	}, [])
+	},[props.children, props.style, props.locked])
 		
 	
 	return null 
@@ -32,4 +41,5 @@ export default function AppDrawer(props){
 AppDrawer.propTypes = {
 	style: PropTypes.object,
 	locked: PropTypes.bool,
+	defaultOpen: PropTypes.bool,
 }

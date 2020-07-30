@@ -14,12 +14,14 @@ export default function TouchPointApp(props){
 	const [activePopup, setPopup] = useState(null);
 	
 	//Set moduleTransition to 'transition' while the modules are being switched out
-	const [screenEffect, setScreenEffect] = useState('')
 	const [screenBlock, setScreenBlock] = useState(false) //if true, no clicks will register
 	const [popupEffect, setPopupEffect] = useState('')
 	const [moduleLock, setModuleLock] = useState(props.locked)
+	
 	const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 	const [drawerData, setDrawerData] = useState()
+	
+	const [screenEffect, setScreenEffect] = useState('')
 	
 	//Functions that are available to all modules and can be used system-wode 
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
@@ -85,17 +87,19 @@ export default function TouchPointApp(props){
 		
 		drawer:{
 			open: ()=>{ if(!drawerIsOpen){
-				
+				setScreenEffect('blurScreenEffect')
+				setDrawerIsOpen(true)
 			}},
 			
 			close: () => { if(drawerIsOpen){
-				
+				setDrawerIsOpen(false)
+				setScreenEffect('')
 			}},
 			
 			data: drawerData,
 			setData: setDrawerData,
 			
-			drawerIsOpen: drawerIsOpen
+			isOpen: drawerIsOpen
 		},
 		
 		//Internal variables for structuring the app
@@ -130,6 +134,11 @@ export default function TouchPointApp(props){
 					<HashRouter>
 					{screenBlocker}
 					
+					<SystemDrawerHandler
+						{...System.drawer.data}
+						drawer={System.drawer}
+					/>
+					
 					<div className={'screenEffect ' + screenEffect}>
 						
 						{props.children}
@@ -145,11 +154,6 @@ export default function TouchPointApp(props){
 						system = {System} 
 						activePopup = {activePopup}
 						popupEffect = {popupEffect}
-					/>
-					
-					<SystemDrawerHandler 
-						{...System.drawer.data} 
-						open = {System.drawer.drawerIsOpen}
 					/>
 					
 				</HashRouter>

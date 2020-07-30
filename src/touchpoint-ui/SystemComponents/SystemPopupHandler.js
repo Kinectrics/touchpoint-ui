@@ -16,9 +16,6 @@ export default function SystemPopupHandler(props) {
 	//If the active popup isn't null, render it
 	if(props.activePopup != null){
 		
-		//support for oth JSX and function components
-		// if(typeof props.activePopup === 'function'){pop = props.activePopup()}
-		
 	return (
 		<div 
 			className = {"systemPopupBackdrop " + props.popupEffect + ' ' + forceClass} 

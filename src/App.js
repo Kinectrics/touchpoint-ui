@@ -40,7 +40,7 @@ const moduleList = {
 
 export default function App() {
 	
-	const [activeUser] = useState('FAHMYY')
+	const [activeUser, setActiveUser] = useState('FAHMYY')
 	const [securityProfile, setSecurityProfile] = useState(activeUser)
 	
 	//io Library for DMS-specific features. 
@@ -65,8 +65,8 @@ export default function App() {
 			homeModule = {'LockScreen'}
 			io = {io}
 		>
-			<AppDrawer test = {'Hello'}>
-				Test
+			<AppDrawer defaultOpen>
+				{activeUser}
 			</AppDrawer>
 			
 			<AppToolbar/>
