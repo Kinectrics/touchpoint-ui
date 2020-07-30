@@ -18,7 +18,7 @@ export default function SplitScreen(props) {
 			>
 				<div className="topView"></div>
 				
-				<div className="bottomView">
+				<div className="bottomView" style = {props.style}>
 					{props.children}
 				</div>
 				
@@ -30,5 +30,6 @@ export default function SplitScreen(props) {
 //Proptypes
 SplitScreen.propTypes = {
 	defaultSize: PropTypes.number,
+	style: PropTypes.object,
 	
 }
