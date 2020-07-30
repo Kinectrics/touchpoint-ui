@@ -21,4 +21,4 @@ to update the package.
 
 To use this package in a project, you can run 
 	
-	npm install --save @youssof707/touchpoint-ui
+	npm install --save touchpoint-ui
