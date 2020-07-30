@@ -34,8 +34,8 @@ export default function usePresence(componentName, height, width) {
 		refreshCSS()
 
 		return (() => {
-			delete layout.widths[componentName]
-			delete layout.height[componentName]
+			layout.widths[componentName] = 0
+			layout.heights[componentName] = 0
 			
 			refreshCSS()
 		})
