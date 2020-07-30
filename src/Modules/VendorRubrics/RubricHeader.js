@@ -68,7 +68,7 @@ export default function RubricHeader(props) {
 					<FreeButton 
 						wide
 						onClick={addSCRHandler} 
-						purpose='negative'
+						purpose='positive'
 					>
 						Add SCR #
 					</FreeButton>

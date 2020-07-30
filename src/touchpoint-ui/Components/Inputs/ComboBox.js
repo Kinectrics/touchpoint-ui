@@ -32,6 +32,7 @@ export default function ComboBox(props) {
 				defaultValue={props.defaultValue}
 				onChange = {changeHandler}
 				disabled = {locked}
+				style = {props.style}
 			>
 				{kids}
 			</select>

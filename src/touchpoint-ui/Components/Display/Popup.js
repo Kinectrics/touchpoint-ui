@@ -31,6 +31,7 @@ export default function Popup(props) {
 				width = {props.width}
 				height = {props.height}
 				onClose ={handleCloseButton}
+				style = {props.style}
 			>
 				{props.children}
 			</InfoCard>
@@ -46,5 +47,6 @@ Popup.propTypes = {
 	forceOpen: PropTypes.bool,
 	width: PropTypes.string,
 	height: PropTypes.string,
-	locked: PropTypes.bool
+	locked: PropTypes.bool,
+	style: PropTypes.object,
 }

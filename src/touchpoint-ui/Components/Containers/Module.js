@@ -33,7 +33,7 @@ export default function Module(props) {
 	}, [])
 	
 	return (
-		<div className={'Module ' + props.moduleName}>
+		<div className={'Module ' + props.moduleName} style = {props.style}>
 			{props.children}	
 		</div>
 	)
@@ -42,4 +42,5 @@ export default function Module(props) {
 //Proptypes
 Module.propTypes = {
 	moduleName: PropTypes.string,
+	style: PropTypes.object,
 }

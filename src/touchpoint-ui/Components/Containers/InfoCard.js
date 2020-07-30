@@ -42,26 +42,25 @@ export default function InfoCard(props) {
 	if(props.onClose){
 		closeButton = <CloseButton onClick = {closeHandler}></CloseButton>
 	}
+	
+	const stripeStyle = {
+		
+	}
 		
 	//if 'hidden' prop is true then dont show the component
 	if(props.hidden){return null} else{
-		
-		const styleSettings ={
-			width: props.width,
-			height: props.height
-		}
 		
 		return (
 			<div 
 				className={"InfoCard " + dynamic + ' ' + props.className} 
 				onClick = {clickHandler} 
-				style = {styleSettings}
+				style = {props.style}
 			>
 					
 				<lockedContext.Provider value = {locked}>
 					
 					<div className="cardContainer">	
-						<div className={"textBox " + stripe}>
+						<div className={"textBox " + stripe} style = {stripeStyle}>
 							{closeButton}
 							{titleBar}
 							{props.children}
@@ -87,4 +86,5 @@ InfoCard.propTypes = {
 	height: PropTypes.string,
 	className: PropTypes.string,
 	onClose: PropTypes.func,
+	style: PropTypes.object,
 }

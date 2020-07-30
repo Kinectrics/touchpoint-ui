@@ -1,6 +1,8 @@
 import React, {useContext} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import './InputStyles.css'
+import PropTypes from 'prop-types'
+
 
 export default function CheckBox(props) {
 	
@@ -33,9 +35,18 @@ export default function CheckBox(props) {
 				defaultChecked={props.defaultValue}
 				onChange={changeHandler}
 				onClick={clickHandler}
+				style = {props.style}
 			/>
 			<span className="checkmark"></span>
 			{props.label}
 		</label>
 	)
+}
+
+CheckBox.propTypes = {
+	locked: PropTypes.bool,
+	hidden: PropTypes.bool,
+	onChange: PropTypes.func,
+	defaultValue: PropTypes.bool,
+	style: PropTypes.object
 }

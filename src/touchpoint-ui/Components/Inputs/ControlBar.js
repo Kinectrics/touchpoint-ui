@@ -14,7 +14,7 @@ export default function ControlBar(props) {
 		
 		return (
 			<lockedContext.Provider value = {locked}>
-				<div className="ControlBar flexY">
+				<div className="ControlBar flexY" style = {props.style}>
 					<div className="buttonContainer">{props.children}</div>
 					<div className="searchContainer">
 						
@@ -43,6 +43,7 @@ export default function ControlBar(props) {
 ControlBar.propTypes = {
 	searchBar: PropTypes.bool,
 	searchBarProps: PropTypes.object,
-	locked: PropTypes.bool
+	locked: PropTypes.bool, 
+	style: PropTypes.object,
 }
 

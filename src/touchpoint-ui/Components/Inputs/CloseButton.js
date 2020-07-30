@@ -14,6 +14,7 @@ export default function CloseButton(props) {
 			onClick = {props.onClick}
 			locked = {props.locked}
 			hidden = {props.hidden}
+			style = {props.style}
 		>
 			<FontAwesomeIcon icon={faTimes}/>
 		</CoreButton>
@@ -25,6 +26,7 @@ CloseButton.propTypes = {
 	locked: PropTypes.bool,
 	onClick: PropTypes.func,
 	hidden: PropTypes.bool,
+	style: PropTypes.object,
 }
 
 

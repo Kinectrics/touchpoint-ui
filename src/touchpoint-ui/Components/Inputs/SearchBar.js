@@ -52,6 +52,7 @@ export default function SearchBar(props) {
 				placeholder = "Search"
 				value = {searchBarValue}
 				inputRef = {searchRef}
+				style = {props.style}
 			/>
 			
 			<button className="searchButton"
@@ -67,4 +68,5 @@ export default function SearchBar(props) {
 //Proptypes
 SearchBar.propTypes = {
 	defaultValue: PropTypes.string,
+	style: PropTypes.object,
 }

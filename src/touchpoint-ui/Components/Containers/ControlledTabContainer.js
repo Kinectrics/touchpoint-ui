@@ -41,6 +41,7 @@ ControlledTabContainer.propTypes = {
 	activeTab: PropTypes.string,
 	onTabChange: PropTypes.func,
 	locked: PropTypes.bool,
+	style: PropTypes.object,
 }
 
 

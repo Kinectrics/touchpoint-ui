@@ -23,7 +23,7 @@ export default function Tile(props) {
 	}
 	
 	return (
-		<div className={"Tile " + splash} onClick = {clickHandler}> 
+		<div style = {props.style} className={"Tile " + splash} onClick = {clickHandler}> 
 		
 			<div className="logo flexCenter">
 				<img src={props.icon}/> 
@@ -42,5 +42,6 @@ Tile.propTypes = {
 	icon: PropTypes.any,
 	title: PropTypes.string,
 	splashScreen: PropTypes.bool,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	style: PropTypes.object,
 }

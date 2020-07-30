@@ -11,6 +11,8 @@ export default function ControlButton(props) {
 			onClick ={props.onClick}
 			hidden={props.hidden}
 			className = {"ControlButton"}
+			style = {props.style}
+			
 		>
 			{props.children}
 		</CoreButton>
@@ -22,4 +24,5 @@ ControlButton.propTypes = {
 	locked: PropTypes.bool,
 	onClick: PropTypes.func,
 	hidden: PropTypes.bool,
+	style: PropTypes.object,
 }

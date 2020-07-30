@@ -37,6 +37,7 @@ export default function RadioButton(props) {
 				name = {radioData.groupName}
 				value = {props.value}
 				id = {id}
+				style = {props.style}
 			/>
 			<label 
 				className = {lockedClass}
@@ -52,4 +53,5 @@ export default function RadioButton(props) {
 RadioButton.propTypes = {
 	labelValue: PropTypes.string,
 	value: PropTypes.any,
+	style: PropTypes.object,
 }

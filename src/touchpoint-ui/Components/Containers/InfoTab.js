@@ -10,7 +10,7 @@ export default function InfoTab(props) {
 	if(!props.hidden){return (
 		<lockedContext.Provider value={locked}>
 			
-			<div className = {'InfoTab ' + props.tabID}>
+			<div className = {'InfoTab ' + props.tabID} style = {props.style}>
 				{props.children}
 			</div>
 			
@@ -22,4 +22,5 @@ export default function InfoTab(props) {
 InfoTab.propTypes = {
 	tabTitle: PropTypes.string,
 	tabID: PropTypes.string.isRequired,
+	style: PropTypes.object,
 }

@@ -19,7 +19,7 @@ export default function AppToolbar(props){
 	const moduleList = System.getModules()
 	
 	return (
-		<div className="AppToolbar flexY">
+		<div className="AppToolbar flexY" style = {props.style}>
 			<div className="buttonContainer flexY">
 				<button 
 					className="homeButton" 

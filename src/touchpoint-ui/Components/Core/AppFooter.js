@@ -12,7 +12,7 @@ export default function AppFooter(props) {
 	usePresence('AppFooter','var(--appToolbarHeight)')
 	
 	return (
-		<div className="AppFooter">
+		<div className="AppFooter" style = {props.style}>
 			<span className="leftSide">
 				{System.io.getActiveUser()} | 
 				Security Profile: {System.io.getSecurityProfile()} | 

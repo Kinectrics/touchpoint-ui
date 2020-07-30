@@ -19,6 +19,7 @@ export default function FreeButton(props) {
 			onClick ={props.onClick}
 			hidden={props.hidden}
 			className = {"FreeButton " + purpose + ' ' + wideClass + ' ' + props.className}
+			style = {props.style}
 		>
 			{props.children}
 		</CoreButton>
@@ -31,5 +32,6 @@ FreeButton.propTypes = {
 	onClick: PropTypes.func,
 	hidden: PropTypes.bool,
 	purpose: PropTypes.string,
-	wide: PropTypes.bool
+	wide: PropTypes.bool,
+	style: PropTypes.object,
 }
