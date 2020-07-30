@@ -62,6 +62,7 @@ export default function MenuButton(props){
 				className={'MenuButton '+ props.className + ' ' + lockedClass}
 				onClick={clickHandler}
 				ref={ref}
+				style={props.style}
 			>
 				{props.children}
 				{icon}
@@ -69,13 +70,6 @@ export default function MenuButton(props){
 			</button>
 		)
 	})
-	
-	//Menu Itself
-	const menuStyle = {
-		maxHeight: props.maxHeight,
-		width: props.width,
-		height: props.height,
-	}
 
 	
 	const dropMenu = React.forwardRef(
@@ -85,14 +79,13 @@ export default function MenuButton(props){
 				<menuContext.Provider value={{ submenu: true }}>
 					<div
 						ref={ref}
-						style = {{menuStyle}}
 						className={className + ' MenuContainer'}
 					>
 						<div
 							
 							style={style}
 							className={'Menu'}
-							style = {menuStyle}
+							style = {props.menuStyle}
 						>
 							{props.menuContent}
 						</div>
@@ -122,4 +115,6 @@ MenuButton.propTypes = {
 	direction: PropTypes.string,
 	onOpen: PropTypes.func,
 	onClose: PropTypes.func,
+	menuStyle: PropTypes.object,
+	style: PropTypes.object,
 }

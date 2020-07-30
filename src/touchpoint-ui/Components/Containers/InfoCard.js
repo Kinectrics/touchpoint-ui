@@ -13,7 +13,8 @@ export default function InfoCard(props) {
 	
 	//Assign classes based on props 
 	let stripe = '' //Adds a stripe down the left side
-	if(props.stripe && !props.titleBar){stripe = 'stripe'}
+	const hasStripe = props.stripe || props.stripeColor
+	if(hasStripe && !props.titleBar){stripe = 'stripe'}
 	
 	//Adds hover and click effects in the x, y or xy directions
 	let dynamic = '' //dynamic effects are ignored if locked
@@ -43,9 +44,9 @@ export default function InfoCard(props) {
 		closeButton = <CloseButton onClick = {closeHandler}></CloseButton>
 	}
 	
-	const stripeStyle = {
-		
-	}
+	const stripeStyle = props.stripeColor ? {
+		borderLeftColor: props.stripeColor 
+	} : undefined
 		
 	//if 'hidden' prop is true then dont show the component
 	if(props.hidden){return null} else{

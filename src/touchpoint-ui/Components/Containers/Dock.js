@@ -13,7 +13,7 @@ export default function Dock(props) {
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	return (
-		<div className = 'Dock'>
+		<div className = 'Dock' style = {props.style}>
 			<lockedContext.Provider value={locked}>
 				{props.children}
 			</lockedContext.Provider>
@@ -23,4 +23,5 @@ export default function Dock(props) {
 
 Dock.propTypes={
 	locked: PropTypes.bool,
+	style: PropTypes.object,
 }
