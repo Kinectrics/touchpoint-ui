@@ -31,21 +31,21 @@ export default function TableSettings(props) {
 	return (<MenuButton 
 			locked={false} 
 			menuContent={
-			<div>
-				{props.headers.get().map((h) => {
-					return (
-						<CheckButton
-							key={'customizeHeader' + h.headerID}
-							disabled={h.required}
-							defaultChecked={h.visible}
-							value={h.index}
-							onClick={clickHandler}
-						>{h.displayName}</CheckButton>
-					)
-				})}
-			</div>
-		}>
-		<FontAwesomeIcon icon={faCog} /> Table Settings
+				<div style = {{overflowY: 'auto'}}>
+					{props.headers.get().map((h) => {
+						return (
+							<CheckButton
+								key={'customizeHeader' + h.headerID}
+								disabled={h.required}
+								defaultChecked={h.visible}
+								value={h.index}
+								onClick={clickHandler}
+							>{h.displayName}</CheckButton>
+						)
+					})}
+				</div>
+			}>
+			<FontAwesomeIcon icon={faCog} /> Table Settings
 	</MenuButton>
 		
 	)

@@ -63,7 +63,7 @@ export default function TheadButton(props){
 			<MenuButton 
 				className='TheadButton' 
 				locked = {false} menuContent={overallMenu}
-				maxHeight = '50vh'
+				menuStyle = {{maxHeight: '50vh'}}
 			>
 				{props.children}
 				<span className = {iconClass}>{icon}</span>			

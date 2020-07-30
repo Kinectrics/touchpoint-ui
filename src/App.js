@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {AppToolbar} from './touchpoint-ui'
 import {AppFooter} from './touchpoint-ui'
-import {TouchPointApp, AppDrawer}from './touchpoint-ui'
+import {TouchPointApp, AppDrawer} from './touchpoint-ui'
 
 //The modules in the moduleList and their icons
 import LockScreen from './Modules/LockScreen/LockScreen'
