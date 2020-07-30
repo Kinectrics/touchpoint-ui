@@ -20,13 +20,6 @@ export default function CommentBox(props) {
 		} 
 	}
 	
-	//For the onEnter event
-	function keyPressHandler(e) {
-		if (!locked && e.key === 'Enter' && props.onEnter !== undefined) {
-			props.onEnter(e)
-		}
-	}
-	
 	function blurHandler(e){
 		if(!locked && props.onBlur){
 			props.onBlur(e)
@@ -39,7 +32,6 @@ export default function CommentBox(props) {
 			defaultValue={props.defaultValue}
 			onChange={changeHandler}
 			readOnly={locked}
-			onKeyPress={keyPressHandler}
 			placeholder={props.placeholder}
 			onBlur = {blurHandler}
 			style = {props.style}
@@ -60,6 +52,5 @@ CommentBox.propTypes = {
 	height: PropTypes.string,
 	width: PropTypes.string,
 	value: PropTypes.string,
-	onEscape: PropTypes.func,
 }
 

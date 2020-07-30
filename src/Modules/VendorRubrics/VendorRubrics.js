@@ -77,7 +77,7 @@ export default function VendorRubrics(){
 			</ControlBar>
 			
 			<SplitScreen defaultSize={55}>
-				<InfoTabContainer defaultTab='Test'>
+				<InfoTabContainer defaultTab='RubricHeader'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader activeRecord = {activeRecord} system={system}/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {InfoCard, Popup, FreeButton, CommentBox} from '../../touchpoint-ui'
+import {InfoCard, Popup, FreeButton, CommentBox, TextBox} from '../../touchpoint-ui'
 import './RubricHeader.css'
 
 
@@ -20,7 +20,10 @@ export default function RubricHeader(props) {
 			<div className="largeContainer">
 				
 				<InfoCard height='450px' title = 'General'>
-					
+					<TextBox
+					onEnter = {()=>{
+						console.log('hello')
+					}}></TextBox>
 					<table><tbody>
 						<tr>
 							<td><label>ID: </label></td>
@@ -47,6 +50,9 @@ export default function RubricHeader(props) {
 							<td><CommentBox
 								width={'900px'}
 								height='150px'
+								onEscape={()=>{
+									console.log('hello')
+								}}
 							/></td>
 						</tr>
 					

@@ -27,11 +27,9 @@ export default function TextBox(props) {
 	
 	//For the onEnter event
 	function keyPressHandler(e){
-		if(!locked && e.key === 'Enter' && props.onEnter!==undefined){
+		if(!locked && e.key === 'Enter' && props.onEnter !==undefined){
 			props.onEnter(e)
-		} else if (!locked && e.key === 'Escape' && props.onEscape !== undefined){
-			props.onEscape(e)
-		}
+		} 
 	}
 	
 	return (
