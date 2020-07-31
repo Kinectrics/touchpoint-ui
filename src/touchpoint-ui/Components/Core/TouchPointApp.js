@@ -7,7 +7,6 @@ import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
 import SystemDrawerHandler from '../../SystemComponents/SystemDrawerHandler'
-import usePresence from '../../Hooks/UsePresence'
 
 export default function TouchPointApp(props){
 	
@@ -24,6 +23,15 @@ export default function TouchPointApp(props){
 	
 	const [screenEffect, setScreenEffect] = useState('')
 	
+	const [layout, setLayout] = useState({
+		heightCSS: '100%',
+		widthCSS: '100%',
+
+		widths: {},
+		heights: {},
+	})
+	
+	
 	//Functions that are available to all modules and can be used system-wode 
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
 	const System = {
@@ -39,6 +47,7 @@ export default function TouchPointApp(props){
 			
 			return modules
 		},
+		
 		getHomeModule: () => {return props.homeModule},
 		
 		//Setting system wide variables
@@ -104,13 +113,7 @@ export default function TouchPointApp(props){
 		},
 		
 		//Internal variables for structuring the app
-		layout: {
-			heightCSS: '100%',
-			widthCSS: '100%',
-			
-			widths: {},
-			heights: {},
-		},
+		layout: {get: ()=>layout, set: setLayout},
 		
 		io: props.io
 	}

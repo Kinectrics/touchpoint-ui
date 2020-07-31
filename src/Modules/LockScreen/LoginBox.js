@@ -26,8 +26,8 @@ export default function LoginBox(props) {
 					onChange={changeHandler}
 				>
 					
-					{props.system.io.getAvailableProfiles().map(pr=>{
-						return(<option value={pr}>{pr}</option>)
+					{props.system.io.getAvailableProfiles().map((pr,idx)=>{
+						return(<option key = {idx} value={pr}>{pr}</option>)
 					})}
 					
 				</ComboBox>

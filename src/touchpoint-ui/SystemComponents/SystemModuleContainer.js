@@ -2,14 +2,13 @@ import React, {useState} from 'react'
 import {Route, Switch} from 'react-router'
 import lockedContext from '../Contexts/LockedContext'
 import moduleContext from '../Contexts/ModuleContext'
-import usePresence from '../Hooks/UsePresence'
 	
 export default function SystemModuleContainer(props){
 	
 	//Adjusts the module container to fit between the system toolbars
 	const styleSettings = {
-		height: props.system.layout.heightCSS,
-		width: props.system.layout.widthCSS,
+		height: props.system.layout.get().heightCSS,
+		width: props.system.layout.get().widthCSS,
 		right: '0'
 	}
 

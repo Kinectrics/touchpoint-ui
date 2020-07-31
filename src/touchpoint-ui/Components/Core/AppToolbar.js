@@ -14,7 +14,7 @@ export default function AppToolbar(props){
 	if(process.env.NODE_ENV === 'development'){ devMode = '(Dev Mode)'}
 	
 	//Declare itself to the app so the modules can be fit around it 
-	usePresence('AppToolbar', 'var(--appToolbarHeight)')
+	usePresence('TouchPointAppToolbar', 'var(--appToolbarHeight)')
 	
 	const moduleList = System.getModules()
 	
