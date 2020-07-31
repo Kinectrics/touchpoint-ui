@@ -37,7 +37,11 @@ export default function InfoCard(props) {
 	
 	//If a title prop is provided, create an H1
 	let titleBar
-	if(props.title){titleBar = <h1>{props.title}</h1>}
+	if(props.title){
+		titleBar = <h1
+			style={{color: props.stripeColor}}
+		>{props.title}</h1>
+	}
 	
 	let closeButton
 	if(props.onClose){
@@ -57,7 +61,6 @@ export default function InfoCard(props) {
 				onClick = {clickHandler} 
 				style = {props.style}
 			>
-					
 				<lockedContext.Provider value = {locked}>
 					
 					<div className="cardContainer" style = {props.innerStyle}>	
@@ -66,8 +69,8 @@ export default function InfoCard(props) {
 							{titleBar}
 							{props.children}
 						</div>
+						
 					</div>
-					
 				</lockedContext.Provider>
 			</div>
 		)
@@ -83,9 +86,9 @@ InfoCard.propTypes = {
 	locked: PropTypes.bool,
 	hidden: PropTypes.bool,
 	onClick: PropTypes.func,
-	width: PropTypes.string,
-	height: PropTypes.string,
 	className: PropTypes.string,
 	onClose: PropTypes.func,
 	style: PropTypes.object,
+	innerStyle: PropTypes.object,
+	stripeColor: PropTypes.string,
 }

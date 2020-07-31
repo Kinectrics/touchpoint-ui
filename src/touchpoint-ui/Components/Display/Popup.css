@@ -4,9 +4,8 @@
 }
 
 .Popup .cardContainer{
-	border: 1px solid var(--labelColor);
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--labelColor);
 	box-sizing: var(--dynamicCardShadow);
 }
-
-
-

@@ -9,7 +9,7 @@ export default function DrawerContent() {
 		<div>
 			<FreeButton
 				onClick={() => {
-					System.Popup.open(<Popup stripeColor = 'red' title='Hello'>Lols</Popup>)
+					System.Popup.open(<Popup stripeColor = 'red' title='Hello'>Testing</Popup>)
 				}}
 			>TestPop</FreeButton>
 		</div>

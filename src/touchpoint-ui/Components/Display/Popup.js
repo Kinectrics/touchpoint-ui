@@ -9,7 +9,7 @@ export default function Popup(props) {
 	const system = useSystem()
 	
 	const lockedFromAbove = useContext(lockedContext)
-	const locked = props.locked || (lockedFromAbove && props.locked ===undefined)
+	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	//Clicking the background closes the popup
 	let handleCloseButton
@@ -28,10 +28,9 @@ export default function Popup(props) {
 				className = {'Popup '}
 				stripe
 				title = {props.title}
-				width = {props.width}
-				height = {props.height}
 				onClose ={handleCloseButton}
-				style = {props.style}
+				style = {{...props.style}}
+				innerStyle = {{borderColor: props.stripeColor}}
 				stripeColor = {props.stripeColor}
 			>
 				{props.children}
