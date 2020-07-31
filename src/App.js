@@ -35,10 +35,6 @@ const moduleList = {
 	
 }
 
-//The active user of the app. This will be requested from the server
-//so I'm defining it out here so the request doen't happen on each render
-
-
 export default function App() {
 	
 	const [activeUser, setActiveUser] = useState('FAHMYY')
@@ -70,7 +66,7 @@ export default function App() {
 			<AppToolbar />
 			<AppFooter />
 			
-			<AppDrawer title={'App Drawer'}>
+			<AppDrawer defaultOpen title={'App Drawer'}>
 				<DrawerContent/>
 			</AppDrawer>
 			

@@ -32,6 +32,7 @@ export default function Popup(props) {
 				height = {props.height}
 				onClose ={handleCloseButton}
 				style = {props.style}
+				stripeColor = {props.stripeColor}
 			>
 				{props.children}
 			</InfoCard>
