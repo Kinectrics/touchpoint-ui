@@ -70,7 +70,7 @@ export default function App() {
 			<AppToolbar />
 			<AppFooter />
 			
-			<AppDrawer innerStyle={{padding: '10px'}}>
+			<AppDrawer title={'App Drawer'}>
 				<DrawerContent/>
 			</AppDrawer>
 			

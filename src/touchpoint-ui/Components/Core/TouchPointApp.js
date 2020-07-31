@@ -91,8 +91,8 @@ export default function TouchPointApp(props){
 			close: () => {
 				// if(activePopup.props.onClose){activePopup.props.onClose()}
 				setPopupEffect('transparent')
-				setTimeout(() => setPopup(null), 250)
-				setScreenEffect('')
+				setTimeout(() => setPopup(null), 100)
+				if(!drawerIsOpen){setScreenEffect('')}
 			},
 		},
 		
@@ -104,7 +104,7 @@ export default function TouchPointApp(props){
 			
 			close: () => { if(drawerIsOpen){
 				setDrawerIsOpen(false)
-				setScreenEffect('')
+				if(!activePopup){setScreenEffect('')}
 			}},
 			
 			data: drawerData,

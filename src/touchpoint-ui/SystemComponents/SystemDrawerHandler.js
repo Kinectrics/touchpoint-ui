@@ -31,7 +31,7 @@ export default function AppDrawer(props) {
 						style={{...props.style, left: drawerLeft}}
 					>
 						<div className="drawerContainer" style={props.innerStyle}>
-
+							<h1>{props.title}</h1>
 							<CloseButton
 								locked={false}
 								onClick={() => {

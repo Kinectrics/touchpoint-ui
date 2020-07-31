@@ -26,6 +26,8 @@
 	position: relative;
 	cursor: default;
 	opacity: 90%;
+	padding: 10px;
+	padding-top: 30px;
 }
 
 .AppDrawer .CloseButton{
@@ -33,4 +35,12 @@
 	top:3px;
 	right: 5px;
 	font-size: 15pt;
+}
+
+.AppDrawer h1{
+	font-size: 16pt;
+	position: absolute;
+	top:8px;
+	left: 10px;
+	color: var(--labelColor);
 }

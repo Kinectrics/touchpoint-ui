@@ -8,7 +8,6 @@ export default function DrawerContent() {
 	return (
 		<div>
 			<FreeButton
-				style={{ position: 'absolute', right: '0' }}
 				onClick={() => {
 					System.Popup.open(<Popup title='Hello'>Lols</Popup>)
 				}}
