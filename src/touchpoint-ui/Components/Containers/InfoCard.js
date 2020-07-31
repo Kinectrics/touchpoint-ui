@@ -60,7 +60,7 @@ export default function InfoCard(props) {
 					
 				<lockedContext.Provider value = {locked}>
 					
-					<div className="cardContainer">	
+					<div className="cardContainer" style = {props.innerStyle}>	
 						<div className={"textBox " + stripe} style = {stripeStyle}>
 							{closeButton}
 							{titleBar}

@@ -7,6 +7,7 @@ import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
 import SystemDrawerHandler from '../../SystemComponents/SystemDrawerHandler'
+import usePresence from '../../Hooks/UsePresence'
 
 export default function TouchPointApp(props){
 	
@@ -108,7 +109,7 @@ export default function TouchPointApp(props){
 			widthCSS: '100%',
 			
 			widths: {},
-			heights: {}
+			heights: {},
 		},
 		
 		io: props.io
