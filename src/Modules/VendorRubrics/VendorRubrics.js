@@ -61,7 +61,7 @@ export default function VendorRubrics(){
 					<FontAwesomeIcon icon={faSyncAlt} /> Refresh
 				</ControlButton>
 				
-				<ControlButton onClick={() => system.openPopup(
+				<ControlButton onClick={() => system.Popup.open(
 					<Popup 
 						closeButton
 						width='fit-content'

@@ -16,7 +16,7 @@ export default function Popup(props) {
 	if(!props.forceOpen){
 		handleCloseButton = () => {
 			if(!props.forceOpen){
-				system.closePopup()
+				system.Popup.close()
 			}
 		}	
 	}

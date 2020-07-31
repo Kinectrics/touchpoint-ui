@@ -78,24 +78,26 @@ export default function TouchPointApp(props){
 		
 		enableInput: () => {setScreenBlock(false)},
 		
-		openPopup: (PopupComponent) => {
-			setScreenBlock(true)
-			setTimeout(() => setScreenBlock(false), 400)
-			
-			setScreenEffect('blurScreenEffect')
-			setPopupEffect('transparent')
-			setPopup(PopupComponent)
-			setTimeout(() => setPopupEffect(''), 0)
+		Popup: {
+			open: (PopupComponent) => {
+				setScreenBlock(true)
+				setTimeout(() => setScreenBlock(false), 400)
+
+				setScreenEffect('blurScreenEffect')
+				setPopupEffect('transparent')
+				setPopup(PopupComponent)
+				setTimeout(() => setPopupEffect(''), 0)
+			},
+
+			close: () => {
+				// if(activePopup.props.onClose){activePopup.props.onClose()}
+				setPopupEffect('transparent')
+				setTimeout(() => setPopup(null), 250)
+				setScreenEffect('')
+			},
 		},
 		
-		closePopup: () => {
-			// if(activePopup.props.onClose){activePopup.props.onClose()}
-			setPopupEffect('transparent')
-			setTimeout(()=>setPopup(null), 250)
-			setScreenEffect('')
-		},
-		
-		drawer:{
+		Drawer:{
 			open: ()=>{ if(!drawerIsOpen){
 				setScreenEffect('blurScreenEffect')
 				setDrawerIsOpen(true)
@@ -139,8 +141,8 @@ export default function TouchPointApp(props){
 					{screenBlocker}
 					
 					<SystemDrawerHandler
-						{...System.drawer.data}
-						drawer={System.drawer}
+						{...System.Drawer.data}
+						drawer={System.Drawer}
 					/>
 					
 					<div className={'screenEffect ' + screenEffect}>

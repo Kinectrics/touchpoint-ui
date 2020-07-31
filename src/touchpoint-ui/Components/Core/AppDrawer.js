@@ -9,25 +9,25 @@ export default function AppDrawer(props){
 	const lockedFromAbove = useContext(lockedContext)
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
-	const {drawer} = useSystem()
+	const {Drawer} = useSystem()
 	
 	useEffect(() => {
 		
 		const newProps = { ...props }
 		newProps.locked = locked
 		newProps.exists = true
-		drawer.setData(newProps)
+		Drawer.setData(newProps)
 		
 		
 		if(props.defaultOpen){
 			setTimeout(()=>{
-				drawer.open()
+				Drawer.open()
 			}, 100)
 		}
 		
 		
 		return () => {
-			drawer.setData({})
+			Drawer.setData({})
 			newProps.exists = false
 		}
 	},[props.children, props.style, props.locked])

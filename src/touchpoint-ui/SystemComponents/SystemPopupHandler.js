@@ -6,7 +6,7 @@ export default function SystemPopupHandler(props) {
 	//Clicking the background closes the popup
 	function clickBackdrop(e){
 		if(e.target.classList.contains('systemPopupBackdrop') && (!props.activePopup.props.forceOpen)){
-			props.system.closePopup()
+			props.system.Popup.close()
 		}
 	}
 	

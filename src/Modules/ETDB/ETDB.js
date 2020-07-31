@@ -13,7 +13,7 @@ export default function ETDB() {
 			<Dock locked = {false}>
 				
 				<DockIcon faIcon={faBars} style={{marginBottom: '50px'}} onClick={()=>{
-					System.drawer.open()
+					System.Drawer.open()
 				}}/>
 				
 				<DockIcon faIcon={faFileSignature} title={'CSQ'} notifications={20}/>
