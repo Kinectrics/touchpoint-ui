@@ -23,8 +23,8 @@ export default function VendorRubrics(){
 		switch(cellValue){
 			case 'Complete': return {textColor: 'white', badgeColor: '#66CD00'}
 			case 'Pending': return {textColor: 'white', badgeColor: '#EE0000'}
-			case 'Open': return {textColor: 'white', badgeColor: '#FFB90F'}
-			default: return {textColor: 'white', badgeColor: 'orange'}
+			case 'Open': return {textColor: 'red'}
+			default: return {textColor: 'red'}
 		}
 	}
 	
@@ -37,14 +37,12 @@ export default function VendorRubrics(){
 		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
 		{ headerID: 'due', displayName:'Due', width: 200},
 		{ headerID: 'SM', displayName:'SM', width: 300},
-		{ headerID: 'intern', displayName:'Intern', width: 300, onEdit: ()=>{return true}},
+		{ headerID: 'intern', displayName:'Intern', width: 300, onEdit: (val)=>{console.log('hello')}},
 	])
 	
 	//Data from the 'server'
 	const data  = useDataset(getTableData, [{}])
 	const [activeRecord, setActiveRecord] = useState(data.read()[0])
-	
-	// const subData =  useDataset(data.sub( (r)=> r.status === 'Complete'))
 	
 	return (
 		<Module moduleName = "VendorRubrics">
@@ -77,14 +75,14 @@ export default function VendorRubrics(){
 			</ControlBar>
 			
 			<SplitScreen defaultSize={55}>
-				<InfoTabContainer defaultTab='RubricHeader'>
+				<InfoTabContainer defaultTab='RubricHeader' locked>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader activeRecord = {activeRecord} system={system}/>
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						{/* <RubricDetail /> */}
+						<RubricDetail />
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
@@ -92,24 +90,7 @@ export default function VendorRubrics(){
 							dataRow={activeRecord}
 							statusStyle={statusStyle}
 						/>
-					</InfoTab>		
-						
-						
-						
-						
-						
-					<InfoTab tabID = "DataTest" tabTitle='Test'>
-						{/* <MainTable
-							data={subData}
-							dataHeaders={subDataHeaders}
-							setActiveRecord={setActiveRecord}
-							activeRecord={activeRecord}
-							pageSize={200}
-							searchable
-						/> */}
-					</InfoTab>			
-							
-							
+					</InfoTab>								
 							
 				</InfoTabContainer>
 			</SplitScreen>

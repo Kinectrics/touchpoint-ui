@@ -13,6 +13,19 @@ export default function DrawerContent() {
 				}}
 				purpose='negative'
 			>TestPop</FreeButton>
+			
+			
+			<FreeButton
+				onClick={() => {
+					System.Popup.open(<Popup stripeColor = 'green' title='Hello'>
+						<FreeButton purpose = 'positive' onClick={()=>{
+							System.Popup.close()
+							System.Drawer.close()
+						}}>Close all</FreeButton>
+					</Popup>)
+				}}
+				purpose='positive'
+			>Test 2</FreeButton>
 		</div>
 	)
 }

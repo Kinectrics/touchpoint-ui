@@ -6,7 +6,7 @@ import './RubricHeader.css'
 export default function RubricHeader(props) {
 	
 	function addSCRHandler(){
-		props.system.Popup.open(<Popup title='Add SCR #'>
+		props.system.Popup.open(<Popup title='Add SCR #' forceOpen>
 			Add SCR Popup coming soon
 		</Popup>)
 	}
@@ -20,10 +20,7 @@ export default function RubricHeader(props) {
 			<div className="largeContainer">
 				
 				<InfoCard height='450px' title = 'General'>
-					<TextBox
-					onEnter = {()=>{
-						console.log('hello')
-					}}></TextBox>
+
 					<table><tbody>
 						<tr>
 							<td><label>ID: </label></td>

@@ -8,7 +8,7 @@ To work on TouchPont UI you can clone this repo and edit the src/touchpoint-ui p
 Only code in this directory will actually be published. Anything else is for testing and development purposes.
 
 To start the test app, use npm start. 
-Pnce you are happy with the results, you can run 
+Once you are happy with the results, you can run 
 
 	npm run build 
 
