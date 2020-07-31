@@ -27,7 +27,7 @@ export default function AppDrawer(props) {
 			<div className={handlerClass} onClick = {clickBackdrop}>
 				<lockedContext.Provider value={props.locked}>
 					<div 
-						className={'AppDrawer'} 
+						className={'AppDrawer ' + props.className} 
 						style={{...props.style, left: drawerLeft}}
 					>
 						<div className="drawerContainer" style={props.innerStyle}>

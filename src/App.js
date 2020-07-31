@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {AppToolbar} from './touchpoint-ui'
 import {AppFooter} from './touchpoint-ui'
 import {TouchPointApp, AppDrawer} from './touchpoint-ui'
+import DrawerContent from './DrawerContent'
 
 //The modules in the moduleList and their icons
 import LockScreen from './Modules/LockScreen/LockScreen'
@@ -70,7 +71,7 @@ export default function App() {
 			<AppFooter />
 			
 			<AppDrawer innerStyle={{padding: '10px'}}>
-				Hello
+				<DrawerContent/>
 			</AppDrawer>
 			
 		</TouchPointApp>

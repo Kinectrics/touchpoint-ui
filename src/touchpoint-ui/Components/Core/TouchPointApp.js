@@ -20,7 +20,6 @@ export default function TouchPointApp(props){
 	
 	const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 	const [drawerData, setDrawerData] = useState()
-	
 	const [screenEffect, setScreenEffect] = useState('')
 	
 	const [layout, setLayout] = useState({
@@ -141,6 +140,7 @@ export default function TouchPointApp(props){
 					{screenBlocker}
 					
 					<SystemDrawerHandler
+						className={ activePopup ? screenEffect : ''}
 						{...System.Drawer.data}
 						drawer={System.Drawer}
 					/>
