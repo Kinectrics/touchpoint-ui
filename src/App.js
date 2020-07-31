@@ -69,7 +69,9 @@ export default function App() {
 			<AppToolbar />
 			<AppFooter />
 			
-			<AppDrawer style={{padding: '10px'}}/>
+			<AppDrawer defaultOpen innerStyle={{padding: '10px'}}>
+				Hello
+			</AppDrawer>
 			
 		</TouchPointApp>
 	)

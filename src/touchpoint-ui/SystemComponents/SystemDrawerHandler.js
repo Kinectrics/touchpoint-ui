@@ -5,7 +5,6 @@ import CloseButton from '../Components/Inputs/CloseButton'
 
 export default function AppDrawer(props) {
 	
-	
 	const trueLeft = props.style && props.style.width ? props.style.width : 'var(--drawerWidth)'
 	const [drawerLeft, setDrawerLeft] = useState(!props.drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null)
 	
@@ -26,24 +25,23 @@ export default function AppDrawer(props) {
 		
 		return (
 			<div className={handlerClass} onClick = {clickBackdrop}>
-				
-				<div 
-					className={'AppDrawer'} 
-					style={{...props.style, left: drawerLeft}}
-				>
-					<lockedContext.Provider value={props.locked}>
+				<lockedContext.Provider value={props.locked}>
+					<div 
+						className={'AppDrawer'} 
+						style={{...props.style, left: drawerLeft}}
+					>
+						<div className="drawerContainer" style={props.innerStyle}>
 
-						<CloseButton
-							locked={false}
-							onClick={() => {
-								props.drawer.close()
-							}}
-						/>
-						{props.children}
-
-					</lockedContext.Provider>
-				</div>
-				
+							<CloseButton
+								locked={false}
+								onClick={() => {
+									props.drawer.close()
+								}}
+							/>
+							{props.children}
+						</div>
+					</div>
+				</lockedContext.Provider>
 			</div>
 		)
 		

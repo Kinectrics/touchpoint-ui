@@ -13,13 +13,19 @@
 	width: var(--drawerWidth);
 	position: fixed;
 	z-index: 10;
-	background-color: var(--cardBG);
-	border-top-right-radius: 11px;
-	border-bottom-right-radius: 11px;
 	left: 0;
-	cursor: default;
 	transition: all 500ms ease;
-	padding: 10px;
+	padding: 10px 15px;
+}
+
+.AppDrawer .drawerContainer{
+	height: 100%;
+	width: 100%;
+	background-color: var(--cardBG);
+	border-radius: 10px;
+	position: relative;
+	cursor: default;
+	opacity: 90%;
 }
 
 .AppDrawer .CloseButton{
