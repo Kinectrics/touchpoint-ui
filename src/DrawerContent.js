@@ -11,6 +11,7 @@ export default function DrawerContent() {
 				onClick={() => {
 					System.Popup.open(<Popup stripeColor = 'red' title='Hello'>Testing</Popup>)
 				}}
+				purpose='negative'
 			>TestPop</FreeButton>
 		</div>
 	)

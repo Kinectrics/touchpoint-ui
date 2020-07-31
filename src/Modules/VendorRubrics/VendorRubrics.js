@@ -37,7 +37,7 @@ export default function VendorRubrics(){
 		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
 		{ headerID: 'due', displayName:'Due', width: 200},
 		{ headerID: 'SM', displayName:'SM', width: 300},
-		{ headerID: 'intern', displayName:'Intern', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300, onEdit: ()=>{return true}},
 	])
 	
 	//Data from the 'server'

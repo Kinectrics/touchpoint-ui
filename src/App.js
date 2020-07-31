@@ -66,7 +66,7 @@ export default function App() {
 			<AppToolbar />
 			<AppFooter />
 			
-			<AppDrawer defaultOpen title={'App Drawer'}>
+			<AppDrawer title={'App Drawer'}>
 				<DrawerContent/>
 			</AppDrawer>
 			
