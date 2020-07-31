@@ -10,7 +10,7 @@ import VendorRubrics from './Modules/VendorRubrics/VendorRubrics'
 import VRIcon from './Modules/VendorRubrics/VRIcon.svg'
 import ETDB from './Modules/ETDB/ETDB'
 
-//This list of modules available to the app
+//This list of modules available to the app...
 const moduleList = {
 	
 	LockScreen: {
