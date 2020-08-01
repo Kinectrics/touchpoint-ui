@@ -1,11 +1,16 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
 import './Module.css'
 import PropTypes from 'prop-types'
 import useModuleData from '../../Hooks/UseModuleData'
+import lockedContext from '../../Contexts/LockedContext'
+
 
 export default function Module(props) {
 	
 	const moduleData = useModuleData()
+	
+	const lockedFromAbove = useContext(lockedContext)
+	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	useEffect(()=>{
 		moduleData.clear()
@@ -18,7 +23,9 @@ export default function Module(props) {
 	
 	return (
 		<div className={'Module ' + props.moduleName} style = {props.style}>
-			{props.children}	
+			<lockedContext.Provider value = {locked}>
+				{props.children}
+			</lockedContext.Provider>
 		</div>
 	)
 }
@@ -27,4 +34,5 @@ export default function Module(props) {
 Module.propTypes = {
 	moduleName: PropTypes.string,
 	style: PropTypes.object,
+	locked: PropTypes.bool,
 }

@@ -3,15 +3,17 @@ import useModuleData from '../../Hooks/UseModuleData'
 import TextBox from './TextBox'
 import PropTypes from 'prop-types'
 import './SearchBar.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faSearch} from "@fortawesome/free-solid-svg-icons"
 
 export default function SearchBar(props) {
+	
 	
 	const moduleData = useModuleData()
 	const [searchFunction, setSearchFunction] = useState()
 	const searchRef = useRef()
 	const [searchBarValue, setSearchBarValue] = useState('')
+	
 	
 	function focusSearchBar(){
 		searchRef.current.focus()
@@ -30,7 +32,6 @@ export default function SearchBar(props) {
 	
 	
 	useEffect(() => {
-
 		window.addEventListener('keydown', keyDownHandler)
 
 		return (() => {
@@ -59,7 +60,8 @@ export default function SearchBar(props) {
 		}, 250))
 	}
 	
-	return (
+	
+	return(
 		<span className="SearchBar"> 
 			<TextBox 
 				locked = {false}
@@ -76,10 +78,10 @@ export default function SearchBar(props) {
 			>
 				<FontAwesomeIcon icon={faSearch} />
 			</button>
-			
 		</span>
 	)
 }
+
 
 //Proptypes
 SearchBar.propTypes = {
