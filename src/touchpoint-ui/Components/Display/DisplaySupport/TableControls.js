@@ -17,34 +17,34 @@ export default function TableControls(props) {
 	const System = useSystem()
 
 	if (props.hasFilter && !props.noFilter) {
-		clearFilterButton = <button 
+		clearFilterButton = <button
 			onClick={props.clearFilter}
 		><FontAwesomeIcon icon={faTimesCircle} /> Clear Filter</button>
 	}
 
 	if (!props.noFilter) {
-		filterButton = <MenuButton menuContent = {
+		filterButton = <MenuButton locked = {false} menuContent={
 			<div>
-				<MenuButton menuContent={
+				<MenuButton locked={false} menuContent={
 					<div>
 						<button>Outstanding Tasks</button>
 						<button>Assigned To Me</button>
 						<button>Due Soon</button>
 					</div>
 				}>Saved Filters</MenuButton>
-				
-				<button onClick = {()=>{
-					System.Popup.open(<Popup title = 'Save Filter'>
-						<label>Filter Name: </label><TextBox autoFocus/>
+
+				<button onClick={() => {
+					System.Popup.open(<Popup title='Save Filter'>
+						<label>Filter Name: </label><TextBox autoFocus />
 						<FreeButton
-							onClick={()=>{
+							onClick={() => {
 								System.Popup.close()
 							}}
 						>Save</FreeButton>
 					</Popup>)
 				}}
 				>Save Current Filter</button>
-				
+
 			</div>
 		}>
 			<span className='smallIcon'>
@@ -54,8 +54,8 @@ export default function TableControls(props) {
 	}
 
 	if (!props.noSort) {
-		sortButton = <MenuButton menuContent={
-			<MenuButton menuContent={
+		sortButton = <MenuButton locked = {false} menuContent={
+			<MenuButton locked={false} menuContent={
 				<div>
 					<button>test2</button>
 					<button>test2</button>

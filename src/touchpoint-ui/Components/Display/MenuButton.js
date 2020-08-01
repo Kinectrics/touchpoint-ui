@@ -98,7 +98,15 @@ export default function MenuButton(props){
 	//If locked return a button that does nothing, otherwise create a real dropdown button
 	if(locked){
 		
-		return(<dropButton/>)
+		return (<button
+				className={'MenuButton ' + props.className + ' ' + lockedClass}
+				style={props.style}
+			>
+				
+			{props.children}
+			{icon}
+
+		</button>)
 		
 	} else return(
 		
