@@ -13,12 +13,12 @@
 
 .MainTable.hasActive .MainTableRow:hover{
 	/* padding: 1px 0; */
-	filter: brightness(96%)
+	filter: brightness(97%)
 }
 
 .MainTable.hasActive .MainTableRow:active{
 	transition: all 0.05s ease-out;
-	padding: 5px 9px;
+	/* padding: 5px 9px; */
 	filter: brightness(95%)
 }
 
