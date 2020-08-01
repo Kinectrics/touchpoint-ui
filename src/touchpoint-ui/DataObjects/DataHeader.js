@@ -22,8 +22,10 @@ export default class DataHeader{
 			arrayFilter: {
 				func: (cellValue) => {
 					return (this.uniqueValues[cellValue] || this.uniqueValues[cellValue] === undefined)
-				}, displayName: 'Array Filter'
-			}
+				}, 
+				displayName: 'Array Filter'
+			},
+			
 		}
 		
 	}

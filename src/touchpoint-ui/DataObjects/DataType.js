@@ -12,21 +12,13 @@ export default class DataType{
 				return true
 			
 			case 'number':
+				
 				try{
 					parseFloat(input)	
 					return true
 				} catch(err){return false}
 				
-			case 'list':
-				if(this.options.includes.listValues(input)){
-					return true
-				} else{return false}
-			
-			case 'custom':
-				//This needs so much work...
-				if(this.options.validator(input)){
-					return true
-				} else{return false}				
+			case 'list': return this.options.listValues.includes(input)			
 		}
 		
 		//if its not a valid type then ignore validation and just return true
@@ -35,18 +27,13 @@ export default class DataType{
 	
 	//Compares a value an search string to see if the value should be included in the search
 	search(value, searchText){
-		switch(this.kind){
-			case 'string': 
-				if (typeof value  === 'string'){
-					value = value.toLowerCase()
-					return value.includes(searchText.toLowerCase())
-				} else{return false}
+		try{
+			newValue = value.toString().toLowerCase()
+			return newValue.includes(searchText.toLowerCase())
+		} catch(err){
+			return false
 		}
-		
-		//if its not a vald type just return false until i deccide how to handle this better
-		return false
 	}
-	
 }
 
 

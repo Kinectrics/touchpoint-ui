@@ -2,11 +2,12 @@ import React from 'react'
 import TableSettings from './TableSettings'
 import MenuButton from '../MenuButton'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faTimesCircle, faFilter, faSortAmountUp } from '@fortawesome/free-solid-svg-icons'
+import {faTimesCircle, faFilter, faPlus} from '@fortawesome/free-solid-svg-icons'
 import Popup from '../Popup'
 import TextBox from '../../Inputs/TextBox'
 import FreeButton from '../../Inputs/FreeButton'
 import useSystem from '../../../Hooks/UseSystem'
+
 
 export default function TableControls(props) {
 	let clearFilterButton = null
@@ -25,48 +26,37 @@ export default function TableControls(props) {
 	if (!props.noFilter) {
 		filterButton = <MenuButton locked = {false} menuContent={
 			<div>
-				<MenuButton locked={false} menuContent={
-					<div>
-						<button>Outstanding Tasks</button>
-						<button>Assigned To Me</button>
-						<button>Due Soon</button>
-					</div>
-				}>Saved Filters</MenuButton>
-
-				<button onClick={() => {
+					
+				<button style ={{borderBottom: '1px solid lightGrey'}} onClick={() => {
 					System.Popup.open(<Popup title='Save Filter'>
 						<label>Filter Name: </label><TextBox autoFocus />
 						<FreeButton
 							onClick={() => {
 								System.Popup.close()
 							}}
-						>Save</FreeButton>
+						>Save Current Filter</FreeButton>
 					</Popup>)
 				}}
-				>Save Current Filter</button>
+				>
+					<FontAwesomeIcon icon={faPlus} />
+					<span style={{
+						paddingLeft: '10px',
+					}}>Save Current Filter</span>
+				</button>
+				
 
+				<button>Outstanding Tasks</button>
+				<button>Assigned To Me</button>
+				<button>Due Soon</button>
+				
 			</div>
 		}>
 			<span className='smallIcon'>
 				<FontAwesomeIcon icon={faFilter} />
-			</span> Filter
+			</span> Saved Filters
 		</MenuButton>
 	}
-
-	if (!props.noSort) {
-		sortButton = <MenuButton locked = {false} menuContent={
-			<MenuButton locked={false} menuContent={
-				<div>
-					<button>test2</button>
-					<button>test2</button>
-					<button>test2</button>
-				</div>
-			}>test</MenuButton>
-		}>
-			<FontAwesomeIcon icon={faSortAmountUp} /> Sort
-		</MenuButton>
-	}
-
+	
 	if (!props.noOptions) {
 		settingsButton = <TableSettings
 			headers={props.dataHeaders}
