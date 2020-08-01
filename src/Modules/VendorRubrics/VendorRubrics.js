@@ -45,7 +45,7 @@ export default function VendorRubrics(){
 	const [activeRecord, setActiveRecord] = useState(data.read()[0])
 	
 	return (
-		<Module moduleName = "VendorRubrics" locked>
+		<Module moduleName = "VendorRubrics">
 			
 			<ControlBar searchBar>
 				
