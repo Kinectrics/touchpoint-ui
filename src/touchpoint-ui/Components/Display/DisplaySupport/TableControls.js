@@ -17,7 +17,7 @@ export default function TableControls(props) {
 	const System = useSystem()
 
 	if (props.hasFilter && !props.noFilter) {
-		clearFilterButton = <button
+		clearFilterButton = <button 
 			onClick={props.clearFilter}
 		><FontAwesomeIcon icon={faTimesCircle} /> Clear Filter</button>
 	}

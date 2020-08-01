@@ -96,14 +96,20 @@ export default function MenuButton(props){
 	)
 
 	//If locked return a button that does nothing, otherwise create a real dropdown button
-	if(locked){return(dropButton)}	else{return(
+	if(locked){
+		
+		return(<dropButton/>)
+		
+	} else return(
+		
 		<span className = 'menuButtonContainer'>
 			<Dropdown drop={direction} onToggle = {toggleHandler}>
 				<Dropdown.Toggle as={dropButton}/>
 				<Dropdown.Menu as={dropMenu} />
 			</Dropdown>
 		</span>
-	)}
+		
+	)
 }
 
 //Proptypes
