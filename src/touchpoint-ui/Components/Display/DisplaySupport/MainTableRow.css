@@ -11,13 +11,15 @@
 	cursor: pointer;
 }
 
-.MainTableRow.dynamic:hover{
-	padding: 1px 0;
+.MainTable.hasActive .MainTableRow:hover{
+	/* padding: 1px 0; */
+	filter: brightness(96%)
 }
 
-.MainTableRow.dynamic:active{
+.MainTable.hasActive .MainTableRow:active{
 	transition: all 0.05s ease-out;
-	padding: 3px 7px;
+	padding: 5px 9px;
+	filter: brightness(95%)
 }
 
 .MainTableRow span{
@@ -32,15 +34,15 @@
 	padding: 4px 15px;
 	border-radius: 10px;
 	box-shadow: var(--cardShadow);
-	transition: all 0.3s, color 0.15s ease-out;	
+	transition: color 0.3s, color 0.15s ease-out;	
 	overflow: hidden;
 }
 
-.MainTableRow.dynamic .rowContainer:hover{
+/* .MainTableRow.dynamic .rowContainer:hover{
 	box-shadow: var(--dynamicCardShadow);
 	padding-left: 20px;
 	padding-top: 6px;
-}
+} */
 
 .MainTableRow .active{
 	color: var(--tableActiveColor);

@@ -6,7 +6,7 @@ import './RubricHeader.css'
 export default function RubricHeader(props) {
 	
 	function addSCRHandler(){
-		props.system.Popup.open(<Popup title='Add SCR #' forceOpen>
+		props.system.Popup.open(<Popup title='Add SCR #' >
 			Add SCR Popup coming soon
 		</Popup>)
 	}

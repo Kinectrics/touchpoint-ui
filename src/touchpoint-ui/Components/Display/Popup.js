@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import lockedContext from '../../Contexts/LockedContext'
 import InfoCard from '../Containers/InfoCard'
@@ -20,6 +20,15 @@ export default function Popup(props) {
 			}
 		}	
 	}
+	
+	useEffect(()=>{
+		if(props.onOpen){ props.onOpen() }
+		
+		return(()=>{
+			if(props.onClose){ props.onClose() }
+		})
+		
+	},[])
 	
 	return(
 		<lockedContext.Provider value={locked}>
@@ -44,6 +53,7 @@ export default function Popup(props) {
 Popup.propTypes = {
 	title: PropTypes.string,
 	onClose: PropTypes.func,
+	onOpen: PropTypes.func,
 	forceOpen: PropTypes.bool,
 	width: PropTypes.string,
 	height: PropTypes.string,

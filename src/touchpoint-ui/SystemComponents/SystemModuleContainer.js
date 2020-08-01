@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Route, Switch} from 'react-router'
-import lockedContext from '../Contexts/LockedContext'
 import moduleContext from '../Contexts/ModuleContext'
 	
 export default function SystemModuleContainer(props){
@@ -17,7 +16,6 @@ export default function SystemModuleContainer(props){
 
 	//Render the chosen module
 	return(
-		<lockedContext.Provider value = {props.locked}>
 			<moduleContext.Provider value={moduleDataState}>
 				
 				<div className={"moduleContainer"} style={styleSettings}>
@@ -32,7 +30,6 @@ export default function SystemModuleContainer(props){
 				</div>
 				
 			</moduleContext.Provider>
-		</lockedContext.Provider>
 	)
 	
 }

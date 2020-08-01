@@ -67,7 +67,11 @@ export default function MainTable(props){
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled
 	let dynamic
-	if(props.setActiveRecord){dynamic = true} 
+	let hasActiveClass = ''
+	if(props.setActiveRecord){
+		dynamic = true
+		hasActiveClass = ' hasActive '
+	} 
 	
 	//Normalize column widths to ensure they always add up to 100%
 	let hasFilter = false
@@ -142,7 +146,7 @@ export default function MainTable(props){
 	
 	//Render
 	return (
-		<div className={"MainTable " + transitionClass}>
+		<div className={"MainTable " + transitionClass + hasActiveClass}>
 			
 			{/* Header Titles */}
 			<div className="titleBar">
