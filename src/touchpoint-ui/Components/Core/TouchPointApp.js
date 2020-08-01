@@ -3,10 +3,12 @@ import React, {useState, useEffect} from 'react'
 import SystemPopupHandler from '../../SystemComponents/SystemPopupHandler'
 import SystemModuleContainer from '../../SystemComponents/SystemModuleContainer'
 import systemContext from '../../Contexts/SystemContext'
+import lockedContext from '../../Contexts/LockedContext'
 import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
 import SystemDrawerHandler from '../../SystemComponents/SystemDrawerHandler'
+
 
 export default function TouchPointApp(props){
 	
@@ -135,35 +137,37 @@ export default function TouchPointApp(props){
 	//The App JSX itself
 	return (
 		<div className={"TouchPointApp "}>
-			<systemContext.Provider value ={System}>
-					<HashRouter>
-					{screenBlocker}
-					
-					<SystemDrawerHandler
-						className={ activePopup ? screenEffect : ''}
-						{...System.Drawer.data}
-						drawer={System.Drawer}
-					/>
-					
-					<div className={'screenEffect ' + screenEffect}>
+			<lockedContext.Provider value = {props.locked}>
+				<systemContext.Provider value ={System}>
+						<HashRouter>
+						{screenBlocker}
 						
-						{props.children}
-						
-						<SystemModuleContainer 
-							system = {System} 
-							locked = {props.locked || moduleLock}
+						<SystemDrawerHandler
+							className={ activePopup ? screenEffect : ''}
+							{...System.Drawer.data}
+							drawer={System.Drawer}
 						/>
 						
-					</div>
-					
-					<SystemPopupHandler 
-						system = {System} 
-						activePopup = {activePopup}
-						popupEffect = {popupEffect}
-					/>
-					
-				</HashRouter>
-			</systemContext.Provider>
+						<div className={'screenEffect ' + screenEffect}>
+							
+							{props.children}
+							
+							<SystemModuleContainer 
+								system = {System} 
+								locked = {props.locked || moduleLock}
+							/>
+							
+						</div>
+						
+						<SystemPopupHandler 
+							system = {System} 
+							activePopup = {activePopup}
+							popupEffect = {popupEffect}
+						/>
+						
+					</HashRouter>
+				</systemContext.Provider>
+			</lockedContext.Provider>
 		</div>
 	)
 }

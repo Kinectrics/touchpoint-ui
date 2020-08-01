@@ -13,24 +13,40 @@ export default function SearchBar(props) {
 	const searchRef = useRef()
 	const [searchBarValue, setSearchBarValue] = useState('')
 	
-	
 	function focusSearchBar(){
 		searchRef.current.focus()
 	}
 	
-	useEffect(()=>{
-		moduleData.set('TouchPointSearchRef', focusSearchBar)
+	
+	//ctrl f handler
+	function keyDownHandler(e) {
+		const isCtrl = e.ctrlKey || e.metaKey
 
-		return(()=>{
-			moduleData.set('TouchPointSearchRef', null)
+		if (isCtrl && e.keyCode === 70) {
+			e.preventDefault()
+			focusSearchBar()
+		}
+	}
+	
+	
+	useEffect(() => {
+
+		window.addEventListener('keydown', keyDownHandler)
+
+		return (() => {
+			moduleData.clear()
+			window.removeEventListener('keydown', keyDownHandler)
 		})
-	},[])
+
+	}, [])
+	
 	
 	//search
 	function searchHandler(){
 		moduleData.set('TouchPointSearchText', searchRef.current.value)
 		searchRef.current.focus()
 	}
+	
 	
 	//handles the onChange event. Only fires if component is not locked
 	function changeHandler(e) {
