@@ -5,35 +5,33 @@ export default class DataType{
 		this.options = options
 	}
 	
+	
 	//checks if an input is valid for the datatype
 	validate(input){
-		switch(this.kind){
-			case 'string': 
-				return true
+		
+		const validators = {
+			string: ()=>{return true},
 			
-			case 'number':
-				
+			number: (val)=>{
 				try{
-					parseFloat(input)	
+					parseFloat(val)	
 					return true
 				} catch(err){return false}
-				
-			case 'list': return this.options.listValues.includes(input)			
+			}
 		}
 		
 		//if its not a valid type then ignore validation and just return true
-		return true
+		return validators[this.kind](input)
 	}
+	
 	
 	//Compares a value an search string to see if the value should be included in the search
 	search(value, searchText){
 		try{
-			newValue = value.toString().toLowerCase()
+			const newValue = value.toString().toLowerCase()
 			return newValue.includes(searchText.toLowerCase())
 		} catch(err){
 			return false
 		}
 	}
 }
-
-

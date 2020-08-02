@@ -1,4 +1,5 @@
 import DataType from "./DataType"
+import DataFilter from "./DataFilter"
 
 export default class DataHeader{
 	
@@ -25,12 +26,10 @@ export default class DataHeader{
 				}, 
 				displayName: 'Array Filter'
 			},
-			
 		}
 		
 	}
 
-	
 	
 	filter(cellValue, dataRow){
 		//Check if any of the filters fail
@@ -41,8 +40,8 @@ export default class DataHeader{
 	}
 	
 	
-	addFilter(filterID, filterFunction, displayName){
-		this.filterList[filterID] = {func: filterFunction, displayName: displayName, id: filterID}
+	addFilter(options){
+		this.filterList[options.id] = new DataFilter(options)
 	}
 	
 	
