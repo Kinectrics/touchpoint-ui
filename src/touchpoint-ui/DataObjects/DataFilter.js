@@ -8,6 +8,10 @@ export default class DataFilter{
 				return val.toString().toLowerCase() === this.options.value
 			},
 			
+			doesNotEqual: (val) => {
+				return !val.toString().toLowerCase() === this.options.value
+			},
+			
 			includes: (val) => {
 				return val.toString().toLowerCase().includes(this.options.value)
 			},

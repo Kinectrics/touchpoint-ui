@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import produce from 'immer'
 import './FilterMenu.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus, faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
 export default function FilterMenu(props){
 
@@ -39,45 +41,71 @@ export default function FilterMenu(props){
 		paddingLeft: '7px',
 	}
 	
+	const [expanded, setExpanded] = useState(true)
+	
+	const moreFilterIcon = expanded ? faCaretLeft : faCaretRight
+	
+	const sideMenu = expanded ? <div className='sideMenu'>
+		{props.children}
+	</div> : null
+	
+	
+	function toggleMenu(){
+		setExpanded(!expanded)
+	}
+	
+	
 	return (
 		<div className = 'FilterMenu'>
-			
-			<div className = 'topMenu'>
-				{props.children}
-			
-				<button onClick={selectAll} className = 'selectAll'>
-			
-					<input
-						type='checkbox'
-						defaultChecked={!props.header.hasFilter()}
-						id={props.header.headerID + 'selectAll'}
-						style={{ cursor: 'pointer' }}
-					/>
-					<span style={spanStyle}>{'Select All'}</span>
-
-				</button>
-			</div>
-			
-			<div className="filterOptions">
+			<div 
+				className = 'mainMenu' 
+				style={{ borderRight: expanded ? '1px solid lightgray' : null}}
+			>
+				<div className = 'topMenu'>
+					<button onClick={toggleMenu}>
+						More Filters 
+						<span className = 'subMenuIcon'>
+							<FontAwesomeIcon icon={moreFilterIcon} />
+						</span>
+					</button>
+					
+					<button onClick={selectAll} className = 'selectAll'>
 				
-				{Object.keys(values).map((v, i) => {
-					return (<button
-						key={props.header.id + 'fv' + i}
-						onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
-					>
-						
-						<input 
-							type = 'checkbox'
-							defaultChecked = {values[v]}
-							id={props.header.headerID + 'fcb' + i}
-							value = {v}
-							style= {{cursor:'pointer'}}
+						<input
+							type='checkbox'
+							defaultChecked={!props.header.hasFilter()}
+							id={props.header.headerID + 'selectAll'}
+							style={{ cursor: 'pointer' }}
 						/>
-						<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
-						
-					</button>)
-				})}
+						<span style={spanStyle}>{'Select All'}</span>
+
+					</button>
+				</div>
+				
+				<div className="filterOptions">
+					
+					{Object.keys(values).map((v, i) => {
+						return (<button
+							key={props.header.id + 'fv' + i}
+							onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
+						>
+							
+							<input 
+								type = 'checkbox'
+								defaultChecked = {values[v]}
+								id={props.header.headerID + 'fcb' + i}
+								value = {v}
+								style= {{cursor:'pointer'}}
+							/>
+							<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
+							
+						</button>)
+					})}
+				</div>
 			</div>
+			
+			{sideMenu}
+			
 		</div>
 	)
 }

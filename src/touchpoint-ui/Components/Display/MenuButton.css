@@ -107,13 +107,15 @@
 	margin-left: 10px;
 	z-index: 3;
 	filter: none;
+	font-size: 13pt;
+	height: 30px;
+	padding-top: 0px !important;
 }
 
 .Menu .InfoTabContainer .nav-tabs a.active{
 	text-shadow: 1px 0px 0px var(--labelColor);
-	
 	border-bottom-color: var(--labelColor) !important;
-	border-bottom-width: 5px !important;
+	border-bottom-width: 3px !important;
 }
 
 .Menu .InfoTabContainer, .tab-content, .tab-pane, 

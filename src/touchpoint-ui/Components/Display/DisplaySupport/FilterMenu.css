@@ -4,6 +4,9 @@
 	overflow-y: auto;
 	max-height: inherit;
 	position: relative;
+	
+	width: auto;
+	display: flex;
 }
 
 .FilterMenu .topMenu{
@@ -16,4 +19,15 @@
 
 .FilterMenu .selectAll{
 	font-weight: bold;
+}
+
+/* Child menu */
+.FilterMenu .mainMenu{
+	position: relative;
+	max-height: inherit;
+}
+
+.FilterMenu .sideMenu{
+	position: sticky;
+	top:0;
 }

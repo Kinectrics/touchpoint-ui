@@ -3,8 +3,9 @@ import MenuButton from '../MenuButton'
 import InfoTab from '../../Containers/InfoTab'
 import InfoTabContainer from '../../Containers/InfoTabContainer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCaretDown, faFilter, faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faCaretDown, faFilter} from '@fortawesome/free-solid-svg-icons'
 import FilterMenu from './FilterMenu'
+import MoreFilters from  './MoreFilters'
 
 export default function TheadButton(props){
 	
@@ -19,12 +20,8 @@ export default function TheadButton(props){
 			header = {props.header}
 			data = {props.data}
 		>
-			<button>
-				<FontAwesomeIcon icon={faPlus} />
-				<span style={{
-					paddingLeft:'10px',
-				}}>More Filters</span> 
-			</button>
+			
+			<MoreFilters/>
 			
 		</FilterMenu>
 	</InfoTab>
