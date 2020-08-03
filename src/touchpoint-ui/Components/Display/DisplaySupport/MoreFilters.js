@@ -1,38 +1,25 @@
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus} from '@fortawesome/free-solid-svg-icons'
+import DataFilter from '../../../DataObjects/DataFilter'
+import './MoreFilterButton'
+import MoreFilterButton from './MoreFilterButton'
 
 export default function MoreFilters(props) {
+	
+	const filterList = DataFilter.getFilterTypes()
+	
 	return (
 		<div>
-			<button>
-				<FontAwesomeIcon icon={faPlus} />
-				<span style={{
-					paddingLeft: '10px',
-				}}>Equals</span>
-			</button>
 			
-			<button>
-				<FontAwesomeIcon icon={faPlus} />
-				<span style={{
-					paddingLeft: '10px',
-				}}>Does Not Equal</span>
-			</button>
-			
-			<button>
-				<FontAwesomeIcon icon={faPlus} />
-				<span style={{
-					paddingLeft: '10px',
-				}}>Includes</span>
-			</button>
-			
-			<button>
-				<FontAwesomeIcon icon={faPlus} />
-				<span style={{
-					paddingLeft: '10px',
-				}}>Does Not Include</span>
-			</button>
-			
+			{Object.keys(filterList).map((f, i)=>{
+				
+				if (filterList[f].availableTo.includes(props.header.type)){
+					return <MoreFilterButton 
+						key = {'MoreFilterButton' + i}
+						filter = { filterList[f] }
+					/>
+					
+				} else return null
+			})}
 			
 		</div>
 	)

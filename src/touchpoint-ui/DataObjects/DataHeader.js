@@ -4,7 +4,6 @@ import DataFilter from "./DataFilter"
 export default class DataHeader{
 	
 	constructor(options){
-		
 		this.headerID = options.headerID
 		this.displayName = options.displayName
 		this.width = options.width ? options.width : 10
@@ -16,6 +15,7 @@ export default class DataHeader{
 		this.dataType = options.dataType ? options.dataType : new DataType('string') 
 		this.styling = options.styling ? options.styling : null
 		this.uniqueValues = {}
+		this.type = options.type ? options.type : 'string'
 		
 		//Default filter list only has 1 functions (array filter)
 		//By default no values are selected, which is the same as saying 'select all'
@@ -27,7 +27,6 @@ export default class DataHeader{
 				displayName: 'Array Filter'
 			},
 		}
-		
 	}
 
 	

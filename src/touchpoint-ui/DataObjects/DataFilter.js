@@ -2,48 +2,82 @@ export default class DataFilter{
 	
 	constructor(options){
 		
-		//The available filters - only one is actually saved and used per DataFilter
-		const filterTypes = {
-			equals: (val) => {
-				return val.toString().toLowerCase() === this.options.value
-			},
-			
-			doesNotEqual: (val) => {
-				return !val.toString().toLowerCase() === this.options.value
-			},
-			
-			includes: (val) => {
-				return val.toString().toLowerCase().includes(this.options.value)
-			},
-			
-			doesNotInclude: (val) => {
-				return !val.toString().toLowerCase().includes(this.options.value)
-			},
-			
-			lessThan: (val) => {
-				return val < this.options.value
-			},
-			
-			greaterThan: (val) => {
-				return val > this.options.value
-			},
-			
-			between: (val) => {
-				return val < this.options.upperLimit && val > this.options.lowerLimit
-			},
-		}
-		
 		this.options = options
 		this.displayName = options.type
-		this.filter = filterTypes[options.type] ? filterTypes[options.type] : ()=>{return true}
+		this.filter = this.filterTypes[options.type] ? this.filterTypes[options.type].func : ()=>{return true}
+		this.displayName = this.filterTypes[options.type].displayName
 	}
 	
 	
 	func(val){
 		try{
-			return(this.filter(val))
+			return(this.filter(val, this.options))
 		} catch(err){
 			return false
 		}
+	}
+	
+	
+	static getFilterTypes(){
+		
+		return {
+			equals: {
+				func: (val, options) => {
+					return val.toString().toLowerCase() === options.value
+				},
+				displayName:'Equals',
+				availableTo: ['string', 'number']
+			},
+
+			doesNotEqual: {
+				func: (val, options) => {
+					return !val.toString().toLowerCase() === options.value
+				},
+				displayName: "Doesn't Equal",
+				availableTo: ['string', 'number']
+			},
+
+			includes: {
+				func: (val, options) => {
+					return val.toString().toLowerCase().includes(options.value)
+				},
+				displayName: 'Includes',
+				availableTo: ['string']
+			},
+
+			doesNotInclude: {
+				func: (val, options) => {
+					return !val.toString().toLowerCase().includes(options.value)
+				},
+				displayName:  "Doesn't Include",
+				availableTo: ['string']
+			},
+
+			lessThan: {
+				func: (val, options) => {
+					return val < options.value
+				},
+				displayName: 'Less than',
+				availableTo: ['number']
+			},
+
+			greaterThan: {
+				func: (val, options) => {
+					return val > options.value
+				},
+				displayName: 'Greater than',
+				availableTo: ['number']
+			},
+
+			between: {
+				func: (val, options) => {
+					return val < options.upperLimit && val > options.lowerLimit
+				},
+				displayName: 'Between',
+				availableTo: ['number']
+			},
+		}
+		
+		
 	}
 }

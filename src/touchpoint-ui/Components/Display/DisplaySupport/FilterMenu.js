@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import produce from 'immer'
 import './FilterMenu.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import MoreFilters from './MoreFilters'
 
 export default function FilterMenu(props){
 
@@ -41,17 +42,17 @@ export default function FilterMenu(props){
 		paddingLeft: '7px',
 	}
 	
-	const [expanded, setExpanded] = useState(true)
+	const moreFilterIcon = props.expanded ? faCaretLeft : faCaretRight
 	
-	const moreFilterIcon = expanded ? faCaretLeft : faCaretRight
-	
-	const sideMenu = expanded ? <div className='sideMenu'>
-		{props.children}
+	const sideMenu = props.expanded ? <div className='sideMenu'>
+		<MoreFilters 
+			header = {props.header}
+		/>
 	</div> : null
 	
 	
 	function toggleMenu(){
-		setExpanded(!expanded)
+		props.setExpanded(!props.expanded)
 	}
 	
 	
@@ -59,7 +60,7 @@ export default function FilterMenu(props){
 		<div className = 'FilterMenu'>
 			<div 
 				className = 'mainMenu' 
-				style={{ borderRight: expanded ? '1px solid lightgray' : null}}
+				style={{ borderRight: props.expanded ? '1px solid lightgray' : null}}
 			>
 				<div className = 'topMenu'>
 					<button onClick={toggleMenu}>

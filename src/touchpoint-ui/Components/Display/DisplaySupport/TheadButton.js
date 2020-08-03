@@ -5,30 +5,28 @@ import InfoTabContainer from '../../Containers/InfoTabContainer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretDown, faFilter} from '@fortawesome/free-solid-svg-icons'
 import FilterMenu from './FilterMenu'
-import MoreFilters from  './MoreFilters'
 
 export default function TheadButton(props){
 	
 	//Checks if the header has an active filter, to show a different icon
 	const [defaultTab, setDefaultTab] = useState(props.noFilter ? 'sort' : 'filter')
 	
+	const [expanded, setExpanded] = useState(true)
+	
 	//filter tab - if the correct props are available to enable filtering
-	let filterMenu = null
-	filterMenu = <InfoTab tabID='filter' tabTitle='Filter' hidden = {props.noFilter}>
+	const filterMenu = <InfoTab tabID='filter' tabTitle='Filter' hidden = {props.noFilter}>
 		<FilterMenu
 			dataHeaders = {props.dataHeaders}
 			header = {props.header}
 			data = {props.data}
-		>
-			
-			<MoreFilters/>
-			
-		</FilterMenu>
+			expanded = {expanded}
+			setExpanded = {setExpanded}
+		/>
 	</InfoTab>
 	
 	
 	//Sort tab - if the correct props are available to enable sorting
-	let sortMenu = <InfoTab tabID='sort' tabTitle='Sort' hidden={props.noSort}>
+	const sortMenu = <InfoTab tabID='sort' tabTitle='Sort' hidden={props.noSort}>
 		<button>Sort Test</button>
 	</InfoTab>
 	
