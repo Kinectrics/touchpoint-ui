@@ -1,11 +1,10 @@
 export default class DataFilter{
 	
 	constructor(options){
-		
 		this.options = options
 		this.displayName = options.type
-		this.filter = this.filterTypes[options.type] ? this.filterTypes[options.type].func : ()=>{return true}
-		this.displayName = this.filterTypes[options.type].displayName
+		this.filter = DataFilter.getFilterTypes()[options.id] ? DataFilter.getFilterTypes()[options.id].func : ()=>{return true}
+		this.displayName = DataFilter.getFilterTypes()[options.id].displayName
 	}
 	
 	
@@ -31,7 +30,7 @@ export default class DataFilter{
 
 			doesNotEqual: {
 				func: (val, options) => {
-					return !val.toString().toLowerCase() === options.value
+					return val.toString().toLowerCase() !== options.value
 				},
 				displayName: "Doesn't Equal",
 				availableTo: ['string', 'number']

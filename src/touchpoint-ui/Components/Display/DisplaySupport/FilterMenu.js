@@ -47,6 +47,8 @@ export default function FilterMenu(props){
 	const sideMenu = props.expanded ? <div className='sideMenu'>
 		<MoreFilters 
 			header = {props.header}
+			dataHeaders = {props.dataHeaders}
+			data={props.data}
 		/>
 	</div> : null
 	

@@ -15,7 +15,11 @@ export default function MoreFilters(props) {
 				if (filterList[f].availableTo.includes(props.header.type)){
 					return <MoreFilterButton 
 						key = {'MoreFilterButton' + i}
-						filter = { filterList[f] }
+						filter = {filterList[f]}
+						filterID = {f}
+						header = {props.header}
+						dataHeaders = {props.dataHeaders}
+						data = {props.data}
 					/>
 					
 				} else return null
