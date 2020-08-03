@@ -6,20 +6,31 @@ import produce from 'immer'
 export default function MoreFilterButton(props) {
 	
 	function addFilter(){
-		produce(props.dataHeaders.get(), h =>{
+		props.dataHeaders.set(produce(props.dataHeaders.get(), h =>{
 			
 			h[props.header.index].addFilter({
 				id: props.filterID, 
 				value: 'cooling'
 			})
-		})
+		}))
 		
+		props.data.filter()
+	}
+	
+	
+	function removeFilter(e){
+		e.stopPropagation()
+		
+		props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
+			h[props.header.index].removeFilter(props.filterID)
+		}))
+
 		props.data.filter()
 	}
 	
 	const closeIcon = <span 
 		style ={{position: 'absolute', right: '5px', color: 'var(--lockedTextColor)'}}
-		onClick ={(e)=>{ e.stopPropagation() }}
+		onClick ={removeFilter}
 	>
 		<FontAwesomeIcon icon = {faTimes}/>
 	</span>
