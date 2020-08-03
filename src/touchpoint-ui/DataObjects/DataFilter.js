@@ -5,6 +5,7 @@ export default class DataFilter{
 		this.displayName = options.type
 		this.filter = DataFilter.getFilterTypes()[options.id] ? DataFilter.getFilterTypes()[options.id].func : ()=>{return true}
 		this.displayName = DataFilter.getFilterTypes()[options.id].displayName
+		this.arguments = DataFilter.getFilterTypes()[options.id].arguments
 	}
 	
 	
