@@ -27,7 +27,7 @@ export default class DataFilter{
 				displayName:'Equals',
 				availableTo: ['string', 'number']
 			},
-
+			
 			doesNotEqual: {
 				func: (val, options) => {
 					return val.toString().toLowerCase() !== options.value

@@ -11,7 +11,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
-
+	
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
 	
@@ -54,7 +54,9 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			let noRender = false
 			headers.get().forEach((h) => {
 				//filter
-				if (!h.filter(r[h.headerID], r)) {
+				const fltr = h.filter(r[h.headerID], r)
+				
+				if (!fltr && fltr !='arrayFilter'){
 					noRender = true
 					rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';'
 				}

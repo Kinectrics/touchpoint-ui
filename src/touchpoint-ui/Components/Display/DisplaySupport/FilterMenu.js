@@ -30,7 +30,11 @@ export default function FilterMenu(props){
 		//using immer to modify the dataHeaders state without breaking immutability rules
 		props.dataHeaders.set(
 			produce(props.dataHeaders.get(), (draftHeaders) => {
-				draftHeaders[props.header.index].selectAll(cb.checked)
+				if(cb.checked){
+					draftHeaders[props.header.index].clearFilter()
+				} else{
+					draftHeaders[props.header.index].selectAll(cb.checked)
+				}
 			})
 		)
 		

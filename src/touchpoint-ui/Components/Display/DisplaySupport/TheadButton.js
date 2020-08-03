@@ -31,14 +31,14 @@ export default function TheadButton(props){
 	</InfoTab>
 	
 	//Combine available tabs - if at least one is avilable
-	let overallMenu = <div>
+	let overallMenu = ()=>{return <div>
 		<InfoTabContainer defaultTab = {defaultTab} onTabChange = {(tabID)=>{
 			setDefaultTab(tabID)
 		}}>
 			{filterMenu}
 			{sortMenu}
 		</InfoTabContainer>
-	</div>
+	</div>}
 	
 	
 	//if there is a menu, add a dropdown icon

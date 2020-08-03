@@ -10,6 +10,10 @@
 	font-size: 12pt;
 }
 
+.input.invalid{
+	background-color: var(--inputInvalidColor);
+}
+
 .input:hover, .input:focus{
 	filter: brightness(102%);
 }

@@ -1,44 +1,28 @@
-import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import produce from 'immer'
+import React, { useState } from 'react'
+import MoreFilterButtonActive from './MoreFilterButtonActive'
 
 export default function MoreFilterButton(props) {
 	
-	function addFilter(){
-		props.dataHeaders.set(produce(props.dataHeaders.get(), h =>{
-			
-			h[props.header.index].addFilter({
-				id: props.filterID, 
-				value: 'cooling'
-			})
-		}))
-		
-		props.data.filter()
+	const [active, setActive] = useState(props.header.filterList[props.filterID])
+	
+	function activate(){
+		setActive(true)
 	}
 	
-	
-	function removeFilter(e){
-		e.stopPropagation()
+	if(!active){return(
 		
-		props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
-			h[props.header.index].removeFilter(props.filterID)
-		}))
-
-		props.data.filter()
-	}
-	
-	const closeIcon = <span 
-		style ={{position: 'absolute', right: '5px', color: 'var(--lockedTextColor)'}}
-		onClick ={removeFilter}
-	>
-		<FontAwesomeIcon icon = {faTimes}/>
-	</span>
-	
-	return (
-		<button onClick = {addFilter}>
+		<button onClick = {activate} className = 'MoreFilterButton'>
 			<span style = {{paddingRight: '10px'}}>{props.filter.displayName}</span>
-			{closeIcon}
 		</button>
-	)
+		
+	)} else{ return(
+		
+		<MoreFilterButtonActive
+			dataHeaders = {props.dataHeaders}
+			data = {props.data}
+			filter = {props.filter}
+			header = {props.header}
+		/>
+		
+	)}
 }

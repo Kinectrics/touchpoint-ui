@@ -87,7 +87,7 @@ export default function MenuButton(props){
 							className={'Menu'}
 							style = {props.menuStyle}
 						>
-							{props.menuContent}
+							{typeof (props.menuContent) == 'function' ? <props.menuContent /> : props.menuContent}
 						</div>
 					</div>
 				</menuContext.Provider>

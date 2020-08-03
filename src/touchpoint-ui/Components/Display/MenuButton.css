@@ -63,7 +63,7 @@
 	color: var(--mainTextColor);
 }
 
-.Menu a:not(.nav-item):active, .Menu button:not(.FreeButton):active{
+.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):active{
 	filter: brightness(91%) !important;
 }
 

@@ -2,13 +2,14 @@ import React from 'react'
 import DataFilter from '../../../DataObjects/DataFilter'
 import './MoreFilterButton'
 import MoreFilterButton from './MoreFilterButton'
+import './MoreFilters.css'
 
 export default function MoreFilters(props) {
 	
 	const filterList = DataFilter.getFilterTypes()
 	
 	return (
-		<div>
+		<div className = 'MoreFilters'>
 			
 			{Object.keys(filterList).map((f, i)=>{
 				

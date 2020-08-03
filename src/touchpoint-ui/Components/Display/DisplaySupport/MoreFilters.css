@@ -1,0 +1,11 @@
+.MoreFilters .closeIcon{
+	position: absolute; 
+	right: 5px;color: var(--lockedTextColor);
+	cursor: pointer;
+}
+
+.MoreFilters .activeFilterButton{
+	text-align: left;
+	padding-left: 20px;
+	filter: none !important;
+}
