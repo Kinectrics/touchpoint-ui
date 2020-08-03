@@ -15,13 +15,15 @@ export default function MoreFilterButtonActive(props) {
 				value: '9' //#TODO Values
 			})
 		}))
-
+		
 		props.data.filter()
 	}
 	
 	
 	function closeHandler(e) {
 		e.stopPropagation()
+		
+		props.setActive(false)
 
 		props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
 			h[props.header.index].removeFilter(props.filterID)

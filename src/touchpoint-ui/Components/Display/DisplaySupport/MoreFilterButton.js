@@ -3,10 +3,11 @@ import MoreFilterButtonActive from './MoreFilterButtonActive'
 
 export default function MoreFilterButton(props) {
 	
-	const [active, setActive] = useState(props.header.filterList[props.filterID])
+	const [active, setActive] = useState(props.header.filterList[props.filterID] ? true : false)
 	
 	function activate(){
-		setActive(true)
+		setActive(!active)
+		console.log(active)
 	}
 	
 	if(!active){return(
@@ -22,6 +23,7 @@ export default function MoreFilterButton(props) {
 			data = {props.data}
 			filter = {props.filter}
 			header = {props.header}
+			setActive = {setActive}
 		/>
 		
 	)}

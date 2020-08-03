@@ -16,6 +16,7 @@ const dropMenu = React.forwardRef(
 				<div
 					ref={ref}
 					className={props.className + ' MenuContainer'}
+					style={props.style}
 				>
 					<div
 						style={{...props.menuStyle}}
