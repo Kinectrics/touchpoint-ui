@@ -8,6 +8,30 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
 
 
+
+const dropMenu = React.forwardRef(
+	(props, ref) => {
+		return (
+			<menuContext.Provider value={{ submenu: true }}>
+				<div
+					ref={ref}
+					className={props.className + ' MenuContainer'}
+					style={props.style}
+				>
+					<div
+						style={{...props.menuStyle}}
+						className={'Menu'}
+					>
+						{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}
+					</div>
+				</div>
+			</menuContext.Provider>
+		)
+	}
+)
+
+
+
 export default function MenuButton(props){
 	
 	//deccides if the component is locked based on props and parents in the tree
@@ -71,30 +95,6 @@ export default function MenuButton(props){
 		)
 	})
 
-	
-	const dropMenu = React.forwardRef(
-		({style, className}, ref) => {
-	  
-			return (
-				<menuContext.Provider value={{ submenu: true }}>
-					<div
-						ref={ref}
-						className={className + ' MenuContainer'}
-					>
-						<div
-							
-							style={style}
-							className={'Menu'}
-							style = {props.menuStyle}
-						>
-							{typeof (props.menuContent) == 'function' ? <props.menuContent /> : props.menuContent}
-						</div>
-					</div>
-				</menuContext.Provider>
-			)
-		}
-	)
-
 	//If locked return a button that does nothing, otherwise create a real dropdown button
 	if(locked){
 		
@@ -112,8 +112,16 @@ export default function MenuButton(props){
 		
 		<span className = 'menuButtonContainer'>
 			<Dropdown drop={direction} onToggle = {toggleHandler}>
+				
 				<Dropdown.Toggle as={dropButton}/>
-				<Dropdown.Menu as={dropMenu} />
+				<Dropdown.Menu 
+					as={dropMenu} 
+					MenuContent = {props.menuContent}
+					menuStyle = {props.menuStyle}
+				>
+						
+				</Dropdown.Menu>
+				
 			</Dropdown>
 		</span>
 		
