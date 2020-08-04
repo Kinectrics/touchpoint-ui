@@ -32,6 +32,8 @@ export default function CheckButton(props) {
 			value={props.value}
 			style={{cursor: 'pointer'}}
 			disabled = {props.disabled}
+			checked = {props.checked}
+			readOnly = {props.checked !== undefined ? true : false}
 		/>
 		<span style={spanStyle}>{props.children}</span>
 		
@@ -47,4 +49,5 @@ CheckButton.propTypes={
 	label: Proptypes.string,
 	onClick: Proptypes.func,
 	disabled: Proptypes.bool,
+	checked: Proptypes.bool,
 }

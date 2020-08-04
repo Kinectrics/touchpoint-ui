@@ -14,6 +14,7 @@ export default function MoreFilters(props) {
 			{Object.keys(filterList).map((f, i)=>{
 				
 				if (filterList[f].availableTo.includes(props.header.type)){
+					
 					return <MoreFilterButton 
 						key = {'MoreFilterButton' + i}
 						filter = {filterList[f]}
@@ -22,7 +23,7 @@ export default function MoreFilters(props) {
 						dataHeaders = {props.dataHeaders}
 						data = {props.data}
 					/>
-					
+					  
 				} else return null
 			})}
 			

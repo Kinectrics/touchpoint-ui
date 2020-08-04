@@ -37,6 +37,7 @@ export default function CheckBox(props) {
 				onClick={clickHandler}
 				style = {props.style}
 				checked = {props.checked}
+				readOnly={props.checked !== undefined ? true : false}
 			/>
 			<span className="checkmark"></span>
 			{props.label}
