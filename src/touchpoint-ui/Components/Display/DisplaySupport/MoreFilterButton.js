@@ -6,7 +6,6 @@ export default function MoreFilterButton(props) {
 	const [active, setActive] = useState(props.header.filterList[props.filterID] ? true : false)
 	
 	function activate(){
-		console.log('activate')
 		setActive(!active)
 	}
 	
@@ -18,18 +17,15 @@ export default function MoreFilterButton(props) {
 		
 	)} else{ return(
 		
-		
+		<MoreFilterButtonActive
+			dataHeaders = {props.dataHeaders}
+			data = {props.data}
+			filter = {props.filter}
+			filterID = {props.filterID}
+			header = {props.header}
+			setActive = {setActive}
+			active = {active}
+		/>
 		
 	)}
 }
-
-
-{/* <MoreFilterButtonActive
-	dataHeaders={props.dataHeaders}
-	data={props.data}
-	filter={props.filter}
-	filterID={props.filterID}
-	header={props.header}
-	setActive={setActive}
-	active={active}
-/> */}

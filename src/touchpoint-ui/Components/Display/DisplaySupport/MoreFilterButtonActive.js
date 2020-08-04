@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
 import produce from 'immer'
@@ -6,8 +6,6 @@ import produce from 'immer'
 export default function MoreFilterButtonActive(props) {
 	
 	const [value, setValue] = useState(props.header.filterList[props.filterID] ? props.header.filterList[props.filterID].value : '')
-	
-	const inputRef = useRef()
 	
 	function changeHandler(e) {
 		setValue(e.target.value)
@@ -20,14 +18,6 @@ export default function MoreFilterButtonActive(props) {
 		}
 		
 	}, [props.header.filterList[props.filterID]])
-	
-	
-	//Autofocus input with a delay to allow for previous onBlur events to complete
-	useEffect(()=>{
-		if(props.active){
-			setTimeout( ()=>inputRef.current.focus(), 10 )
-		}
-	}, [props.active])
 	
 	
 	function addFilter(argValue){
@@ -93,7 +83,7 @@ export default function MoreFilterButtonActive(props) {
 			
 			<input 
 				className = {'input wrap'}
-				ref = {inputRef}
+				autoFocus
 				onChange = {changeHandler}
 				value = {value}
 				onKeyDown = {keyDownHandler}
