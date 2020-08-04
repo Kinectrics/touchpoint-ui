@@ -31,7 +31,7 @@
 	
 	/* Inputs */
 	--inputColor: rgb(238, 238, 238);
-	--inputInvalidColor: rgb(175, 62, 62);
+	--inputInvalidColor: rgb(212, 74, 74);
 	
 	/* Structure Variables */
 	--appToolbarHeight: 30px;

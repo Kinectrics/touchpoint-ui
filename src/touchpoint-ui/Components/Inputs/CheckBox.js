@@ -36,6 +36,7 @@ export default function CheckBox(props) {
 				onChange={changeHandler}
 				onClick={clickHandler}
 				style = {props.style}
+				checked = {props.checked}
 			/>
 			<span className="checkmark"></span>
 			{props.label}
@@ -48,5 +49,6 @@ CheckBox.propTypes = {
 	hidden: PropTypes.bool,
 	onChange: PropTypes.func,
 	defaultValue: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.object,
+	checked: PropTypes.bool,
 }

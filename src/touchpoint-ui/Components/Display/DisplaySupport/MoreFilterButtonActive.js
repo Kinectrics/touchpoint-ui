@@ -1,30 +1,36 @@
-import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import React, { useState } from 'react'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
 import produce from 'immer'
 
 export default function MoreFilterButtonActive(props) {
 	
+	const [value, setValue] = useState('')
+	const [validClass, setValidClass] = useState('')
 	
-	function addFilter() {
-		//Open Popup. If the values are good run the produce function below (in the popup) if not, do nothing
-
+	function changeHandler(e){
+		setValidClass('')
+		setValue(e.target.value)
+	}
+	
+	function addFilter(argValue) {
+		setValidClass('')
 		props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
 			h[props.header.index].addFilter({
 				id: props.filterID,
-				value: '9' //#TODO Values
+				value:  argValue
 			})
 		}))
 		
 		props.data.filter()
 	}
 	
-	
-	function closeHandler(e) {
+	function cancelHandler(e) {
+		setValidClass('')
 		e.stopPropagation()
 		
 		props.setActive(false)
-
+		
 		props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
 			h[props.header.index].removeFilter(props.filterID)
 		}))
@@ -33,22 +39,47 @@ export default function MoreFilterButtonActive(props) {
 	}
 	
 	
-	function blurHandler(e) {
-		console.log('blur')
+	function commitHandler() {
+		const inputValid = value.trim() !== ''
+		
+		if(inputValid){
+			addFilter(value)
+		} else{
+			setValidClass('invalid')
+		}
+	}
+	
+	
+	function keyDownHandler(e){
+		if (e.key === 'Enter') {
+			commitHandler()
+			e.target.blur()
+		} 
 	}
 	
 	
 	return (
-		<button className='activeFilterButton disabled' onBlur={blurHandler}>
+		<button className='MoreFilterButtonActive disabled'>
 			
-			<span style={{ paddingRight: '10px' }}>{props.filter.displayName}</span>
+			<span className = 'tag'>{props.filter.displayName}</span>
+			<br/>
 			
-			<span
-				className='closeIcon'
-				onClick={closeHandler}
-			>
+			<input 
+				className = {'input ' + validClass}
+				autoFocus 
+				onChange = {changeHandler}
+				value = {value}
+				onKeyDown = {keyDownHandler}
+			/>
+			
+			<span className='cancelIcon' onClick={cancelHandler} >
 				<FontAwesomeIcon icon={faTimes} />
 			</span>
+			
+			<span className='commitIcon' onClick = {commitHandler}>
+				<FontAwesomeIcon icon={faCheck} />
+			</span>
+			
 		</button>
 	)
 }

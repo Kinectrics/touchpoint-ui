@@ -7,7 +7,6 @@ export default function MoreFilterButton(props) {
 	
 	function activate(){
 		setActive(!active)
-		console.log(active)
 	}
 	
 	if(!active){return(
@@ -22,6 +21,7 @@ export default function MoreFilterButton(props) {
 			dataHeaders = {props.dataHeaders}
 			data = {props.data}
 			filter = {props.filter}
+			filterID = {props.filterID}
 			header = {props.header}
 			setActive = {setActive}
 		/>
