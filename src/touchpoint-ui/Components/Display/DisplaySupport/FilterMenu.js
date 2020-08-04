@@ -80,9 +80,10 @@ export default function FilterMenu(props){
 				
 						<input
 							type='checkbox'
-							defaultChecked={!props.header.hasFilter()}
+							checked={!props.header.hasFilter()}
 							id={props.header.headerID + 'selectAll'}
 							style={{ cursor: 'pointer' }}
+							readOnly
 						/>
 						<span style={spanStyle}>{'Select All'}</span>
 
