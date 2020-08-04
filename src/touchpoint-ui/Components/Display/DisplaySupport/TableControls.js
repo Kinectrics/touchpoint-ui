@@ -2,7 +2,6 @@ import React from 'react'
 import ColumnSettings from './ColumnSettings'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
-import useSystem from '../../../Hooks/UseSystem'
 import SaveTableLayout from './SaveTableLayout'
 
 
@@ -20,7 +19,7 @@ export default function TableControls(props) {
 
 	if (!props.noFilter) {
 		filterButton = <SaveTableLayout 
-			headers = {props.headers}
+			headers = {props.dataHeaders}
 			data = {props.data}
 		/>
 	}
