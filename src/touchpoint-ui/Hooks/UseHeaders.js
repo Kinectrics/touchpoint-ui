@@ -41,11 +41,12 @@ export default function useHeaders(dataHeaders = []) {
 		headers.forEach((h)=>{
 			newLayouts[saveID].headerOptions[h.headerID] = {
 				visible: h.visible,
-				
-				filterList: Object.values(h.filterList).map((f)=>{
-					if(f.options){return f.options}
-				})
+				filterList: []
 			}
+			
+			Object.values(h.filterList).forEach((f) => {
+				if (f.options) { newLayouts[saveID].headerOptions[h.headerID].filterList.push( f.options )}
+			})
 		})
 		
 		setSavedLayouts(newLayouts)
@@ -53,7 +54,15 @@ export default function useHeaders(dataHeaders = []) {
 	
 	function loadLayout(id){
 		if(savedLayouts[id]){
-			console.log(savedLayouts[id])
+			
+			const newHeaders = []
+			
+			headers.forEach(h=>{
+				h.setVisible(savedLayouts[id].headerOptions[h.headerID].visible)
+				newHeaders.push(h)
+			})
+				
+			setHeaders(normalize(newHeaders))
 		}
 	}
 	

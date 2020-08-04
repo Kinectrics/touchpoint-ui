@@ -37,7 +37,7 @@ export default function ColumnSettings(props) {
 							<CheckButton
 								key={'customizeHeader' + h.headerID}
 								disabled={h.required}
-								defaultChecked={h.visible}
+								checked={h.visible}
 								value={h.index}
 								onClick={clickHandler}
 							>{h.displayName}</CheckButton>
