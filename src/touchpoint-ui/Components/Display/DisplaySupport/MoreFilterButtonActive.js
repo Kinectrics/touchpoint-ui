@@ -7,9 +7,13 @@ export default function MoreFilterButtonActive(props) {
 	
 	const [value, setValue] = useState(props.header.filterList[props.filterID] ? props.header.filterList[props.filterID].value : '')
 	const [validClass, setValidClass] = useState('')
+	const [invalidBypass, setInvalidBypass] = useState(false)
 	
 	useEffect(()=>{
-		setValue(props.header.filterList[props.filterID] ? props.header.filterList[props.filterID].value : '')
+		if (props.header.filterList[props.filterID] && props.header.filterList[props.filterID].value){
+			setValue(props.header.filterList[props.filterID].value)
+		}
+		
 	}, [props.header.filterList[props.filterID]])
 	
 	
@@ -34,7 +38,7 @@ export default function MoreFilterButtonActive(props) {
 	
 	function cancelHandler(e){
 		setValidClass('')
-		e.stopPropagation()
+		if (e){e.stopPropagation()}
 		
 		props.setActive(false)
 		
@@ -51,8 +55,8 @@ export default function MoreFilterButtonActive(props) {
 		
 		if(inputValid){
 			addFilter(value)
-		} else{
-			setValidClass('invalid')
+		} else if(!invalidBypass){
+			cancelHandler()
 		}
 	}
 	
@@ -66,7 +70,12 @@ export default function MoreFilterButtonActive(props) {
 	
 	
 	return(
-		<button className='MoreFilterButtonActive disabled' onBlur = {commitHandler}>
+		<button 
+			className='MoreFilterButtonActive disabled' 
+			onBlur = {commitHandler} 
+			onMouseDown={()=>{setInvalidBypass(true)}}
+			onMouseUp={()=>{setInvalidBypass(false)}}
+		>
 			
 			<span className = 'tag'>{props.filter.displayName}</span>
 			<br/>
