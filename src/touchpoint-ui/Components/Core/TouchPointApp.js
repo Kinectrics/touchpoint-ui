@@ -118,6 +118,23 @@ export default function TouchPointApp(props){
 		//Internal variables for structuring the app
 		layout: {get: ()=>layout, set: setLayout},
 		
+		Settings: {
+			save: (settingsID, settingsToken) => {
+				if(props.saveSettings){
+					props.saveSettings(settingsID, settingsToken)
+				}
+			},
+			
+			get: async (settingsID) => {
+				try {
+					return await props.saveSettings(settingsID)
+				} catch(err){
+					console.error(err)
+					return null
+				}
+			}
+		},
+		
 		io: props.io
 	}
 	
@@ -179,4 +196,6 @@ TouchPointApp.propTypes = {
 	homeModule: PropTypes.string,
 	io: PropTypes.any,
 	onOpenModule: PropTypes.func,
+	saveSettings: PropTypes.func,
+	getSettings: PropTypes.func,
 }

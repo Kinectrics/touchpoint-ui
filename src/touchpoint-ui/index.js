@@ -1,5 +1,3 @@
-//COMPONENTS
-
 //Core
 export {default as TouchPointApp} from "./Components/Core/TouchPointApp"
 export {default as AppToolbar} from "./Components/Core/AppToolbar"
@@ -22,10 +20,12 @@ export {default as CloseButton} from "./Components/Inputs/CloseButton"
 export {default as CheckBox} from "./Components/Inputs/CheckBox"
 export {default as DockIcon} from "./Components/Inputs/DockIcon"
 
+
 //Display
 export {default as Popup} from "./Components/Display/Popup"
 export {default as MenuButton} from "./Components/Display/MenuButton"
 export {default as MainTable} from "./Components/Display/MainTable"
+
 
 //Containers
 export {default as InfoCard} from "./Components/Containers/InfoCard"
@@ -37,18 +37,15 @@ export {default as ControlledTabContainer} from "./Components/Containers/Control
 export {default as Dock} from "./Components/Containers/Dock"
 
 
-
-
-//DATA OBJECTS
-
+//Data Objects
 export {default as DataHeader} from "./DataObjects/DataHeader"
 export {default as DataType} from "./DataObjects/DataType"
 
 
-
-//HOOKS
+//Hooks
 export {default as useDataset} from "./Hooks/UseDataset"
 export {default as useHeaders} from "./Hooks/UseHeaders"
 export {default as useSystem} from "./Hooks/UseSystem"
 export {default as useModuleData} from "./Hooks/UseModuleData"
 export {default as usePresence} from "./Hooks/UsePresence"
+export {default as useSettings} from "./Hooks/UseSettings"

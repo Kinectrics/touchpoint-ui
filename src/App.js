@@ -56,12 +56,22 @@ export default function App() {
 		},
 	}
 	
+	function saveSettings(id, token){
+		localStorage.setItem('settings-'+id, token)
+	}
+	
+	function getSettings(id){
+		return localStorage.getItem('settings-'+id)
+	}
+	
 	
 	return (
 		<TouchPointApp
 			modules = {moduleList}
 			homeModule = {'LockScreen'}
 			io = {io}
+			saveSettings = {saveSettings}
+			getSettings = {getSettings}
 		>
 			
 			<AppToolbar />
