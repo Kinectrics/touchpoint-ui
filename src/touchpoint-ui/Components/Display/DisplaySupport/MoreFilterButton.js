@@ -6,7 +6,10 @@ export default function MoreFilterButton(props) {
 	const [active, setActive] = useState(props.header.filterList[props.filterID] ? true : false)
 	
 	function activate(){
-		setActive(!active)
+		console.log('test')
+		// setTimeout( ()=>{
+			setActive(!active)
+		// }, 1)
 	}
 	
 	if(!active){return(
