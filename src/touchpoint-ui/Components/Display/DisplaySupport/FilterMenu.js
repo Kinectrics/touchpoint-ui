@@ -99,10 +99,11 @@ export default function FilterMenu(props){
 							
 							<input 
 								type = 'checkbox'
-								defaultChecked = {values[v]}
+								checked = {values[v]}
 								id={props.header.headerID + 'fcb' + i}
 								value = {v}
 								style= {{cursor:'pointer'}}
+								readOnly
 							/>
 							<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
 							
