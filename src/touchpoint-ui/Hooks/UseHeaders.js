@@ -66,6 +66,12 @@ export default function useHeaders(dataHeaders = []) {
 		}
 	}
 	
+	function deleteLayout(id){
+		const newLayouts = {...savedLayouts}
+		delete newLayouts[id]
+		setSavedLayouts(newLayouts)
+	}
+	
 	
 	//Saves a list of unique values in each column (header) - to be used in the filter dropdowns
 	function embedData(data, metaData) {
@@ -90,6 +96,7 @@ export default function useHeaders(dataHeaders = []) {
 		applyToken: applyToken,
 		saveLayout: saveLayout,
 		loadLayout: loadLayout,
+		deleteLayout: deleteLayout,
 		getSavedLayouts: ()=>{return savedLayouts}
 	})
 }

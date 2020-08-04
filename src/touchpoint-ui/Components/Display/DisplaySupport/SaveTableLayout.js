@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import MenuButton from '../MenuButton'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faWindowRestore, faCheck} from '@fortawesome/free-solid-svg-icons'
+import { faWindowRestore, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
 import './SaveTableLayout.css'
 
 export default function SaveTableLayout(props) {
@@ -59,9 +59,19 @@ export default function SaveTableLayout(props) {
 					{Object.keys(savedLayouts).map((f) => {
 						return (
 							<button
+								className = {'layoutButton'}
 								key = {'saveLayoutButton' + f}
 								onClick={()=>props.headers.loadLayout(f)}
-							>{savedLayouts[f].name}</button>
+							>
+								
+								<span className='cancelIcon' onClick = {()=>{
+									props.headers.deleteLayout(f)
+								}}>
+									<FontAwesomeIcon icon={faTimes}/>
+								</span>
+								
+								{savedLayouts[f].name}
+							</button>
 						)
 					})}
 
