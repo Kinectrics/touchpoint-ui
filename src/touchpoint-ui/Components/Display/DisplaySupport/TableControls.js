@@ -1,12 +1,9 @@
 import React from 'react'
-import TableSettings from './TableSettings'
-import MenuButton from '../MenuButton'
+import ColumnSettings from './ColumnSettings'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faTimesCircle, faFilter, faPlus} from '@fortawesome/free-solid-svg-icons'
-import Popup from '../Popup'
-import TextBox from '../../Inputs/TextBox'
-import FreeButton from '../../Inputs/FreeButton'
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
 import useSystem from '../../../Hooks/UseSystem'
+import SaveTableLayout from './SaveTableLayout'
 
 
 export default function TableControls(props) {
@@ -15,8 +12,6 @@ export default function TableControls(props) {
 	let filterButton = null
 	let settingsButton = null
 	
-	const System = useSystem()
-
 	if (props.hasFilter && !props.noFilter) {
 		clearFilterButton = <button
 			onClick={props.clearFilter}
@@ -24,41 +19,14 @@ export default function TableControls(props) {
 	}
 
 	if (!props.noFilter) {
-		filterButton = <MenuButton locked = {false} menuContent={
-			<div>
-					
-				<button style ={{borderBottom: '1px solid lightGrey'}} onClick={() => {
-					System.Popup.open(<Popup title='Save Filter'>
-						<label>Filter Name: </label><TextBox autoFocus />
-						<FreeButton
-							onClick={() => {
-								System.Popup.close()
-							}}
-						>Save Current Filter</FreeButton>
-					</Popup>)
-				}}
-				>
-					<FontAwesomeIcon icon={faPlus} />
-					<span style={{
-						paddingLeft: '10px',
-					}}>Save Current Filter</span>
-				</button>
-				
-
-				<button>Outstanding Tasks</button>
-				<button>Assigned To Me</button>
-				<button>Due Soon</button>
-				
-			</div>
-		}>
-			<span className='smallIcon'>
-				<FontAwesomeIcon icon={faFilter} />
-			</span> Saved Filters
-		</MenuButton>
+		filterButton = <SaveTableLayout 
+			headers = {props.headers}
+			data = {props.data}
+		/>
 	}
 	
 	if (!props.noOptions) {
-		settingsButton = <TableSettings
+		settingsButton = <ColumnSettings
 			headers={props.dataHeaders}
 			data={props.data}
 			setTransitionClass = {props.setTransitionClass}

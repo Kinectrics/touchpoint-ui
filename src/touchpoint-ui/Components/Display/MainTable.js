@@ -8,6 +8,7 @@ import produce from 'immer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons'
 import TableControls from './DisplaySupport/TableControls'
+import useSettings from '../../Hooks/UseSettings'
 
 export default function MainTable(props){
 	
@@ -38,6 +39,11 @@ export default function MainTable(props){
 		}
 	}, [props.data.lastResolved])
 	
+	//Settings token support 
+	const saveSettings = useSettings(props.settingsID, (token)=>{
+		props.dataHeaders.applyToken(token)
+	})
+	
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)
 	
@@ -49,7 +55,6 @@ export default function MainTable(props){
 		} else {
 			dataLength++
 		}
-		
 	})
 	
 	//if there's no way to set the active record, then no record is active

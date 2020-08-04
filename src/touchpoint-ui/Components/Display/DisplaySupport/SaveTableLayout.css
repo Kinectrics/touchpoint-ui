@@ -1,0 +1,33 @@
+.SaveTableLayout .inputMenu{
+	border-bottom: 1px solid lightGrey;
+	padding: 5px 5px;
+	padding-left: 15px;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.SaveTableLayout .input{
+	font-size: 10pt;
+	margin-right: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	width: calc(100% - 25px);
+}
+
+
+.SaveTableLayout .commitIcon{
+	position: absolute; 
+	right: 3px;
+	bottom: 9px;
+	color: var(--lockedTextColor);
+	cursor: pointer;
+	font-size: 11pt;
+}
+
+.SaveTableLayout .commitIcon:hover{
+	filter: brightness(115%);
+}
+
+.SaveTableLayout .commitIcon:active{
+	filter: brightness(90%);
+}

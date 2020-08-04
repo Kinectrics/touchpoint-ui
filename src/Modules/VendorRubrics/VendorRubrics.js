@@ -102,6 +102,7 @@ export default function VendorRubrics(){
 				activeRecord={activeRecord}
 				pageSize={200}
 				searchable
+				settingsID = {'VendorRubricsMainTable'}
 			/>
 					
 		</Module>

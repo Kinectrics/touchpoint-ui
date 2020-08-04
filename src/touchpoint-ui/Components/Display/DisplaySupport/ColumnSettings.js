@@ -2,10 +2,10 @@ import React from 'react'
 import CheckButton from './CheckButton'
 import produce from 'immer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCog} from '@fortawesome/free-solid-svg-icons'
+import {faColumns} from '@fortawesome/free-solid-svg-icons'
 import MenuButton from '../MenuButton'
 
-export default function TableSettings(props) {
+export default function ColumnSettings(props) {
 
 	function clickHandler(checked, idx){
 		props.setTransitionClass('noTransition')
@@ -45,7 +45,7 @@ export default function TableSettings(props) {
 					})}
 				</div>
 			}>
-			<FontAwesomeIcon icon={faCog} /> Table Settings
+			<FontAwesomeIcon icon={faColumns} /> Column Settings
 	</MenuButton>
 		
 	)

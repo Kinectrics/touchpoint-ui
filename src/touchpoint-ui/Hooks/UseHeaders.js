@@ -28,6 +28,10 @@ export default function useHeaders(dataHeaders = []) {
 			})
 		}))
 	}
+	
+	function applyToken(token){
+		const newSettings = JSON.parse(token)
+	}
 
 	const [headers, setHeaders] = useState(normalize(dataHeaders.map((hdr)=>{
 		return(new DataHeader(hdr))
@@ -36,6 +40,7 @@ export default function useHeaders(dataHeaders = []) {
 	return ({
 		get: () => {return headers},
 		set: (val) => {setHeaders(normalize(val))},
-		embedData: embedData
+		embedData: embedData,
+		applyToken: applyToken
 	})
 }
