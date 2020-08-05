@@ -31,6 +31,13 @@ export default function MainTable(props){
 		searchable =  false
 	}
 	
+	
+	//Settings token support 
+	const saveSettings = useSettings(props.settingsID, (token) => {
+		props.dataHeaders.applyToken(token)
+	})
+	
+	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(()=>{
 		if(!noFilter){
@@ -39,10 +46,6 @@ export default function MainTable(props){
 		}
 	}, [props.data.lastResolved])
 	
-	//Settings token support 
-	const saveSettings = useSettings(props.settingsID, (token)=>{
-		props.dataHeaders.applyToken(token)
-	})
 	
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)

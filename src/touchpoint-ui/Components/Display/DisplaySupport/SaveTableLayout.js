@@ -76,8 +76,9 @@ export default function SaveTableLayout(props) {
 								
 								<ConfirmButton 
 									className='cancelIcon'
-									onClick = {()=>{
+									onClick = {(e)=>{
 										props.headers.deleteLayout(f)
+										e.stopPropagation()
 									}}
 									content = {<FontAwesomeIcon icon={faTimes} />}
 									expandedContent = {'Delete?'}
