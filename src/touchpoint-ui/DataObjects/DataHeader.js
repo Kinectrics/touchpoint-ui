@@ -61,6 +61,7 @@ export default class DataHeader{
 		})
 	}
 	
+	
 	//checks if there are any active filters, including the array filter
 	hasFilter(){
 		//array filter is always there, check if any other filters are there

@@ -37,10 +37,12 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		return newMetaData
 	}
 	
+	
 	useEffect(() => {
 		setMetaData(searchData(data))
 	}, [searchText])
-
+	
+	
 	//Filters the data based on given headers
 	function filterData(values){
 		

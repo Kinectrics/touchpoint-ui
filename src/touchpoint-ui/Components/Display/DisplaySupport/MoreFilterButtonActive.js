@@ -65,7 +65,7 @@ export default function MoreFilterButtonActive(props) {
 	
 	
 	function blurHandler(){
-		if (value.trim() === ''){
+		if (value && value.trim() === ''){
 			cancelHandler()
 		} else{
 			commitHandler()

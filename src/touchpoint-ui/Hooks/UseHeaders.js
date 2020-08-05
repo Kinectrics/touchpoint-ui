@@ -58,7 +58,13 @@ export default function useHeaders(dataHeaders = []) {
 			const newHeaders = []
 			
 			headers.forEach(h=>{
+				h.clearFilter()
 				h.setVisible(savedLayouts[id].headerOptions[h.headerID].visible)
+				
+				savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f)=>{
+					h.addFilter(f)
+				})
+				
 				newHeaders.push(h)
 			})
 				
@@ -91,12 +97,16 @@ export default function useHeaders(dataHeaders = []) {
 
 	return ({
 		get: () => {return headers},
-		set: (val) => {setHeaders(normalize(val))},
+		
+		set: (val) => {
+			setHeaders(normalize(val))
+		},
+		
 		embedData: embedData,
 		applyToken: applyToken,
 		saveLayout: saveLayout,
 		loadLayout: loadLayout,
 		deleteLayout: deleteLayout,
-		getSavedLayouts: ()=>{return savedLayouts}
+		getSavedLayouts: ()=>{return savedLayouts},
 	})
 }
