@@ -20,11 +20,16 @@ export default function useHeaders(dataHeaders = []) {
 		})
 	}
 	
-	const [headers, setHeaders] = useState(normalize(dataHeaders.map((hdr) => {
+	const [headers, setHeadersFinal] = useState(normalize(dataHeaders.map((hdr) => {
 		return (new DataHeader(hdr))
 	})))
 	
+	
 	const [savedLayouts, setSavedLayouts] = useState({})
+	
+	const [settingsEngine, setSettingsEngine] = useState({ save: () => { } })
+	
+	const [tokenTrigger, setTokenTrigger] = useState(false)
 	
 	
 	//Coverts the current layout to JSON and saves it
@@ -50,6 +55,7 @@ export default function useHeaders(dataHeaders = []) {
 		})
 		
 		setSavedLayouts(newLayouts)
+		setTokenTrigger(true)
 	}
 	
 	function loadLayout(id){
@@ -76,6 +82,7 @@ export default function useHeaders(dataHeaders = []) {
 		const newLayouts = {...savedLayouts}
 		delete newLayouts[id]
 		setSavedLayouts(newLayouts)
+		setTokenTrigger(true)
 	}
 	
 	
@@ -94,13 +101,26 @@ export default function useHeaders(dataHeaders = []) {
 		setSavedLayouts(newSettings.savedLayouts)
 	}
 	
+	
+	function setHeaders(headerList) {
+		setHeadersFinal(normalize(headerList))
+	}
+	
+	//If settings have changed since the last render, create and save a new token
+	if (tokenTrigger) {
+		setTokenTrigger(false)
+		
+		const res = {
+			savedLayouts: savedLayouts
+		}
+
+		settingsEngine.save(JSON.stringify(res))
+	}
 
 	return ({
 		get: () => {return headers},
 		
-		set: (val) => {
-			setHeaders(normalize(val))
-		},
+		set: setHeaders,
 		
 		embedData: embedData,
 		applyToken: applyToken,
@@ -108,5 +128,6 @@ export default function useHeaders(dataHeaders = []) {
 		loadLayout: loadLayout,
 		deleteLayout: deleteLayout,
 		getSavedLayouts: ()=>{return savedLayouts},
+		setSettingsEngine: setSettingsEngine
 	})
 }

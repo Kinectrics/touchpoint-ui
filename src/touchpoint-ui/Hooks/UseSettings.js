@@ -4,6 +4,7 @@ import useSystem from './UseSystem'
 export default function useSettings(settingsID, applySettings){
 	const {get, save} = useSystem().Settings
 	
+	
 	useEffect(() => {
 		const fetchAndApply = async () => {
 			try{

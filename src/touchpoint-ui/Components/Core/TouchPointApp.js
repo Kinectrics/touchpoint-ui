@@ -120,14 +120,14 @@ export default function TouchPointApp(props){
 		
 		Settings: {
 			save: (settingsID, settingsToken) => {
-				if(props.saveSettings){
+				if(props.saveSettings && settingsID){
 					props.saveSettings(settingsID, settingsToken)
 				}
 			},
 			
 			get: async (settingsID) => {
 				try {
-					return await props.saveSettings(settingsID)
+					return await props.getSettings(settingsID)
 				} catch(err){
 					console.error(err)
 					return null
