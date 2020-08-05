@@ -3,6 +3,7 @@ import MenuButton from '../MenuButton'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faWindowRestore, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
 import './SaveTableLayout.css'
+import ConfirmButton from '../../Inputs/ConfirmButton'
 
 export default function SaveTableLayout(props) {
 	
@@ -32,13 +33,22 @@ export default function SaveTableLayout(props) {
 		}
 	}
 	
+	
+	function applyLayout(f){
+		props.headers.loadLayout(f)
+		props.data.filter()
+
+	}
+	
+	
+	
 	const savedLayouts = props.headers.getSavedLayouts()
 	
 	return (
 		<MenuButton
 			locked={false}
 			onClose={() => setValidClass('')}
-			menuStyle = {{minWidth:'200px'}}
+			menuStyle = {{minWidth:'200px', maxWidth: '300px'}}
 			menuContent={
 				<div className='SaveTableLayout'>
 
@@ -54,26 +64,32 @@ export default function SaveTableLayout(props) {
 							<FontAwesomeIcon icon={faCheck} />
 						</span>
 					</div>
-
-
+					
+					
 					{Object.keys(savedLayouts).map((f) => {
 						return (
 							<button
 								className = {'layoutButton'}
 								key = {'saveLayoutButton' + f}
-								onClick={()=>{
-									props.headers.loadLayout(f)
-									props.data.filter()
-								}}
+								onClick={()=>{applyLayout(f)}}
 							>
 								
-								<span className='cancelIcon' onClick = {()=>{
-									props.headers.deleteLayout(f)
-								}}>
-									<FontAwesomeIcon icon={faTimes}/>
-								</span>
+								<ConfirmButton 
+									className='cancelIcon'
+									onClick = {()=>{
+										props.headers.deleteLayout(f)
+									}}
+									content = {<FontAwesomeIcon icon={faTimes} />}
+									expandedContent = {'Delete?'}
+									style={{
+										backgroundColor: 'var(--cardBG)',
+										color: 'var(--lockedTextColor)',
+										padding: '0 5px',
+									}}
+									locked = {false}
+								/>
 								
-								{savedLayouts[f].name}
+								<span className = 'layoutButtonText'>{savedLayouts[f].name}</span>
 							</button>
 						)
 					})}

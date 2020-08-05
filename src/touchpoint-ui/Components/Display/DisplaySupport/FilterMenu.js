@@ -46,35 +46,23 @@ export default function FilterMenu(props){
 		paddingLeft: '7px',
 	}
 	
-	const moreFilterIcon = props.expanded ? faCaretLeft : faCaretRight
 	
-	const sideMenu = props.expanded ? <div className='sideMenu'>
+	const sideMenu = <div className='sideMenu'>
 		<MoreFilters 
 			header = {props.header}
 			dataHeaders = {props.dataHeaders}
 			data={props.data}
 		/>
-	</div> : null
-	
-	
-	function toggleMenu(){
-		props.setExpanded(!props.expanded)
-	}
+	</div>
 	
 	
 	return (
 		<div className = 'FilterMenu'>
 			<div 
 				className = 'mainMenu' 
-				style={{ borderRight: props.expanded ? '1px solid lightgray' : null}}
+				style={{ borderRight: '1px solid lightgray'}}
 			>
 				<div className = 'topMenu'>
-					<button onClick={toggleMenu}>
-						More Filters 
-						<span className = 'subMenuIcon'>
-							<FontAwesomeIcon icon={moreFilterIcon} />
-						</span>
-					</button>
 					
 					<button onClick={selectAll} className = 'selectAll'>
 				

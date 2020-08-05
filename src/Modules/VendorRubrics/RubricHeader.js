@@ -1,6 +1,9 @@
 import React from 'react'
 import {InfoCard, Popup, FreeButton, CommentBox, TextBox} from '../../touchpoint-ui'
 import './RubricHeader.css'
+import ConfirmButton from '../../touchpoint-ui/Components/Inputs/ConfirmButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function RubricHeader(props) {
@@ -20,6 +23,12 @@ export default function RubricHeader(props) {
 			<div className="largeContainer">
 				
 				<InfoCard height='450px' title = 'General'>
+					
+					<ConfirmButton
+						content = {<FontAwesomeIcon icon={faTimes}/>}
+						expandedContent = 'helloooo'
+						onClick = {()=>{console.log('button')}}
+					/>
 
 					<table><tbody>
 						<tr>

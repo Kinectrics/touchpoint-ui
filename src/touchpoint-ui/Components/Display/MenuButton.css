@@ -42,7 +42,7 @@
 }
 
 /* Buttons and links */
-.Menu a, .Menu button:not(.FreeButton){
+.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){
 	width: 100%;
 	color: var(--mainTextColor) !important;
 	background-color: var(--cardBG);
@@ -63,7 +63,7 @@
 	color: var(--mainTextColor);
 }
 
-.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):active{
+.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{
 	filter: brightness(91%) !important;
 }
 

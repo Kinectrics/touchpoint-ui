@@ -25,6 +25,7 @@ export default function CoreButton(props) {
 		<button className={'CoreButton ' + lockedClass + ' ' + props.className}
 			onClick ={clickHandler}
 			style = {props.style}
+			onBlur = {props.onBlur}
 		>
 			{props.children}
 		</button>
@@ -39,4 +40,5 @@ CoreButton.propTypes = {
 	hidden: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object,
+	onBlur: PropTypes.func,
 }

@@ -1,0 +1,38 @@
+
+.ConfirmButton{
+	outline: none !important;
+	border: none;
+	border-radius: 15px;
+	
+	color: var(--freeButtonTextColor);
+	background-color: var(--freeButtonNeutralBG);
+	
+	font-size: 11pt;
+	font-weight: bold;
+	padding: 0px 6px;
+	box-sizing: border-box;
+}
+
+.ConfirmButton.positive{
+	background-color: var(--freeButtonPositiveBG);
+	
+}
+
+.ConfirmButton.negative{
+	background-color: var(--freeButtonNegativeBG);
+}
+
+.ConfirmButton:hover{
+	filter: brightness(110%);
+}
+
+.ConfirmButton:active{
+	filter: brightness(95%);
+}
+
+.ConfirmButton.locked{
+	cursor: default !important;
+	filter: grayscale(95%) brightness(70%) !important;
+	opacity: 50% !important;
+}
+

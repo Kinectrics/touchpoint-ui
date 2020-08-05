@@ -19,11 +19,13 @@
 }
 
 .SaveTableLayout .cancelIcon{
-	position: absolute; 
-	right: 5px;
-	top: 3px;
-	color: var(--lockedTextColor);
+	position: absolute;  
+	right: -8px;
+	top: 4px;
 	cursor: pointer;
+	width: fit-content !important;
+	z-index: 2;
+	filter: none !important;
 }
 
 .SaveTableLayout .commitIcon{
@@ -35,12 +37,16 @@
 	font-size: 11pt;
 }
 
-.SaveTableLayout .closeIcon:hover,
 .SaveTableLayout .commitIcon:hover{
 	filter: brightness(115%);
 }
 
-.SaveTableLayout .closeIcon:active,
 .SaveTableLayout .commitIcon:active{
 	filter: brightness(90%);
+}
+
+.SaveTableLayout .layoutButtonText{
+	max-width: calc(100% - 30px);
+	text-align: left;
+	padding-left: 0;
 }

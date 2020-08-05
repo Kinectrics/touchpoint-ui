@@ -7,7 +7,6 @@ import FilterMenu from './FilterMenu'
 
 export default function TheadMenu(props) {
 	
-	const [expanded, setExpanded] = useState(true)
 	const [defaultTab, setDefaultTab] = useState(props.noFilter ? 'sort' : 'filter')
 	
 	
@@ -21,8 +20,6 @@ export default function TheadMenu(props) {
 						dataHeaders={props.dataHeaders}
 						header={props.header}
 						data={props.data}
-						expanded={expanded}
-						setExpanded={setExpanded}
 					/>
 				</InfoTab>
 
