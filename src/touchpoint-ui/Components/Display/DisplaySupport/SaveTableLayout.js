@@ -61,7 +61,10 @@ export default function SaveTableLayout(props) {
 							<button
 								className = {'layoutButton'}
 								key = {'saveLayoutButton' + f}
-								onClick={()=>props.headers.loadLayout(f)}
+								onClick={()=>{
+									props.headers.loadLayout(f)
+									props.data.filter()
+								}}
 							>
 								
 								<span className='cancelIcon' onClick = {()=>{
