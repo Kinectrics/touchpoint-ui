@@ -22,8 +22,7 @@ export default function SaveTableLayout(props) {
 		} else{
 			setSaveName('')
 			props.headers.saveLayout(saveName)
-		}
-		
+		}	
 	}
 	
 	function keyDownHandler(e) {
@@ -39,8 +38,6 @@ export default function SaveTableLayout(props) {
 		props.data.filter()
 
 	}
-	
-	
 	
 	const savedLayouts = props.headers.getSavedLayouts()
 	
@@ -81,7 +78,7 @@ export default function SaveTableLayout(props) {
 										e.stopPropagation()
 									}}
 									content = {<FontAwesomeIcon icon={faTimes} />}
-									expandedContent = {'Delete?'}
+									expandedContent = {'Delete'}
 									style={{
 										backgroundColor: 'var(--cardBG)',
 										color: 'var(--lockedTextColor)',

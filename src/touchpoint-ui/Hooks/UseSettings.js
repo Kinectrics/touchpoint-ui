@@ -14,7 +14,7 @@ export default function useSettings(settingsID, applySettings){
 			}
 		}
 		
-		if(settingsID){ fetchAndApply() }
+		if(settingsID){fetchAndApply()}
 	}, [])
 	
 	

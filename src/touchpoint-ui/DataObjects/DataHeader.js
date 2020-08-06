@@ -1,4 +1,3 @@
-import DataType from "./DataType"
 import DataFilter from "./DataFilter"
 
 export default class DataHeader{
@@ -12,7 +11,6 @@ export default class DataHeader{
 		this.index = options.index
 		this.onEdit = options.onEdit ? options.onEdit : null
 		this.locked = options.locked ? options.locked : false
-		this.dataType = options.dataType ? options.dataType : new DataType('string') 
 		this.styling = options.styling ? options.styling : null
 		this.uniqueValues = {}
 		this.type = options.type ? options.type : 'string'
