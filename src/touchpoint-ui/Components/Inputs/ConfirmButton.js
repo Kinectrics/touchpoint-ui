@@ -13,6 +13,7 @@ export default function ConfirmButton(props) {
 			setExpanded(false)
 		} else{
 			setExpanded(true)
+			e.stopPropagation()
 		}
 	}
 	

@@ -4,7 +4,6 @@ import useSystem from './UseSystem'
 export default function useSettings(settingsID, applySettings){
 	const {get, save} = useSystem().Settings
 	
-	
 	useEffect(() => {
 		const fetchAndApply = async () => {
 			try{
@@ -15,7 +14,7 @@ export default function useSettings(settingsID, applySettings){
 			}
 		}
 		
-		if(settingsID){ fetchAndApply() }
+		if(settingsID){fetchAndApply()}
 	}, [])
 	
 	

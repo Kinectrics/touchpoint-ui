@@ -27,7 +27,12 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			if (searchText) {
 
 				rowMeta.searchHidden = !headers.get().some((hdr) => {
-					return hdr.dataType.search(r[hdr.headerID], searchText)
+					try {
+						const newValue = r[hdr.headerID].toString().toLowerCase()
+						return newValue.includes(searchText.toLowerCase())
+					} catch (err) {
+						return false
+					}
 				})
 			}
 
@@ -42,12 +47,12 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		setMetaData(searchData(data))
 	}, [searchText])
 	
-	
 	//Filters the data based on given headers
 	function filterData(values){
 		
 		const newMetaData = []
 		
+
 		values.forEach((r, idx) => {
 			
 			const rowMeta = metaData[idx] ? metaData[idx] : {}

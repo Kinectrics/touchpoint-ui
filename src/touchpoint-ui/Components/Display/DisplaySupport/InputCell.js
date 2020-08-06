@@ -30,15 +30,15 @@ export default function InputCell(props) {
 		
 	}
 	
-	switch(props.dataHeader.dataType.kind){
+
 		
-		default: return <input
-			className = 'InputCell cellTextBox input'
-			defaultValue={props.defaultValue}
-			onKeyDown = {keyHandler}
-			onFocus = {focusHandler}
-		/>
-	}
+	return <input
+		className = 'InputCell cellTextBox input'
+		defaultValue={props.defaultValue}
+		onKeyDown = {keyHandler}
+		onFocus = {focusHandler}
+	/>
+	
 	
 }
 

@@ -39,7 +39,6 @@ export {default as Dock} from "./Components/Containers/Dock"
 
 //Data Objects
 export {default as DataHeader} from "./DataObjects/DataHeader"
-export {default as DataType} from "./DataObjects/DataType"
 
 
 //Hooks

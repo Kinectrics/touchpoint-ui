@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import produce from 'immer'
 import DataHeader  from '../DataObjects/DataHeader'
 import {v4 as uuid} from 'uuid'
 
@@ -26,9 +25,7 @@ export default function useHeaders(dataHeaders = []) {
 	
 	
 	const [savedLayouts, setSavedLayouts] = useState({})
-	
 	const [settingsEngine, setSettingsEngine] = useState({ save: () => { } })
-	
 	const [tokenTrigger, setTokenTrigger] = useState(false)
 	
 	
@@ -88,12 +85,15 @@ export default function useHeaders(dataHeaders = []) {
 	
 	//Saves a list of unique values in each column (header) - to be used in the filter dropdowns
 	function embedData(data, metaData) {
+		
+		const newHeaders = [...headers]
+		
+		newHeaders.forEach((hdr) => {
+			hdr.embedData(data, metaData)
+		})
+
 		//using Immer to edit the header state while keeping it immutable
-		setHeaders(produce(headers, (draft) => {
-			draft.map((hdr) => {
-				hdr.embedData(data, metaData)
-			})
-		}))
+		setHeaders(newHeaders)
 	}
 	
 	function applyToken(token){
