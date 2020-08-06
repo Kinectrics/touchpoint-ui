@@ -4,7 +4,6 @@
 	overflow-y: auto;
 	max-height: inherit;
 	position: relative;
-	
 	width: auto;
 	display: flex;
 }

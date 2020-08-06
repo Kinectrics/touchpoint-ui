@@ -161,6 +161,7 @@ export default function MainTable(props){
 			
 			{/* Header Titles */}
 			<div className="titleBar">
+				
 				<div className="topBar">
 					<TableControls
 						hasFilter = {hasFilter}
@@ -179,7 +180,7 @@ export default function MainTable(props){
 					{props.dataHeaders.get().map((hdr) => {
 						if(hdr.visible){return(
 							<span style={{width: hdr.width + '%'}} key = {'header'+hdr.headerID}>
-									
+								
 								<TheadButton
 									header = {hdr}
 									data = {props.data}
