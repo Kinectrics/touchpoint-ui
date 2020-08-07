@@ -15,7 +15,7 @@ export default function MainTable(props){
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
 	let noSort = props.noSort   
 	let noFilter = props.noFilter
-	let noOptions = props.noOptions
+	let noOptions = props.noOptions || !props.settingsID
 	let searchable = props.searchable
 	
 	//support for dataSets or for just arrays

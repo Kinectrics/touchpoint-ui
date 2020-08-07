@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import MenuButton from '../MenuButton'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faWindowRestore, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faWindowRestore, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
 import './SaveTableLayout.css'
 import ConfirmButton from '../../Inputs/ConfirmButton'
 
@@ -15,13 +15,19 @@ export default function SaveTableLayout(props) {
 		setValidClass('')
 	}
 	
+	const savedLayouts = props.headers.getSavedLayouts()
+	
 	function commitHandler(){
 		
-		if(saveName.trim() === ''){
-			setValidClass('invalid')
-		} else{
+		const nameExists = Object.values(savedLayouts).some((f)=>{
+			return f.name === saveName
+		})
+		
+		if(saveName.trim() !== '' && !nameExists){
 			setSaveName('')
 			props.headers.saveLayout(saveName)
+		} else{
+			setValidClass('invalid')
 		}	
 	}
 	
@@ -39,7 +45,7 @@ export default function SaveTableLayout(props) {
 
 	}
 	
-	const savedLayouts = props.headers.getSavedLayouts()
+	
 	
 	return (
 		<MenuButton
