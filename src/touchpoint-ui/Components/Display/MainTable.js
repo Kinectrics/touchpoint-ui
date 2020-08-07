@@ -202,7 +202,7 @@ export default function MainTable(props){
 			
 			
 			<div className={"mainSection" + transitionClass} style={{
-				width: 'calc(' + totalHeaderWidth + 'px + 70px)' 
+				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
 			}}>
 
 				
