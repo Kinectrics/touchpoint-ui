@@ -11,7 +11,6 @@ export default function MoreFilterButton(props) {
 	}
 	
 	useEffect(()=>{
-		console.log(props.openTrigger)
 		setActive(props.header.filterList[props.filterID] ? true : false)
 	}, [props.openTrigger])
 	
