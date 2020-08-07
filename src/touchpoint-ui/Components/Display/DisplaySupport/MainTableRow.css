@@ -1,5 +1,5 @@
 .MainTableRow{
-	width:100%;
+	width: 100%;
 	background-color: transparent;
 	padding: 4px 10px;
 	height: 40px;
@@ -12,13 +12,11 @@
 }
 
 .MainTable.hasActive .MainTableRow:hover{
-	/* padding: 1px 0; */
 	filter: brightness(97%)
 }
 
 .MainTable.hasActive .MainTableRow:active{
 	transition: all 0.05s ease-out;
-	/* padding: 5px 9px; */
 	filter: brightness(95%)
 }
 
@@ -37,12 +35,6 @@
 	transition: color 0.3s, color 0.15s ease-out;	
 	overflow: hidden;
 }
-
-/* .MainTableRow.dynamic .rowContainer:hover{
-	box-shadow: var(--dynamicCardShadow);
-	padding-left: 20px;
-	padding-top: 6px;
-} */
 
 .MainTableRow .active{
 	color: var(--tableActiveColor);

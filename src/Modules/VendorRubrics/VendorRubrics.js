@@ -32,12 +32,17 @@ export default function VendorRubrics(){
 	const dataHeaders = useHeaders([
 		{ headerID:'id',displayName:'ID', width: 50, required: true},
 		{ headerID: 'vendor', displayName:'My Vendor', width: 200},
-		{ headerID: 'project', displayName:'Project', width: 200},
-		{ headerID: 'projectName', displayName:'Project Name', width: 300},
+		{ headerID: 'project', displayName:'Project', width: 250},
+		{ headerID: 'projectName', displayName:'Project Name', width: 350},
 		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
 		{ headerID: 'due', displayName:'Due', width: 200},
 		{ headerID: 'SM', displayName:'SM', width: 300},
 		{ headerID: 'intern', displayName:'Intern', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300},
+		{ headerID: 'intern', displayName:'Intern', width: 300},
+		{ headerID: 'intern', displayName:'Intern6', width: 300},
 	])
 	
 	//Data from the 'server'
@@ -97,7 +102,7 @@ export default function VendorRubrics(){
 			
 			<MainTable
 				data={data}
-				dataHeaders={dataHeaders}
+				headers={dataHeaders}
 				setActiveRecord={setActiveRecord}
 				activeRecord={activeRecord}
 				pageSize={200}

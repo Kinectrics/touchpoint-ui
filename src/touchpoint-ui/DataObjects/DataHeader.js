@@ -5,7 +5,7 @@ export default class DataHeader{
 	constructor(options){
 		this.headerID = options.headerID
 		this.displayName = options.displayName
-		this.width = options.width ? options.width : 10
+		this.width = options.width ? options.width : 100
 		this.required = options.required ? options.required : false
 		this.visible = (!options.visible === undefined) ? options.visible : true
 		this.index = options.index

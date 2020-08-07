@@ -43,7 +43,7 @@ export default function MainTableRow(props) {
 			//No conditional formatting
 			if (!hdr.styling){return(<span 
 				key = {hdr.headerID+props.rowKey} 
-				style = {{width: hdr.width + '%'}}
+				style = {{width: hdr.width + 'px'}}
 			>
 				{cellContent}
 			</span>)
@@ -56,7 +56,7 @@ export default function MainTableRow(props) {
 				return( //with coniditional formatting
 					
 					<span className = 'badge' key = {hdr.headerID+props.rowKey} style = {{
-						width: 'calc(' + hdr.width + '% - 23px',
+						width: 'calc(' + hdr.width + 'px - 23px',
 						color: myStyle.textColor,
 						backgroundColor: myStyle.badgeColor,
 						marginLeft: '23px'

@@ -6,28 +6,28 @@ import {v4 as uuid} from 'uuid'
 //Crates a set of DataHeaders, for use with a mainTable
 export default function useHeaders(dataHeaders = []) {
 	
-	function normalize(headerArray){
-		let totalWidth = 0
-		headerArray.forEach((hdr)=>{
-			if(hdr.visible){totalWidth = totalWidth + hdr.width}
+	const [totalWidth, setTotalWidth] = useState(0)
+	
+	const [headers, setHeaders] = useState(()=>{
+		let newTotal = 0
+		
+		const newHeaders = dataHeaders.map((hdr, i) => {
+			const obj = new DataHeader(hdr)
+			obj.index = i
+			newTotal = newTotal + hdr.width
+			return (obj)
 		})
 		
-		return headerArray.map((hdr, i)=>{
-			hdr.width = 99 * (hdr.width / totalWidth)
-			hdr.index = i
-			return hdr
-		})
-	}
-	
-	const [headers, setHeadersFinal] = useState(normalize(dataHeaders.map((hdr) => {
-		return (new DataHeader(hdr))
-	})))
+		setTotalWidth(newTotal)
+		
+		return newHeaders
+		
+	})
 	
 	
 	const [savedLayouts, setSavedLayouts] = useState({})
 	const [settingsEngine, setSettingsEngine] = useState({ save: () => { } })
 	const [tokenTrigger, setTokenTrigger] = useState(false)
-	
 	
 	//Coverts the current layout to JSON and saves it
 	function saveLayout(layoutName){
@@ -71,7 +71,7 @@ export default function useHeaders(dataHeaders = []) {
 				newHeaders.push(h)
 			})
 				
-			setHeaders(normalize(newHeaders))
+			setHeaders(newHeaders)
 		}
 	}
 	
@@ -101,11 +101,6 @@ export default function useHeaders(dataHeaders = []) {
 		setSavedLayouts(newSettings.savedLayouts)
 	}
 	
-	
-	function setHeaders(headerList) {
-		setHeadersFinal(normalize(headerList))
-	}
-	
 	//If settings have changed since the last render, create and save a new token
 	if (tokenTrigger) {
 		setTokenTrigger(false)
@@ -128,6 +123,7 @@ export default function useHeaders(dataHeaders = []) {
 		loadLayout: loadLayout,
 		deleteLayout: deleteLayout,
 		getSavedLayouts: ()=>{return savedLayouts},
-		setSettingsEngine: setSettingsEngine
+		setSettingsEngine: setSettingsEngine,
+		totalWidth: totalWidth
 	})
 }

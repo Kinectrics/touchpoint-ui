@@ -33,19 +33,19 @@ export default function MainTable(props){
 	
 	//Settings token support 
 	const saveSettings = useSettings(props.settingsID, (token) => {
-		props.dataHeaders.applyToken(token)
+		props.headers.applyToken(token)
 	})
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(()=>{
 		
 		if(!noFilter){
-			props.dataHeaders.embedData(data, metaData)
-			props.data.setHeaders(props.dataHeaders)
+			props.headers.embedData(data, metaData)
+			props.data.setHeaders(props.headers)
 		}
 		
 		if(!noOptions){
-			props.dataHeaders.setSettingsEngine({save: saveSettings})
+			props.headers.setSettingsEngine({save: saveSettings})
 		}
 		
 	}, [props.data.lastResolved])
@@ -86,12 +86,13 @@ export default function MainTable(props){
 	
 	//Normalize column widths to ensure they always add up to 100%
 	let hasFilter = false
-	props.dataHeaders.get().forEach(hdr => {
+	props.headers.get().forEach(hdr => {
 		//if you have input cells in the table, hover effects will be cancelled
 		if(hdr.onEdit){dynamic = false}
 		
 		//check if any headers have active filters (to show a clear filter button)
 		if(hdr.hasFilter()){hasFilter = true}
+
 	})
 	
 	//Counter for rendered rows
@@ -131,7 +132,7 @@ export default function MainTable(props){
 	}
 	
 	function clearFilter(){
-		props.dataHeaders.set(produce(props.dataHeaders.get(), draft =>{
+		props.headers.set(produce(props.headers.get(), draft =>{
 			draft.forEach(hdr=>{
 				hdr.clearFilter()
 			})
@@ -157,80 +158,86 @@ export default function MainTable(props){
 	
 	//Render
 	return (
-		<div className={"MainTable " + transitionClass + hasActiveClass}>
-			
-			{/* Header Titles */}
-			<div className="titleBar">
-				
-				<div className="topBar">
-					<TableControls
-						hasFilter = {hasFilter}
-						noFilter = {noFilter}
-						noSort = {noSort}
-						clearFilter = {clearFilter}
-						noOptions = {noOptions}
-						dataHeaders = {props.dataHeaders}
-						data = {props.data}
-						setTransitionClass ={setTransitionClass}
-					/>
-					<PageControls/>
-				</div>
-				
-				<div className="theadBar">
-					{props.dataHeaders.get().map((hdr) => {
-						if(hdr.visible){return(
-							<span style={{width: hdr.width + '%'}} key = {'header'+hdr.headerID}>
-								
+		<div className="MainTable">
+
+			<div className="topBar">
+				<TableControls
+					hasFilter={hasFilter}
+					noFilter={noFilter}
+					noSort={noSort}
+					clearFilter={clearFilter}
+					noOptions={noOptions}
+					dataHeaders={props.headers}
+					data={props.data}
+					setTransitionClass={setTransitionClass}
+				/>
+				<PageControls />
+			</div>
+
+
+			<div className="theadBar">
+				{props.headers.get().map((hdr) => {
+					if (hdr.visible) {
+						return (
+							<span style={{ width: hdr.width + 'px' }} key={'header' + hdr.headerID}>
+
 								<TheadButton
-									header = {hdr}
-									data = {props.data}
-									dataHeaders = {props.dataHeaders}
-									noFilter = {noFilter}o
-									noSort = {noSort}
+									header={hdr}
+									data={props.data}
+									dataHeaders={props.headers}
+									noFilter={noFilter} o
+									noSort={noSort}
 								>
 									{hdr.displayName + ' '}
 								</TheadButton>
-								
+
 							</span>
-						)} else return null
-					})}
-				</div>
+						)
+					} else return null
+				})}
 			</div>
 			
-			{/* Table body data */}
-			<div className = {'tableBody ' + props.data.lastResolved}>
-				{data.map((dr, idx) => {
-					//render the allowed numebr of rows, on th selected page
-					if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
-						
-						let renderRow = dr !== []
-						
-						if(searchable){
-							renderRow = !metaData[idx].searchHidden
-						}
-						
+			
+			<div className={"mainSection" + transitionClass + hasActiveClass} style={{
+				width: props.headers.totalWidth
+			}}>
 
-						renderRow = renderRow && (noFilter || metaData[idx].visible)
+				
+				{/* Table body data */}
+				<div className = {'tableBody ' + props.data.lastResolved}>
+					{data.map((dr, idx) => {
+						//render the allowed numebr of rows, on th selected page
+						if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
+							
+							let renderRow = dr !== []
+							
+							if(searchable){
+								renderRow = !metaData[idx].searchHidden
+							}
+							
+
+							renderRow = renderRow && (noFilter || metaData[idx].visible)
+							
+							const r = renderRow ? 
+								<MainTableRow
+									dataRow = {dr}
+									dataHeaders={props.headers.get()}
+									setActiveRecord = {props.setActiveRecord}
+									activeRecord = {activeRecord}
+									rowKey = {'MainTableRow'+i}
+									key = {'MainTableRow'+i}
+									locked = {locked}
+									dynamic = {dynamic}
+								/> : null
+							
+							if(r){i++}//Count the number of rows actually renedered (not filtered out)
+							
+							return r
+						} else if(i <= (1 + activePage)*pageSize){i++}
 						
-						const r = renderRow ? 
-							<MainTableRow
-								dataRow = {dr}
-								dataHeaders={props.dataHeaders.get()}
-								setActiveRecord = {props.setActiveRecord}
-								activeRecord = {activeRecord}
-								rowKey = {'MainTableRow'+i}
-								key = {'MainTableRow'+i}
-								locked = {locked}
-								dynamic = {dynamic}
-							/> : null
-						
-						if(r){i++}//Count the number of rows actually renedered (not filtered out)
-						
-						return r
-					} else if(i <= (1 + activePage)*pageSize){i++}
-					
-					return null
-				})}
+						return null
+					})}
+				</div>
 			</div>
 		</div>
 	)
@@ -241,7 +248,7 @@ export default function MainTable(props){
 MainTable.propTypes = {
 	setActiveRecord: PropTypes.func,
 	onEdit: PropTypes.func,
-	dataHeaders: PropTypes.object.isRequired,
+	headers: PropTypes.object.isRequired,
 	
 	data: PropTypes.oneOfType([
 		PropTypes.object,

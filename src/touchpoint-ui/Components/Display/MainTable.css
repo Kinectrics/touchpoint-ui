@@ -1,22 +1,22 @@
 .MainTable{
+	width: 100%;
+	position: relative;
+	height: 100%;
 	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.MainTable .mainSection{
 	padding: 0px 10px;
-	width:100%;
 	background-color: var(--bodyAltBG);
-	height: 100vh;
 	padding-bottom: 75vh;
 	color: var(--mainTextColor);
-	position: relative;
+	height: 100%;
+	overflow-y: auto;
 }
 
 .MainTable.noTransition *{
 	transition: none !important;
-}
-
-.MainTable .titleBar{
-	position: sticky;
-	top:0;
-	z-index: 20;
 }
 
 .MainTable .topBar{
@@ -25,6 +25,9 @@
 	padding-top: 3px;
 	padding-left: 30px;
 	background-color: var(--bodyAltBG);
+	position: sticky;
+	left: 0;
+	z-index: 2;
 }
 
 .MainTable .topBar .menuButtonContainer{
@@ -34,13 +37,13 @@
 
 .MainTable .theadBar{
 	overflow-y: visible;
+	width: fit-content;
 	background-color: var(--bodyAltBG);
-	padding-left: 25px;
+	padding-left: 35px;
 	padding-right: 25px;
-	position: sticky;
-	top:0;
-	z-index: 20;
+	display: flex;
 }
+
 
 .MainTable .TheadButton{
 	white-space: nowrap;
@@ -136,7 +139,7 @@
 
 .MainTable .smallIcon{
 	font-size: 10pt;
-}
+} 
 
 .MainTable .smallerIcon{
 	font-size: 9pt;
