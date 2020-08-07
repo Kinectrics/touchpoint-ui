@@ -24,7 +24,7 @@ export function getTableData(){
 	const projectNames = ['Cooling Things and such', '','Radiation protection etc.']
 	const statuses = ['Complete', '','Open']
 	const dues = ['1-May-20', '','1-Jan-20']
-	const interns = ['Youssof Fahmy', 'Clara Birch','Claire Del Fatti']
+	const interns = ['Youssof Fahmy', 'Andrew Wuebbolt','Clara Birch']
 	const project = [36527,39568,38735,36815,39202,39548]
 	const scr = [
 		[99876,88767, 5909873, 776378, 88282,747224,4289042,27427924],[99383,88393],[83729],[99557]

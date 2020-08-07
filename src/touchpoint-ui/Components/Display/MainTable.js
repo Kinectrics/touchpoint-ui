@@ -176,10 +176,10 @@ export default function MainTable(props){
 
 
 			<div className="theadBar">
-				{props.headers.get().map((hdr) => {
+				{props.headers.get().map((hdr, i) => {
 					if (hdr.visible) {
 						return (
-							<span style={{ width: hdr.width + 'px' }} key={'header' + hdr.headerID}>
+							<span style={{ width: hdr.width + 'px' }} key={'header' + i}>
 
 								<TheadButton
 									header={hdr}
@@ -198,7 +198,9 @@ export default function MainTable(props){
 			</div>
 			
 			
-			<div className={"mainSection" + transitionClass + hasActiveClass}>
+			<div className={"mainSection" + transitionClass + hasActiveClass} style={{
+				width: 'calc(' + props.headers.totalWidth + 'px + 70px)' 
+			}}>
 
 				
 				{/* Table body data */}

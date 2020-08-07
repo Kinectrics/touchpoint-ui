@@ -28,7 +28,7 @@ export default function MainTableRow(props) {
 	},[props.activeRecord, props.dataRow]);
 	
 	//Only continue building the row if it's actually required
-	const row = props.dataHeaders.map(hdr => {
+	const row = props.dataHeaders.map((hdr, i) => {
 		if(hdr.visible){
 			//Decide if the cell is editable or not based on the locked status, and the header onEdit function
 			let cellContent = props.dataRow[hdr.headerID]
@@ -55,7 +55,7 @@ export default function MainTableRow(props) {
 				
 				return( //with coniditional formatting
 					
-					<span className = 'badge' key = {hdr.headerID+props.rowKey} style = {{
+					<span className = 'badge' key = {hdr.headerID + props.rowKey + i} style = {{
 						width: 'calc(' + hdr.width + 'px - 23px',
 						color: myStyle.textColor,
 						backgroundColor: myStyle.badgeColor,

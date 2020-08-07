@@ -38,11 +38,6 @@ export default function VendorRubrics(){
 		{ headerID: 'due', displayName:'Due', width: 200},
 		{ headerID: 'SM', displayName:'SM', width: 300},
 		{ headerID: 'intern', displayName:'Intern', width: 300},
-		{ headerID: 'intern', displayName:'Intern', width: 300},
-		{ headerID: 'intern', displayName:'Intern', width: 300},
-		{ headerID: 'intern', displayName:'Intern', width: 300},
-		{ headerID: 'intern', displayName:'Intern', width: 300},
-		{ headerID: 'intern', displayName:'Intern6', width: 300},
 	])
 	
 	//Data from the 'server'
@@ -80,7 +75,7 @@ export default function VendorRubrics(){
 			</ControlBar>
 			
 			<SplitScreen defaultSize={55}>
-				<InfoTabContainer defaultTab='RubricHeader'>
+				<InfoTabContainer defaultTab='StatusLog'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader activeRecord = {activeRecord} system={system}/>

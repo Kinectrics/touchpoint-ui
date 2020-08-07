@@ -9,7 +9,6 @@
 .MainTable .mainSection{
 	padding: 0px 10px;
 	background-color: var(--bodyAltBG);
-	padding-bottom: 75vh;
 	color: var(--mainTextColor);
 	height: 100%;
 	overflow-y: auto;
