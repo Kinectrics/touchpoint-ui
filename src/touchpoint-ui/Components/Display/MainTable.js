@@ -84,11 +84,14 @@ export default function MainTable(props){
 		hasActiveClass = ' hasActive '
 	} 
 	
-	//Normalize column widths to ensure they always add up to 100%
 	let hasFilter = false
+	let totalHeaderWidth = 70
+	
 	props.headers.get().forEach(hdr => {
 		//if you have input cells in the table, hover effects will be cancelled
 		if(hdr.onEdit){dynamic = false}
+		
+		if(hdr.visible){totalHeaderWidth = totalHeaderWidth + hdr.width}
 		
 		//check if any headers have active filters (to show a clear filter button)
 		if(hdr.hasFilter()){hasFilter = true}
@@ -199,7 +202,7 @@ export default function MainTable(props){
 			
 			
 			<div className={"mainSection" + transitionClass} style={{
-				width: 'calc(' + props.headers.totalWidth + 'px + 70px)' 
+				width: 'calc(' + totalHeaderWidth + 'px + 70px)' 
 			}}>
 
 				

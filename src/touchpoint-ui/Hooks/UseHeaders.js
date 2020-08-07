@@ -6,21 +6,11 @@ import {v4 as uuid} from 'uuid'
 //Crates a set of DataHeaders, for use with a mainTable
 export default function useHeaders(dataHeaders = []) {
 	
-	const [totalWidth, setTotalWidth] = useState(0)
-	
-	const [headers, setHeaders] = useState(()=>{
-		let newTotalWidth = 0
-		
-		const newHeaders = dataHeaders.map((hdr, i) => {
+	const [headers, setHeaders] = useState(dataHeaders.map((hdr, i) => {
 			const obj = new DataHeader(hdr)
 			obj.index = i
-			newTotalWidth = newTotalWidth + hdr.width
 			return (obj)
-		})
-		
-		setTotalWidth(newTotalWidth)
-		return newHeaders
-	})
+	}))
 	
 	
 	const [savedLayouts, setSavedLayouts] = useState({})
@@ -122,6 +112,5 @@ export default function useHeaders(dataHeaders = []) {
 		deleteLayout: deleteLayout,
 		getSavedLayouts: ()=>{return savedLayouts},
 		setSettingsEngine: setSettingsEngine,
-		totalWidth: totalWidth,
 	})
 }
