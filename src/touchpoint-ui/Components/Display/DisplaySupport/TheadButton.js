@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import MenuButton from '../MenuButton'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretDown, faFilter} from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,8 @@ export default function TheadButton(props){
 		iconClass = 'smallerIcon'
 	}
 	
+	const [openTrigger, setOpenTrigger] = useState(false)
+	
 	if(props.noSort && props.noFilter) { 
 		
 		return(props.children)
@@ -23,12 +25,15 @@ export default function TheadButton(props){
 		return (
 			<MenuButton 
 				className='TheadButton' 
-				locked = {false} menuContent={<TheadMenu
+				locked = {false} 
+				onOpen = {()=>setOpenTrigger(!openTrigger)}
+				menuContent={<TheadMenu
 					dataHeaders={props.dataHeaders}
 					header={props.header}
 					data={props.data}
 					noSort = {props.noSort}
 					noFilter = {props.noFilter}
+					openTrigger = {openTrigger}
 				/>}
 				menuStyle = {{maxHeight: '50vh'}}
 			>

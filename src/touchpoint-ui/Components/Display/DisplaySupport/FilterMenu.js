@@ -52,6 +52,7 @@ export default function FilterMenu(props){
 			header = {props.header}
 			dataHeaders = {props.dataHeaders}
 			data={props.data}
+			openTrigger = {props.openTrigger}
 		/>
 	</div>
 	

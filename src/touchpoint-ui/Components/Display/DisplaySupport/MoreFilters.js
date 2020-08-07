@@ -22,6 +22,7 @@ export default function MoreFilters(props) {
 						header = {props.header}
 						dataHeaders = {props.dataHeaders}
 						data = {props.data}
+						openTrigger = {props.openTrigger}
 					/>
 					  
 				} else return null

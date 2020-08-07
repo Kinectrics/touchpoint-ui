@@ -20,6 +20,7 @@ export default function TheadMenu(props) {
 						dataHeaders={props.dataHeaders}
 						header={props.header}
 						data={props.data}
+						openTrigger = {props.openTrigger}
 					/>
 				</InfoTab>
 

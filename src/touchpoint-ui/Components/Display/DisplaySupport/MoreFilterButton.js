@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import MoreFilterButtonActive from './MoreFilterButtonActive'
+import { useEffect } from 'react'
 
 export default function MoreFilterButton(props) {
 	
@@ -8,6 +9,11 @@ export default function MoreFilterButton(props) {
 	function activate(){
 		setActive(!active)
 	}
+	
+	useEffect(()=>{
+		console.log(props.openTrigger)
+		setActive(false)
+	}, [props.openTrigger])
 	
 	if(!active){return(
 		
