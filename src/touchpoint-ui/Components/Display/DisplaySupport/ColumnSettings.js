@@ -8,22 +8,12 @@ import MenuButton from '../MenuButton'
 export default function ColumnSettings(props) {
 
 	function clickHandler(checked, idx){
-		props.setTransitionClass('noTransition')
-		let reFilter = false
 		
-		props.headers.set(
-			produce(props.headers.get(), (draftHeaders) => {
-				draftHeaders[idx].visible = checked
-				
-				if (!checked && draftHeaders[idx].hasFilter()){
-					draftHeaders[idx].clearFilter()
-					reFilter = true
-				}	
-			})
-		)
+		props.setTransitionClass('noTransition')
+		props.headers.setVisible(idx, checked)
 		
 		setTimeout(()=>{
-			if(reFilter){props.data.filter()}
+			props.data.filter()
 			props.setTransitionClass('')
 		},0)
 	}

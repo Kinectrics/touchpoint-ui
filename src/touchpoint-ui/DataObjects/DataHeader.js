@@ -86,10 +86,6 @@ export default class DataHeader{
 		
 		this.selectAll(true)
 	}
-	
-	setVisible(bool){
-		this.visible = bool
-	}
 }
 
 
