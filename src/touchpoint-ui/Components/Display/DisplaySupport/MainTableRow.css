@@ -11,13 +11,9 @@
 	cursor: pointer;
 }
 
-.MainTable.hasActive .MainTableRow:hover{
-	filter: brightness(97%)
-}
-
 .MainTable.hasActive .MainTableRow:active{
 	transition: all 0.05s ease-out;
-	filter: brightness(95%)
+	filter: brightness(95%);
 }
 
 .MainTableRow span{

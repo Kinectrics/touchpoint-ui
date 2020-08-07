@@ -30,9 +30,9 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = useHeaders([
-		{ headerID:'id',displayName:'ID', width: 50, required: true},
-		{ headerID: 'vendor', displayName:'My Vendor', width: 200},
-		{ headerID: 'project', displayName:'Project', width: 250},
+		{ headerID:'id',displayName:'ID', width: 200, required: true},
+		{ headerID: 'vendor', displayName:'My Vendor', width: 300},
+		{ headerID: 'project', displayName:'Project', width: 300},
 		{ headerID: 'projectName', displayName:'Project Name', width: 350},
 		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
 		{ headerID: 'due', displayName:'Due', width: 200},

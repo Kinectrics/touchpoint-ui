@@ -20,7 +20,6 @@ export default function useHeaders(dataHeaders = []) {
 		
 		setTotalWidth(newTotalWidth)
 		return newHeaders
-		
 	})
 	
 	

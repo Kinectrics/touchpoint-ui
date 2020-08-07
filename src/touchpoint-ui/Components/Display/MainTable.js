@@ -158,7 +158,7 @@ export default function MainTable(props){
 	
 	//Render
 	return (
-		<div className="MainTable">
+		<div className={'MainTable ' + hasActiveClass}>
 
 			<div className="topBar">
 				<TableControls
@@ -198,7 +198,7 @@ export default function MainTable(props){
 			</div>
 			
 			
-			<div className={"mainSection" + transitionClass + hasActiveClass} style={{
+			<div className={"mainSection" + transitionClass} style={{
 				width: 'calc(' + props.headers.totalWidth + 'px + 70px)' 
 			}}>
 
