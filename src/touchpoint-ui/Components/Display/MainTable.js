@@ -198,9 +198,7 @@ export default function MainTable(props){
 			</div>
 			
 			
-			<div className={"mainSection" + transitionClass + hasActiveClass} style={{
-				width: props.headers.totalWidth
-			}}>
+			<div className={"mainSection" + transitionClass + hasActiveClass}>
 
 				
 				{/* Table body data */}
