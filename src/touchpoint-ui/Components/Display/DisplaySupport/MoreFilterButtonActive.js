@@ -48,7 +48,7 @@ export default function MoreFilterButtonActive(props) {
 	
 	
 	function commitHandler(){
-		if(value.trim() !== ''){
+		if (value.trim && value.trim() !== ''){
 			addFilter(value)
 		} else{
 			cancelHandler()
