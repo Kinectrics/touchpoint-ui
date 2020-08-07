@@ -5,7 +5,7 @@ import produce from 'immer'
 
 export default function MoreFilterButtonActive(props) {
 	
-	const [value, setValue] = useState(props.header.filterList[props.filterID] ? props.header.filterList[props.filterID].value : '')
+	const [value, setValue] = useState(props.header.filterList[props.filterID] ? props.header.filterList[props.filterID].options.value : '')
 	
 	function changeHandler(e) {
 		setValue(e.target.value)
@@ -14,7 +14,7 @@ export default function MoreFilterButtonActive(props) {
 	
 	useEffect(()=>{
 		if (props.header.filterList[props.filterID] && props.header.filterList[props.filterID].value){
-			setValue(props.header.filterList[props.filterID].value)
+			setValue(props.header.filterList[props.filterID].options.value)
 		}
 		
 	}, [props.header.filterList[props.filterID]])
