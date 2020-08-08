@@ -19,7 +19,6 @@ export default function useHeaders(dataHeaders = []) {
 	//Coverts the current layout to JSON and saves it
 	function saveLayout(layoutName){
 		const newLayouts = {...savedLayouts}
-		
 		const saveID = uuid()
 		
 		newLayouts[saveID] = {
@@ -49,7 +48,7 @@ export default function useHeaders(dataHeaders = []) {
 			
 			headers.forEach(h=>{
 				h.clearFilter()
-				h.setVisible(savedLayouts[id].headerOptions[h.headerID].visible)
+				h.visible = savedLayouts[id].headerOptions[h.headerID].visible 
 				
 				savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f)=>{
 					h.addFilter(f)

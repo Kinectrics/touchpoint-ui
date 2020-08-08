@@ -204,7 +204,6 @@ export default function MainTable(props){
 			<div className={"mainSection" + transitionClass} style={{
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
 			}}>
-
 				
 				{/* Table body data */}
 				<div className = {'tableBody ' + props.data.lastResolved}>
