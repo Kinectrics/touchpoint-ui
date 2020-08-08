@@ -180,6 +180,7 @@ export default function MainTable(props){
 
 			<div className="theadBar" style={{
 				top: 'var(--topBarHeight)',
+				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
 			}}>
 				{props.headers.get().map((hdr, i) => {
 					if (hdr.visible) {

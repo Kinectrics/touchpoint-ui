@@ -1,5 +1,4 @@
 .MainTableRow{
-
 	background-color: transparent;
 	padding: 4px 10px;
 	height: 40px;
@@ -22,7 +21,6 @@
 }
 
 .MainTableRow .rowContainer{
-
 	height: 100%;
 	background-color: var(--cardBG);
 	padding: 4px 15px;
