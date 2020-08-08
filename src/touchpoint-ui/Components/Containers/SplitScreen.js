@@ -15,13 +15,10 @@ export default function SplitScreen(props) {
 				minSize={150}
 				gutterSize={8}
 				snapOffset={1}
+				dragInterval={20}
 			>
-				<div className="topView"></div>
-				
-				<div className="bottomView" style = {props.style}>
-					{props.children}
-				</div>
-				
+				{props.children}
+
 			</Split>
 		</div>
 	)

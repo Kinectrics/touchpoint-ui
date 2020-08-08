@@ -75,6 +75,17 @@ export default function VendorRubrics(){
 			</ControlBar>
 			
 			<SplitScreen defaultSize={55}>
+				
+				<MainTable
+					data={data}
+					headers={dataHeaders}
+					setActiveRecord={setActiveRecord}
+					activeRecord={activeRecord}
+					pageSize={200}
+					searchable
+					settingsID={'VendorRubricsMainTable'}
+				/>
+				
 				<InfoTabContainer defaultTab='StatusLog'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
@@ -94,16 +105,6 @@ export default function VendorRubrics(){
 							
 				</InfoTabContainer>
 			</SplitScreen>
-			
-			<MainTable
-				data={data}
-				headers={dataHeaders}
-				setActiveRecord={setActiveRecord}
-				activeRecord={activeRecord}
-				pageSize={200}
-				searchable
-				settingsID = {'VendorRubricsMainTable'}
-			/>
 					
 		</Module>
 	)
