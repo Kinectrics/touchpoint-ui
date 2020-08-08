@@ -28,7 +28,7 @@ export default function AppDrawer(props) {
 				<lockedContext.Provider value={props.locked}>
 					<div 
 						className={'AppDrawer ' + props.className} 
-						style={{...props.style, left: drawerLeft}}
+						style={{...props.style, left: drawerLeft, opacity: '93%'}}
 					>
 						<div className="drawerContainer" style={props.innerStyle}>
 							<h1>{props.title}</h1>
