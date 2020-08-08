@@ -12,7 +12,7 @@ export default function SplitScreen(props) {
 		<div className='SplitScreen'>
 			<Split 
 				direction="vertical" sizes={[100 - splitSize, splitSize]}
-				minSize={150}
+				minSize={250}
 				gutterSize={8}
 				snapOffset={1}
 				dragInterval={20}

@@ -38,11 +38,8 @@
 
 .InfoTabContainer .nav-tabs a{
 	padding: 6px 30px;
-	padding-top: 0;
 	background-color: var(--navColor);
 	color: 	var(--navTextColor);
-	border-top-right-radius: 9px;
-	border-top-left-radius: 9px;
 	outline: none !important;
 	border: none;
 	margin-right: 8px;

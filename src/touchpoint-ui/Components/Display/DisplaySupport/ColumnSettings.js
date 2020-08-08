@@ -20,6 +20,9 @@ export default function ColumnSettings(props) {
 	
 	return (<MenuButton 
 			locked={false} 
+			menuStyle={{
+				maxHeight: '200px'
+			}}
 			menuContent={
 				<div style = {{overflowY: 'auto'}}>
 					{props.headers.get().map((h) => {

@@ -178,7 +178,9 @@ export default function MainTable(props){
 			</div>
 
 
-			<div className="theadBar">
+			<div className="theadBar" style={{
+				top: 'var(--topBarHeight)',
+			}}>
 				{props.headers.get().map((hdr, i) => {
 					if (hdr.visible) {
 						return (

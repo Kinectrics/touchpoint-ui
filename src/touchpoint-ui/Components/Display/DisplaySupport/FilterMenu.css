@@ -6,6 +6,7 @@
 	position: relative;
 	width: auto;
 	display: flex;
+	z-index: 100;
 }
 
 .FilterMenu .topMenu{

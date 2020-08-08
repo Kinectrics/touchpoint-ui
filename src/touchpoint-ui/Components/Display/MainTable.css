@@ -4,6 +4,7 @@
 	height: 100%;
 	overflow-x: auto;
 	overflow-y: auto;
+	--topBarHeight: 35px;
 }
 
 .MainTable .mainSection{
@@ -14,6 +15,7 @@
 	position: relative;
 	width: 100%;
 	overflow-y: hidden;
+	padding-bottom: 10px;
 }
 
 .MainTable .internalPadding{
@@ -34,27 +36,32 @@
 	left: 0;
 	z-index: 2;
 	top:0;
+	height: var(--topBarHeight);
 }
 
 .MainTable .topBar .menuButtonContainer{
 	padding: 0;
 	margin-right: 10px;
+	z-index: 11;
 }
 
 .MainTable .theadBar{
 	overflow-y: visible;
-	width: fit-content;
 	background-color: var(--bodyAltBG);
 	padding-left: 35px;
 	padding-right: 25px;
 	display: flex;
+	position: sticky;
+	z-index: 1;
+	
 }
 
 
 .MainTable .TheadButton{
 	white-space: nowrap;
 	text-align: left;
-	padding-left: 0;	
+	padding-left: 0;
+	color: var(--mainTextColor);	
 }
 
 .MainTable .TheadButton:active,

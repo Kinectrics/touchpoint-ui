@@ -15,7 +15,8 @@
 
 .SplitScreen .gutter{
 	width: 100%;
-	background-color: red;
+	background-color: var(--navColor);
+	opacity: 60%;
 	cursor: n-resize;
 	pointer-events: all;
 }
