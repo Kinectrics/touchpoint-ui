@@ -25,8 +25,8 @@
 	
 	/* FreeButtons */
 	--freeButtonNeutralBG: var(--labelColor);
-	--freeButtonPositiveBG: var(--navColor);
-	--freeButtonNegativeBG: var(--navColor);
+	--freeButtonPositiveBG: rgb(0, 138, 230);
+	--freeButtonNegativeBG: rgb(211, 67, 0);
 	--freeButtonTextColor: white;
 	
 	/* Inputs */
