@@ -21,7 +21,7 @@ export default function ColumnSettings(props) {
 	return (<MenuButton 
 			locked={false} 
 			menuStyle={{
-				maxHeight: '200px'
+				maxHeight: '300px'
 			}}
 			menuContent={
 				<div style = {{overflowY: 'auto'}}>

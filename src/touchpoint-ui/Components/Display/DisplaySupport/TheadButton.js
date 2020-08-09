@@ -35,7 +35,7 @@ export default function TheadButton(props){
 					noFilter = {props.noFilter}
 					openTrigger = {openTrigger}
 				/>}
-				menuStyle = {{maxHeight: '20vh'}}
+				menuStyle = {{maxHeight: '300px'}}
 			>
 				{props.children}
 				<span className = {iconClass}>{icon}</span>			

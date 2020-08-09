@@ -191,7 +191,7 @@ export default function MainTable(props){
 									header={hdr}
 									data={props.data}
 									dataHeaders={props.headers}
-									noFilter={noFilter} o
+									noFilter={noFilter} 
 									noSort={noSort}
 								>
 									{hdr.displayName + ' '}
