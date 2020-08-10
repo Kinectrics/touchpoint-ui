@@ -28,5 +28,4 @@ export default function SplitScreen(props) {
 SplitScreen.propTypes = {
 	defaultSize: PropTypes.number,
 	style: PropTypes.object,
-	
 }

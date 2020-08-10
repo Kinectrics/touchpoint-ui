@@ -78,7 +78,7 @@ export default function MenuButton(props){
 	const dropButton = React.forwardRef(({onClick}, ref)=> { 
 		
 		function clickHandler(e){
-			e.preventDefault()
+			e.preventDefault() 
 			onClick(e)
 		}
 		

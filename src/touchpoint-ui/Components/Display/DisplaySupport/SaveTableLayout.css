@@ -20,7 +20,7 @@
 
 .SaveTableLayout .cancelIcon{
 	position: absolute;  
-	right: -8px;
+	right: 5px;
 	top: 4px;
 	cursor: pointer;
 	width: fit-content !important;
@@ -30,7 +30,7 @@
 
 .SaveTableLayout .commitIcon{
 	position: absolute; 
-	right: 3px;
+	right: 5px;
 	bottom: 9px;
 	color: var(--lockedTextColor);
 	cursor: pointer;
