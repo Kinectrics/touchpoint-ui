@@ -79,34 +79,31 @@ export default function FilterMenu(props){
 				
 				<div className="filterOptions">
 					
-					{Object.keys(values).map((v) => {
+					{Object.keys(values).map((v, i) => {
 						
 						count++
 						
 						//Limit the number of checkboxes that are rendered to 200
 						if(count < lim){return (<button
 							key={props.header.id + 'fv' + count}
-							onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + count)}
+							onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
 						>
 							
 							<input 
 								type = 'checkbox'
 								checked = {values[v]}
-								id={props.header.headerID + 'fcb' + count}
+								id={props.header.headerID + 'fcb' + i}
 								value = {v}
 								style= {{cursor:'pointer'}}
 								readOnly
 							/>
 							<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
 							
-						</button>)
-						} else return null
+						</button>)} else return null
 						
 					})}
 					
-					{count >= lim ? <button>
-						... {count - lim} More
-					</button> : null}
+					{count >= lim ? <button>... {count - lim} More</button> : null}
 					
 				</div>
 			</div>
