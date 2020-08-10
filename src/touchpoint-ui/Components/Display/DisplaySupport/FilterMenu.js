@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import produce from 'immer'
 import './FilterMenu.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import MoreFilters from './MoreFilters'
 
 export default function FilterMenu(props){

@@ -2,11 +2,8 @@
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	max-height: inherit;
 	position: relative;
-	width: auto;
 	display: flex;
-	z-index: 100;
 }
 
 .FilterMenu .topMenu{
@@ -21,7 +18,6 @@
 	font-weight: bold;
 }
 
-/* Child menu */
 .FilterMenu .mainMenu{
 	position: relative;
 	max-height: inherit;

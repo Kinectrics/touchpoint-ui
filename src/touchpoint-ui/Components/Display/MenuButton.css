@@ -25,7 +25,9 @@
 
 .dropdown-menu{
 	background-color: var(--cardBG);
-	padding-top: 1px;
+	padding: 0;
+	border-radius: 7px;
+	overflow: hidden;
 }
 
 .Menu{

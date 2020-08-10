@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import MenuButton from '../MenuButton'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretDown, faFilter} from '@fortawesome/free-solid-svg-icons'
-import TheadMenu from './TheadMenu'
+import FilterMenu from './FilterMenu'
 
 
 export default function TheadButton(props){
@@ -27,14 +27,14 @@ export default function TheadButton(props){
 				className='TheadButton' 
 				locked = {false} 
 				onOpen = {()=>setOpenTrigger(!openTrigger)}
-				menuContent={<TheadMenu
+				
+				menuContent={<FilterMenu
 					dataHeaders={props.dataHeaders}
 					header={props.header}
 					data={props.data}
-					noSort = {props.noSort}
-					noFilter = {props.noFilter}
-					openTrigger = {openTrigger}
+					openTrigger={props.openTrigger}
 				/>}
+				
 				menuStyle = {{maxWidth: '350px', maxHeight: '310px'}}
 			>
 				{props.children}
