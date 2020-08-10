@@ -1,6 +1,5 @@
 import React from 'react'
 import CheckButton from './CheckButton'
-import produce from 'immer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faColumns} from '@fortawesome/free-solid-svg-icons'
 import MenuButton from '../MenuButton'

@@ -1,5 +1,4 @@
 import React from 'react'
-import produce from 'immer'
 import './FilterMenu.css'
 import MoreFilters from './MoreFilters'
 
@@ -11,30 +10,24 @@ export default function FilterMenu(props){
 		const cb = document.getElementById(id)
 		if(e.target !== cb){cb.checked = !cb.checked}
 		
-		//using immer to modify the dataHeaders state without breaking immutability rules
-		props.dataHeaders.set(
-			produce(props.dataHeaders.get(), (draftHeaders)=>{
-				draftHeaders[props.header.index].uniqueValues[cb.value] = cb.checked
-			})
-		)
+		const newHeaders = [...props.dataHeaders.get()]
+		newHeaders[props.header.index].uniqueValues[cb.value] = cb.checked
+		props.dataHeaders.set(newHeaders)
 	}
 	
 	function selectAll(e){
 		const cb = document.getElementById(props.header.headerID + 'selectAll')
 		if (e.target !== cb) { cb.checked = !cb.checked }
 		
-		//using immer to modify the dataHeaders state without breaking immutability rules
-		props.dataHeaders.set(
-			produce(props.dataHeaders.get(), (draftHeaders) => {
-				if(cb.checked){
-					draftHeaders[props.header.index].clearFilter()
-				} else{
-					draftHeaders[props.header.index].selectAll(cb.checked)
-				}
-			})
-		)
+		const newHeaders = [...props.dataHeaders.get()]
 		
-		props.data.filter()
+		if(cb.checked){
+			newHeaders[props.header.index].clearFilter()
+		} else{
+			newHeaders[props.header.index].selectAll(cb.checked)
+		}
+			
+		props.dataHeaders.set(newHeaders)
 	}
 	
 	const spanStyle = {

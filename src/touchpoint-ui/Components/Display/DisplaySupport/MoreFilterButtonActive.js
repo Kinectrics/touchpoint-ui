@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
-import produce from 'immer'
 
 export default function MoreFilterButtonActive(props) {
 	
@@ -21,13 +20,15 @@ export default function MoreFilterButtonActive(props) {
 	
 	
 	function addFilter(argValue){
-		props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
-			h[props.header.index].addFilter({
-				id: props.filterID,
-				value:  argValue
-			})
-		}))
 		
+		const newHeaders = [...props.dataHeaders.get()]
+		
+		newHeaders[props.header.index].addFilter({
+			id: props.filterID,
+			value:  argValue
+		})
+		
+		props.dataHeaders.set(newHeaders)
 		props.data.filter()
 	}
 	
@@ -38,9 +39,10 @@ export default function MoreFilterButtonActive(props) {
 		
 		//if filter exists, remove it
 		if (props.header.filterList[props.filterID]){
-			props.dataHeaders.set(produce(props.dataHeaders.get(), h => {
-				h[props.header.index].removeFilter(props.filterID)
-			}))
+			const newHeaders = [...props.dataHeaders.get()]
+			newHeaders[props.header.index].removeFilter(props.filterID)
+			props.dataHeaders.set(newHeaders)
+
 		}
 
 		props.data.filter()

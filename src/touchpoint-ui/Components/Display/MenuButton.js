@@ -8,8 +8,6 @@ import {Dropdown} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
 
-
-
 const dropMenu = React.forwardRef(
 	(props, ref) => {
 		return (
@@ -30,8 +28,6 @@ const dropMenu = React.forwardRef(
 		)
 	}
 )
-
-
 
 export default function MenuButton(props){
 	

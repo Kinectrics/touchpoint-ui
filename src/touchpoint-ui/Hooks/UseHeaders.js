@@ -78,7 +78,6 @@ export default function useHeaders(dataHeaders = []) {
 			hdr.embedData(data, metaData)
 		})
 
-		//using Immer to edit the header state while keeping it immutable
 		setHeaders(newHeaders)
 	}
 	

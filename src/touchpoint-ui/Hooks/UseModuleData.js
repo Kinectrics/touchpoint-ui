@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import moduleContext from '../Contexts/ModuleContext'
-import produce from 'immer'
 
 export default function useModuleContext(){
 	const [dataSource, setDataSource] = useContext(moduleContext)
@@ -9,9 +8,9 @@ export default function useModuleContext(){
 		get: (key) => {return dataSource[key]},
 		
 		set: (key, value) => {
-			setDataSource(produce(dataSource, draftSource => {
-				draftSource[key] = value
-			}))
+			const newSource = {...dataSource}
+			newSource[key] = value
+			setDataSource(newSource)
 		},
 		
 		clear: () => {setDataSource( {} )}

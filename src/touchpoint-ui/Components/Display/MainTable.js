@@ -4,7 +4,6 @@ import './MainTable.css'
 import MainTableRow from './DisplaySupport/MainTableRow'
 import lockedContext from '../../Contexts/LockedContext'
 import TheadButton from './DisplaySupport/TheadButton' 
-import produce from 'immer'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons'
 import TableControls from './DisplaySupport/TableControls'
@@ -135,11 +134,12 @@ export default function MainTable(props){
 	}
 	
 	function clearFilter(){
-		props.headers.set(produce(props.headers.get(), draft =>{
-			draft.forEach(hdr=>{
-				hdr.clearFilter()
-			})
-		}))
+		const newHeaders = [...props.headers.get()]
+		newHeaders.forEach(hdr=>{
+			hdr.clearFilter()
+		})
+		
+		props.headers.set(newHeaders)
 		props.data.filter()
 	}
 	
