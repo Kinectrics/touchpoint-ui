@@ -22,7 +22,7 @@ export {default as DockIcon} from "./Components/Inputs/DockIcon"
 
 
 //Display
-export {default as Popup} from "./Components/Display/Popup"
+export {default as PopupCard} from "./Components/Display/PopupCard"
 export {default as MenuButton} from "./Components/Display/MenuButton"
 export {default as MainTable} from "./Components/Display/MainTable"
 

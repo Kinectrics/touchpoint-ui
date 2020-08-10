@@ -1,5 +1,5 @@
 import React from 'react'
-import {useSystem, FreeButton, Popup} from './touchpoint-ui'
+import {useSystem, FreeButton, PopupCard} from './touchpoint-ui'
 
 export default function DrawerContent() {
 	
@@ -9,7 +9,7 @@ export default function DrawerContent() {
 		<div>
 			<FreeButton
 				onClick={() => {
-					System.Popup.open(<Popup stripeColor = 'red' title='Hello'>Testing</Popup>)
+					System.Popup.open(<PopupCard stripeColor = 'red' title='Hello'>Testing</PopupCard>)
 				}}
 				purpose='negative'
 			>TestPop</FreeButton>
@@ -17,12 +17,12 @@ export default function DrawerContent() {
 			
 			<FreeButton
 				onClick={() => {
-					System.Popup.open(<Popup stripeColor = 'green' title='Hello'>
+					System.Popup.open(<PopupCard stripeColor = 'green' title='Hello'>
 						<FreeButton purpose = 'positive' onClick={()=>{
 							System.Popup.close()
 							System.Drawer.close()
 						}}>Close all</FreeButton>
-					</Popup>)
+					</PopupCard>)
 				}}
 				purpose='positive'
 			>Test 2</FreeButton>

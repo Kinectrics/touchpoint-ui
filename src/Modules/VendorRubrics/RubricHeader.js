@@ -1,5 +1,5 @@
 import React from 'react'
-import {InfoCard, Popup, FreeButton, CommentBox, TextBox} from '../../touchpoint-ui'
+import {InfoCard, PopupCard, FreeButton, CommentBox} from '../../touchpoint-ui'
 import './RubricHeader.css'
 import ConfirmButton from '../../touchpoint-ui/Components/Inputs/ConfirmButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,9 +9,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 export default function RubricHeader(props) {
 	
 	function addSCRHandler(){
-		props.system.Popup.open(<Popup title='Add SCR #' >
+		props.system.Popup.open(<PopupCard title='Add SCR #' >
 			Add SCR Popup coming soon
-		</Popup>)
+		</PopupCard>)
 	}
 	
 	let scrList = props.activeRecord.scrList

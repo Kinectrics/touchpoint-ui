@@ -5,7 +5,7 @@ import InfoCard from '../Containers/InfoCard'
 import './Popup.css'
 import useSystem from '../../Hooks/UseSystem'
 
-export default function Popup(props) {
+export default function PopupCard(props) {
 	const system = useSystem()
 	
 	const lockedFromAbove = useContext(lockedContext)
@@ -50,7 +50,7 @@ export default function Popup(props) {
 }
 
 //Proptypes
-Popup.propTypes = {
+PopupCard.propTypes = {
 	title: PropTypes.string,
 	onClose: PropTypes.func,
 	onOpen: PropTypes.func,

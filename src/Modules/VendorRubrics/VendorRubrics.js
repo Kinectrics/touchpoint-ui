@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Module, ControlBar, SplitScreen, Popup, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
+import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
 import {useSystem, useHeaders, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt} from "@fortawesome/free-solid-svg-icons"
@@ -60,14 +60,14 @@ export default function VendorRubrics(){
 				</ControlButton>
 				
 				<ControlButton onClick={() => system.Popup.open(
-					<Popup 
+					<PopupCard 
 						closeButton
 						width='fit-content'
 						height='90%'
 						title = 'Embedded Reports Coming Soon!'						
 					>
 						<img src={PBI} height={'90%'}/>
-					</Popup>
+					</PopupCard>
 				)}>
 					<FontAwesomeIcon icon = {faChartArea}/> Business Intelligence
 				</ControlButton>
