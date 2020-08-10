@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react'
+import ReactDOM from 'react-dom'
 import lockedContext from '../../Contexts/LockedContext'
 import menuContext from '../../Contexts/MenuContext'
 import PropTypes from 'prop-types'
@@ -114,13 +115,14 @@ export default function MenuButton(props){
 			<Dropdown drop={direction} onToggle = {toggleHandler}>
 				
 				<Dropdown.Toggle as={dropButton}/>
-				<Dropdown.Menu 
+				
+				{ReactDOM.createPortal(<Dropdown.Menu 
 					as={dropMenu} 
 					MenuContent = {props.menuContent}
 					menuStyle = {props.menuStyle}
 				>
 						
-				</Dropdown.Menu>
+				</Dropdown.Menu>, document.body)}
 				
 			</Dropdown>
 		</span>
