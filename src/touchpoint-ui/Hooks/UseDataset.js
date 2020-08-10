@@ -52,7 +52,6 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		
 		const newMetaData = []
 		
-
 		values.forEach((r, idx) => {
 			
 			const rowMeta = metaData[idx] ? metaData[idx] : {}

@@ -17,8 +17,6 @@ export default function FilterMenu(props){
 				draftHeaders[props.header.index].uniqueValues[cb.value] = cb.checked
 			})
 		)
-		
-		props.data.filter()
 	}
 	
 	function selectAll(e){

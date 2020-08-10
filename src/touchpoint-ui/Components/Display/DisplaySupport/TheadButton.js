@@ -27,6 +27,7 @@ export default function TheadButton(props){
 				className='TheadButton' 
 				locked = {false} 
 				onOpen = {()=>setOpenTrigger(!openTrigger)}
+				onClose = {()=>{props.data.filter()}}
 				
 				menuContent={<FilterMenu
 					dataHeaders={props.dataHeaders}
