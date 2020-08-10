@@ -10,6 +10,7 @@ export default function TheadButton(props){
 	//if there is a menu, add a dropdown icon
 	let icon = <FontAwesomeIcon icon={faCaretDown} />
 	let iconClass = ''
+	
 	if (props.header.hasFilter()) { 
 		icon = <FontAwesomeIcon icon={faFilter} />
 		iconClass = 'smallerIcon'
