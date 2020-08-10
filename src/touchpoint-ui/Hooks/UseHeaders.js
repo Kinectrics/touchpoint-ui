@@ -58,6 +58,7 @@ export default function useHeaders(dataHeaders = []) {
 			})
 				
 			setHeaders(newHeaders)
+			setTokenTrigger(true)
 		}
 	}
 	
@@ -86,8 +87,6 @@ export default function useHeaders(dataHeaders = []) {
 		setSavedLayouts(newSettings.savedLayouts)
 		
 		const newHeaders = [...headers]
-		
-		console.log(newSettings)
 		
 		newHeaders.forEach((h)=>{
 			h.visible = newSettings.headerOptions[h.headerID].visible
