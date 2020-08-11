@@ -41,11 +41,9 @@ export default function SaveTableLayout(props) {
 	
 	function applyLayout(f){
 		props.headers.loadLayout(f)
-		props.data.filter()
+		props.data.sort()
 
 	}
-	
-	
 	
 	return (
 		<MenuButton
