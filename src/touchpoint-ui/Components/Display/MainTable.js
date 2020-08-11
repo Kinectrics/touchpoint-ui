@@ -39,7 +39,7 @@ export default function MainTable(props){
 	
 	if (sortTrigger) { 
 		setSortTrigger(false)
-		props.data.sort()
+		// props.data.sort()
 	}
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)

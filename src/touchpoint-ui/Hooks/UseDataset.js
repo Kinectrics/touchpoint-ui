@@ -80,7 +80,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		let newValues = [...values]
 		
 		headers.get().forEach((hdr)=>{
-			if (hdr.sortRule) {
+			if (hdr.sortRule && hdr.visible) {
 				newValues = newValues.sort((aRow, bRow) => {
 					if (hdr.sortRule === 'asc') {
 						return aRow[hdr.headerID] - bRow[hdr.headerID]

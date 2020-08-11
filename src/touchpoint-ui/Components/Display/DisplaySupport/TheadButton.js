@@ -12,7 +12,9 @@ export default function TheadButton(props){
 	let icon = <FontAwesomeIcon icon={faCaretDown} />
 	let iconClass = ''
 	
-	if (props.header.hasFilter()) { 
+	const hasFilter = props.header.hasFilter()
+	
+	if(hasFilter){ 
 		icon = <FontAwesomeIcon icon={faFilter} />
 		iconClass = 'smallerIcon'
 	}
