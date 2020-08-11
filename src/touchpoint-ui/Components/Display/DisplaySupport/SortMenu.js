@@ -1,23 +1,39 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSortAmountUp, faSortAmountDownAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function SortMenu(props) {
 	
 	function sortData(e){
-		console.log(e.target.value)
+		props.data.addSortRule({
+			headerID: props.header.headerID,
+			direction: e.target.value
+		})
+		
+		props.data.sort()
 	}
+	
+	const activeSort = props.data.sortRules.find(s=>s.headerID === props.header.headerID)
+	const sortDir = activeSort ? activeSort.direction : ''
+
+	const cancelIcon = <span className = 'sortIcon' onClick={(e)=>{
+		props.data.removeSortRule(props.header.headerID)
+		e.stopPropagation()
+	}
+	}>
+		<FontAwesomeIcon icon={faTimes} />
+	</span>
 	
 	return (
 		<div className='SortMenu'>
 			<button onClick={sortData} className='fullButton sortButton' value={'asc'}>
 				Sort Ascending
-				<span className = 'sortIcon'><FontAwesomeIcon icon={faSortAmountUp} /></span>
+				{sortDir === 'asc' ? cancelIcon : null}
 			</button>
 			
 			<button onClick={sortData} className='fullButton sortButton' value={'desc'}>
 				Sort Descending
-				<span className='sortIcon'><FontAwesomeIcon icon={faSortAmountDownAlt} /></span>
+				{sortDir === 'desc' ? cancelIcon : null}
 			</button>
 		</div>
 	)

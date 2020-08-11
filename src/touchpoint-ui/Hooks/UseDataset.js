@@ -11,6 +11,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
+	const [sortRules, setSortRules] = useState([])
 	
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
@@ -75,12 +76,32 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		return newMetaData
 	}
 	
+	
+	function sortData(values){
+		let newValues = [...values]
+		
+		sortRules.forEach((srt)=>{
+			
+			newValues = newValues.sort((aRow, bRow)=>{
+				if(srt.direction === 'asc'){
+					return aRow[srt.headerID] - bRow[srt.headerID]
+				} else{
+					return bRow[srt.headerID] - aRow[srt.headerID]
+				}
+			})
+			
+		})
+		
+		return newValues
+	}
+	
+	
 	//Fetch data and update state once the operation is complete. Keep the old value in the meantime
 	async function fetchData() {
 		setStatus('Pending')
 
 		try {
-			const value = await fetchFunction()
+			const value = sortData(await fetchFunction())
 			
 			setMetaData(searchData(value))
 			setMetaData(filterData(value))
@@ -127,5 +148,38 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			setMetaData(newMeta)
 			headers.embedData(data, newMeta)
 		},
+		
+		sort: () => {
+			const newData = sortData(data)
+			const newMeta = filterData(newData)
+			
+			setMetaData(newMeta)
+			setData(newData)
+		},
+		
+		addSortRule: (srt)=>{
+			let newRules = [...sortRules]
+			
+			//Remove any existing sortRules for that header
+			newRules = newRules.filter(s=>{
+				return s.headerID !== srt.headerID
+			})
+			
+			newRules.push(srt)
+			setSortRules(newRules)
+		},
+		
+		removeSortRule: (headerID)=>{
+			let newRules = [...sortRules]
+			
+			//Remove any existing sortRules for that header
+			newRules = newRules.filter(s=>{
+				return s.headerID !== headerID
+			})
+			
+			setSortRules(newRules)
+		},
+		
+		sortRules: sortRules,
 	})
 }

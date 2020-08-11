@@ -39,7 +39,7 @@ export default function TheadButton(props){
 				}}
 				
 				onClose = {()=>{
-					props.data.filter()
+					props.data.sort()
 					setIsOpen(false)
 				}}
 				
