@@ -31,10 +31,16 @@ export default function MainTable(props){
 	}
 	
 	//Settings token support 
+	const [sortTrigger, setSortTrigger] = useState(false)
 	const saveSettings = useSettings(props.settingsID, (token) => {
 		props.headers.applyToken(token)
-		// if(!noSort){props.data.sort()}
+		if(!noSort){setSortTrigger(true)}
 	})
+	
+	if (sortTrigger) { 
+		setSortTrigger(false)
+		props.data.sort()
+	}
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(()=>{
