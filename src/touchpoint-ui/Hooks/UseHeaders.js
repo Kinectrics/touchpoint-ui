@@ -29,6 +29,7 @@ export default function useHeaders(dataHeaders = []) {
 		headers.forEach((h)=>{
 			newLayouts[saveID].headerOptions[h.headerID] = {
 				visible: h.visible,
+				sortRule: h.sortRule,
 				filterList: []
 			}
 			
@@ -49,6 +50,7 @@ export default function useHeaders(dataHeaders = []) {
 			headers.forEach(h=>{
 				h.clearFilter()
 				h.visible = savedLayouts[id].headerOptions[h.headerID].visible 
+				h.sortRule = savedLayouts[id].headerOptions[h.headerID].sortRule
 				
 				savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f)=>{
 					h.addFilter(f)
@@ -90,6 +92,7 @@ export default function useHeaders(dataHeaders = []) {
 		
 		newHeaders.forEach((h)=>{
 			h.visible = newSettings.headerOptions[h.headerID].visible
+			h.sortRule = newSettings.headerOptions[h.headerID].sortRule
 		})
 		
 		setHeaders(newHeaders)
@@ -112,7 +115,10 @@ export default function useHeaders(dataHeaders = []) {
 		}
 		
 		headers.forEach((hdr)=>{
-			res.headerOptions[hdr.headerID] = {visible: hdr.visible}
+			res.headerOptions[hdr.headerID] = {
+				visible: hdr.visible,
+				sortRule: hdr.sortRule,
+			}
 		})
 
 		settingsEngine.save(JSON.stringify(res))
@@ -120,7 +126,6 @@ export default function useHeaders(dataHeaders = []) {
 
 	return ({
 		get: () => {return headers},
-		
 		set: setHeaders,
 		
 		embedData: embedData,
@@ -136,12 +141,14 @@ export default function useHeaders(dataHeaders = []) {
 			let newHeaders = [...headers]
 			newHeaders[headerIndex].sortRule = direction
 			setHeaders(newHeaders)
+			setTokenTrigger(true)
 		},
 
 		removeSortRule: (headerIndex) => {
 			let newHeaders = [...headers]
 			newHeaders[headerIndex].sortRule = false
 			setHeaders(newHeaders)
+			setTokenTrigger(true)
 		},
 	})
 }

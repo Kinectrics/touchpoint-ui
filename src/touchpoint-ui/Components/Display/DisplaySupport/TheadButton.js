@@ -48,6 +48,8 @@ export default function TheadButton(props){
 					header={props.header}
 					data={props.data}
 					openTrigger={props.openTrigger}
+					noSort = {props.noSort}
+					noFilter = {props.noFilter}
 				/>}
 				
 				menuStyle = {{maxWidth: '350px', maxHeight: '310px'}}
