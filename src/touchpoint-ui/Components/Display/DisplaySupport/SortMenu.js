@@ -5,22 +5,15 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 export default function SortMenu(props) {
 	
 	function sortData(e){
-		props.data.addSortRule({
-			headerID: props.header.headerID,
-			direction: e.target.value
-		})
-		
-		props.data.sort()
+		props.dataHeaders.addSortRule(props.header.index, e.target.value)
 	}
 	
-	const activeSort = props.data.sortRules.find(s=>s.headerID === props.header.headerID)
-	const sortDir = activeSort ? activeSort.direction : ''
+	const sortDir = props.header.sortRule
 
 	const cancelIcon = <span className = 'sortIcon' onClick={(e)=>{
-		props.data.removeSortRule(props.header.headerID)
+		props.dataHeaders.removeSortRule(props.header.index)
 		e.stopPropagation()
-	}
-	}>
+	}}>
 		<FontAwesomeIcon icon={faTimes} />
 	</span>
 	

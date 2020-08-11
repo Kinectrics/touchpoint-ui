@@ -11,7 +11,6 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
-	const [sortRules, setSortRules] = useState([])
 	
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
@@ -80,16 +79,16 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	function sortData(values){
 		let newValues = [...values]
 		
-		sortRules.forEach((srt)=>{
-			
-			newValues = newValues.sort((aRow, bRow)=>{
-				if(srt.direction === 'asc'){
-					return aRow[srt.headerID] - bRow[srt.headerID]
-				} else{
-					return bRow[srt.headerID] - aRow[srt.headerID]
-				}
-			})
-			
+		headers.get().forEach((hdr)=>{
+			if (hdr.sortRule) {
+				newValues = newValues.sort((aRow, bRow) => {
+					if (hdr.sortRule === 'asc') {
+						return aRow[hdr.headerID] - bRow[hdr.headerID]
+					} else {
+						return bRow[hdr.headerID] - aRow[hdr.headerID]
+					}
+				})
+			}
 		})
 		
 		return newValues
@@ -156,30 +155,5 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			setMetaData(newMeta)
 			setData(newData)
 		},
-		
-		addSortRule: (srt)=>{
-			let newRules = [...sortRules]
-			
-			//Remove any existing sortRules for that header
-			newRules = newRules.filter(s=>{
-				return s.headerID !== srt.headerID
-			})
-			
-			newRules.push(srt)
-			setSortRules(newRules)
-		},
-		
-		removeSortRule: (headerID)=>{
-			let newRules = [...sortRules]
-			
-			//Remove any existing sortRules for that header
-			newRules = newRules.filter(s=>{
-				return s.headerID !== headerID
-			})
-			
-			setSortRules(newRules)
-		},
-		
-		sortRules: sortRules,
 	})
 }

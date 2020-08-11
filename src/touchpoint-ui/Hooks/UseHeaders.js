@@ -131,5 +131,17 @@ export default function useHeaders(dataHeaders = []) {
 		getSavedLayouts: ()=>{return savedLayouts},
 		setSettingsEngine: setSettingsEngine,
 		setVisible: setVisible,
+		
+		addSortRule: (headerIndex, direction) => {
+			let newHeaders = [...headers]
+			newHeaders[headerIndex].sortRule = direction
+			setHeaders(newHeaders)
+		},
+
+		removeSortRule: (headerIndex) => {
+			let newHeaders = [...headers]
+			newHeaders[headerIndex].sortRule = false
+			setHeaders(newHeaders)
+		},
 	})
 }

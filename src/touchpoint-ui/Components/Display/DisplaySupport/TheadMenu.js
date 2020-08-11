@@ -22,6 +22,7 @@ export default function TheadMenu(props) {
 				<SortMenu 
 					data = {props.data}
 					header = {props.header}
+					dataHeaders = {props.dataHeaders}
 				/>
 				
 				<MoreFilters
