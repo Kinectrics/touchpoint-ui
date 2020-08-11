@@ -38,7 +38,7 @@ export default function FilterMenu(props){
 	let count = -1
 	const lim = 200
 	
-	return (
+	if(!props.noFilter){ return (
 		<div className = 'FilterMenu'>
 			
 			<div className='stickyMenu'>
@@ -86,5 +86,5 @@ export default function FilterMenu(props){
 				
 
 		</div>
-	)
+	)} else return null
 }

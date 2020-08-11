@@ -15,14 +15,16 @@ export default function TheadMenu(props) {
 				header={props.header}
 				data={props.data}
 				openTrigger={props.openTrigger}
+				noFilter = {props.noFilter}
 			/>
 			
-			<div className = 'sideMenu'>
+			<div className='sideMenu' style={{ width: props.noFilter ? '100%' : null }}>
 				
 				<SortMenu 
 					data = {props.data}
 					header = {props.header}
 					dataHeaders = {props.dataHeaders}
+					noSort = {props.noSort}
 				/>
 				
 				<MoreFilters
@@ -30,6 +32,7 @@ export default function TheadMenu(props) {
 					dataHeaders={props.dataHeaders}
 					data={props.data}
 					openTrigger={props.openTrigger}
+					noFilter={props.noFilter}
 				/>
 				
 			</div>

@@ -1,6 +1,6 @@
 .TheadMenu{
 	display: flex;
-	width: 350px;
+	width: 100%;
 }
 
 .TheadMenu .FilterMenu{

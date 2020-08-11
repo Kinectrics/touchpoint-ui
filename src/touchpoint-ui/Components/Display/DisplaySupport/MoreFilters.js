@@ -7,7 +7,7 @@ export default function MoreFilters(props) {
 	
 	const filterList = DataFilter.getFilterTypes()
 	
-	return (
+	if(!props.noFilter){return (
 		<div className = 'MoreFilters'>
 			
 			{Object.keys(filterList).map((f, i)=>{
@@ -28,5 +28,5 @@ export default function MoreFilters(props) {
 			})}
 			
 		</div>
-	)
+	)} else return null
 }

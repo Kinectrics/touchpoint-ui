@@ -65,7 +65,10 @@ export default function TheadButton(props){
 					noFilter = {props.noFilter}
 				/>}
 				
-				menuStyle = {{maxWidth: '350px', maxHeight: '310px'}}
+				menuStyle = {{
+					maxWidth: props.noFilter ? '180px' : '350px', 
+					maxHeight: '310px'
+				}}
 			>
 				{props.children}
 				{arrowIcon}
@@ -75,3 +78,4 @@ export default function TheadButton(props){
 		)
 	}
 }
+

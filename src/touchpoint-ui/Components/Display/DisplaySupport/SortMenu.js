@@ -17,8 +17,8 @@ export default function SortMenu(props){
 		<FontAwesomeIcon icon={faTimes} />
 	</span>
 	
-	return (
-		<div className='SortMenu'>
+	if(!props.noSort){return (
+		<div className='SortMenu' >
 			<button onClick={sortData} className='fullButton sortButton' value={'asc'}>
 				Sort Ascending
 				{sortDir === 'asc' ? cancelIcon : null}
@@ -29,5 +29,5 @@ export default function SortMenu(props){
 				{sortDir === 'desc' ? cancelIcon : null}
 			</button>
 		</div>
-	)
+	)} else return null
 }

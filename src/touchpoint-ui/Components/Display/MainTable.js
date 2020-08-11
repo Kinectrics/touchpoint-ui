@@ -12,7 +12,7 @@ import useSettings from '../../Hooks/UseSettings'
 export default function MainTable(props){
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
-	let noSort = props.noSort && !props.data.sort  
+	let noSort = props.noSort || !props.data.sort  
 	let noFilter = props.noFilter
 	let noOptions = props.noOptions || !props.settingsID
 	let searchable = props.searchable
