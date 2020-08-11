@@ -38,7 +38,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 
 			newMetaData.push(rowMeta)
 		})
-
+		
 		return newMetaData
 	}
 	

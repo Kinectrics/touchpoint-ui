@@ -14,6 +14,7 @@ export default class DataHeader{
 		this.styling = options.styling ? options.styling : null
 		this.uniqueValues = {}
 		this.type = options.type ? options.type : 'string'
+		this.sortMethod = ''
 		
 		//Default filter list only has 1 functions (array filter)
 		//By default no values are selected, which is the same as saying 'select all'

@@ -51,7 +51,7 @@ export default function SaveTableLayout(props) {
 		<MenuButton
 			locked={false}
 			onClose={() => setValidClass('')}
-			menuStyle = {{minWidth:'200px', maxWidth: '300px'}}
+			menuStyle = {{minWidth:'200px', maxWidth: '200px'}}
 			menuContent={
 				<div className='SaveTableLayout'>
 

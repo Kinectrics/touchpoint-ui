@@ -19,7 +19,10 @@ export default function TheadMenu(props) {
 			
 			<div className = 'sideMenu'>
 				
-				<SortMenu />
+				<SortMenu 
+					dataHeaders = {props.dataHeaders}
+					data = {props.data}
+				/>
 				
 				<MoreFilters
 					header={props.header}

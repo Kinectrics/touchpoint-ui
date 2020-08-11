@@ -1,5 +1,5 @@
 import React from 'react'
-import {Module, Dock, DockIcon, useSystem, FreeButton, Popup} from '../../touchpoint-ui'
+import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton} from '../../touchpoint-ui'
 import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
@@ -23,7 +23,11 @@ export default function ETDB() {
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
 			
-				
+			<ControlBar searchBar>
+				<ControlButton>
+					Test1
+				</ControlButton>
+			</ControlBar>
 			
 			
 		</Module>
