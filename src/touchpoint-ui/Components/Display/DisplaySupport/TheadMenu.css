@@ -1,0 +1,21 @@
+.TheadMenu{
+	display: flex;
+	width: 350px;
+}
+
+.TheadMenu .FilterMenu{
+	max-height: inherit;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+	width: 45%;
+}
+
+.TheadMenu .FilterMenu .selectAll{
+	font-weight: bold;
+	background-color: var(--cardBG);
+	z-index: 1;
+	position: sticky;
+	top: 0;
+}
+

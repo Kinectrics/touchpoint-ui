@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import MenuButton from '../MenuButton'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCaretDown, faFilter} from '@fortawesome/free-solid-svg-icons'
-import FilterMenu from './FilterMenu'
+import TheadMenu from './TheadMenu'
+import './TheadMenu'
 
 
 export default function TheadButton(props){
@@ -16,7 +17,12 @@ export default function TheadButton(props){
 		iconClass = 'smallerIcon'
 	}
 	
-	const [openTrigger, setOpenTrigger] = useState(false)
+	//changes every time the menu opens. Used by useEffect listeners in teh menu to respond to the open event
+	const [openTrigger, setOpenTrigger] = useState(false) 
+	
+	const [isOpen, setIsOpen] = useState(false)
+	
+	const openClass = isOpen ? ' open ' : ''
 	
 	if(props.noSort && props.noFilter) { 
 		
@@ -25,12 +31,19 @@ export default function TheadButton(props){
 	} else{
 		return (
 			<MenuButton 
-				className='TheadButton' 
+				className={'TheadButton '  + openClass} 
 				locked = {false} 
-				onOpen = {()=>setOpenTrigger(!openTrigger)}
-				onClose = {()=>{props.data.filter()}}
+				onOpen = {()=>{
+					setOpenTrigger(!openTrigger)
+					setIsOpen(true)
+				}}
 				
-				menuContent={<FilterMenu
+				onClose = {()=>{
+					props.data.filter()
+					setIsOpen(false)
+				}}
+				
+				menuContent={<TheadMenu
 					dataHeaders={props.dataHeaders}
 					header={props.header}
 					data={props.data}

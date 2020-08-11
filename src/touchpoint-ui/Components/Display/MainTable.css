@@ -58,8 +58,10 @@
 	color: var(--mainTextColor);	
 }
 
+
 .MainTable .TheadButton:active,
-.MainTable .TheadButton:focus{
+.MainTable .TheadButton:focus,
+.MainTable .TheadButton.open{
 	color: var(--labelColor);
 	filter: brightness(70%);
 }

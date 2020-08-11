@@ -1,5 +1,4 @@
 import React from 'react'
-import './FilterMenu.css'
 import MoreFilters from './MoreFilters'
 
 export default function FilterMenu(props){
@@ -35,74 +34,54 @@ export default function FilterMenu(props){
 		paddingLeft: '7px',
 	}
 	
-	
-	const sideMenu = <div className='sideMenu'>
-		<MoreFilters 
-			header = {props.header}
-			dataHeaders = {props.dataHeaders}
-			data={props.data}
-			openTrigger = {props.openTrigger}
-		/>
-	</div>
-	
 	let count = -1
 	const lim = 200
 	
 	return (
 		<div className = 'FilterMenu'>
-			<div 
-				className = 'mainMenu' 
-				style={{ borderRight: '1px solid lightgray'}}
-			>
-				<div className = 'topMenu'>
-					
-					<button onClick={selectAll} className = 'selectAll'>
-				
-						<input
-							type='checkbox'
-							checked={!props.header.hasFilter()}
-							id={props.header.headerID + 'selectAll'}
-							style={{ cursor: 'pointer' }}
-							readOnly
-						/>
-						<span style={spanStyle}>{'Select All'}</span>
 
-					</button>
-				</div>
 				
-				<div className="filterOptions">
+			<button onClick={selectAll} className = 'selectAll fullButton'>
+		
+				<input
+					type='checkbox'
+					checked={!props.header.hasFilter()}
+					id={props.header.headerID + 'selectAll'}
+					style={{ cursor: 'pointer' }}
+					readOnly
+				/>
+				<span style={spanStyle}>{'Select All'}</span>
+
+			</button>
+
+			{Object.keys(values).map((v, i) => {
+				
+				count++
+				
+				//Limit the number of checkboxes that are rendered to 200
+				if(count < lim){return (<button
+					className = {'fullButton'}
+					key={props.header.id + 'fv' + count}
+					onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
+				>
 					
-					{Object.keys(values).map((v, i) => {
-						
-						count++
-						
-						//Limit the number of checkboxes that are rendered to 200
-						if(count < lim){return (<button
-							key={props.header.id + 'fv' + count}
-							onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
-						>
-							
-							<input 
-								type = 'checkbox'
-								checked = {values[v]}
-								id={props.header.headerID + 'fcb' + i}
-								value = {v}
-								style= {{cursor:'pointer'}}
-								readOnly
-							/>
-							<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
-							
-						</button>)} else return null
-						
-					})}
+					<input 
+						type = 'checkbox'
+						checked = {values[v]}
+						id={props.header.headerID + 'fcb' + i}
+						value = {v}
+						style= {{cursor:'pointer'}}
+						readOnly
+					/>
+					<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
 					
-					{count >= lim ? <button>... {count - lim} More</button> : null}
-					
-				</div>
-			</div>
+				</button>)} else return null
+				
+			})}
 			
-			{sideMenu}
-			
+			{count >= lim ? <button>... {count - lim} More</button> : null}
+				
+
 		</div>
 	)
 }

@@ -8,7 +8,6 @@ import lockedContext from '../../Contexts/LockedContext'
 export default function Module(props) {
 	
 	const moduleData = useModuleData()
-	
 	const lockedFromAbove = useContext(lockedContext)
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
