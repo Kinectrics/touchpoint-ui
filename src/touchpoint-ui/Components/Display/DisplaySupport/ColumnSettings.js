@@ -12,7 +12,7 @@ export default function ColumnSettings(props) {
 		props.headers.setVisible(idx, checked)
 		
 		setTimeout(()=>{
-			props.data.filter()
+			props.data.sort()
 			props.setTransitionClass('')
 		},0)
 	}
