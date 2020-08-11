@@ -19,6 +19,7 @@
 	
 	/* Cards */
 	--cardBG: white;
+	--borderColor:  rgba(211, 211, 211, 0.705);
 	
 	/* Main Table */
 	--tableActiveColor: rgb(2, 187, 219);

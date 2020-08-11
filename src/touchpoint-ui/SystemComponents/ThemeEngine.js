@@ -23,7 +23,7 @@ export default class SystemThemeEngine{
 				
 				/* Cards */
 				cardBG: 'white',
-				shadowColor: 'rgba(54, 54, 54, 0.034)',
+				borderColor: 'rgba(211, 211, 211, 0.705)',
 				
 				/* FreeButtons */
 				freeButtonNeutralBG: 'var(--labelColor)',
@@ -55,7 +55,7 @@ export default class SystemThemeEngine{
 				
 				/* Cards */
 				cardBG: 'white',
-				shadowColor: 'rgba(54, 54, 54, 0.014)',
+				borderColor: 'rgba(211, 211, 211, 0.705)',
 				
 				/* FreeButtons */
 				freeButtonNeutralBG: 'var(--labelColor)',
@@ -87,7 +87,7 @@ export default class SystemThemeEngine{
 				
 				/* Cards */
 				cardBG: '#313440',
-				shadowColor: 'rgba(0, 0, 0, 0.06)',
+				borderColor: 'rgba(211, 211, 211, 0.158)',
 				
 				/* FreeButtons */
 				freeButtonNeutralBG: 'var(--labelColor)',

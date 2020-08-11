@@ -1,5 +1,6 @@
 import React from 'react'
-import MoreFilters from './MoreFilters'
+import './SortMenu'
+
 
 export default function FilterMenu(props){
 
@@ -39,21 +40,23 @@ export default function FilterMenu(props){
 	
 	return (
 		<div className = 'FilterMenu'>
-
+			
+			<div className='stickyMenu'>
 				
-			<button onClick={selectAll} className = 'selectAll fullButton'>
-		
-				<input
-					type='checkbox'
-					checked={!props.header.hasFilter()}
-					id={props.header.headerID + 'selectAll'}
-					style={{ cursor: 'pointer' }}
-					readOnly
-				/>
-				<span style={spanStyle}>{'Select All'}</span>
+				<button onClick={selectAll} className = 'selectAll fullButton'>
+			
+					<input
+						type='checkbox'
+						checked={!props.header.hasFilter()}
+						id={props.header.headerID + 'selectAll'}
+						style={{ cursor: 'pointer' }}
+						readOnly
+					/>
+					<span style={spanStyle}>{'Select All'}</span>
 
-			</button>
-
+				</button>
+			</div>
+			
 			{Object.keys(values).map((v, i) => {
 				
 				count++

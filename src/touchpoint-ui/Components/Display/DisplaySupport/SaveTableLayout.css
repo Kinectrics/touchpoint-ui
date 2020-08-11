@@ -1,5 +1,5 @@
 .SaveTableLayout .inputMenu{
-	border-bottom: 1px solid lightGrey;
+	border-bottom: 1px solid var(--borderColor);
 	padding: 5px 5px;
 	padding-left: 15px;
 	position: relative;

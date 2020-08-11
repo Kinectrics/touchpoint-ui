@@ -2,6 +2,7 @@ import React from 'react'
 import './TheadMenu.css'
 import FilterMenu from './FilterMenu'
 import MoreFilters from './MoreFilters'
+import SortMenu from './SortMenu'
 
 
 export default function TheadMenu(props) {
@@ -16,12 +17,18 @@ export default function TheadMenu(props) {
 				openTrigger={props.openTrigger}
 			/>
 			
-			<MoreFilters
-				header={props.header}
-				dataHeaders={props.dataHeaders}
-				data={props.data}
-				openTrigger={props.openTrigger}
-			/>
+			<div className = 'sideMenu'>
+				
+				<SortMenu />
+				
+				<MoreFilters
+					header={props.header}
+					dataHeaders={props.dataHeaders}
+					data={props.data}
+					openTrigger={props.openTrigger}
+				/>
+				
+			</div>
 		</div>
 	)
 }

@@ -9,13 +9,96 @@
 	overflow-y: auto;
 	position: relative;
 	width: 45%;
+	border-right: 1px solid var(--borderColor);
+}
+
+.TheadMenu .sideMenu{
+	width: 55%;
+	position: relative;
+	overflow-y: auto;
+}
+
+.TheadMenu .SortMenu{
+	position: sticky;
+	top: 0;
+	border-bottom: 1px solid var(--borderColor);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	z-index: 1;
+	background-color: var(--cardBG);
+}
+
+.TheadMenu .SortMenu .sortButton{
+	position: relative;
+}
+
+.TheadMenu .SortMenu .sortIcon{
+	position: absolute;
+	right: 9px;
+	opacity: 75%;
+}
+
+
+.TheadMenu .FilterMenu .stickyMenu{
+	z-index: 1;
+	position: sticky;
+	top: 0;
 }
 
 .TheadMenu .FilterMenu .selectAll{
 	font-weight: bold;
 	background-color: var(--cardBG);
-	z-index: 1;
-	position: sticky;
-	top: 0;
 }
+
+.TheadMenu .MoreFilters{
+	width: 100%;
+}
+
+.TheadMenu .MoreFilters .cancelIcon{
+	position: absolute; 
+	right: 5px;
+	top: 3px;
+	color: var(--lockedTextColor);
+	cursor: pointer;
+}
+
+.TheadMenu .MoreFilters .commitIcon{
+	position: absolute; 
+	right: 3px;
+	bottom: 3px;
+	color: var(--lockedTextColor);
+	cursor: pointer;
+	font-size: 11pt;
+}
+
+.TheadMenu .MoreFilters .closeIcon:hover,
+.TheadMenu .MoreFilters .commitIcon:hover{
+	filter: brightness(115%);
+}
+
+.TheadMenu .MoreFilters .closeIcon:active,
+.TheadMenu .MoreFilters .commitIcon:active{
+	filter: brightness(90%);
+}
+
+.TheadMenu .MoreFilterButtonActive{
+	text-align: left;
+	padding-left: 20px;
+	filter: none !important;
+	position: relative;
+	width: 60%;
+}
+
+.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{
+	display: block;
+	padding-right: '10px';
+}
+
+.TheadMenu .MoreFilterButtonActive .input{
+	font-size: 10pt;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	width: calc(100% - 10px);
+}
+
 
