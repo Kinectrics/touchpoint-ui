@@ -191,6 +191,8 @@ export default function MainTable(props){
 
 							renderRow = renderRow && (noFilter || metaData[idx].visible)
 							
+							const rowKey = dr.TouchPointMetaRowKey ? dr.TouchPointMetaRowKey : idx
+							
 							const r = renderRow ? 
 								<MainTableRow
 									dataRow = {dr}
@@ -198,8 +200,8 @@ export default function MainTable(props){
 									dataHeaders={props.headers.get()}
 									setActiveRecord = {props.setActiveRecord}
 									activeRecord = {activeRecord}
-									rowKey = {'MainTableRow'+idx}
-									key = {'MainTableRow'+idx}
+									rowKey = {rowKey}
+									key = {rowKey}
 									locked = {locked}
 									dynamic = {dynamic}
 									rowIndex = {idx}

@@ -103,7 +103,16 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		setStatus('Pending')
 
 		try {
-			const value = sortData(await fetchFunction())
+			
+			let newData = await fetchFunction()
+			
+			//Add a unique row key that will remain the same accross sorts and filters
+			newData = newData.map((dr, idx)=>{
+				dr.TouchPointMetaRowKey = 'row' + idx
+				return dr
+			})
+			
+			const value = sortData(newData)
 			
 			setMetaData(searchData(value))
 			setMetaData(filterData(value))
@@ -121,7 +130,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	}
 	
 	//If it's a subdataset, forward the refresh request to the parent
-	function refreshData(){
+	async function refreshData(){
 		if (status !== 'Pending') {
 			fetchData()
 		}

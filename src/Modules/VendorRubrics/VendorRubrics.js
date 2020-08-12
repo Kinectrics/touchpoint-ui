@@ -33,7 +33,7 @@ export default function VendorRubrics(){
 			
 			if(cell === '1'){return 'failed update'}
 		}},
-		{ headerID: 'vendor', displayName:'My Vendor', width: 300, },
+		{ headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell)=>{console.log(cell)}},
 		{ headerID: 'project', displayName:'Project', width: 300, },
 		{ headerID: 'projectName', displayName:'Project Name', width: 350,},
 		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
