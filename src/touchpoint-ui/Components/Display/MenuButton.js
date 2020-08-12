@@ -14,15 +14,10 @@ const dropMenu = React.forwardRef(
 			<menuContext.Provider value={{ submenu: true }}>
 				<div
 					ref={ref}
-					className={props.className + ' MenuContainer'}
+					className={props.className + ' MenuContainer Menu'}
 					style={{...props.style, ...props.menuStyle}}
 				>
-					<div
-						className={'Menu'}
-						style={props.menuStyle}
-					>
-						{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}
-					</div>
+					{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}
 				</div>
 			</menuContext.Provider>
 		)
