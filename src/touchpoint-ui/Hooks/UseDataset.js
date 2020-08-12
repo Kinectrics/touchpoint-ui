@@ -10,6 +10,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [metaData, setMetaData] = useState([{visible: true, filteredBy: ''}])
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
+	const [lastEdited, setLastEdited] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
 	
 	//Search data on change
@@ -141,6 +142,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 
 		status: status,
 		lastResolved: lastResolved,
+		lastEdited: lastEdited,
 		setHeaders: setHeaders,
 		isDataset: true,
 		
@@ -158,6 +160,9 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			setData(newData)
 		},
 		
-		set: setData
+		set: (newData)=>{
+			setData(newData)
+			setLastEdited(Date())
+		}
 	})
 }

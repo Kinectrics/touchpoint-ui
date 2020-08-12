@@ -60,7 +60,7 @@ export default function MainTable(props){
 			props.headers.setSettingsEngine({save: saveSettings})
 		}
 		
-	}, [props.data.lastResolved])
+	}, [props.data.lastResolved, props.data.lastEdited])
 	
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)
@@ -198,8 +198,8 @@ export default function MainTable(props){
 									dataHeaders={props.headers.get()}
 									setActiveRecord = {props.setActiveRecord}
 									activeRecord = {activeRecord}
-									rowKey = {'MainTableRow'+rowCount}
-									key = {'MainTableRow'+rowCount}
+									rowKey = {'MainTableRow'+idx}
+									key = {'MainTableRow'+idx}
 									locked = {locked}
 									dynamic = {dynamic}
 									rowIndex = {idx}
