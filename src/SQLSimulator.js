@@ -50,7 +50,7 @@ export function getTableData(){
 	
 	const preparedBy = ['Clara Birch', 'Tyler Campbell', 'Youssof Fahmy']
 	
-	for(let i = 0; i<5000; i++){
+	for(let i = 0; i<205; i++){
 		data.push({
 			vendor: vendors[i % 4], 
 			project: project[i % 5], 
