@@ -15,6 +15,7 @@ export default function MainTable(props){
 	let noFilter = props.noFilter
 	let noOptions = props.noOptions || !props.settingsID
 	let searchable = props.searchable
+	let noActive = props.noActive 
 	
 	//support for dataSets or for just arrays
 	let data = props.data
@@ -26,6 +27,7 @@ export default function MainTable(props){
 	} else{
 		noSort = true
 		noFilter = true
+		noActive = true
 		searchable =  false
 	}
 	
@@ -84,7 +86,8 @@ export default function MainTable(props){
 	//if there are editable cells the animations will be cancelled
 	let dynamic
 	let hasActiveClass = ''
-	if(props.setActiveRecord){
+	
+	if(!noActive){
 		dynamic = true
 		hasActiveClass = ' hasActive '
 	} 
@@ -230,4 +233,5 @@ MainTable.propTypes = {
 	noSort: PropTypes.bool,
 	noFilter: PropTypes.bool,
 	noOptions: PropTypes.bool,
+	noActive: PropTypes.bool,
 }

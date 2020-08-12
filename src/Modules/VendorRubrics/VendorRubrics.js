@@ -44,7 +44,6 @@ export default function VendorRubrics(){
 	
 	return (
 		<Module moduleName = "VendorRubrics">
-			
 			<ControlBar searchBar>
 				
 				<ControlButton>
@@ -103,7 +102,6 @@ export default function VendorRubrics(){
 							
 				</InfoTabContainer>
 			</SplitScreen>
-					
 		</Module>
 	)
 }
