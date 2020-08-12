@@ -66,6 +66,7 @@ export default function FilterMenu(props){
 					className = {'fullButton'}
 					key={props.header.id + 'fv' + count}
 					onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
+					title = {v}
 				>
 					
 					<input 

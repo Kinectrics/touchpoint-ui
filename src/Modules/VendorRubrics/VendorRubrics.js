@@ -10,8 +10,6 @@ import PBI from '../../Temp/PBI.jpg'
 import './StatusLog'
 import StatusLog from './StatusLog'
 
-
-
 //And begin
 export default function VendorRubrics(){
 	

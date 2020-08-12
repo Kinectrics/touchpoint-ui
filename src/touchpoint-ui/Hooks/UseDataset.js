@@ -82,11 +82,13 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		headers.get().forEach((hdr)=>{
 			if (hdr.sortRule && hdr.visible) {
 				newValues = newValues.sort((aRow, bRow) => {
+					
 					if (hdr.sortRule === 'asc') {
-						return aRow[hdr.headerID] - bRow[hdr.headerID]
+						return aRow[hdr.headerID] > bRow[hdr.headerID] ? 1 : -1
 					} else {
-						return bRow[hdr.headerID] - aRow[hdr.headerID]
+						return aRow[hdr.headerID] > bRow[hdr.headerID] ? -1 : 1
 					}
+					
 				})
 			}
 		})
