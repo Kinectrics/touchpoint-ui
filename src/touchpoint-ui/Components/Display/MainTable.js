@@ -102,9 +102,6 @@ export default function MainTable(props){
 		if(hdr.hasFilter()){hasFilter = true}
 
 	})
-	
-	//Counter for rendered rows
-	let i = 1
 
 	function clearFilter(){
 		const newHeaders = [...props.headers.get()]
@@ -117,6 +114,9 @@ export default function MainTable(props){
 	}
 	
 	const [transitionClass, setTransitionClass] = useState('')
+	
+	//Counter for rendered rows
+	let rowCount = 1
 	
 	//Render
 	return (
@@ -176,7 +176,7 @@ export default function MainTable(props){
 				<div className = {'tableBody ' + props.data.lastResolved}>
 					{data.map((dr, idx) => {
 						//render the allowed numebr of rows, on th selected page
-						if((i > activePage * pageSize) && (i <= (1 + activePage)*pageSize)){
+						if((rowCount > activePage * pageSize) && (rowCount <= (1 + activePage)*pageSize)){
 							
 							let renderRow = dr !== []
 							
@@ -193,16 +193,16 @@ export default function MainTable(props){
 									dataHeaders={props.headers.get()}
 									setActiveRecord = {props.setActiveRecord}
 									activeRecord = {activeRecord}
-									rowKey = {'MainTableRow'+i}
-									key = {'MainTableRow'+i}
+									rowKey = {'MainTableRow'+rowCount}
+									key = {'MainTableRow'+rowCount}
 									locked = {locked}
 									dynamic = {dynamic}
 								/> : null
 							
-							if(r){i++}//Count the number of rows actually renedered (not filtered out)
+							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
 							
 							return r
-						} else if(i <= (1 + activePage)*pageSize){i++}
+						} else if(rowCount <= (1 + activePage)*pageSize){rowCount++}
 						
 						return null
 					})}
