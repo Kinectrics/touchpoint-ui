@@ -45,4 +45,11 @@
 	color: inherit;
 	padding: 1px 10px;
 	border-radius: 10px;
+	transition: all 2s ease-out;
 }
+
+.MainTableRow .InputCell.invalid{
+	transition: all 0ms;
+	color: var(--mainTextColor);
+}
+

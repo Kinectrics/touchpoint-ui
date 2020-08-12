@@ -104,15 +104,8 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 
 		try {
 			
-			let newData = await fetchFunction()
-			
-			//Add a unique row key that will remain the same accross sorts and filters
-			newData = newData.map((dr, idx)=>{
-				dr.TouchPointMetaRowKey = 'row' + idx
-				return dr
-			})
-			
-			const value = sortData(newData)
+			let value = await fetchFunction()
+			value = sortData(value)
 			
 			setMetaData(searchData(value))
 			setMetaData(filterData(value))

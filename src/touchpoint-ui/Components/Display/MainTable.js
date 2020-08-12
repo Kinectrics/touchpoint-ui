@@ -191,7 +191,7 @@ export default function MainTable(props){
 
 							renderRow = renderRow && (noFilter || metaData[idx].visible)
 							
-							const rowKey = dr.TouchPointMetaRowKey ? dr.TouchPointMetaRowKey : idx
+							const rowKey = idx
 							
 							const r = renderRow ? 
 								<MainTableRow

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 
 export default function InputCell(props) {
 	
@@ -10,21 +10,13 @@ export default function InputCell(props) {
 		props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
 	)
 	
-	const [errorMsg, setErrorMsg] = useState(null)
-	
-	const inputRef = useRef()
-	
+	//Update the value if the data is changed by an outside source
 	useEffect(() => {
 		const newVal = props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
 		setCurrentValue(newVal)
 		setInitialValue(newVal)
 		
 	}, [ props.dataRow[props.header.headerID] ])
-	
-	//Remove errors on refresh
-	useEffect(()=>{
-		setErrorMsg(null)
-	}, [props.dataset.lastResolved])
 	
 	//When you focus on an item, the value is saved. if you escape, its restored
 	function focusHandler(e){
@@ -34,7 +26,6 @@ export default function InputCell(props) {
 	//Chaches the value and updates the dataset when you're done editing
 	function changeHandler(e){
 		setCurrentValue(e.target.value)
-		setErrorMsg(null)
 	}
 	
 	//Handles keypresses, for enter or esc keys
@@ -47,29 +38,35 @@ export default function InputCell(props) {
 		}
 	}
 	
+	const [validClass, setValidClass] = useState('')
+	
+	
+	function flashRed(){
+		setValidClass('invalid')
+		setTimeout(()=>setValidClass(''), 200)
+	}
+	
 	//Check if the input is valid and commit
 	function commitChanges(){
-		const newValue = inputRef.current.value
-		
-		if (props.dataRow[props.header.headerID] !== inputRef.current.value){
+		if (props.dataRow[props.header.headerID] !== currentValue){
 			
 			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
-			newData[props.rowIndex][props.header.headerID] = newValue
+			newData[props.rowIndex][props.header.headerID] = currentValue
 			
-			const validation = props.header.onEdit(newValue, newData[props.rowIndex])
-			setErrorMsg(validation)
+			const objection = props.header.onEdit(currentValue, newData[props.rowIndex])
 			
-			if(!errorMsg){
+			if(objection){
+				setCurrentValue(initalValue)
+				flashRed()
+			} else{
 				props.dataset.set(newData)
 			}
 		}
 	}
 	
 	function blurHandler(){
-		setTimeout(commitChanges) //Force it to wait untill React finishes all updates before executing
+		commitChanges()//Force it to wait untill React finishes all updates before executing
 	}
-	
-	const validClass = errorMsg ? 'invalid' : ''
 	
 	return <input
 		type = 'text'
@@ -79,9 +76,5 @@ export default function InputCell(props) {
 		onBlur = {blurHandler}
 		value = {currentValue}
 		onChange = {changeHandler}
-		ref = {inputRef}
-		title = {errorMsg ? errorMsg : null}
 	/>
-	
-	
 }
