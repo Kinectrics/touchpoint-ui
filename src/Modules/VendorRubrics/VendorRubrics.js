@@ -84,14 +84,14 @@ export default function VendorRubrics(){
 					settingsID={'VendorRubricsMainTable'}
 				/>
 				
-				<InfoTabContainer defaultTab='StatusLog'>
+				<InfoTabContainer defaultTab='RubricDetail'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader activeRecord = {activeRecord} system={system}/>
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						{/* <RubricDetail /> */}
+						<RubricDetail />
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>

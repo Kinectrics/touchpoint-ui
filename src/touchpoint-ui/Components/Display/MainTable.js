@@ -4,10 +4,9 @@ import './MainTable.css'
 import MainTableRow from './DisplaySupport/MainTableRow'
 import lockedContext from '../../Contexts/LockedContext'
 import TheadButton from './DisplaySupport/TheadButton' 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCaretLeft, faCaretRight} from '@fortawesome/free-solid-svg-icons'
 import TableControls from './DisplaySupport/TableControls'
 import useSettings from '../../Hooks/UseSettings'
+import PageControls from './DisplaySupport/PageContols'
 
 export default function MainTable(props){
 	
@@ -106,40 +105,7 @@ export default function MainTable(props){
 	
 	//Counter for rendered rows
 	let i = 1
-	
-	//Buttons for page controls
-	function pageForward(){
-		if (activePage < Math.floor(dataLength/pageSize)-1){
-			setActivePage(activePage + 1)
-		}
-		i = 1
-	}
-	
-	function BackButton(){ 
-		if(activePage > 0){return(
-			<button
-				onClick={pageBack}
-			>
-				<FontAwesomeIcon icon = {faCaretLeft}/>
-			</button>
-		)} else return null
-	}
-	
-	function pageBack(){
-		if (activePage > 0){
-			setActivePage(activePage - 1)
-		}
-		i = 1
-	}
-	
-	function ForwardButton(){ 
-		if(activePage < Math.floor(dataLength/pageSize) - 1){return(
-			<button
-				onClick={pageForward}
-			><FontAwesomeIcon icon = {faCaretRight}/></button>
-		)} else return null
-	}
-	
+
 	function clearFilter(){
 		const newHeaders = [...props.headers.get()]
 		newHeaders.forEach(hdr=>{
@@ -148,20 +114,6 @@ export default function MainTable(props){
 		
 		props.headers.set(newHeaders)
 		props.data.filter()
-	}
-	
-	function PageControls(){
-		if(dataLength > pageSize){
-			return( <div className="pageControls">
-				<BackButton/>
-				
-				<button className='textButton'>Showing {1+activePage*pageSize}-
-				{Math.min((1+activePage)*pageSize, dataLength) +' '}
-				of {`  ${dataLength}`}</button>  
-				
-				<ForwardButton/>
-			</div>)
-		} else return null
 	}
 	
 	const [transitionClass, setTransitionClass] = useState('')
@@ -181,7 +133,12 @@ export default function MainTable(props){
 					data={props.data}
 					setTransitionClass={setTransitionClass}
 				/>
-				<PageControls />
+				<PageControls 
+					activePage = {activePage}
+					setActivePage = {setActivePage}
+					dataLength = {dataLength}
+					pageSize = {pageSize}
+				/>
 			</div>
 
 

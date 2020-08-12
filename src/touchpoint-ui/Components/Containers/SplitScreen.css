@@ -17,7 +17,7 @@
 	width: 100%;
 	background-color: var(--navColor);
 	opacity: 60%;
-	cursor: n-resize;
+	cursor: ns-resize;
 	pointer-events: all;
 }
 

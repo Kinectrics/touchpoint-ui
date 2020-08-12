@@ -22,7 +22,8 @@ export default function RadioGroup(props) {
 		onChange: onChange,
 		groupName: groupName,
 		locked: locked,
-		defaultValue: props.defaultValue
+		defaultValue: props.defaultValue,
+		value: props.value,
 	}
 	
 	return (
@@ -38,5 +39,6 @@ RadioGroup.propTypes = {
 	onChange: PropTypes.func,
 	locked: PropTypes.bool,
 	groupID: PropTypes.any,
+	value: PropTypes.any,
 }
 
