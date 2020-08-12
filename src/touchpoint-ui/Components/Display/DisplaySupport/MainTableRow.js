@@ -34,9 +34,10 @@ export default function MainTableRow(props) {
 			let cellContent = props.dataRow[hdr.headerID]
 			if(!props.locked && hdr.onEdit && ! hdr.locked){
 				cellContent = <InputCell 
-					dataHeader = {hdr} 
-					defaultValue = {cellContent}
+					header = {hdr}
 					dataRow = {props.dataRow}
+					rowIndex = {props.rowIndex}
+					dataset = {props.dataset}
 				/>
 			}
 			
@@ -79,8 +80,9 @@ export default function MainTableRow(props) {
 				{row}
 			</div>
 		</div>
-	)
+	)	
 }
+
 
 //Proptypes
 MainTableRow.propTypes = {

@@ -29,7 +29,9 @@ export default function VendorRubrics(){
 	//Headers for table
 	const dataHeaders = useHeaders([
 		{ headerID:'id',displayName:'ID', width: 200, required: true},
-		{ headerID: 'vendor', displayName:'My Vendor', width: 300},
+		{ headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell, row)=>{
+			console.log(row)
+		}},
 		{ headerID: 'project', displayName:'Project', width: 300},
 		{ headerID: 'projectName', displayName:'Project Name', width: 350},
 		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
@@ -82,6 +84,7 @@ export default function VendorRubrics(){
 					searchable
 					settingsID={'VendorRubricsMainTable'}
 				/>
+				
 				
 				<InfoTabContainer defaultTab='RubricDetail'>
 					

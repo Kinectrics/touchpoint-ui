@@ -157,5 +157,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 			setMetaData(newMeta)
 			setData(newData)
 		},
+		
+		set: setData
 	})
 }

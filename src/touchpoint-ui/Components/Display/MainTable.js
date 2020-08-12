@@ -21,6 +21,10 @@ export default function MainTable(props){
 	let data = props.data
 	let metaData = [{}]
 	
+	//deccides if the component is locked based on props and parents in the tree
+	const lockedFromAbove = useContext(lockedContext)
+	let locked = props.locked || (lockedFromAbove && props.locked === undefined)
+	
 	if(props.data.isDataset){
 		data = props.data.read()
 		metaData = props.data.getMetaData()
@@ -29,6 +33,7 @@ export default function MainTable(props){
 		noFilter = true
 		noActive = true
 		searchable =  false
+		locked = true
 	}
 	
 	//Settings token support 
@@ -77,10 +82,6 @@ export default function MainTable(props){
 	//default page Size
 	let pageSize = props.pageSize
 	if(!pageSize){ pageSize = 500}
-	
-	//deccides if the component is locked based on props and parents in the tree
-	const lockedFromAbove = useContext(lockedContext)
-	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled
@@ -193,6 +194,7 @@ export default function MainTable(props){
 							const r = renderRow ? 
 								<MainTableRow
 									dataRow = {dr}
+									dataset = {props.data}
 									dataHeaders={props.headers.get()}
 									setActiveRecord = {props.setActiveRecord}
 									activeRecord = {activeRecord}
@@ -200,6 +202,7 @@ export default function MainTable(props){
 									key = {'MainTableRow'+rowCount}
 									locked = {locked}
 									dynamic = {dynamic}
+									rowIndex = {idx}
 								/> : null
 							
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
