@@ -20,7 +20,6 @@ export default function RadioButton(props) {
 			
 		} else{
 			radioData.onChange(props.value)
-			
 		}
 	}
 	
@@ -38,6 +37,8 @@ export default function RadioButton(props) {
 				value = {props.value}
 				id = {id}
 				style = {props.style}
+				checked = {radioData.value !== undefined ? (radioData.value === props.value) : undefined}
+				readOnly={radioData.value !== undefined}
 			/>
 			<label 
 				className = {lockedClass}

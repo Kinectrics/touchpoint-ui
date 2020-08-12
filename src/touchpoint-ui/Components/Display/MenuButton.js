@@ -11,10 +11,10 @@ import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
 const dropMenu = React.forwardRef(
 	(props, ref) => {
 		return (
-			<menuContext.Provider value={{ submenu: true }}>
+			<menuContext.Provider value={{submenu: true}}>
 				<div
 					ref={ref}
-					className={props.className + ' MenuContainer Menu'}
+					className={props.className + ' Menu'}
 					style={{...props.style, ...props.menuStyle}}
 				>
 					{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}
