@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import './ComboBox.css'
 import './InputStyles.css'
+import PropTypes from 'prop-types'
 
 export default function ComboBox(props) {
 	
@@ -33,8 +34,18 @@ export default function ComboBox(props) {
 				onChange = {changeHandler}
 				disabled = {locked}
 				style = {props.style}
+				value = {props.value}
 			>
 				{kids}
 			</select>
 	)}
+}
+
+//
+ComboBox.propTypes = {
+	hidden: PropTypes.bool,
+	locked: PropTypes.bool,
+	style: PropTypes.object,
+	value: PropTypes.string,
+	defaultValue: PropTypes.string,
 }

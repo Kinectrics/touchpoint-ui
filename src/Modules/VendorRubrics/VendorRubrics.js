@@ -91,7 +91,7 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						<RubricDetail />
+						{/* <RubricDetail /> */}
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
