@@ -11,7 +11,8 @@ export default function SplitScreen(props) {
 	return (
 		<div className='SplitScreen'>
 			<Split 
-				direction="vertical" sizes={[100 - splitSize, splitSize]}
+				direction="vertical" 
+				sizes={[100 - splitSize, splitSize]}
 				minSize={100}
 				gutterSize={8}
 				snapOffset={1}
@@ -27,5 +28,4 @@ export default function SplitScreen(props) {
 //Proptypes
 SplitScreen.propTypes = {
 	defaultSize: PropTypes.number,
-	style: PropTypes.object,
 }

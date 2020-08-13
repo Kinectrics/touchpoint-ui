@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import PropTypes from 'prop-types'
 import './MainTableRow.css'
 import InputCell from './InputCell'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 export default function MainTableRow(props) {
 
@@ -21,7 +22,6 @@ export default function MainTableRow(props) {
 		setActiveClass(props.activeRecord === props.dataRow ? ' active ' : '')
 	},[props.activeRecord, props.dataRow]);
 	
-	
 	const rowContent = props.dataHeaders.map((hdr, i) => {
 		if(hdr.visible){
 			
@@ -37,8 +37,8 @@ export default function MainTableRow(props) {
 				/>
 			}
 			
-			//No conditional formatting
-			if (!hdr.styling){
+			
+			if (!hdr.styling){ //No conditional formatting
 				return(<span 
 					key = {hdr.headerID + props.rowKey} 
 					style = {{width: hdr.width + 'px'}}
@@ -46,12 +46,12 @@ export default function MainTableRow(props) {
 					{cellContent}
 				</span>)
 			
-			} else{
+			} else{ //with coniditional formatting
 				
-				//apply the styling function in the header object
+				
 				const myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow)
 				
-				return( //with coniditional formatting
+				return( 
 					<span className = 'badge' key = {hdr.headerID + props.rowKey + i} style = {{
 						width: 'calc(' + hdr.width + 'px - 23px)',
 						color: myStyle.textColor,
@@ -65,24 +65,35 @@ export default function MainTableRow(props) {
 		}
 	})
 	
+	const [expanded, setExpanded] = useState(false)
+	const expandedClass = expanded ? ' expanded ' : ''
+	const expandIcon = expanded ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />
 	
-	// only the row if it passes the filter
+	function expandHandler(){
+		setExpanded(!expanded)
+	}
+	
 	return(
-		<div 
-			className={'MainTableRow ' + dynamicClass + pointerClass + activeClass} 
+		<div
+			className={'MainTableRow ' + dynamicClass + pointerClass + activeClass + expandedClass} 
 			onClick = {rowClickHandler}
 		>
-			{rowContent}
+			<div className={'topRow'}>
+				
+				<span className = 'expandButton' onClick={expandHandler}>
+					{expandIcon}
+				</span>
+				
+				{rowContent}
+			</div>
+			
+			{expanded ? <div 
+				style={{height:'200px'}}
+				className = 'componentWrapper'
+			>
+				<props.nestedComponent {...props.nestedProps}/>
+			</div> : null}
+			
 		</div>
-	)	
-}
-
-
-//Proptypes
-MainTableRow.propTypes = {
-	dataHeaders: PropTypes.array.isRequired,
-	dataRow: PropTypes.object.isRequired,
-	setActiveRecord: PropTypes.func,
-	locked: PropTypes.bool,
-	dynamic:PropTypes.bool
+	)
 }

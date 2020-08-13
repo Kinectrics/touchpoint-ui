@@ -9,6 +9,7 @@ import RubricDetail  from './RubricDetail'
 import PBI from '../../Temp/PBI.jpg'
 import './StatusLog'
 import StatusLog from './StatusLog'
+import TestExpandedRows from './TestExpandedRows'
 
 //And begin
 export default function VendorRubrics(){
@@ -75,7 +76,7 @@ export default function VendorRubrics(){
 				
 			</ControlBar>
 			
-			<SplitScreen defaultSize={55}>
+			<SplitScreen defaultSize={10}>
 				
 				<MainTable
 					data={data}
@@ -85,6 +86,9 @@ export default function VendorRubrics(){
 					pageSize={200}
 					searchable
 					settingsID={'VendorRubricsMainTable'}
+					nestedComponent = {TestExpandedRows}
+					nestedProps={{ content: 'Hello World'}}
+					primaryKey = {'id'}
 				/>
 				
 				

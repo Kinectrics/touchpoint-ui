@@ -5,15 +5,8 @@
 	overflow-x: auto;
 	overflow-y: auto;
 	--topBarHeight: 35px;
-}
-
-.MainTable .mainSection{
-	padding: 0px 10px;
-	background-color: var(--bodyAltBG);
 	color: var(--mainTextColor);
-	height: 100%;
-	position: relative;
-	width: 100%;
+	background-color: var(--bodyAltBG);
 }
 
 .MainTable.noTransition *{
@@ -47,9 +40,11 @@
 	display: flex;
 	position: sticky;
 	z-index: 1;
-	
 }
 
+.MainTable.hasNested .theadBar>span:first-child{
+	padding-left: 30px;
+}
 
 .MainTable .TheadButton{
 	white-space: nowrap;

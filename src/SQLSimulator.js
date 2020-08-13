@@ -50,6 +50,8 @@ export function getTableData(){
 	
 	const preparedBy = ['Clara Birch', 'Tyler Campbell', 'Youssof Fahmy']
 	
+	const c = Math.round(Math.random() * 10)
+	
 	for(let i = 0; i<50; i++){
 		data.push({
 			vendor: vendors[i % 4], 
@@ -59,7 +61,7 @@ export function getTableData(){
 			status: statuses[i % 3],
 			due: dues[i % 3],
 			intern: interns[i % 3],
-			id: i+1 + Math.round(Math.random()*10),
+			id: i+1 + c,
 			toq: Math.floor(Math.sqrt(i * 277 +1739))  + i*100,
 			statusLog: statusLog[i % 3],
 			perparedBy: preparedBy[i % 3],

@@ -1,34 +1,38 @@
 .MainTableRow{
-	background-color: transparent;
-	padding: 4px 10px;
-	height: 30px;
 	transition: all 0.2s;
-	box-sizing: border-box;
 	
 	background-color: var(--cardBG);
-	margin: 7px 5px;
+	margin: 8px 15px;
 	border-radius: 10px;
 	
 	transition: background-color 0.15 ease-out, color 0.15s ease-out;	
 	overflow: hidden;
+	padding: 0px 10px;
+}
+
+.MainTableRow .topRow{
+	height: 30px;
+	padding: 4px 0px;
+	position: relative;
+}
+
+.MainTableRow.active .topRow{
+	color: var(--tableActiveColor);
 }
 
 .MainTableRow.pointer{
 	cursor: pointer;
 }
 
-.MainTable.hasActive .MainTableRow:active{
+.MainTable.hasActive .MainTableRow:active:not(.expanded){
 	transition: all 0.05s ease-out;
 	filter: brightness(95%);
 }
 
+
 .MainTableRow span{
 	transition: inherit;
 	overflow: hidden;
-}
-
-.MainTableRow.active{
-	color: var(--tableActiveColor);
 }
 
 .MainTableRow .InputCell{
@@ -63,4 +67,35 @@
 
 .MainTableRow .badge:empty{
 	background-color: transparent !important;
+}
+
+/* expanded */
+.MainTableRow.expanded .topRow{
+	border-bottom: 1px solid var(--borderColor);
+	height: 35px;
+	padding-bottom: 5px;
+}
+
+.MainTableRow .componentWrapper{
+	padding: 7px;
+	cursor: default;
+}
+
+.MainTableRow .expandButton{
+	opacity: 50%;
+	padding-right: 0;
+	color: var(--mainTextColor);
+	width: 18px;
+	position: absolute;
+	left: -2px;
+	font-size: 11pt;
+	user-select: none;
+}
+
+.MainTableRow .expandButton:hover{
+	filter: brightness(200%) !important;
+}
+
+.MainTableRow .expandButton:active{
+	filter: brightness(50%) !important;
 }

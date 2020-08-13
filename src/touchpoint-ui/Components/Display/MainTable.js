@@ -48,20 +48,6 @@ export default function MainTable(props){
 		setTimeout(props.data.sort, 0)
 	}
 	
-	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
-	useEffect(()=>{
-		
-		if(!noFilter){
-			props.headers.embedData(data, metaData)
-			props.data.setHeaders(props.headers)
-		}
-		
-		if(!noOptions){
-			props.headers.setSettingsEngine({save: saveSettings})
-		}
-		
-	}, [props.data.lastResolved, props.data.lastEdited])
-	
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)
 	
@@ -74,6 +60,24 @@ export default function MainTable(props){
 			dataLength++
 		}
 	})
+	
+	//expanded rows (if applicable)
+	const [expanded, setExpanded] = useState({})
+	const hasNestedClass = props.nestedComponent ? ' hasNested ' : ''
+	
+	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
+	useEffect(() => {
+
+		if (!noFilter) {
+			props.headers.embedData(data, metaData)
+			props.data.setHeaders(props.headers)
+		}
+
+		if (!noOptions) {
+			props.headers.setSettingsEngine({ save: saveSettings })
+		}
+
+	}, [props.data.lastResolved, props.data.lastEdited])
 	
 	//if there's no way to set the active record, then no record is active
 	let activeRecord
@@ -124,7 +128,7 @@ export default function MainTable(props){
 	
 	//Render
 	return (
-		<div className={'MainTable ' + hasActiveClass}>
+		<div className={'MainTable ' + hasActiveClass + hasNestedClass}>
 
 			<div className="topBar">
 				<TableControls
@@ -191,7 +195,7 @@ export default function MainTable(props){
 
 							renderRow = renderRow && (noFilter || metaData[idx].visible)
 							
-							const rowKey = idx
+							const rowKey = dr[props.primaryKey] ? dr[props.primaryKey] : idx
 							
 							const r = renderRow ? 
 								<MainTableRow
@@ -205,6 +209,8 @@ export default function MainTable(props){
 									locked = {locked}
 									dynamic = {dynamic}
 									rowIndex = {idx}
+									nestedComponent = {props.nestedComponent}
+									nestedProps = {props.nestedProps}
 								/> : null
 							
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
@@ -239,4 +245,8 @@ MainTable.propTypes = {
 	noFilter: PropTypes.bool,
 	noOptions: PropTypes.bool,
 	noActive: PropTypes.bool,
+	nestedProps: PropTypes.object,
+	nestedComponent: PropTypes.func,
+	
+	primaryKey: PropTypes.string,
 }
