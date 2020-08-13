@@ -5,33 +5,29 @@ import InputCell from './InputCell'
 
 export default function MainTableRow(props) {
 
-	let dynamicClass = ''
-	let pointerClass = ''
-	if(props.dynamic){dynamicClass = 'dynamic'}
-	if(props.setActiveRecord){pointerClass = 'pointer'}
+	const dynamicClass = props.dynamic ? ' dynamic ' : ''
+	const pointerClass = props.setActiveRecord ? ' pointer ' : '' 
+
+	const [activeClass, setActiveClass] = useState(props.activeRecord === props.dataRow ? ' active ' : '')
 	
-	//Check if this is the active row for style reasons 
-	const [activeClass, setActiveClass] = useState('')
-	
-	//sends the dataRow object to the select record function
 	function rowClickHandler(){
 		if(props.setActiveRecord){
-			setActiveClass('active')
+			setActiveClass(' active ')
 			props.setActiveRecord(props.dataRow)
 		}
 	}
 	
 	useEffect(() => {
-		if(props.activeRecord === props.dataRow) {setActiveClass('active')} else{
-			setActiveClass('')
-		}
+		setActiveClass(props.activeRecord === props.dataRow ? ' active ' : '')
 	},[props.activeRecord, props.dataRow]);
 	
-	//Only continue building the row if it's actually required
-	const row = props.dataHeaders.map((hdr, i) => {
+	
+	const rowContent = props.dataHeaders.map((hdr, i) => {
 		if(hdr.visible){
+			
 			//Decide if the cell is editable or not based on the locked status, and the header onEdit function
 			let cellContent = props.dataRow[hdr.headerID]
+			
 			if(!props.locked && hdr.onEdit && ! hdr.locked){
 				cellContent = <InputCell 
 					header = {hdr}
@@ -42,12 +38,13 @@ export default function MainTableRow(props) {
 			}
 			
 			//No conditional formatting
-			if (!hdr.styling){return(<span 
-				key = {hdr.headerID+props.rowKey} 
-				style = {{width: hdr.width + 'px'}}
-			>
-				{cellContent}
-			</span>)
+			if (!hdr.styling){
+				return(<span 
+					key = {hdr.headerID + props.rowKey} 
+					style = {{width: hdr.width + 'px'}}
+				>
+					{cellContent}
+				</span>)
 			
 			} else{
 				
@@ -55,9 +52,8 @@ export default function MainTableRow(props) {
 				const myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow)
 				
 				return( //with coniditional formatting
-					
 					<span className = 'badge' key = {hdr.headerID + props.rowKey + i} style = {{
-						width: 'calc(' + hdr.width + 'px - 23px',
+						width: 'calc(' + hdr.width + 'px - 23px)',
 						color: myStyle.textColor,
 						backgroundColor: myStyle.badgeColor,
 						marginLeft: '23px'
@@ -73,12 +69,10 @@ export default function MainTableRow(props) {
 	// only the row if it passes the filter
 	return(
 		<div 
-			className={'MainTableRow ' + dynamicClass + ' ' + pointerClass} 
+			className={'MainTableRow ' + dynamicClass + pointerClass + activeClass} 
 			onClick = {rowClickHandler}
 		>
-			<div className={"rowContainer " + activeClass}>
-				{row}
-			</div>
+			{rowContent}
 		</div>
 	)	
 }

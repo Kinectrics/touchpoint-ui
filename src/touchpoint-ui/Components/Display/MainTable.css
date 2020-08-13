@@ -42,7 +42,7 @@
 .MainTable .theadBar{
 	overflow-y: visible;
 	background-color: var(--bodyAltBG);
-	padding-left: 35px;
+	padding-left: 25px;
 	padding-right: 25px;
 	display: flex;
 	position: sticky;
@@ -79,21 +79,6 @@
 	margin: 0;
 	max-height: 100%;
 	padding-left: 23px;
-}
-
-.MainTable .badge{
-	border-radius: 10px;
-	text-align: center;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-left: 0;
-	font-size: 11.5pt;
-	transition: none;
-	display: inline-block;
-}
-
-.MainTable .badge:empty{
-	background-color: transparent !important;
 }
 
 .MainTable span:first-child{

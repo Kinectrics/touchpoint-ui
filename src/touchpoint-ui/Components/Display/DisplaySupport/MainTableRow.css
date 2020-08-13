@@ -1,9 +1,16 @@
 .MainTableRow{
 	background-color: transparent;
 	padding: 4px 10px;
-	height: 40px;
+	height: 30px;
 	transition: all 0.2s;
 	box-sizing: border-box;
+	
+	background-color: var(--cardBG);
+	margin: 7px 5px;
+	border-radius: 10px;
+	
+	transition: background-color 0.15 ease-out, color 0.15s ease-out;	
+	overflow: hidden;
 }
 
 .MainTableRow.pointer{
@@ -20,17 +27,7 @@
 	overflow: hidden;
 }
 
-.MainTableRow .rowContainer{
-	height: 100%;
-	background-color: var(--cardBG);
-	padding: 4px 15px;
-	border-radius: 10px;
-	box-shadow: var(--cardShadow);
-	transition: color 0.3s, color 0.15s ease-out;	
-	overflow: hidden;
-}
-
-.MainTableRow .active{
+.MainTableRow.active{
 	color: var(--tableActiveColor);
 }
 
@@ -45,11 +42,25 @@
 	color: inherit;
 	padding: 1px 10px;
 	border-radius: 10px;
-	transition: all 2s ease-out;
+	transition: background-color 1s ease-out;
 }
 
 .MainTableRow .InputCell.invalid{
 	transition: all 0ms;
-	color: var(--mainTextColor);
 }
 
+.MainTableRow .badge{
+	border-radius: 10px;
+	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0;
+	font-size: 11.5pt;
+	transition: none;
+	display: inline-block;
+	height: 100%;
+}
+
+.MainTableRow .badge:empty{
+	background-color: transparent !important;
+}

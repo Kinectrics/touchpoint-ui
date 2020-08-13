@@ -22,7 +22,7 @@ export default function VendorRubrics(){
 			case 'Complete': return {textColor: 'white', badgeColor: '#66CD00'}
 			case 'Pending': return {textColor: 'white', badgeColor: '#EE0000'}
 			case 'Open': return {textColor: 'red'}
-			default: return {textColor: 'red'}
+			default: return { textColor: 'white', badgeColor: '#EE0000' }
 		}
 	}
 	
@@ -31,14 +31,13 @@ export default function VendorRubrics(){
 		{ headerID:'id',displayName:'ID', width: 200, required: true, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
 			
-			if(cell === '1'){return 'failed update'}
+			if(cell === '1'){return true}
 		}},
 		{ headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell)=>{console.log(cell)}},
 		{ headerID: 'project', displayName:'Project', width: 300, },
 		{ headerID: 'projectName', displayName:'Project Name', width: 350,},
-		{ headerID: 'status', displayName:'Status', width: 200, required: true, styling: statusStyle},
-		
-		{ headerID: 'due', displayName:'Due', width: 200, },
+		{ headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
+		{ headerID: 'due', displayName: 'Due', width: 200},
 		{ headerID: 'SM', displayName:'SM', width: 300, },
 		{ headerID: 'intern', displayName:'Intern', width: 300,},
 	])

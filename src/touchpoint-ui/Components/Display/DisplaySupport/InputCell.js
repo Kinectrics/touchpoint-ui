@@ -10,7 +10,7 @@ export default function InputCell(props) {
 		props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
 	)
 	
-	//Update the value if the data is changed by an outside source
+	// Update the value if the data is changed by an outside source
 	useEffect(() => {
 		const newVal = props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
 		setCurrentValue(newVal)
