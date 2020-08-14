@@ -1,15 +1,15 @@
 import React from 'react'
 import ColumnSettings from './ColumnSettings'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faTimesCircle} from '@fortawesome/free-solid-svg-icons'
+import {faTimesCircle, faPlus, faMinus} from '@fortawesome/free-solid-svg-icons'
 import SaveTableLayout from './SaveTableLayout'
 
 
 export default function TableControls(props) {
 	let clearFilterButton = null
-	let sortButton = null
-	let filterButton = null
+	let layoutButton = null
 	let settingsButton = null
+	let expandControls
 	
 	if (props.hasFilter && !props.noFilter) {
 		clearFilterButton = <button
@@ -18,7 +18,7 @@ export default function TableControls(props) {
 	}
 
 	if (!props.noFilter && !props.noSort) {
-		filterButton = <SaveTableLayout 
+		layoutButton = <SaveTableLayout 
 			headers = {props.dataHeaders}
 			data = {props.data}
 		/>
@@ -31,12 +31,26 @@ export default function TableControls(props) {
 			setTransitionClass = {props.setTransitionClass}
 		/>
 	}
+	
+	if(props.showExpandControls){
+		expandControls = <>
+			<button onClick={()=>{
+				props.setExpandTrigger(!props.expandTrigger)
+			}}><FontAwesomeIcon icon={faPlus} /> Expand All</button>
+			
+			<button onClick={()=>{
+				props.setCollapseTrigger(!props.collapseTrigger)
+			}}><FontAwesomeIcon icon={faMinus} /> Collapse All</button>
+		</>
+	}
+	
+	
 
 	return (
 		<div className='tableControls'>
 			{settingsButton}
-			{sortButton}
-			{filterButton}
+			{layoutButton}
+			{expandControls}
 			{clearFilterButton}
 		</div>
 	)

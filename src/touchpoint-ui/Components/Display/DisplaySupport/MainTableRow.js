@@ -67,11 +67,32 @@ export default function MainTableRow(props) {
 	
 	const [expanded, setExpanded] = useState(false)
 	const expandedClass = expanded ? ' expanded ' : ''
-	const expandIcon = expanded ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />
 	
-	function expandHandler(){
+	function expandHandler(e){
+		//don't set the active row when collapsing 
+		if (expanded) { e.stopPropagation()}
 		setExpanded(!expanded)
 	}
+	
+	//Listeners to expand all and collapse all events from the parent maintable
+	useEffect(()=>{
+		setExpanded(true)
+	},[props.expandTrigger])
+	
+	useEffect(() => {
+		setExpanded(false)
+	}, [props.collapseTrigger])
+	
+	//Allow nested components to update their dataRow
+	function setDataRow(newRow){
+		const newData = [...props.dataset.read()]
+		newData[props.rowIndex] = newRow
+		props.dataset.set(newData)
+	}
+	
+	const expandIcon = props.nestedComponent ? <span className='expandButton' onClick={expandHandler}>
+		{expanded ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />}
+	</span> : null
 	
 	return(
 		<div
@@ -79,19 +100,18 @@ export default function MainTableRow(props) {
 			onClick = {rowClickHandler}
 		>
 			<div className={'topRow'}>
-				
-				<span className = 'expandButton' onClick={expandHandler}>
-					{expandIcon}
-				</span>
-				
+				{expandIcon}
 				{rowContent}
 			</div>
 			
-			{expanded ? <div 
-				style={{height:'200px'}}
+			{expanded && props.nestedComponent ? <div 
 				className = 'componentWrapper'
 			>
-				<props.nestedComponent {...props.nestedProps}/>
+				<props.nestedComponent
+					{...props.nestedProps}
+					dataRow = {props.dataRow}
+					setDataRow = {setDataRow}
+				/>
 			</div> : null}
 			
 		</div>

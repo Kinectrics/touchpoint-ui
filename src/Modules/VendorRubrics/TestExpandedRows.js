@@ -1,11 +1,31 @@
 import React from 'react'
+import { FreeButton, TextBox } from '../../touchpoint-ui'
+import { useState } from 'react'
 
 export default function TestExpandedRows(props) {
+	
+	const [text, setText] = useState('')
+	
 	return (
-		<div>
+		<div style={{
+			border: '1px solid var(--borderColor)',
+			borderRadius: '10px',
+			padding: '10px'
+		}}>
 			Expanded Rows Test
 			<br/>
-			{props.content}
+			{props.dataRow.vendor}
+			
+			<TextBox value={text} onChange = {(e=>setText(e.target.value))}/>
+			
+			<FreeButton onClick = {()=>{
+				
+				const newRow = {...props.dataRow}
+				newRow.vendor = text
+				props.setDataRow(newRow)
+				
+			}}>Test</FreeButton>
+			
 		</div>
 	)
 }

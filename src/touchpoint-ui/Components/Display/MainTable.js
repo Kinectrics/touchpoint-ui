@@ -62,7 +62,6 @@ export default function MainTable(props){
 	})
 	
 	//expanded rows (if applicable)
-	const [expanded, setExpanded] = useState({})
 	const hasNestedClass = props.nestedComponent ? ' hasNested ' : ''
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
@@ -85,7 +84,7 @@ export default function MainTable(props){
 	
 	//default page Size
 	let pageSize = props.pageSize
-	if(!pageSize){ pageSize = 500}
+	if(!pageSize){pageSize = 100}
 	
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled
@@ -126,6 +125,10 @@ export default function MainTable(props){
 	//Counter for rendered rows
 	let rowCount = 1
 	
+	const [expandTrigger, setExpandTrigger] = useState(false)
+	const [collapseTrigger, setCollapseTrigger] = useState(false)
+
+	
 	//Render
 	return (
 		<div className={'MainTable ' + hasActiveClass + hasNestedClass}>
@@ -140,6 +143,11 @@ export default function MainTable(props){
 					dataHeaders={props.headers}
 					data={props.data}
 					setTransitionClass={setTransitionClass}
+					setExpandTrigger = {setExpandTrigger}
+					setCollapseTrigger = {setCollapseTrigger}
+					expandTrigger = {expandTrigger}
+					collapseTrigger = {collapseTrigger}
+					showExpandControls = {props.nestedComponent ? true : false}
 				/>
 				<PageControls 
 					activePage = {activePage}
@@ -192,7 +200,6 @@ export default function MainTable(props){
 								renderRow = !metaData[idx].searchHidden
 							}
 							
-
 							renderRow = renderRow && (noFilter || metaData[idx].visible)
 							
 							const rowKey = dr[props.primaryKey] ? dr[props.primaryKey] : idx
@@ -211,6 +218,8 @@ export default function MainTable(props){
 									rowIndex = {idx}
 									nestedComponent = {props.nestedComponent}
 									nestedProps = {props.nestedProps}
+									expandTrigger = {expandTrigger}
+									collapseTrigger = {collapseTrigger}
 								/> : null
 							
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
