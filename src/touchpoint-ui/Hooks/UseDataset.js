@@ -3,7 +3,7 @@ import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
-export default function useDataset(fetchFunction, defaultValue = [{}]) {
+export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}]) {
 	
 	//The array contains an empty object by default
 	const [data, setData] = useState(defaultValue)
@@ -12,6 +12,33 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	const [lastResolved, setLastResolved] = useState()
 	const [lastEdited, setLastEdited] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
+	const [activeRecord, setActiveRecord] = useState({})
+	
+	
+	function setActiveRecordHandler(newPrimaryKey) {
+
+		const newIndex = data.findIndex(r => r[primaryKey] === newPrimaryKey)
+		
+		const newRecord = newIndex > -1
+		? { primaryKey: newPrimaryKey, index: newIndex }
+		: {}
+		
+		setActiveRecord(newRecord)
+		return(newRecord)
+	}
+	
+	
+	function getActiveRecord(){
+		//Ensure the row is valid and has the correct primary key
+		if (data[activeRecord.index] && (data[activeRecord.index][primaryKey] === activeRecord.primaryKey) ){
+			return data[activeRecord.index]
+			
+		} else if(activeRecord.primaryKey !== undefined){ //if not, attempt to find the correct row index
+			return  setActiveRecordHandler(activeRecord.primaryKey)
+		}
+		
+		return {} //if there's no matching row, return blank
+	}
 	
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
@@ -139,6 +166,8 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 	return ({
 		read: () => { return data },
 		getMetaData: ()=>{ return metaData },
+		getActiveRecord: getActiveRecord,
+		setActiveRecord: setActiveRecordHandler,
 
 		refresh: refreshData,
 
@@ -147,6 +176,7 @@ export default function useDataset(fetchFunction, defaultValue = [{}]) {
 		lastEdited: lastEdited,
 		setHeaders: setHeaders,
 		isDataset: true,
+		primaryKey: primaryKey,
 		
 		filter: () => {
 			const newMeta = filterData(data)

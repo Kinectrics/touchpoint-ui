@@ -15,7 +15,7 @@ export default function MainTable(props){
 	let noFilter = props.noFilter
 	let noOptions = props.noOptions || !props.settingsID
 	let searchable = props.searchable
-	let noActive = props.noActive 
+	let noActive = props.noActive
 	
 	//support for dataSets or for just arrays
 	let data = props.data
@@ -77,10 +77,6 @@ export default function MainTable(props){
 		}
 
 	}, [props.data.lastResolved, props.data.lastEdited])
-	
-	//if there's no way to set the active record, then no record is active
-	let activeRecord
-	if(props.activeRecord && props.setActiveRecord){activeRecord = props.activeRecord}
 	
 	//default page Size
 	let pageSize = props.pageSize
@@ -209,8 +205,6 @@ export default function MainTable(props){
 									dataRow = {dr}
 									dataset = {props.data}
 									dataHeaders={props.headers.get()}
-									setActiveRecord = {props.setActiveRecord}
-									activeRecord = {activeRecord}
 									rowKey = {rowKey}
 									key = {rowKey}
 									locked = {locked}
@@ -220,6 +214,7 @@ export default function MainTable(props){
 									nestedProps = {props.nestedProps}
 									expandTrigger = {expandTrigger}
 									collapseTrigger = {collapseTrigger}
+									noActive = {noActive}
 								/> : null
 							
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
@@ -238,7 +233,6 @@ export default function MainTable(props){
 
 //Proptypes
 MainTable.propTypes = {
-	setActiveRecord: PropTypes.func,
 	onEdit: PropTypes.func,
 	headers: PropTypes.object.isRequired,
 	

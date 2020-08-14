@@ -44,8 +44,7 @@ export default function VendorRubrics(){
 	])
 	
 	//Data from the 'server'
-	const data  = useDataset(getTableData, [{}])
-	const [activeRecord, setActiveRecord] = useState(data.read()[0])
+	const data  = useDataset(getTableData, 'id')
 	
 	return (
 		<Module moduleName = "VendorRubrics">
@@ -81,21 +80,21 @@ export default function VendorRubrics(){
 				<MainTable
 					data={data}
 					headers={dataHeaders}
-					setActiveRecord={setActiveRecord}
-					activeRecord={activeRecord}
 					pageSize={200}
 					searchable
 					settingsID={'VendorRubricsMainTable'}
 					nestedComponent = {TestExpandedRows}
 					nestedProps={{ content: 'Hello World'}}
-					primaryKey = {'id'}
 				/>
 				
 				
 				<InfoTabContainer defaultTab='RubricDetail'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
-						<RubricHeader activeRecord = {activeRecord} system={system}/>
+						<RubricHeader 
+							activeRecord={data.getActiveRecord()} 
+							system={system}
+						/>
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
@@ -104,7 +103,7 @@ export default function VendorRubrics(){
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
 						<StatusLog
-							dataRow={activeRecord}
+							dataRow={data.getActiveRecord()}
 							statusStyle={statusStyle}
 						/>
 					</InfoTab>								

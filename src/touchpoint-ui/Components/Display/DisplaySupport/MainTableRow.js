@@ -5,22 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 export default function MainTableRow(props) {
-
-	const dynamicClass = props.dynamic ? ' dynamic ' : ''
-	const pointerClass = props.setActiveRecord ? ' pointer ' : '' 
-
-	const [activeClass, setActiveClass] = useState(props.activeRecord === props.dataRow ? ' active ' : '')
+	
+	const activeClass = !props.noActive && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] 
+	? ' active '
+	:  ''
 	
 	function rowClickHandler(){
-		if(props.setActiveRecord){
-			setActiveClass(' active ')
-			props.setActiveRecord(props.dataRow)
+		if(!props.noActive){
+			props.dataset.setActiveRecord(props.dataRow[props.dataset.primaryKey])
 		}
 	}
-	
-	useEffect(() => {
-		setActiveClass(props.activeRecord === props.dataRow ? ' active ' : '')
-	},[props.activeRecord, props.dataRow]);
 	
 	const rowContent = props.dataHeaders.map((hdr, i) => {
 		if(hdr.visible){
@@ -96,7 +90,7 @@ export default function MainTableRow(props) {
 	
 	return(
 		<div
-			className={'MainTableRow ' + dynamicClass + pointerClass + activeClass + expandedClass} 
+			className={'MainTableRow ' + activeClass + expandedClass} 
 			onClick = {rowClickHandler}
 		>
 			<div className={'topRow'}>

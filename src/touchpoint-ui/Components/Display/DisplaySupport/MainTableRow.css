@@ -20,7 +20,7 @@
 	color: var(--tableActiveColor);
 }
 
-.MainTableRow.pointer{
+.MainTable.hasActive .MainTableRow{
 	cursor: pointer;
 }
 
@@ -90,6 +90,7 @@
 	left: -2px;
 	font-size: 11pt;
 	user-select: none;
+	cursor: pointer;
 }
 
 .MainTableRow .expandButton:hover{
