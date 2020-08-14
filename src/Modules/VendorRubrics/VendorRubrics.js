@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
 import {useSystem, useHeaders, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -29,18 +29,18 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = useHeaders([
-		{ headerID:'id',displayName:'ID', width: 200, required: true, onEdit: (cell, row)=>{
+		{headerID:'id',displayName:'ID', width: 200, required: true, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
 			
 			if(cell === '1'){return true}
 		}},
-		{ headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell)=>{console.log(cell)}},
-		{ headerID: 'project', displayName:'Project', width: 300, },
-		{ headerID: 'projectName', displayName:'Project Name', width: 350,},
-		{ headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
-		{ headerID: 'due', displayName: 'Due', width: 200},
-		{ headerID: 'SM', displayName:'SM', width: 300, },
-		{ headerID: 'intern', displayName:'Intern', width: 300,},
+		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell)=>{console.log(cell)}},
+		{headerID: 'project', displayName: 'Project', width: 300, onEdit: (cell) => { console.log(cell) }},
+		{headerID: 'projectName', displayName:'Project Name', width: 350,},
+		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
+		{headerID: 'due', displayName: 'Due', width: 200},
+		{headerID: 'SM', displayName:'SM', width: 300, },
+		{headerID: 'intern', displayName:'Intern', width: 300,},
 	])
 	
 	//Data from the 'server'
@@ -75,7 +75,7 @@ export default function VendorRubrics(){
 				
 			</ControlBar>
 			
-			<SplitScreen defaultSize={10}>
+			<SplitScreen defaultSize={50}>
 				
 				<MainTable
 					data={data}
@@ -88,7 +88,7 @@ export default function VendorRubrics(){
 				/>
 				
 				
-				<InfoTabContainer defaultTab='RubricDetail'>
+				<InfoTabContainer defaultTab='RubricHeader'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader 

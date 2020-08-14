@@ -14,7 +14,6 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
 	const [activeRecord, setActiveRecord] = useState({})
 	
-	
 	function setActiveRecordHandler(newPrimaryKey) {
 
 		const newIndex = data.findIndex(r => r[primaryKey] === newPrimaryKey)
@@ -34,7 +33,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 			return data[activeRecord.index]
 			
 		} else if(activeRecord.primaryKey !== undefined){ //if not, attempt to find the correct row index
-			return  setActiveRecordHandler(activeRecord.primaryKey)
+			return setActiveRecordHandler(activeRecord.primaryKey)
 		}
 		
 		return {} //if there's no matching row, return blank
