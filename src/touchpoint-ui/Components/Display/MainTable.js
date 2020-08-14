@@ -198,7 +198,7 @@ export default function MainTable(props){
 							
 							renderRow = renderRow && (noFilter || metaData[idx].visible)
 							
-							const rowKey = dr[props.primaryKey] ? dr[props.primaryKey] : idx
+							const rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx
 							
 							const r = renderRow ? 
 								<MainTableRow

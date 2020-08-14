@@ -159,6 +159,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	//Automatically run the fetching function the first time, then wait for a refresh
 	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 	useEffect(()=>{ 
+		if(!primaryKey){console.error('Missing primary key for dataset!')}
 		fetchData()
 	},[])
 	
