@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { object } from 'prop-types'
 import './MainTable.css'
 import MainTableRow from './DisplaySupport/MainTableRow'
 import lockedContext from '../../Contexts/LockedContext'
@@ -7,8 +7,11 @@ import TheadButton from './DisplaySupport/TheadButton'
 import TableControls from './DisplaySupport/TableControls'
 import useSettings from '../../Hooks/UseSettings'
 import PageControls from './DisplaySupport/PageContols'
+import useHeaders from '../../Hooks/UseHeaders'
 
 export default function MainTable(props){
+	
+	const headers = useHeaders(props.headers)
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
 	let noSort = props.noSort || !props.data.sort  
@@ -39,7 +42,7 @@ export default function MainTable(props){
 	//Settings token support 
 	const [sortTrigger, setSortTrigger] = useState(false)
 	const saveSettings = useSettings(props.settingsID, (token) => {
-		props.headers.applyToken(token)
+		headers.applyToken(token)
 		if(!noSort){setSortTrigger(true)}
 	})
 	
@@ -68,12 +71,12 @@ export default function MainTable(props){
 	useEffect(() => {
 
 		if (!noFilter) {
-			props.headers.embedData(data, metaData)
-			props.data.setHeaders(props.headers)
+			headers.embedData(data, metaData)
+			props.data.setHeaders(headers)
 		}
 
 		if (!noOptions) {
-			props.headers.setSettingsEngine({ save: saveSettings })
+			headers.setSettingsEngine({ save: saveSettings })
 		}
 
 	}, [props.data.lastResolved, props.data.lastEdited])
@@ -95,7 +98,7 @@ export default function MainTable(props){
 	let hasFilter = false
 	let totalHeaderWidth = 70
 	
-	props.headers.get().forEach(hdr => {
+	headers.get().forEach(hdr => {
 		//if you have input cells in the table, hover effects will be cancelled
 		if(hdr.onEdit){dynamic = false}
 		
@@ -107,12 +110,12 @@ export default function MainTable(props){
 	})
 
 	function clearFilter(){
-		const newHeaders = [...props.headers.get()]
+		const newHeaders = [...headers.get()]
 		newHeaders.forEach(hdr=>{
 			hdr.clearFilter()
 		})
 		
-		props.headers.set(newHeaders)
+		headers.set(newHeaders)
 		props.data.filter()
 	}
 	
@@ -136,7 +139,7 @@ export default function MainTable(props){
 					noSort={noSort}
 					clearFilter={clearFilter}
 					noOptions={noOptions}
-					dataHeaders={props.headers}
+					dataHeaders={headers}
 					data={props.data}
 					setTransitionClass={setTransitionClass}
 					setExpandTrigger = {setExpandTrigger}
@@ -158,7 +161,7 @@ export default function MainTable(props){
 				top: 'var(--topBarHeight)',
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
 			}}>
-				{props.headers.get().map((hdr, i) => {
+				{headers.get().map((hdr, i) => {
 					if (hdr.visible) {
 						return (
 							<span style={{ width: hdr.width + 'px' }} key={'header' + i}>
@@ -166,7 +169,7 @@ export default function MainTable(props){
 								<TheadButton
 									header={hdr}
 									data={props.data}
-									dataHeaders={props.headers}
+									dataHeaders={headers}
 									noFilter={noFilter} 
 									noSort={noSort}
 								>
@@ -204,7 +207,7 @@ export default function MainTable(props){
 								<MainTableRow
 									dataRow = {dr}
 									dataset = {props.data}
-									dataHeaders={props.headers.get()}
+									dataHeaders={headers.get()}
 									rowKey = {rowKey}
 									key = {rowKey}
 									locked = {locked}
@@ -234,7 +237,7 @@ export default function MainTable(props){
 //Proptypes
 MainTable.propTypes = {
 	onEdit: PropTypes.func,
-	headers: PropTypes.object.isRequired,
+	headers: PropTypes.arrayOf(PropTypes.object).isRequired,
 	
 	data: PropTypes.oneOfType([
 		PropTypes.object,

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
-import {useSystem, useHeaders, useDataset} from '../../touchpoint-ui'
+import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt} from "@fortawesome/free-solid-svg-icons"
 import {getTableData} from '../../SQLSimulator'
@@ -28,7 +28,7 @@ export default function VendorRubrics(){
 	}
 	
 	//Headers for table
-	const dataHeaders = useHeaders([
+	const dataHeaders = [
 		{headerID:'id',displayName:'ID', width: 200, required: true, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
 			
@@ -41,7 +41,7 @@ export default function VendorRubrics(){
 		{headerID: 'due', displayName: 'Due', width: 200},
 		{headerID: 'SM', displayName:'SM', width: 300, },
 		{headerID: 'intern', displayName:'Intern', width: 300,},
-	])
+	]
 	
 	//Data from the 'server'
 	const data  = useDataset(getTableData, 'id')

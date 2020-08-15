@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import useModuleData from '../Hooks/UseModuleData'
-import { act } from '@testing-library/react'
 
 
 //Initialises a Dataset and caches the value

@@ -43,7 +43,6 @@ export {default as DataHeader} from "./DataObjects/DataHeader"
 
 //Hooks
 export {default as useDataset} from "./Hooks/UseDataset"
-export {default as useHeaders} from "./Hooks/UseHeaders"
 export {default as useSystem} from "./Hooks/UseSystem"
 export {default as useModuleData} from "./Hooks/UseModuleData"
 export {default as usePresence} from "./Hooks/UsePresence"
