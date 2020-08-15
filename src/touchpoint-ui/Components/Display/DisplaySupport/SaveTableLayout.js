@@ -42,7 +42,6 @@ export default function SaveTableLayout(props) {
 	function applyLayout(f){
 		props.headers.loadLayout(f)
 		props.data.sort()
-
 	}
 	
 	return (
