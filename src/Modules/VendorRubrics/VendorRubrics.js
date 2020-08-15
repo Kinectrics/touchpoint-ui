@@ -22,7 +22,7 @@ export default function VendorRubrics(){
 		switch(cellValue){
 			case 'Complete': return {color: 'white', backgroundColor: '#66CD00'}
 			case 'Pending': return {color: 'white', backgroundColor: '#EE0000'}
-			case 'Open': return {color: 'red', border: '2px solid red', paddingTop:'1px'}
+			case 'Open': return {color: 'red', border: '1px solid red', paddingTop:'0px'}
 			default: return {color: ''}
 		}
 	}
@@ -49,7 +49,7 @@ export default function VendorRubrics(){
 	const data  = useDataset(getTableData, 'id')
 	
 	return (
-		<Module moduleName = "VendorRubrics" locked>
+		<Module moduleName = "VendorRubrics">
 			<ControlBar searchBar>
 				
 				<ControlButton onClick={()=>{
