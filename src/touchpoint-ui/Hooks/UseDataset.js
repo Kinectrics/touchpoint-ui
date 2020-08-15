@@ -104,15 +104,17 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 		
 		headers.getSortRules().forEach((sr)=>{
 			
-			newValues = newValues.sort((aRow, bRow) => {
-				
-				if (sr.direction === 'asc') {
-					return aRow[sr.headerID] > bRow[sr.headerID] ? 1 : -1
-				} else {
-					return aRow[sr.headerID] > bRow[sr.headerID] ? -1 : 1
-				}
-				
-			})
+			if (headers.get()[sr.index] && headers.get()[sr.index].visible){
+				newValues = newValues.sort((aRow, bRow) => {
+					
+					if (sr.direction === 'asc') {
+						return aRow[sr.headerID] > bRow[sr.headerID] ? 1 : -1
+					} else {
+						return aRow[sr.headerID] > bRow[sr.headerID] ? -1 : 1
+					}
+					
+				})
+			}
 			
 		})
 		

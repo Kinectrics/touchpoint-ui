@@ -5,7 +5,7 @@ import {faTimes} from '@fortawesome/free-solid-svg-icons'
 export default function SortMenu(props){
 	
 	function sortData(e){
-		props.dataHeaders.addSortRule(props.header.headerID, e.target.value)
+		props.dataHeaders.addSortRule(props.header.headerID, e.target.value, props.header.index)
 		props.data.sort()
 	}
 	
