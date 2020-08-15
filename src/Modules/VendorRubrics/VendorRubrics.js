@@ -20,10 +20,10 @@ export default function VendorRubrics(){
 	//Conditional formatting for the status
 	const statusStyle = (cellValue) => {
 		switch(cellValue){
-			case 'Complete': return {textColor: 'white', badgeColor: '#66CD00'}
-			case 'Pending': return {textColor: 'white', badgeColor: '#EE0000'}
-			case 'Open': return {textColor: 'red'}
-			default: return { textColor: 'white', badgeColor: '#EE0000' }
+			case 'Complete': return {color: 'white', backgroundColor: '#66CD00'}
+			case 'Pending': return {color: 'white', backgroundColor: '#EE0000'}
+			case 'Open': return {color: 'red', border: '2px solid red', paddingTop:'1px'}
+			default: return {color: ''}
 		}
 	}
 	
@@ -37,7 +37,9 @@ export default function VendorRubrics(){
 		}},
 		{headerID: 'project', displayName: 'Project', width: 300, onEdit: (cell) => { console.log(cell) }},
 		{headerID: 'projectName', displayName:'Project Name', width: 350,},
-		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
+		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>{
+			return false
+		}},
 		{headerID: 'due', displayName: 'Due', width: 200},
 		{headerID: 'SM', displayName:'SM', width: 300, },
 		{headerID: 'intern', displayName:'Intern', width: 300,},
@@ -47,7 +49,7 @@ export default function VendorRubrics(){
 	const data  = useDataset(getTableData, 'id')
 	
 	return (
-		<Module moduleName = "VendorRubrics">
+		<Module moduleName = "VendorRubrics" locked>
 			<ControlBar searchBar>
 				
 				<ControlButton onClick={()=>{

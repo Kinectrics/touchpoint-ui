@@ -24,4 +24,5 @@
 	color: var(--navTextColor) !important;
 	filter: brightness(80%);
 	opacity: 60%;
+	cursor: default;
 }
