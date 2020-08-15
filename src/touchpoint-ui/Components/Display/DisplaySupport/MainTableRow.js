@@ -101,11 +101,17 @@ export default function MainTableRow(props) {
 			{expanded && props.nestedComponent ? <div 
 				className = 'componentWrapper'
 			>
-				<props.nestedComponent
-					{...props.nestedProps}
-					dataRow = {props.dataRow}
-					setDataRow = {setDataRow}
-				/>
+				<div className="keepInView" style={{
+					width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 35px)' : null,
+					left: props.scrollPos
+				}}>
+					<props.nestedComponent
+						{...props.nestedProps}
+						dataRow = {props.dataRow}
+						setDataRow = {setDataRow}
+					/>
+				</div>
+				
 			</div> : null}
 			
 		</div>

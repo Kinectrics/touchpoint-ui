@@ -82,7 +82,7 @@ export default function VendorRubrics(){
 				<MainTable
 					data={data}
 					headers={dataHeaders}
-					pageSize={200}
+					pageSize={100}
 					searchable
 					settingsID={'VendorRubricsMainTable'}
 					nestedComponent = {TestExpandedRows}
@@ -104,10 +104,10 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						<StatusLog
+						{/* <StatusLog
 							dataRow={data.getActiveRecord()}
 							statusStyle={statusStyle}
-						/>
+						/> */}
 					</InfoTab>								
 							
 				</InfoTabContainer>

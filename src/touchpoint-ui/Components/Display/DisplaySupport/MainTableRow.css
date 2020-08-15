@@ -78,8 +78,9 @@
 }
 
 .MainTableRow .componentWrapper{
-	padding: 7px;
+	padding: 7px 0;
 	cursor: default;
+	position: relative;
 }
 
 .MainTableRow .expandButton{
@@ -100,4 +101,10 @@
 
 .MainTableRow .expandButton:active{
 	filter: brightness(50%) !important;
+}
+
+.MainTableRow .keepInView{
+	transition: none !important;
+	position: sticky;
+	top: 0;
 }

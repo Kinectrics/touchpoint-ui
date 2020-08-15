@@ -8,6 +8,7 @@ import TableControls from './DisplaySupport/TableControls'
 import useSettings from '../../Hooks/UseSettings'
 import PageControls from './DisplaySupport/PageContols'
 import useHeaders from '../../Hooks/UseHeaders'
+import { useRef } from 'react'
 
 export default function MainTable(props){
 	
@@ -123,14 +124,23 @@ export default function MainTable(props){
 	
 	//Counter for rendered rows
 	let rowCount = 1
-	
+
+	//Positioning for nested components
 	const [expandTrigger, setExpandTrigger] = useState(false)
 	const [collapseTrigger, setCollapseTrigger] = useState(false)
+	const tableRef = useRef()
+	const [scrollPos, setScrollPos] = useState(0)
 
-	
+
+	function scrollHandler(e){
+		if(e.target.scrollLeft !== scrollPos){
+			setScrollPos(e.target.scrollLeft)
+		}
+	}
+
 	//Render
 	return (
-		<div className={'MainTable ' + hasActiveClass + hasNestedClass}>
+		<div className={'MainTable ' + hasActiveClass + hasNestedClass} ref = {tableRef} onScroll={scrollHandler}>
 
 			<div className="topBar">
 				<div className='topBarContainer'></div>
@@ -219,6 +229,8 @@ export default function MainTable(props){
 									expandTrigger = {expandTrigger}
 									collapseTrigger = {collapseTrigger}
 									noActive = {noActive}
+									tableRef = {tableRef}
+									scrollPos = {scrollPos}
 								/> : null
 							
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
