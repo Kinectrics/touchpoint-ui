@@ -15,6 +15,7 @@ export default function useHeaders(dataHeaders = []) {
 	const [savedLayouts, setSavedLayouts] = useState({})
 	const [settingsEngine, setSettingsEngine] = useState({ save: ()=>{} })
 	const [tokenTrigger, setTokenTrigger] = useState(false)
+	const [sortRules, setSortRules] = useState([])
 	
 	//Coverts the current layout to JSON and saves it
 	function saveLayout(layoutName){
@@ -23,13 +24,14 @@ export default function useHeaders(dataHeaders = []) {
 		
 		newLayouts[saveID] = {
 			name: layoutName,
-			headerOptions: {}
+			headerOptions: {},
+			sortRules: sortRules
 		}
+		
 		
 		headers.forEach((h)=>{
 			newLayouts[saveID].headerOptions[h.headerID] = {
 				visible: h.visible,
-				sortRule: h.sortRule,
 				filterList: []
 			}
 			
@@ -50,7 +52,6 @@ export default function useHeaders(dataHeaders = []) {
 			headers.forEach(h=>{
 				h.clearFilter()
 				h.visible = savedLayouts[id].headerOptions[h.headerID].visible 
-				h.sortRule = savedLayouts[id].headerOptions[h.headerID].sortRule
 				
 				savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f)=>{
 					h.addFilter(f)
@@ -60,6 +61,7 @@ export default function useHeaders(dataHeaders = []) {
 			})
 				
 			setHeaders(newHeaders)
+			setSortRules(savedLayouts[id].sortRules)
 			setTokenTrigger(true)
 		}
 	}
@@ -92,9 +94,9 @@ export default function useHeaders(dataHeaders = []) {
 		
 		newHeaders.forEach((h)=>{
 			h.visible = newSettings.headerOptions[h.headerID].visible
-			h.sortRule = newSettings.headerOptions[h.headerID].sortRule
 		})
 		
+		setSortRules(newSettings.sortRules ? newSettings.sortRules : [])
 		setHeaders(newHeaders)
 	}
 	
@@ -102,6 +104,7 @@ export default function useHeaders(dataHeaders = []) {
 		const newHeaders = [...headers]
 		newHeaders[index].visible = bool
 		setHeaders(newHeaders)
+		setSortRules( [...sortRules].filter(sr => sr.headerID !== headers[index].headerID) )
 		setTokenTrigger(true)
 	}
 	
@@ -111,17 +114,30 @@ export default function useHeaders(dataHeaders = []) {
 		
 		const res = {
 			savedLayouts: savedLayouts,
-			headerOptions: {}
+			headerOptions: {},
+			sortRules: sortRules
 		}
 		
 		headers.forEach((hdr)=>{
 			res.headerOptions[hdr.headerID] = {
 				visible: hdr.visible,
-				sortRule: hdr.sortRule,
 			}
 		})
 
 		settingsEngine.save(JSON.stringify(res))
+	}
+		
+	function removeSortRule(headerID){
+		setSortRules(
+			[...sortRules].filter(sr => sr.headerID !== headerID)
+		)
+		setTokenTrigger(true)
+	}
+	
+	function addSortRule(headerID, direction){
+		const newSortRules = [...sortRules].filter(sr => sr.headerID !== headerID)
+		newSortRules.push({headerID: headerID, direction: direction})
+		setSortRules(newSortRules)
 	}
 
 	return ({
@@ -137,18 +153,10 @@ export default function useHeaders(dataHeaders = []) {
 		setSettingsEngine: setSettingsEngine,
 		setVisible: setVisible,
 		
-		addSortRule: (headerIndex, direction) => {
-			let newHeaders = [...headers]
-			newHeaders[headerIndex].sortRule = direction
-			setHeaders(newHeaders)
-			setTokenTrigger(true)
-		},
-
-		removeSortRule: (headerIndex) => {
-			let newHeaders = [...headers]
-			newHeaders[headerIndex].sortRule = false
-			setHeaders(newHeaders)
-			setTokenTrigger(true)
-		},
+		addSortRule: addSortRule,
+		removeSortRule: removeSortRule,
+		getSortRules: ()=>{
+			return sortRules
+		}
 	})
 }

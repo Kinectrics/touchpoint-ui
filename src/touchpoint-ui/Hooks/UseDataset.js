@@ -11,7 +11,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
 	const [lastEdited, setLastEdited] = useState()
-	const [headers, setHeaders] = useState({ get: () => { return [] } })
+	const [headers, setHeaders] = useState({ get: () => [] , getSortRules: ()=>[] })
 	
 	const [activeRecord, setActiveRecord] = useState({})
 	
@@ -103,18 +103,18 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	function sortData(values){
 		let newValues = [...values]
 		
-		headers.get().forEach((hdr)=>{
-			if (hdr.sortRule && hdr.visible) {
-				newValues = newValues.sort((aRow, bRow) => {
-					
-					if (hdr.sortRule === 'asc') {
-						return aRow[hdr.headerID] > bRow[hdr.headerID] ? 1 : -1
-					} else {
-						return aRow[hdr.headerID] > bRow[hdr.headerID] ? -1 : 1
-					}
-					
-				})
-			}
+		headers.getSortRules().forEach((sr)=>{
+			
+			newValues = newValues.sort((aRow, bRow) => {
+				
+				if (sr.direction === 'asc') {
+					return aRow[sr.headerID] > bRow[sr.headerID] ? 1 : -1
+				} else {
+					return aRow[sr.headerID] > bRow[sr.headerID] ? -1 : 1
+				}
+				
+			})
+			
 		})
 		
 		return newValues
@@ -186,6 +186,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 		},
 		
 		sort: () => {
+			
 			const newData = sortData(data)
 			const newMeta = filterData(newData)
 			

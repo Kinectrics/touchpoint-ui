@@ -14,11 +14,12 @@ export default function TheadButton(props){
 	let sortIcon = null
 	
 	const hasFilter = props.header.hasFilter()
-	const sortRule = props.header.sortRule
+	
+	const sortRule = props.dataHeaders.getSortRules().find(sr => sr.headerID === props.header.headerID)
 		
 	if(sortRule){
 		arrowIcon = null
-		sortIcon = sortRule === 'asc' ?
+		sortIcon = sortRule.direction === 'asc' ?
 		<span><FontAwesomeIcon icon={faSortAlphaDown} /></span> :
 		<span><FontAwesomeIcon icon={faSortAlphaDownAlt} /></span>
 	}

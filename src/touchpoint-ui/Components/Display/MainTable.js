@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import PropTypes, { object } from 'prop-types'
+import PropTypes from 'prop-types'
 import './MainTable.css'
 import MainTableRow from './DisplaySupport/MainTableRow'
 import lockedContext from '../../Contexts/LockedContext'
