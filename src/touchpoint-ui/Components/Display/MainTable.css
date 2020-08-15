@@ -14,7 +14,6 @@
 }
 
 .MainTable .topBar{
-	display: flex;
 	padding: 7px 0px;
 	padding-top: 3px;
 	padding-left: 30px;
@@ -81,11 +80,15 @@
 }
 
 /* Controls */
+.MainTable .topBarContainer{
+	position: relative;
+}
+
 .MainTable .tableControls{
-	width: 50%;
 	color: var(--lockedTextColor);
 	font-size: 12pt;
 	padding-top: 3px;
+	background-color: var(--bodyAltBG);
 }
 
 .MainTable .pageControls{
@@ -94,9 +97,10 @@
 	margin: 0;
 	height: 25px;
 	color: var(--lockedTextColor);
-	width: 50%;
-	/* border: 1px solid red; */
+	position: absolute;
 	right: 0;
+	top: 3px;
+	background-color: var(--bodyAltBG);
 }
 
 .MainTable .topBar button{

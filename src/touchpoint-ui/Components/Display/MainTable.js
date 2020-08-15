@@ -133,27 +133,28 @@ export default function MainTable(props){
 		<div className={'MainTable ' + hasActiveClass + hasNestedClass}>
 
 			<div className="topBar">
-				<TableControls
-					hasFilter={hasFilter}
-					noFilter={noFilter}
-					noSort={noSort}
-					clearFilter={clearFilter}
-					noOptions={noOptions}
-					dataHeaders={headers}
-					data={props.data}
-					setTransitionClass={setTransitionClass}
-					setExpandTrigger = {setExpandTrigger}
-					setCollapseTrigger = {setCollapseTrigger}
-					expandTrigger = {expandTrigger}
-					collapseTrigger = {collapseTrigger}
-					showExpandControls = {props.nestedComponent ? true : false}
-				/>
-				<PageControls 
-					activePage = {activePage}
-					setActivePage = {setActivePage}
-					dataLength = {dataLength}
-					pageSize = {pageSize}
-				/>
+				<div className='topBarContainer'></div>
+					<TableControls
+						hasFilter={hasFilter}
+						noFilter={noFilter}
+						noSort={noSort}
+						clearFilter={clearFilter}
+						noOptions={noOptions}
+						dataHeaders={headers}
+						data={props.data}
+						setTransitionClass={setTransitionClass}
+						setExpandTrigger = {setExpandTrigger}
+						setCollapseTrigger = {setCollapseTrigger}
+						expandTrigger = {expandTrigger}
+						collapseTrigger = {collapseTrigger}
+						showExpandControls = {props.nestedComponent ? true : false}
+					/>
+					<PageControls 
+						activePage = {activePage}
+						setActivePage = {setActivePage}
+						dataLength = {dataLength}
+						pageSize = {pageSize}
+					/>
 			</div>
 
 
