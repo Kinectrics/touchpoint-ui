@@ -59,7 +59,7 @@ export default function InputCell(props) {
 			newData[props.rowIndex][props.header.headerID] = currentValue
 			
 			try{
-				const res = await props.header.onEdit(currentValue, newData[props.rowIndex])
+				const res = await props.header.onEdit(currentValue, newData[props.rowIndex], initalValue, props.dataset.read()[props.rowIndex])
 				
 				if(res || res === undefined){
 					props.dataset.set(newData)
