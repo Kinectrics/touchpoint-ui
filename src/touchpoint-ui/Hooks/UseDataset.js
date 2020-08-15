@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import useModuleData from '../Hooks/UseModuleData'
+import { act } from '@testing-library/react'
 
 
 //Initialises a Dataset and caches the value
@@ -12,32 +13,29 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	const [lastResolved, setLastResolved] = useState()
 	const [lastEdited, setLastEdited] = useState()
 	const [headers, setHeaders] = useState({ get: () => { return [] } })
+	
 	const [activeRecord, setActiveRecord] = useState({})
 	
-	function setActiveRecordHandler(newPrimaryKey) {
+	//Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
+	function selectRecord(newPrimaryKey, fromData = data){
 
-		const newIndex = data.findIndex(r => r[primaryKey] === newPrimaryKey)
+		const newIndex = fromData.findIndex(r => r[primaryKey] == newPrimaryKey)
 		
-		const newRecord = newIndex > -1
-		? { primaryKey: newPrimaryKey, index: newIndex }
-		: {}
-		
-		setActiveRecord(newRecord)
-		return(newRecord)
+		if(newIndex > -1){
+			setActiveRecord(fromData[newIndex])
+			return (fromData[newIndex])
+		} else{
+			setActiveRecord({})
+			return({})
+		} 	
 	}
 	
 	
 	function getActiveRecord(){
 		//Ensure the row is valid and has the correct primary key
-		if (data[activeRecord.index] && (data[activeRecord.index][primaryKey] === activeRecord.primaryKey) ){
-			return data[activeRecord.index]
-			
-		} else if(activeRecord.primaryKey !== undefined){ //if not, attempt to find the correct row index
-			return setActiveRecordHandler(activeRecord.primaryKey)
-		}
-		
-		return {} //if there's no matching row, return blank
+		return activeRecord
 	}
+	
 	
 	//Search data on change
 	const searchText = useModuleData().get('TouchPointSearchText')
@@ -45,7 +43,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	function searchData(values) {
 
 		const newMetaData = []
-
+		
 		values.forEach((r, idx) => {
 
 			const rowMeta = metaData[idx] ? metaData[idx] : {}
@@ -85,8 +83,8 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 			rowMeta.filteredBy = ''
 			
 			let noRender = false
+			
 			headers.get().forEach((h) => {
-				//filter
 				const fltr = h.filter(r[h.headerID], r)
 				
 				if (!fltr && fltr !='arrayFilter'){
@@ -130,12 +128,14 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 
 		try {
 			
-			let value = await fetchFunction()
-			value = sortData(value)
+			let newData = await fetchFunction()
+			newData = sortData(newData)
 			
-			setMetaData(searchData(value))
-			setMetaData(filterData(value))
-			setData(value)
+			setMetaData(searchData(newData))
+			setMetaData(filterData(newData))
+			setData(newData)
+			
+			selectRecord(activeRecord[primaryKey], newData)
 			
 			setStatus('Resolved')
 			setLastResolved(Date())
@@ -165,18 +165,20 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	//Return a Dataset object
 	return ({
 		read: () => { return data },
-		getMetaData: ()=>{ return metaData },
-		getActiveRecord: getActiveRecord,
-		setActiveRecord: setActiveRecordHandler,
-
 		refresh: refreshData,
-
+		
+		selectRecord: (primaryKey) => selectRecord(primaryKey),
+		getActiveRecord: getActiveRecord,
+		
 		status: status,
 		lastResolved: lastResolved,
 		lastEdited: lastEdited,
+		
+		//TouchPoint Controls
 		setHeaders: setHeaders,
 		isDataset: true,
 		primaryKey: primaryKey,
+		getMetaData: () => { return metaData },
 		
 		filter: () => {
 			const newMeta = filterData(data)
@@ -195,6 +197,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 		set: (newData)=>{
 			setData(newData)
 			setLastEdited(Date())
+			selectRecord(activeRecord[primaryKey], newData)
 		}
 	})
 }

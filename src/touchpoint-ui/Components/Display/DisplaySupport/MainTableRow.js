@@ -6,13 +6,13 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 export default function MainTableRow(props) {
 	
-	const activeClass = !props.noActive && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] 
+	const activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey]
 	? ' active '
 	:  ''
 	
 	function rowClickHandler(){
 		if(!props.noActive){
-			props.dataset.setActiveRecord(props.dataRow[props.dataset.primaryKey])
+			props.dataset.selectRecord( props.dataRow[props.dataset.primaryKey] )
 		}
 	}
 	

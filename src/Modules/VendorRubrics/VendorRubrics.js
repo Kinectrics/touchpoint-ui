@@ -50,8 +50,10 @@ export default function VendorRubrics(){
 		<Module moduleName = "VendorRubrics">
 			<ControlBar searchBar>
 				
-				<ControlButton>
-					<FontAwesomeIcon icon={faCalendarAlt} /> Post Job Report
+				<ControlButton onClick={()=>{
+					data.selectRecord('7')
+				}}>
+					<FontAwesomeIcon icon={faCalendarAlt} /> Activate
 				</ControlButton>
 				
 				<ControlButton onClick={()=>{
