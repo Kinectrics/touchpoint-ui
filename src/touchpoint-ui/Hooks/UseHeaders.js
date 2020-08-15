@@ -140,6 +140,7 @@ export default function useHeaders(dataHeaders = []) {
 		const newSortRules = [...sortRules.current].filter(sr => sr.headerID !== headerID)
 		newSortRules.push({headerID: headerID, direction: direction})
 		setSortRules(newSortRules)
+		setTokenTrigger(true)
 	}
 
 	return ({

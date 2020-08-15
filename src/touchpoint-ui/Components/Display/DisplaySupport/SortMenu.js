@@ -6,6 +6,7 @@ export default function SortMenu(props){
 	
 	function sortData(e){
 		props.dataHeaders.addSortRule(props.header.headerID, e.target.value)
+		props.data.sort()
 	}
 	
 	const sortRule = props.dataHeaders.getSortRules().find(sr => sr.headerID === props.header.headerID)
@@ -13,6 +14,7 @@ export default function SortMenu(props){
 
 	const cancelIcon = <span className = 'sortIcon' onClick={(e)=>{
 		props.dataHeaders.removeSortRule(props.header.headerID)
+		props.data.sort()
 		e.stopPropagation()
 	}}>
 		<FontAwesomeIcon icon={faTimes} />
