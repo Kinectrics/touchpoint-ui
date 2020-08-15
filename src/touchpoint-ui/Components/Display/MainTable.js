@@ -82,10 +82,6 @@ export default function MainTable(props){
 
 	}, [props.data.lastResolved, props.data.lastEdited])
 	
-	//default page Size
-	let pageSize = props.pageSize
-	if(!pageSize){pageSize = 100}
-	
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled
 	let dynamic
@@ -163,7 +159,7 @@ export default function MainTable(props){
 						activePage = {activePage}
 						setActivePage = {setActivePage}
 						dataLength = {dataLength}
-						pageSize = {pageSize}
+						pageSize = {props.pageSize}
 					/>
 			</div>
 
@@ -202,7 +198,7 @@ export default function MainTable(props){
 				<div className = {'tableBody ' + props.data.lastResolved}>
 					{data.map((dr, idx) => {
 						//render the allowed numebr of rows, on th selected page
-						if((rowCount > activePage * pageSize) && (rowCount <= (1 + activePage)*pageSize)){
+						if((rowCount > activePage * props.pageSize) && (rowCount <= (1 + activePage)*props.pageSize)){
 							
 							let renderRow = dr !== []
 							
@@ -236,7 +232,7 @@ export default function MainTable(props){
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
 							
 							return r
-						} else if(rowCount <= (1 + activePage)*pageSize){rowCount++}
+						} else if(rowCount <= (1 + activePage)*props.pageSize){rowCount++}
 						
 						return null
 					})}
@@ -268,4 +264,9 @@ MainTable.propTypes = {
 	nestedComponent: PropTypes.func,
 	
 	primaryKey: PropTypes.string,
+}
+
+MainTable.defaultProps = {
+	pageSize: 100,
+	
 }
