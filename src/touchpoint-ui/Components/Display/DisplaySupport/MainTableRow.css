@@ -46,10 +46,11 @@
 	color: inherit;
 	padding: 1px 10px;
 	border-radius: 10px;
-	transition: background-color 1s ease-out;
+	transition: background-color 750ms ease-out;
 }
 
-.MainTableRow .InputCell.invalid{
+.MainTableRow .InputCell.invalid,
+.MainTableRow .InputCell.valid{
 	transition: all 0ms;
 }
 

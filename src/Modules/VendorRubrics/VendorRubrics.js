@@ -29,12 +29,12 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = [
-		{headerID:'id',displayName:'ID', width: 200, required: true, onEdit: (cell, row)=>{
+		{headerID:'id',displayName:'ID', width: 200, required: true},
+		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
 			
-			if(cell === '1'){return false} else return(true)
+			if(cell === '1'){throw('ERR')}
 		}},
-		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell)=>{console.log(cell)}},
 		{headerID: 'project', displayName: 'Project', width: 300, onEdit: (cell) => { console.log(cell) }},
 		{headerID: 'projectName', displayName:'Project Name', width: 350,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
