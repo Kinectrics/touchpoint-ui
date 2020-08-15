@@ -12,7 +12,6 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	const [lastResolved, setLastResolved] = useState()
 	const [lastEdited, setLastEdited] = useState()
 	const [headers, setHeaders] = useState({ get: () => [] , getSortRules: ()=>[] })
-	
 	const [activeRecord, setActiveRecord] = useState({})
 	
 	//Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data

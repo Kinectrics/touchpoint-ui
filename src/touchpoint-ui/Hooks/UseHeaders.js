@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import DataHeader  from '../DataObjects/DataHeader'
 import {v4 as uuid} from 'uuid'
 
@@ -15,7 +15,9 @@ export default function useHeaders(dataHeaders = []) {
 	const [savedLayouts, setSavedLayouts] = useState({})
 	const [settingsEngine, setSettingsEngine] = useState({ save: ()=>{} })
 	const [tokenTrigger, setTokenTrigger] = useState(false)
-	const [sortRules, setSortRules] = useState([])
+	
+	const sortRules = useRef([])
+	const setSortRules = (value) => {sortRules.current = value}
 	
 	//Coverts the current layout to JSON and saves it
 	function saveLayout(layoutName){
@@ -25,7 +27,7 @@ export default function useHeaders(dataHeaders = []) {
 		newLayouts[saveID] = {
 			name: layoutName,
 			headerOptions: {},
-			sortRules: sortRules
+			sortRules: sortRules.current
 		}
 		
 		
@@ -104,7 +106,7 @@ export default function useHeaders(dataHeaders = []) {
 		const newHeaders = [...headers]
 		newHeaders[index].visible = bool
 		setHeaders(newHeaders)
-		setSortRules( [...sortRules].filter(sr => sr.headerID !== headers[index].headerID) )
+		setSortRules( [...sortRules.current].filter(sr => sr.headerID !== headers[index].headerID) )
 		setTokenTrigger(true)
 	}
 	
@@ -115,7 +117,7 @@ export default function useHeaders(dataHeaders = []) {
 		const res = {
 			savedLayouts: savedLayouts,
 			headerOptions: {},
-			sortRules: sortRules
+			sortRules: sortRules.current
 		}
 		
 		headers.forEach((hdr)=>{
@@ -129,13 +131,13 @@ export default function useHeaders(dataHeaders = []) {
 		
 	function removeSortRule(headerID){
 		setSortRules(
-			[...sortRules].filter(sr => sr.headerID !== headerID)
+			[...sortRules.current].filter(sr => sr.headerID !== headerID)
 		)
 		setTokenTrigger(true)
 	}
 	
 	function addSortRule(headerID, direction){
-		const newSortRules = [...sortRules].filter(sr => sr.headerID !== headerID)
+		const newSortRules = [...sortRules.current].filter(sr => sr.headerID !== headerID)
 		newSortRules.push({headerID: headerID, direction: direction})
 		setSortRules(newSortRules)
 	}
@@ -156,7 +158,7 @@ export default function useHeaders(dataHeaders = []) {
 		addSortRule: addSortRule,
 		removeSortRule: removeSortRule,
 		getSortRules: ()=>{
-			return sortRules
+			return sortRules.current
 		}
 	})
 }
