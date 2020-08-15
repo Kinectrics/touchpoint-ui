@@ -85,7 +85,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 			headers.get().forEach((h) => {
 				const fltr = h.filter(r[h.headerID], r)
 				
-				if (!fltr && fltr !='arrayFilter'){
+				if (!fltr && fltr !='arrayFilter' && h.visible){
 					noRender = true
 					rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';'
 				}
