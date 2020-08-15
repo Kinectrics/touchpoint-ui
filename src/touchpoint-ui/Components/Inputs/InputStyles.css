@@ -14,6 +14,10 @@
 	background-color: var(--inputInvalidColor);
 }
 
+.input.valid{
+	background-color: var(--inputValidColor);
+}
+
 .input:hover, .input:focus{
 	filter: brightness(102%);
 }

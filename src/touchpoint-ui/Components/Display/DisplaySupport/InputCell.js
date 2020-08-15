@@ -46,6 +46,11 @@ export default function InputCell(props) {
 		setTimeout(()=>setValidClass(''), 200)
 	}
 	
+	function flashGreen() {
+		setValidClass('valid')
+		setTimeout(() => setValidClass(''), 150)
+	}
+	
 	//Check if the input is valid and commit
 	function commitChanges(){
 		if (props.dataRow[props.header.headerID] !== currentValue){
@@ -53,13 +58,15 @@ export default function InputCell(props) {
 			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
 			newData[props.rowIndex][props.header.headerID] = currentValue
 			
-			const objection = props.header.onEdit(currentValue, newData[props.rowIndex])
+			const res = props.header.onEdit(currentValue, newData[props.rowIndex])
 			
-			if(objection){
+			if(res || res === undefined){
+				props.dataset.set(newData)
+				flashGreen()
+				
+			} else{
 				setCurrentValue(initalValue)
 				flashRed()
-			} else{
-				props.dataset.set(newData)
 			}
 		}
 	}

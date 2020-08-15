@@ -32,7 +32,7 @@ export default function VendorRubrics(){
 		{headerID:'id',displayName:'ID', width: 200, required: true, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
 			
-			if(cell === '1'){return true}
+			if(cell === '1'){return false} else return(true)
 		}},
 		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell)=>{console.log(cell)}},
 		{headerID: 'project', displayName: 'Project', width: 300, onEdit: (cell) => { console.log(cell) }},
