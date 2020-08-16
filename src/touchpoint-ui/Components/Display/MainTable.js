@@ -21,6 +21,9 @@ export default function MainTable(props){
 	let searchable = props.searchable
 	let noActive = props.noActive
 	
+	//expanded rows (if applicable)
+	const hasNestedClass = props.nestedComponent ? ' hasNested ' : null
+	
 	//support for dataSets or for just arrays
 	let data = props.data
 	let metaData = [{}]
@@ -64,9 +67,6 @@ export default function MainTable(props){
 			dataLength++
 		}
 	})
-	
-	//expanded rows (if applicable)
-	const hasNestedClass = props.nestedComponent ? ' hasNested ' : ''
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(() => {
@@ -136,7 +136,11 @@ export default function MainTable(props){
 
 	//Render
 	return (
-		<div className={'MainTable ' + hasActiveClass + hasNestedClass} ref = {tableRef} onScroll={scrollHandler}>
+		<div 
+			className={'MainTable ' + hasActiveClass + hasNestedClass} 
+			ref = {tableRef} 
+			onScroll={hasNestedClass ? scrollHandler : undefined}
+		>
 
 			<div className="topBar">
 				<div className='topBarContainer'></div>
