@@ -23,15 +23,13 @@ export default function RadioButton(props) {
 		}
 	}
 	
-	const defaultChecked = radioData.defaultValue === props.value
-	
 	return (
 		<span className={"RadioButton flexY " + lockedClass} style={props.style}>
 			
 			<input
 				type="radio"
 				className={'input ' + lockedClass}
-				defaultChecked={defaultChecked}
+				defaultChecked={radioData.value !== undefined ? undefined : radioData.defaultValue === props.value}
 				onClick={clickHandler}
 				name = {radioData.groupName}
 				value = {props.value}
