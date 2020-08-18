@@ -9,7 +9,7 @@ import './TheadMenu'
 export default function TheadButton(props){
 	
 	//if there is a menu, add a dropdown icon
-	let arrowIcon = <span><FontAwesomeIcon icon={faCaretDown} /></span>	
+	let arrowIcon = <span><FontAwesomeIcon icon={faCaretDown}/></span>	
 	let filterIcon = null
 	let sortIcon = null
 	

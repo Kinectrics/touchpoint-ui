@@ -6,6 +6,8 @@ export default class DataFilter{
 		this.filter = DataFilter.getFilterTypes()[options.id] ? DataFilter.getFilterTypes()[options.id].func : ()=>{return true}
 		this.displayName = DataFilter.getFilterTypes()[options.id].displayName
 		this.args = DataFilter.getFilterTypes()[options.id].args
+		
+		this.options.value = this.options.value.toString().toLowerCase()
 	}
 	
 	
@@ -21,22 +23,7 @@ export default class DataFilter{
 	static getFilterTypes(){
 		
 		return {
-			equals: {
-				func: (val, options) => {
-					return val.toString().toLowerCase() === options.value
-				},
-				displayName:'Equals',
-				availableTo: ['string', 'number'],
-			},
 			
-			doesNotEqual: {
-				func: (val, options) => {
-					return val.toString().toLowerCase() !== options.value
-				},
-				displayName: "Doesn't Equal",
-				availableTo: ['string', 'number'],
-			},
-
 			includes: {
 				func: (val, options) => {
 					return val.toString().toLowerCase().includes(options.value)
@@ -49,7 +36,7 @@ export default class DataFilter{
 				func: (val, options) => {
 					return !val.toString().toLowerCase().includes(options.value)
 				},
-				displayName:  "Doesn't Include",
+				displayName: "Doesn't Include",
 				availableTo: ['string'],
 			},
 
@@ -67,6 +54,22 @@ export default class DataFilter{
 				},
 				displayName: 'Greater than',
 				availableTo: ['number'],
+			},
+			
+			equals: {
+				func: (val, options) => {
+					return val.toString().toLowerCase() == options.value
+				},
+				displayName: 'Equals',
+				availableTo: ['string', 'number'],
+			},
+
+			doesNotEqual: {
+				func: (val, options) => {
+					return val.toString().toLowerCase() != options.value
+				},
+				displayName: "Doesn't Equal",
+				availableTo: ['string', 'number'],
 			},
 			
 		}
