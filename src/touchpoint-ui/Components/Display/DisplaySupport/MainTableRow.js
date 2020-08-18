@@ -12,7 +12,7 @@ export default function MainTableRow(props) {
 	
 	function rowClickHandler(){
 		if(!props.noActive){
-			props.dataset.selectRecord( props.dataRow[props.dataset.primaryKey] )
+			props.dataset.selectRecord( props.dataRow[props.dataset.primaryKey])
 		}
 	}
 	

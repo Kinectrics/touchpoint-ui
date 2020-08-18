@@ -11,11 +11,12 @@ import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
 const dropMenu = React.forwardRef(
 	(props, ref) => {
 		return (
-			<menuContext.Provider value={{submenu: true }}>
+			<menuContext.Provider value={{submenu: true}}>
 				<div
 					ref={ref}
-					className={props.className + ' Menu'}
+					className={props.className + ' Menu ' + props.menuClass}
 					style={{...props.style, ...props.menuStyle}}
+					onClick={props.onClickBody}
 				>
 					{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}
 				</div>
@@ -52,12 +53,10 @@ export default function MenuButton(props){
 	
 	//check if it's inside of another menu, if so render as a submenu
 	const parentMenuData = useContext(menuContext)
-	let icon = null
-	if(parentMenuData.submenu){
-		icon = <span className='subMenuIcon'>
-				<FontAwesomeIcon icon={faCaretRight} />
-			</span>
-	}
+	const icon = parentMenuData.submenu ? <span className='subMenuIcon'>
+			<FontAwesomeIcon icon={faCaretRight} />
+	</span> : null
+
 	
 	let direction = props.direction
 	if(parentMenuData.submenu){
@@ -86,7 +85,15 @@ export default function MenuButton(props){
 			</button>
 		)
 	})
-
+	
+	//Prevent submenus from sticking around after their parent has closed
+	function onClickBody(){
+		if(parentMenuData.submenu){
+			document.body.click()
+		}
+	}
+	
+	
 	//If locked return a button that does nothing, otherwise create a real dropdown button
 	if(locked){
 		
@@ -107,13 +114,14 @@ export default function MenuButton(props){
 				
 				<Dropdown.Toggle as={dropButton}/>
 				
-				{ReactDOM.createPortal(<Dropdown.Menu 
-					as={dropMenu} 
-					MenuContent = {props.menuContent}
-					menuStyle = {props.menuStyle}
-				>
-						
-				</Dropdown.Menu>, document.body)}
+				{
+					ReactDOM.createPortal(<Dropdown.Menu 
+						as={dropMenu}
+						MenuContent = {props.menuContent}
+						menuStyle = {props.menuStyle}
+						onClickBody = {onClickBody}
+					/>, document.body)
+				}
 				
 			</Dropdown>
 		</span>

@@ -49,14 +49,6 @@
 	color: var(--navClickedColor) !important;
 }
 
-.AppToolbar .homeButton{
-	margin-top: 2px;
-	padding-left: 4px;
-	background-color: var(--navColor) !important;
-	border: none;
-	color: var(--navTextColor);
-}
-
 .AppToolbar a{
 	background-color: var(--cardBG) !important;
 	color: var(--mainTextColor) !important;

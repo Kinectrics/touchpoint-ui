@@ -8,8 +8,6 @@ export default function TestExpandedRows(props) {
 	
 	return (
 		<div style={{
-			border: '1px solid var(--borderColor)',
-			borderRadius: '10px',
 			padding: '10px'
 		}}>
 			Expanded Rows Test

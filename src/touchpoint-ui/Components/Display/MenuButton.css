@@ -41,7 +41,6 @@
 	overflow-x: visible;
 }
 
-
 /* Buttons and links */
 .Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){
 	width: 100%;

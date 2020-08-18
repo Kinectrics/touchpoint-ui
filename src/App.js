@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {AppToolbar} from './touchpoint-ui'
+import CustomToolbar from './CustomToolbar'
 import {AppFooter} from './touchpoint-ui'
 import {TouchPointApp, AppDrawer} from './touchpoint-ui'
 import DrawerContent from './DrawerContent'
@@ -64,7 +64,7 @@ export default function App() {
 	function getSettings(id){
 		return localStorage.getItem('DMSsettings-'+id)
 	}
-	
+
 	
 	return (
 		<TouchPointApp
@@ -75,8 +75,15 @@ export default function App() {
 			getSettings = {getSettings}
 		>
 			
-			<AppToolbar />
-			<AppFooter />
+			<CustomToolbar />
+			
+			<AppFooter>
+				<span className="leftSide">
+					{io.getActiveUser()} |
+					Security Profile: {io.getSecurityProfile()} |
+					Version: {io.getVersion().number + ' - ' + io.getVersion().environment}
+				</span>
+			</AppFooter>
 			
 			<AppDrawer title={'App Drawer'}>
 				<DrawerContent/>
