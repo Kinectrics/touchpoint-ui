@@ -45,7 +45,7 @@ export default class DataFilter{
 					return val < options.value
 				},
 				displayName: 'Less than',
-				availableTo: ['number'],
+				availableTo: ['number', 'date'],
 			},
 
 			greaterThan: {
@@ -53,7 +53,7 @@ export default class DataFilter{
 					return val > options.value
 				},
 				displayName: 'Greater than',
-				availableTo: ['number'],
+				availableTo: ['number', 'date'],
 			},
 			
 			equals: {
@@ -61,7 +61,7 @@ export default class DataFilter{
 					return val.toString().toLowerCase() == options.value
 				},
 				displayName: 'Equals',
-				availableTo: ['string', 'number'],
+				availableTo: ['string', 'number', 'boolean', 'date'],
 			},
 
 			doesNotEqual: {
@@ -69,7 +69,7 @@ export default class DataFilter{
 					return val.toString().toLowerCase() != options.value
 				},
 				displayName: "Doesn't Equal",
-				availableTo: ['string', 'number'],
+				availableTo: ['string', 'number', 'boolean', 'date'],
 			},
 			
 		}

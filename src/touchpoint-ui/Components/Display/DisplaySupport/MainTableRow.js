@@ -3,12 +3,13 @@ import './MainTableRow.css'
 import InputCell from './InputCell'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import moment from 'moment'
 
 export default function MainTableRow(props) {
 	
 	const activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey]
 	? ' active '
-	:  ''
+	: ''
 	
 	function rowClickHandler(){
 		if(!props.noActive){
@@ -20,17 +21,24 @@ export default function MainTableRow(props) {
 		if(hdr.visible){
 			
 			//Decide if the cell is editable or not based on the locked status, and the header onEdit function
-			let cellContent = props.dataRow[hdr.headerID]
+			let cellContent
 			let cellClass = ''
 			
 			if(!props.locked && hdr.onEdit && !hdr.locked){
+				
 				cellContent = <InputCell 
 					header = {hdr}
 					dataRow = {props.dataRow}
 					rowIndex = {props.rowIndex}
 					dataset = {props.dataset}
 				/>
+				
 				cellClass = 'inputWrapper'
+				
+			} else if(hdr.type === 'date'){
+				cellContent = props.dataRow[hdr.headerID] ? moment(props.dataRow[hdr.headerID]).format('DD-MMM-YY') : ''
+			} else {
+				cellContent = props.dataRow[hdr.headerID]
 			}
 			
 			

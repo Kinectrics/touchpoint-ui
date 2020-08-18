@@ -11,9 +11,8 @@ export function queryNotifications(userName, moduleName){
 		{title: 'Vendor Rubric 2', action: 'Pending Review', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'New Vendor Review', action: 'Approval Required', due: Date('1-May-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
 		{title: 'Vendor Review', action: 'Approval Required', due: Date('1-Jun-20'), moduleName : 'Vendor Rubrics', moduleID:'VendorRubrics'},
-	]);
+	])
 }
-
 
 //returns dummy query results for the vendorRubrics table 
 export function getTableData(){
@@ -23,7 +22,7 @@ export function getTableData(){
 	const SMs = ['Sid Das', 'Olivia Krucko Gorski','Rushanth Raveendran']
 	const projectNames = ['Cooling Things and such', '','Radiation protection etc.']
 	const statuses = ['Complete', '','Open']
-	const dues = ['1-May-20', '3-Feb-20','1-Jan-20']
+	const dues = [new Date('1-May-20'), undefined, new Date('1-Jan-20')]
 	const interns = ['Youssof Fahmy', 'Andrew Wuebbolt','Clara Birch']
 	const project = [36527,39568,38735,36815,39202,39548]
 	const scr = [
@@ -73,5 +72,4 @@ export function getTableData(){
 	}
 	
 	return(data)
-	
 }

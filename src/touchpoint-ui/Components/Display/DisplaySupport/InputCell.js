@@ -40,7 +40,6 @@ export default function InputCell(props) {
 	
 	const [validClass, setValidClass] = useState('')
 	
-	
 	function flashRed(){
 		setValidClass('invalid')
 		setTimeout(()=>setValidClass(''), 200)
@@ -80,7 +79,7 @@ export default function InputCell(props) {
 		commitChanges()//Force it to wait untill React finishes all updates before executing
 	}
 	
-	return <input
+	return(<input
 		type = 'text'
 		className = {'InputCell input ' + validClass}
 		onKeyDown = {keyHandler}
@@ -88,5 +87,5 @@ export default function InputCell(props) {
 		onBlur = {blurHandler}
 		value = {currentValue}
 		onChange = {changeHandler}
-	/>
+	/>)
 }
