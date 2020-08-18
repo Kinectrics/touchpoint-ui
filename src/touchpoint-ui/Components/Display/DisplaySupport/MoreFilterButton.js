@@ -7,12 +7,16 @@ export default function MoreFilterButton(props) {
 	const [active, setActive] = useState(props.header.filterList[props.filterID] ? true : false)
 	
 	function activate(){
-		setActive(!active)
+		setActive(true)
+		
+		const newHeaders = [...props.dataHeaders.get()]
+		newHeaders[props.header.index].addFilter({
+			id: props.filterID,
+			value: ''
+		})
+		
+		props.dataHeaders.set(newHeaders)
 	}
-	
-	useEffect(()=>{
-		setActive(props.header.filterList[props.filterID] ? true : false)
-	}, [props.openTrigger])
 	
 	if(!active){return(
 		

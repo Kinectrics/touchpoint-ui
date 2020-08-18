@@ -4,34 +4,21 @@ import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 export default function MoreFilterButtonActive(props) {
 	
-	const [value, setValue] = useState(props.header.filterList[props.filterID] ? props.header.filterList[props.filterID].options.value : '')
-	
 	function changeHandler(e) {
-		setValue(e.target.value)
-	}
-	
-	
-	useEffect(()=>{
-		if (props.header.filterList[props.filterID] && props.header.filterList[props.filterID].value){
-			setValue(props.header.filterList[props.filterID].options.value)
-		}
-		
-	}, [props.header.filterList[props.filterID]])
-	
-	
-	function addFilter(argValue){
-		
 		const newHeaders = [...props.dataHeaders.get()]
 		
-		newHeaders[props.header.index].addFilter({
-			id: props.filterID,
-			value:  argValue
-		})
+		if (props.header.filterList[props.filterID]){
+			newHeaders[props.header.index].filterList[props.filterID].value = e.target.value
+			
+		} else{
+			newHeaders[props.header.index].addFilter({
+				id: props.filterID,
+				value: e.target.value
+			})
+		}
 		
 		props.dataHeaders.set(newHeaders)
-		props.data.filter()
 	}
-	
 	
 	function cancelHandler(){
 		
@@ -48,32 +35,25 @@ export default function MoreFilterButtonActive(props) {
 		props.data.filter()
 	}
 	
-	
-	function commitHandler(){
-		if (value && value.trim && value.trim() !== ''){
-			addFilter(value)
-		} else{
-			cancelHandler()
-		}
-	}
-	
-	
 	function keyDownHandler(e){
 		if(e.key === 'Enter'){
-			commitHandler()
 			e.target.blur()
 		} 
 	}
 	
 	
-	function blurHandler(){
-		if (value && value.trim() === ''){
+	function blurHandler(e){
+		if (e.target.value.trim() === ''){
 			cancelHandler()
-		} else{
-			commitHandler()
 		}
 	}
 	
+	
+	function getFilterValue(){
+		if (props.header.filterList[props.filterID]){
+			return props.header.filterList[props.filterID].value ? props.header.filterList[props.filterID].value : ''
+		} else return ''
+	}
 	
 	return(
 		<button 
@@ -87,17 +67,13 @@ export default function MoreFilterButtonActive(props) {
 				className = {'input wrap'}
 				autoFocus
 				onChange = {changeHandler}
-				value = {value}
+				value={getFilterValue()}
 				onKeyDown = {keyDownHandler}
 				onBlur={blurHandler}
 			/>
 			
 			<span className='cancelIcon' onClick={cancelHandler} >
 				<FontAwesomeIcon icon={faTimes} />
-			</span>
-			
-			<span className='commitIcon' onClick = {commitHandler}>
-				<FontAwesomeIcon icon={faCheck} />
 			</span>
 			
 		</button>
