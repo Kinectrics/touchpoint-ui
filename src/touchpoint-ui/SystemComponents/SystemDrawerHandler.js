@@ -31,14 +31,20 @@ export default function AppDrawer(props) {
 						style={{...props.style, left: drawerLeft, opacity: '93%'}}
 					>
 						<div className="drawerContainer" style={props.innerStyle}>
-							<h1>{props.title}</h1>
-							<CloseButton
-								locked={false}
-								onClick={() => {
-									props.drawer.close()
-								}}
-							/>
-							{props.children}
+							<div style={{
+								width: '100%',
+								height: '100%',
+								display: props.drawer.isOpen ? null : 'none'
+							}}>
+								<h1>{props.title}</h1>
+								<CloseButton
+									locked={false}
+									onClick={() => {
+										props.drawer.close()
+									}}
+								/>
+								{props.children}
+							</div>
 						</div>
 					</div>
 				</lockedContext.Provider>

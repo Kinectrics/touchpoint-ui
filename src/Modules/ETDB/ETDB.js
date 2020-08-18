@@ -1,11 +1,13 @@
-import React from 'react'
-import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton} from '../../touchpoint-ui'
+import React, {useState} from 'react'
+import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton, RadioGroup, RadioButton} from '../../touchpoint-ui'
 import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 export default function ETDB() {
 		
 	const System = useSystem()
+	
+	const [radio, setRadio] = useState(1)
 	
 	return (
 		<Module moduleName = 'ETDB'>
@@ -23,12 +25,12 @@ export default function ETDB() {
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
 			
-			<ControlBar searchBar>
-				<ControlButton>
-					Test1
-				</ControlButton>
-			</ControlBar>
-			
+			<RadioGroup value={radio} onChange={setRadio}>
+				<RadioButton value={1}>1</RadioButton>
+				<RadioButton value={2}>2</RadioButton>
+				<RadioButton value={3}>3</RadioButton>
+				<RadioButton value={4}>4</RadioButton>
+			</RadioGroup>
 			
 		</Module>
 	)

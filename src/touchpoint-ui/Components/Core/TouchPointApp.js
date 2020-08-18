@@ -8,6 +8,7 @@ import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
 import SystemDrawerHandler from '../../SystemComponents/SystemDrawerHandler'
+import useSettings from '../../Hooks/UseSettings'
 
 
 export default function TouchPointApp(props){
@@ -27,11 +28,16 @@ export default function TouchPointApp(props){
 	const [layout, setLayout] = useState({
 		heightCSS: '100%',
 		widthCSS: '100%',
-
+		
 		widths: {},
 		heights: {},
 	})
 	
+	function saveSettings(settingsID, settingsToken){
+		if (props.saveSettings && settingsID) {
+			props.saveSettings(settingsID, settingsToken)
+		}
+	}
 	
 	//Functions that are available to all modules and can be used system-wode 
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
@@ -52,9 +58,12 @@ export default function TouchPointApp(props){
 		getHomeModule: () => {return props.homeModule},
 		
 		//Setting system wide variables
-		setTheme: (themeName) => {
-			const themeEngine = new SystemThemeEngine
-			themeEngine.setTheme(themeName)
+		Theme: {
+			set:(themeName) => {
+				const themeEngine = new SystemThemeEngine()
+				themeEngine.setTheme(themeName)
+				saveSettings('TouchPointAppTheme', themeName)
+			}
 		},
 		
 		//Interacting with the parent app
@@ -119,11 +128,7 @@ export default function TouchPointApp(props){
 		layout: {get: ()=>layout, set: setLayout},
 		
 		Settings: {
-			save: (settingsID, settingsToken) => {
-				if(props.saveSettings && settingsID){
-					props.saveSettings(settingsID, settingsToken)
-				}
-			},
+			save: saveSettings,
 			
 			get: async (settingsID) => {
 				try {
@@ -138,11 +143,15 @@ export default function TouchPointApp(props){
 		io: props.io
 	}
 	
-	//Initial setup. Initaializes the theme handler object, and sets the theme to the preffered user theme
-	useEffect(() => {
-		const themeEngine = new SystemThemeEngine()
-		themeEngine.getUserTheme()
-	}, [])
+	//initial setup - theme and settings
+	useEffect(()=>{
+		async function applySavedTheme(){
+			const newTheme = await System.Settings.get('TouchPointAppTheme')
+			if(newTheme){System.Theme.set(newTheme)}
+		}
+		
+		applySavedTheme()
+	})
 	
 	//Input blocker for clicks
 	let screenBlocker = null

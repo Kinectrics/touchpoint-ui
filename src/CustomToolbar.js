@@ -54,9 +54,9 @@ export default function CustomToolbar() {
 					
 					<MenuButton menuContent={
 						<div>
-							<button onClick={() => System.setTheme('blue')}>Blue Theme</button>
-							<button onClick={() => System.setTheme('orange')}>Orange Theme</button>
-							<button onClick={() => System.setTheme('dark')}>Dark Theme</button>
+							<button onClick={() => System.Theme.set('blue')}>Blue Theme</button>
+							<button onClick={() => System.Theme.set('orange')}>Orange Theme</button>
+							<button onClick={() => System.Theme.set('dark')}>Dark Theme</button>
 						</div>
 					}>Theme</MenuButton>
 					

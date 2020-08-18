@@ -26,7 +26,7 @@ export default function RadioButton(props) {
 	const defaultChecked = radioData.defaultValue === props.value
 	
 	return (
-		<span className={"RadioButton flexY "+ lockedClass}>
+		<span className={"RadioButton flexY " + lockedClass} style={props.style}>
 			
 			<input
 				type="radio"
@@ -35,16 +35,18 @@ export default function RadioButton(props) {
 				onClick={clickHandler}
 				name = {radioData.groupName}
 				value = {props.value}
+				style={props.buttonStyle}
 				id = {id}
-				style = {props.style}
 				checked = {radioData.value !== undefined ? (radioData.value === props.value) : undefined}
 				readOnly={radioData.value !== undefined}
 			/>
 			<label 
 				className = {lockedClass}
 				htmlFor = {id}
+				style={props.labelStyle}
 			>
-				{props.labelValue}	
+				{props.children}
+				{props.labelValue}
 			</label>
 			
 		</span>
@@ -52,7 +54,8 @@ export default function RadioButton(props) {
 }
 
 RadioButton.propTypes = {
-	labelValue: PropTypes.string,
 	value: PropTypes.any,
 	style: PropTypes.object,
+	labelStyle: PropTypes.object,
+	buttonStyle: PropTypes.object,
 }
