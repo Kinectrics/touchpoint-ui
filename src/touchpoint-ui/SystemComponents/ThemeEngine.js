@@ -1,4 +1,4 @@
-export default class SystemThemeEngine{
+export default class ThemeEngine{
 	
 	constructor(){
 		//The list of available themes.
@@ -33,6 +33,8 @@ export default class SystemThemeEngine{
 				
 				/* Inputs */
 				inputColor: 'rgb(238, 238, 238)',
+				inputInvalidColor: 'rgb(236, 171, 171)',
+				inputValidColor: 'rgb(153, 238, 153)',
 			},
 			
 			blue: {
@@ -65,6 +67,8 @@ export default class SystemThemeEngine{
 				
 				/* Inputs */
 				inputColor: 'rgb(238, 238, 238)',
+				inputInvalidColor: 'rgb(236, 171, 171)',
+				inputValidColor: 'rgb(153, 238, 153)',
 			},
 			
 			dark: {
@@ -97,6 +101,8 @@ export default class SystemThemeEngine{
 				
 				/* Inputs */
 				inputColor: '#202124',
+				inputInvalidColor: 'rgb(134, 67, 67)',
+				inputValidColor: 'rgb(45, 104, 45)',
 			},
 		}
 	}

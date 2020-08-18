@@ -106,10 +106,10 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						{/* <StatusLog
+						<StatusLog
 							dataRow={data.getActiveRecord()}
 							statusStyle={statusStyle}
-						/> */}
+						/>
 					</InfoTab>								
 							
 				</InfoTabContainer>
