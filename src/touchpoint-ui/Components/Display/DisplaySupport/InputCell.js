@@ -52,30 +52,30 @@ export default function InputCell(props) {
 	
 	//Check if the input is valid and commit
 	async function commitChanges(){
-		if (props.dataRow[props.header.headerID] !== currentValue){
+		if(props.dataRow[props.header.headerID] === currentValue){return}
 			
-			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
-			newData[props.rowIndex][props.header.headerID] = currentValue
+		const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
+		newData[props.rowIndex][props.header.headerID] = currentValue
+		
+		try{
+			const res = await props.header.onEdit(currentValue, newData[props.rowIndex], initalValue, props.dataset.read()[props.rowIndex])
 			
-			try{
-				const res = await props.header.onEdit(currentValue, newData[props.rowIndex], initalValue, props.dataset.read()[props.rowIndex])
-				
-				if(res || res === undefined){
-					props.dataset.set(newData)
-					setCurrentValue(props.header.format(currentValue))
-					flashGreen()
-				} else{
-					setCurrentValue(props.header.format(initalValue))
-					flashRed()
-				}
-				
-			} catch (err){
-				
+			if(res || res === undefined){
+				props.dataset.set(newData)
+				setCurrentValue(props.header.format(currentValue))
+				flashGreen()
+			} else{
 				setCurrentValue(props.header.format(initalValue))
 				flashRed()
-				
 			}
+			
+		} catch (err){
+			
+			setCurrentValue(props.header.format(initalValue))
+			flashRed()
+			
 		}
+		
 	}
 	
 	function blurHandler(){
