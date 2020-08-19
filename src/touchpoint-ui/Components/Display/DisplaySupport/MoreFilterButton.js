@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, {useState, useEffect} from 'react'
 import MoreFilterButtonActive from './MoreFilterButtonActive'
-import { useEffect } from 'react'
 
 export default function MoreFilterButton(props) {
 	
@@ -19,7 +18,6 @@ export default function MoreFilterButton(props) {
 	}
 	
 	if(!active){return(
-		
 		<button onClick = {activate} className = 'MoreFilterButton'>
 			<span style = {{paddingRight: '10px'}}>{props.filter.displayName}</span>
 		</button>
