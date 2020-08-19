@@ -108,9 +108,23 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 				newValues = newValues.sort((aRow, bRow) => {
 					
 					if (sr.direction === 'asc') {
-						return aRow[sr.headerID] > bRow[sr.headerID] ? 1 : -1
+						
+						if(aRow[sr.headerID] > bRow[sr.headerID]){ 
+							return 1
+						}else if (aRow[sr.headerID] < bRow[sr.headerID]){
+							return -1
+						}
+						
+						return 0
+						
 					} else {
-						return aRow[sr.headerID] > bRow[sr.headerID] ? -1 : 1
+						if (aRow[sr.headerID] < bRow[sr.headerID]) {
+							return 1
+						} else if (aRow[sr.headerID] > bRow[sr.headerID]) {
+							return -1
+						}
+
+						return 0
 					}
 					
 				})
