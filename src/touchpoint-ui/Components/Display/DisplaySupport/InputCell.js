@@ -1,19 +1,28 @@
 import React, {useState, useEffect} from 'react'
+import moment from 'moment'
 
 export default function InputCell(props) {
 	
+	function format(cellValue){
+		if(props.header.type === 'date'){
+			return cellValue ? moment(cellValue).format('DD-MMM-YY') : ''
+		} else{
+			return cellValue
+		}
+	}
+	
 	const [initalValue, setInitialValue] = useState(
-		props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
+		props.dataRow[props.header.headerID] ? format(props.dataRow[props.header.headerID]) : ''
 	)
 	
 	const [currentValue, setCurrentValue] = useState(
-		props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
+		props.dataRow[props.header.headerID] ? format(props.dataRow[props.header.headerID]) : ''
 	)
 	
 	// Update the value if the data is changed by an outside source
 	useEffect(() => {
 		const newVal = props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : ''
-		setCurrentValue(newVal)
+		setCurrentValue(format(newVal))
 		setInitialValue(newVal)
 		
 	}, [ props.dataRow[props.header.headerID] ])
@@ -62,15 +71,18 @@ export default function InputCell(props) {
 				
 				if(res || res === undefined){
 					props.dataset.set(newData)
+					setCurrentValue(format(currentValue))
 					flashGreen()
 				} else{
-					setCurrentValue(initalValue)
+					setCurrentValue(format(initalValue))
 					flashRed()
 				}
 				
 			} catch (err){
-				setCurrentValue(initalValue)
+				
+				setCurrentValue(format(initalValue))
 				flashRed()
+				
 			}
 		}
 	}
