@@ -1,4 +1,6 @@
-import DataFilter from "./DataFilter"
+import DataFilter from './DataFilter'
+import moment from 'moment'
+
 
 export default class DataHeader{
 	
@@ -16,15 +18,23 @@ export default class DataHeader{
 		this.type = options.type ? options.type : 'string'
 		
 		//Default filter list only has 1 functions (array filter)
-		//By default no values are selected, which is the same as saying 'select all'
 		this.filterList = {
 			arrayFilter: {
 				func: (cellValue) => {
 					return (this.uniqueValues[cellValue] || this.uniqueValues[cellValue] === undefined)
 				}, 
-				displayName: 'Array Filter'
 			},
 		}
+		
+		//format for displaying certain types of data
+		const formatFunctions = {
+			date: (cellValue) => cellValue ? moment(cellValue).format('DD-MMM-YY') : '',
+			boolean: (cellValue) => cellValue ? 'True' : 'False',
+			other: (cellValue) => cellValue,
+		}
+		
+		this.format = formatFunctions[this.type] ? formatFunctions[this.type] : formatFunctions.other
+		
 	}
 
 	
@@ -49,7 +59,7 @@ export default class DataHeader{
 	
 	//Saves a list of unique values in the column - to be used in the filter dropdowns
 	embedData(data, metaData){
-		this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues)
+		this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues, this.type)
 	}
 	
 	
@@ -71,7 +81,6 @@ export default class DataHeader{
 				if (!this.uniqueValues[val]){testRes = false}
 			})
 		}
-
 		return !testRes
 	}
 	
@@ -83,14 +92,13 @@ export default class DataHeader{
 				}, displayName: 'Array Filter'
 			}
 		}
-		
 		this.selectAll(true)
 	}
 }
 
 
 //Returns an array of unique values from a column of DataRow objects
-function uniqueByColumn(data, metaData, columnID, oldValues) {
+function uniqueByColumn(data, metaData, columnID, oldValues, type) {
 	const res = {}
 	
 	data.forEach((r, idx) => {
@@ -106,10 +114,13 @@ function uniqueByColumn(data, metaData, columnID, oldValues) {
 	})
 	
 	const orderedRes = {}
+	const sortFunction = type === 'date' ? (a, b) => {
+		return a - b
+	} : undefined
 	
-	Object.keys(res).sort().forEach((key)=>{
+	Object.keys(res).sort(sortFunction).forEach((key)=>{
 		orderedRes[key] = res[key]
 	})
-
+	
 	return orderedRes
 }

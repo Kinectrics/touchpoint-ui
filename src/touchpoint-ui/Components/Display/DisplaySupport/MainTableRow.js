@@ -3,7 +3,6 @@ import './MainTableRow.css'
 import InputCell from './InputCell'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-import moment from 'moment'
 
 export default function MainTableRow(props) {
 	
@@ -35,10 +34,8 @@ export default function MainTableRow(props) {
 				
 				cellClass = 'inputWrapper'
 				
-			} else if(hdr.type === 'date'){
-				cellContent = props.dataRow[hdr.headerID] ? moment(props.dataRow[hdr.headerID]).format('DD-MMM-YY') : ''
 			} else {
-				cellContent = props.dataRow[hdr.headerID]
+				cellContent = hdr.format(props.dataRow[hdr.headerID])
 			}
 			
 			

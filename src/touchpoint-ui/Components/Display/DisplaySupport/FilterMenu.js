@@ -77,7 +77,7 @@ export default function FilterMenu(props){
 						style= {{cursor:'pointer'}}
 						readOnly
 					/>
-					<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : v}</span>
+					<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : props.header.format(v)}</span>
 					
 				</button>)} else return null
 				
