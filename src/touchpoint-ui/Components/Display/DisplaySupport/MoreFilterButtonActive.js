@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 
 export default function MoreFilterButtonActive(props) {
 	
+	
+	const [currentValue, setCurrentValue] = useState(
+		props.header.filterList[props.filterID] && props.header.filterList[props.filterID].options.value ? 
+		props.header.filterList[props.filterID].options.value : ''
+	)
+	
 	function changeHandler(e) {
+		setCurrentValue(e.target.value)
+	}
+	
+	function commitHandler(){
+		
 		const newHeaders = [...props.dataHeaders.get()]
-		
-		if (props.header.filterList[props.filterID]){
-			newHeaders[props.header.index].filterList[props.filterID].value = e.target.value
-			
-		} else{
-			newHeaders[props.header.index].addFilter({
-				id: props.filterID,
-				value: e.target.value
-			})
-		}
-		
+
+		newHeaders[props.header.index].addFilter({
+			id: props.filterID,
+			value: currentValue
+		})
+
 		props.dataHeaders.set(newHeaders)
 	}
 	
@@ -43,16 +49,11 @@ export default function MoreFilterButtonActive(props) {
 	
 	
 	function blurHandler(e){
-		if (e.target.value.trim() === ''){
+		if (currentValue.trim() === ''){
 			cancelHandler()
+		} else{
+			commitHandler()
 		}
-	}
-	
-	
-	function getFilterValue(){
-		if (props.header.filterList[props.filterID]){
-			return props.header.filterList[props.filterID].value ? props.header.filterList[props.filterID].value : ''
-		} else return ''
 	}
 	
 	return(
@@ -67,7 +68,7 @@ export default function MoreFilterButtonActive(props) {
 				className = {'input wrap'}
 				autoFocus
 				onChange = {changeHandler}
-				value={getFilterValue()}
+				value={currentValue}
 				onKeyDown = {keyDownHandler}
 				onBlur={blurHandler}
 			/>

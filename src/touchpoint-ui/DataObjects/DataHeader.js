@@ -48,7 +48,7 @@ export default class DataHeader{
 	
 	
 	addFilter(options){
-		this.filterList[options.id] = new DataFilter({...options, type: this.type})
+		this.filterList[options.id] = new DataFilter({...options, headerType: this.type})
 	}
 	
 	

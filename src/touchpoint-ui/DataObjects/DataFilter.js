@@ -7,7 +7,7 @@ export default class DataFilter{
 		this.displayName = DataFilter.getFilterTypes()[options.id].displayName
 		this.args = DataFilter.getFilterTypes()[options.id].args
 		
-		this.options.value = this.options.value.toString().toLowerCase()
+		this.options.value = options.value.toString().toLowerCase()
 	}
 	
 	

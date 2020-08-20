@@ -6,16 +6,23 @@ export default function MoreFilterButton(props) {
 	const [active, setActive] = useState(props.header.filterList[props.filterID] ? true : false)
 	
 	function activate(){
-		setActive(true)
-		
-		const newHeaders = [...props.dataHeaders.get()]
-		newHeaders[props.header.index].addFilter({
-			id: props.filterID,
-			value: ''
-		})
-		
-		props.dataHeaders.set(newHeaders)
+		if(!active){
+			setActive(true)
+			
+			const newHeaders = [...props.dataHeaders.get()]
+			newHeaders[props.header.index].addFilter({
+				id: props.filterID,
+				value: ''
+			})
+			
+			props.dataHeaders.set(newHeaders)
+		}
 	}
+	
+	useEffect(() => {
+		const newActive = props.header.filterList[props.filterID] ? true : false
+		if (active !== newActive) { setActive(newActive) }
+	})
 	
 	if(!active){return(
 		<button onClick = {activate} className = 'MoreFilterButton'>
