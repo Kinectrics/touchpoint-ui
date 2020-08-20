@@ -8,7 +8,6 @@ export default class DataFilter{
 		this.filter = DataFilter.getFilterTypes()[options.id] ? DataFilter.getFilterTypes()[options.id].func : ()=>{return true}
 		this.displayName = DataFilter.getFilterTypes()[options.id].displayName
 		this.args = DataFilter.getFilterTypes()[options.id].args
-		
 		this.options.value = options.value.toString().toLowerCase()
 	}
 	

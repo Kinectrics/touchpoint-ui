@@ -55,8 +55,16 @@ export default class DataHeader{
 			other: (input) => input,
 		}
 		
+		//Compares 2 values that may not be directly equal (eg. date object and date string)
+		const compareFunctions = {
+			date: (a,b) => moment(a).isSame(b,'day'),
+			boolean: (a,b) => this.parse(a) === this.parse(b),
+			other: (a,b) => a==b,
+		}
+		
 		this.format = formatFunctions[this.type] ? formatFunctions[this.type] : formatFunctions.other
 		this.parse = parseFunctions[this.type] ? parseFunctions[this.type] : parseFunctions.other
+		this.compare = compareFunctions[this.type] ? compareFunctions[this.type] : compareFunctions.other
 		
 	}
 
