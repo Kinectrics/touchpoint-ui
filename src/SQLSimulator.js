@@ -22,7 +22,7 @@ export function getTableData(){
 	const SMs = ['Sid Das', 'Olivia Krucko Gorski','Rushanth Raveendran']
 	const projectNames = ['Cooling Things and such', '','Radiation protection etc.']
 	const statuses = ['Complete', '','Open']
-	const dues = [new Date('1-May-20'), new Date('2-May-20'), new Date('1-Jan-20'), new Date('3-Jan-20'), new Date('19-Jan-22'), new Date('31-Dec-25')]
+	const dues = [new Date('1-May-20'), new Date('2-May-20'), new Date('1-Jan-20'), new Date('20-Aug-20'), new Date('19-Jan-22'), new Date('31-Dec-25')]
 	const interns = ['Youssof Fahmy', 'Andrew Wuebbolt','Clara Birch']
 	const project = [36527,39568,38735,36815,39202,39548]
 	const scr = [

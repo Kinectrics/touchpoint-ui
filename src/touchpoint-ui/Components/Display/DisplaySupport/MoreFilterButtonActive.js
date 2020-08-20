@@ -7,7 +7,7 @@ export default function MoreFilterButtonActive(props) {
 	
 	const [currentValue, setCurrentValue] = useState(
 		props.header.filterList[props.filterID] && props.header.filterList[props.filterID].options.value ? 
-		props.header.filterList[props.filterID].options.value : ''
+		props.header.format(props.header.filterList[props.filterID].options.value) : ''
 	)
 	
 	function changeHandler(e) {

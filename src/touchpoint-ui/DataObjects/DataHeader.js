@@ -33,7 +33,30 @@ export default class DataHeader{
 			other: (cellValue) => cellValue,
 		}
 		
+		//Takes a user input and changes it to the correct data type (eg. Date string to new Date object)
+		const parseFunctions = {
+			date: (input) => {
+				
+				if(input.toString().toLowerCase() === 'today'){
+					const fullDate = new Date()
+					console.log(new Date(fullDate.toDateString()))
+					return new Date()
+				}
+				return new Date(input)
+			},
+			
+			boolean: (input) => {
+				const testVal = input.toString().toLowerCase()
+				if(testVal === 'true' || testVal === 'yes' || testVal == 1){
+					return true
+				} else return false
+			},
+			
+			other: (input) => input,
+		}
+		
 		this.format = formatFunctions[this.type] ? formatFunctions[this.type] : formatFunctions.other
+		this.parse = parseFunctions[this.type] ? parseFunctions[this.type] : parseFunctions.other
 		
 	}
 

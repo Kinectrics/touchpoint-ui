@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default class DataFilter{
 	
 	constructor(options){
@@ -42,7 +44,7 @@ export default class DataFilter{
 
 			lessThan: {
 				func: (val, options) => {
-					return val < options.value
+					return val < options.value || moment(val).isBefore(options.value, 'day')
 				},
 				displayName: 'Less than',
 				availableTo: ['number', 'date'],
@@ -50,7 +52,7 @@ export default class DataFilter{
 
 			greaterThan: {
 				func: (val, options) => {
-					return val > options.value
+					return val > options.value || moment(val).isAfter(options.value, 'day')
 				},
 				displayName: 'Greater than',
 				availableTo: ['number', 'date'],
@@ -58,7 +60,7 @@ export default class DataFilter{
 			
 			equals: {
 				func: (val, options) => {
-					return val.toString().toLowerCase() == options.value
+					return val.toString().toLowerCase() == options.value || moment(val).isSame(options.value, 'day')
 				},
 				displayName: 'Equals',
 				availableTo: ['string', 'number', 'boolean', 'date'],
@@ -66,8 +68,8 @@ export default class DataFilter{
 
 			doesNotEqual: {
 				func: (val, options) => {
-					return val.toString().toLowerCase() != options.value
-				},
+					return val.toString().toLowerCase() != options.value && !moment(val).isSame(options.value, 'day')
+				}, 
 				displayName: "Doesn't Equal",
 				availableTo: ['string', 'number', 'boolean', 'date'],
 			},
