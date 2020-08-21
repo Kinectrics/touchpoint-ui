@@ -39,7 +39,7 @@ export default function VendorRubrics(){
 		{headerID: 'projectName', displayName:'Project Name', width: 350,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 200, type: 'date', onEdit: (cell)=>{
-			return new Date(cell) > new Date()
+			return true
 		}},
 		{headerID: 'SM', displayName:'SM', width: 300, },
 		{headerID: 'intern', displayName:'Intern', width: 300,},

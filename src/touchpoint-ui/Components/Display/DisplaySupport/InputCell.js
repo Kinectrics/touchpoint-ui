@@ -55,7 +55,9 @@ export default function InputCell(props) {
 		try{
 			if (props.header.compare(props.dataRow[props.header.headerID], currentValue)) { return }
 			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
-			newData[props.rowIndex][props.header.headerID] = props.header.parse(currentValue)
+			const newCellValue = props.header.parse(currentValue)
+			
+			newData[props.rowIndex][props.header.headerID] = newCellValue
 			
 			const res = await props.header.onEdit(currentValue, newData[props.rowIndex], initalValue, props.dataset.read()[props.rowIndex])
 			

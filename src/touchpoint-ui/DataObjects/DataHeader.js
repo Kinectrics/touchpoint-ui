@@ -39,7 +39,6 @@ export default class DataHeader{
 				
 				if(input.toString().toLowerCase() === 'today'){
 					const fullDate = new Date()
-					console.log(new Date(fullDate.toDateString()))
 					return new Date()
 				}
 				return new Date(input)
@@ -47,9 +46,18 @@ export default class DataHeader{
 			
 			boolean: (input) => {
 				const testVal = input.toString().toLowerCase()
-				if(testVal === 'true' || testVal === 'yes' || testVal == 1){
+				if(testVal === 'true' || testVal === 'yes' || testVal == 1 || testVal === 'y'){
 					return true
 				} else return false
+			},
+		
+			number: (input) => {
+				const newValue = Number(input)
+				if(!isNaN(newValue)){
+					return newValue
+				} else{
+					throw new Error('invalid input - not a number')
+				}
 			},
 			
 			other: (input) => input,

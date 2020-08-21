@@ -3,11 +3,12 @@ import { Switch, Route } from 'react-router';
 import PropTypes from 'prop-types';
 import { HashRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faHome, faSearch, faCaretRight, faPlus, faCaretDown, faFilter, faCog, faTimesCircle, faSortAmountUp, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faSearch, faCaretRight, faMinus, faPlus, faSortAlphaDown, faSortAlphaDownAlt, faCaretDown, faFilter, faColumns, faCheck, faWindowRestore, faTimesCircle, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DropdownButton, Dropdown, Tabs, Tab } from 'react-bootstrap';
-import produce from 'immer';
 import { v4 } from 'uuid';
+import ReactDOM from 'react-dom';
+import { Dropdown, Tabs, Tab } from 'react-bootstrap';
+import moment from 'moment';
 import Split from 'react-split';
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -139,8 +140,20 @@ function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
 
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
 }
 
 function _iterableToArrayLimit(arr, i) {
@@ -187,6 +200,10 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
@@ -218,7 +235,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t--dockColor: rgb(37, 37, 37);\n\t--dockTextColor: var(--navTextColor);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: var(--navColor);\n\t--freeButtonNegativeBG: var(--navColor);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t\n\t/* Structure Variables */\n\t--appToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n\t--dockWidth: 65px;\n\t--drawerWidth: 350px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100%;\n\twidth: 100%;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n\tposition: fixed;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}";
+var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t--dockColor: rgb(37, 37, 37);\n\t--dockTextColor: var(--navTextColor);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t--borderColor:  rgba(211, 211, 211, 0.705);\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: rgb(0, 138, 230);\n\t--freeButtonNegativeBG: rgb(211, 67, 0);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t--inputInvalidColor: rgb(236, 171, 171);\n\t--inputValidColor: rgb(153, 238, 153);\n\t\n\t/* Structure Variables */\n\t--appToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n\t--dockWidth: 65px;\n\t--drawerWidth: 350px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n}\n\n*{\n\tbox-sizing: border-box;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n\tposition: fixed;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}\n";
 styleInject(css_248z);
 
 var css_248z$1 = ".systemPopupBackdrop{\n\tz-index: 300;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100vw;\n\theight: 100vh;\n\tposition: fixed;\n\ttop:0;\n\t\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\t\n\ttransition: opacity 300ms ease-out;\n}\n\n.systemPopupBackdrop:Hover{\n\tcursor: pointer;\n}\n\n.systemPopupBackdrop.forceOpen:Hover{\n\tcursor: default;\n}\n\n.systemPopupBackdrop.transparent{\n\topacity: 0;\n}\n\n.systemPopupBackdrop>.InfoCard{\n\twidth: 30%;\n\theight: 20%;\n\tcursor: default;\t\n}\n\n\n";
@@ -228,7 +245,7 @@ function SystemPopupHandler(props) {
   //Clicking the background closes the popup
   function clickBackdrop(e) {
     if (e.target.classList.contains('systemPopupBackdrop') && !props.activePopup.props.forceOpen) {
-      props.system.closePopup();
+      props.system.Popup.close();
     }
   }
 
@@ -248,27 +265,20 @@ function SystemPopupHandler(props) {
 }
 
 //Context hooks for variable and functions that are system wide
-//Only certain components support locking (see docs for more information)
-
-var lockedContext = /*#__PURE__*/createContext(false);
-
-//Context hooks for variable and functions that are system wide
 
 var moduleContext = /*#__PURE__*/createContext({});
 
 function SystemModuleContainer(props) {
   //Adjusts the module container to fit between the system toolbars
   var styleSettings = {
-    height: props.system.layout.heightCSS,
-    width: props.system.layout.widthCSS,
+    height: props.system.layout.get().heightCSS,
+    width: props.system.layout.get().widthCSS,
     right: '0'
   };
   var moduleList = props.system.getModules();
   var moduleDataState = useState({}); //Render the chosen module
 
-  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
-    value: props.locked
-  }, /*#__PURE__*/React.createElement(moduleContext.Provider, {
+  return /*#__PURE__*/React.createElement(moduleContext.Provider, {
     value: moduleDataState
   }, /*#__PURE__*/React.createElement("div", {
     className: "moduleContainer",
@@ -282,16 +292,21 @@ function SystemModuleContainer(props) {
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/",
     component: moduleList[props.system.getHomeModule()].component
-  })))));
+  }))));
 }
 
 //Context hooks for variable and functions that are system wide
 
 var systemContext = /*#__PURE__*/createContext({});
 
-var SystemThemeEngine = /*#__PURE__*/function () {
-  function SystemThemeEngine() {
-    _classCallCheck(this, SystemThemeEngine);
+//Context hooks for variable and functions that are system wide
+//Only certain components support locking (see docs for more information)
+
+var lockedContext = /*#__PURE__*/createContext(false);
+
+var ThemeEngine = /*#__PURE__*/function () {
+  function ThemeEngine() {
+    _classCallCheck(this, ThemeEngine);
 
     //The list of available themes.
     this.themes = {
@@ -315,7 +330,7 @@ var SystemThemeEngine = /*#__PURE__*/function () {
 
         /* Cards */
         cardBG: 'white',
-        shadowColor: 'rgba(54, 54, 54, 0.034)',
+        borderColor: 'rgba(211, 211, 211, 0.705)',
 
         /* FreeButtons */
         freeButtonNeutralBG: 'var(--labelColor)',
@@ -324,7 +339,9 @@ var SystemThemeEngine = /*#__PURE__*/function () {
         freeButtonTextColor: 'white',
 
         /* Inputs */
-        inputColor: 'rgb(238, 238, 238)'
+        inputColor: 'rgb(238, 238, 238)',
+        inputInvalidColor: 'rgb(236, 171, 171)',
+        inputValidColor: 'rgb(153, 238, 153)'
       },
       blue: {
         /* Main Table */
@@ -346,7 +363,7 @@ var SystemThemeEngine = /*#__PURE__*/function () {
 
         /* Cards */
         cardBG: 'white',
-        shadowColor: 'rgba(54, 54, 54, 0.014)',
+        borderColor: 'rgba(211, 211, 211, 0.705)',
 
         /* FreeButtons */
         freeButtonNeutralBG: 'var(--labelColor)',
@@ -355,7 +372,9 @@ var SystemThemeEngine = /*#__PURE__*/function () {
         freeButtonTextColor: 'white',
 
         /* Inputs */
-        inputColor: 'rgb(238, 238, 238)'
+        inputColor: 'rgb(238, 238, 238)',
+        inputInvalidColor: 'rgb(236, 171, 171)',
+        inputValidColor: 'rgb(153, 238, 153)'
       },
       dark: {
         /* Main Table */
@@ -377,7 +396,7 @@ var SystemThemeEngine = /*#__PURE__*/function () {
 
         /* Cards */
         cardBG: '#313440',
-        shadowColor: 'rgba(0, 0, 0, 0.06)',
+        borderColor: 'rgba(211, 211, 211, 0.158)',
 
         /* FreeButtons */
         freeButtonNeutralBG: 'var(--labelColor)',
@@ -386,13 +405,15 @@ var SystemThemeEngine = /*#__PURE__*/function () {
         freeButtonTextColor: 'white',
 
         /* Inputs */
-        inputColor: '#202124'
+        inputColor: '#202124',
+        inputInvalidColor: 'rgb(134, 67, 67)',
+        inputValidColor: 'rgb(45, 104, 45)'
       }
     };
   } //Set the CSS cariables that control theme colors
 
 
-  _createClass(SystemThemeEngine, [{
+  _createClass(ThemeEngine, [{
     key: "setTheme",
     value: function setTheme(themeName) {
       //check if a theme exists with that name 
@@ -416,10 +437,10 @@ var SystemThemeEngine = /*#__PURE__*/function () {
     }
   }]);
 
-  return SystemThemeEngine;
+  return ThemeEngine;
 }();
 
-var css_248z$2 = ".SystemDrawerHandler{\n\tz-index: 10;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100%;\n\theight: 100%;\n\tposition: fixed;\n\ttop:0;\n\tcursor: pointer;\n}\n\n.AppDrawer{\n\theight: 100%;\n\twidth: var(--drawerWidth);\n\tposition: fixed;\n\tz-index: 10;\n\tbackground-color: var(--cardBG);\n\tborder-top-right-radius: 11px;\n\tborder-bottom-right-radius: 11px;\n\tleft: 0;\n\tcursor: default;\n\ttransition: all 500ms ease;\n\tpadding: 10px;\n}\n\n.AppDrawer .CloseButton{\n\tposition: absolute;\n\ttop:3px;\n\tright: 5px;\n\tfont-size: 15pt;\n}";
+var css_248z$2 = ".SystemDrawerHandler{\n\tz-index: 10;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100%;\n\theight: 100%;\n\tposition: fixed;\n\ttop:0;\n\tcursor: pointer;\n}\n\n.AppDrawer{\n\theight: 100%;\n\twidth: var(--drawerWidth);\n\tposition: fixed;\n\tz-index: 10;\n\tleft: 0;\n\ttransition: all 500ms ease;\n\tpadding: 15px 15px;\n}\n\n.AppDrawer .drawerContainer{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\tborder-radius: 10px;\n\tposition: relative;\n\tcursor: default;\n\tpadding: 10px;\n\tpadding-top: 30px;\n}\n\n.AppDrawer .CloseButton{\n\tposition: absolute;\n\ttop:3px;\n\tright: 5px;\n\tfont-size: 15pt;\n}\n\n.AppDrawer h1{\n\tfont-size: 16pt;\n\tposition: absolute;\n\ttop:8px;\n\tleft: 10px;\n\tcolor: var(--labelColor);\n}";
 styleInject(css_248z$2);
 
 var css_248z$3 = ".CoreButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n}";
@@ -446,7 +467,8 @@ function CoreButton(props) {
     return /*#__PURE__*/React.createElement("button", {
       className: 'CoreButton ' + lockedClass + ' ' + props.className,
       onClick: clickHandler,
-      style: props.style
+      style: props.style,
+      onBlur: props.onBlur
     }, props.children);
   } else {
     return null;
@@ -458,7 +480,8 @@ CoreButton.propTypes = {
   onClick: PropTypes.func,
   hidden: PropTypes.bool,
   className: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  onBlur: PropTypes.func
 };
 
 var css_248z$4 = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparent;\n\toutline: none !important;\n\tposition: relative;\n\tcolor: var(--lockedTextColor);\n}\n\n.CloseButton:active{\n\tfilter: brightness(70%);\n}";
@@ -507,20 +530,83 @@ function AppDrawer(props) {
     return /*#__PURE__*/React.createElement("div", {
       className: handlerClass,
       onClick: clickBackdrop
-    }, /*#__PURE__*/React.createElement("div", {
-      className: 'AppDrawer',
-      style: _objectSpread2(_objectSpread2({}, props.style), {}, {
-        left: drawerLeft
-      })
     }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: props.locked
-    }, /*#__PURE__*/React.createElement(CloseButton, {
+    }, /*#__PURE__*/React.createElement("div", {
+      className: 'AppDrawer ' + props.className,
+      style: _objectSpread2(_objectSpread2({}, props.style), {}, {
+        left: drawerLeft,
+        opacity: '93%'
+      })
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "drawerContainer",
+      style: props.innerStyle
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: '100%',
+        height: '100%',
+        display: props.drawer.isOpen ? null : 'none'
+      }
+    }, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement(CloseButton, {
       locked: false,
       onClick: function onClick() {
         props.drawer.close();
       }
-    }), props.children)));
+    }), props.children)))));
   } else return null;
+}
+
+function useSystem() {
+  return useContext(systemContext);
+}
+
+function useSettings(settingsID, applySettings) {
+  var _useSystem$Settings = useSystem().Settings,
+      get = _useSystem$Settings.get,
+      save = _useSystem$Settings.save;
+  useEffect(function () {
+    var fetchAndApply = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var token;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return get(settingsID);
+
+              case 3:
+                token = _context.sent;
+                applySettings(token);
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }));
+
+      return function fetchAndApply() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    if (settingsID) {
+      fetchAndApply();
+    }
+  }, []);
+  return function (newToken) {
+    save(settingsID, newToken);
+  };
 }
 
 function TouchPointApp(props) {
@@ -560,7 +646,23 @@ function TouchPointApp(props) {
   var _useState13 = useState(''),
       _useState14 = _slicedToArray(_useState13, 2),
       screenEffect = _useState14[0],
-      setScreenEffect = _useState14[1]; //Functions that are available to all modules and can be used system-wode 
+      setScreenEffect = _useState14[1];
+
+  var _useState15 = useState({
+    heightCSS: '100%',
+    widthCSS: '100%',
+    widths: {},
+    heights: {}
+  }),
+      _useState16 = _slicedToArray(_useState15, 2),
+      layout = _useState16[0],
+      setLayout = _useState16[1];
+
+  function saveSettings(settingsID, settingsToken) {
+    if (props.saveSettings && settingsID) {
+      props.saveSettings(settingsID, settingsToken);
+    }
+  } //Functions that are available to all modules and can be used system-wode 
   //Used for things like switching modules, sending out emails, etc. for consistency across the system
 
 
@@ -579,9 +681,12 @@ function TouchPointApp(props) {
       return props.homeModule;
     },
     //Setting system wide variables
-    setTheme: function setTheme(themeName) {
-      var themeEngine = new SystemThemeEngine();
-      themeEngine.setTheme(themeName);
+    Theme: {
+      set: function set(themeName) {
+        var themeEngine = new ThemeEngine();
+        themeEngine.setTheme(themeName);
+        saveSettings('TouchPointAppTheme', themeName);
+      }
     },
     //Interacting with the parent app
     openModule: function openModule(moduleName) {
@@ -607,27 +712,32 @@ function TouchPointApp(props) {
     enableInput: function enableInput() {
       setScreenBlock(false);
     },
-    openPopup: function openPopup(PopupComponent) {
-      setScreenBlock(true);
-      setTimeout(function () {
-        return setScreenBlock(false);
-      }, 400);
-      setScreenEffect('blurScreenEffect');
-      setPopupEffect('transparent');
-      setPopup(PopupComponent);
-      setTimeout(function () {
-        return setPopupEffect('');
-      }, 0);
+    Popup: {
+      open: function open(PopupComponent) {
+        setScreenBlock(true);
+        setTimeout(function () {
+          return setScreenBlock(false);
+        }, 400);
+        setScreenEffect('blurScreenEffect');
+        setPopupEffect('transparent');
+        setPopup(PopupComponent);
+        setTimeout(function () {
+          return setPopupEffect('');
+        }, 0);
+      },
+      close: function close() {
+        // if(activePopup.props.onClose){activePopup.props.onClose()}
+        setPopupEffect('transparent');
+        setTimeout(function () {
+          return setPopup(null);
+        }, 100);
+
+        if (!drawerIsOpen) {
+          setScreenEffect('');
+        }
+      }
     },
-    closePopup: function closePopup() {
-      // if(activePopup.props.onClose){activePopup.props.onClose()}
-      setPopupEffect('transparent');
-      setTimeout(function () {
-        return setPopup(null);
-      }, 250);
-      setScreenEffect('');
-    },
-    drawer: {
+    Drawer: {
       open: function open() {
         if (!drawerIsOpen) {
           setScreenEffect('blurScreenEffect');
@@ -637,7 +747,10 @@ function TouchPointApp(props) {
       close: function close() {
         if (drawerIsOpen) {
           setDrawerIsOpen(false);
-          setScreenEffect('');
+
+          if (!activePopup) {
+            setScreenEffect('');
+          }
         }
       },
       data: drawerData,
@@ -646,18 +759,84 @@ function TouchPointApp(props) {
     },
     //Internal variables for structuring the app
     layout: {
-      heightCSS: '100%',
-      widthCSS: '100%',
-      widths: {},
-      heights: {}
+      get: function get() {
+        return layout;
+      },
+      set: setLayout
+    },
+    Settings: {
+      save: saveSettings,
+      get: function () {
+        var _get = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(settingsID) {
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.prev = 0;
+                  _context.next = 3;
+                  return props.getSettings(settingsID);
+
+                case 3:
+                  return _context.abrupt("return", _context.sent);
+
+                case 6:
+                  _context.prev = 6;
+                  _context.t0 = _context["catch"](0);
+                  console.error(_context.t0);
+                  return _context.abrupt("return", null);
+
+                case 10:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, null, [[0, 6]]);
+        }));
+
+        function get(_x) {
+          return _get.apply(this, arguments);
+        }
+
+        return get;
+      }()
     },
     io: props.io
-  }; //Initial setup. Initaializes the theme handler object, and sets the theme to the preffered user theme
+  }; //initial setup - theme and settings
 
   useEffect(function () {
-    var themeEngine = new SystemThemeEngine();
-    themeEngine.getUserTheme();
-  }, []); //Input blocker for clicks
+    function applySavedTheme() {
+      return _applySavedTheme.apply(this, arguments);
+    }
+
+    function _applySavedTheme() {
+      _applySavedTheme = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var newTheme;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return System.Settings.get('TouchPointAppTheme');
+
+              case 2:
+                newTheme = _context2.sent;
+
+                if (newTheme) {
+                  System.Theme.set(newTheme);
+                }
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+      return _applySavedTheme.apply(this, arguments);
+    }
+
+    applySavedTheme();
+  }); //Input blocker for clicks
 
   var screenBlocker = null;
 
@@ -670,10 +849,14 @@ function TouchPointApp(props) {
 
   return /*#__PURE__*/React.createElement("div", {
     className: "TouchPointApp "
+  }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
+    value: props.locked
   }, /*#__PURE__*/React.createElement(systemContext.Provider, {
     value: System
-  }, /*#__PURE__*/React.createElement(HashRouter, null, screenBlocker, /*#__PURE__*/React.createElement(AppDrawer, _extends({}, System.drawer.data, {
-    drawer: System.drawer
+  }, /*#__PURE__*/React.createElement(HashRouter, null, screenBlocker, /*#__PURE__*/React.createElement(AppDrawer, _extends({
+    className: activePopup ? screenEffect : ''
+  }, System.Drawer.data, {
+    drawer: System.Drawer
   })), /*#__PURE__*/React.createElement("div", {
     className: 'screenEffect ' + screenEffect
   }, props.children, /*#__PURE__*/React.createElement(SystemModuleContainer, {
@@ -683,7 +866,7 @@ function TouchPointApp(props) {
     system: System,
     activePopup: activePopup,
     popupEffect: popupEffect
-  }))));
+  })))));
 } //Proptypes
 
 TouchPointApp.propTypes = {
@@ -691,15 +874,13 @@ TouchPointApp.propTypes = {
   modules: PropTypes.object.isRequired,
   homeModule: PropTypes.string,
   io: PropTypes.any,
-  onOpenModule: PropTypes.func
+  onOpenModule: PropTypes.func,
+  saveSettings: PropTypes.func,
+  getSettings: PropTypes.func
 };
 
-var css_248z$5 = ".AppToolbar{\n\tbackground-color: var(--navColor) !important;\n\t\n\twidth: 100%;\n\tcolor: var(--navTextColor);\n\tpadding: 0 30px 0 10px;\n\tz-index: 3;\n}\n\n.AppToolbar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\theight: var(--appToolbarHeight);\n\twidth: 70%;\n\tfloat: left;\n}\n\n.AppToolbar .brandingContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\twidth: 30%;\n\ttext-align: right;\n\tfont-weight: bold;\n}\n\n.AppToolbar button{\n\tpadding: 0;\n\tbackground-color: transparent !important;\n\tborder: none;\n\tfont-size: 13pt;\n\tmargin-bottom: 4px;\n\tmargin-right: 40px;\n\tcolor: var(--navTextColor);\n\theight: 100%;\n}\n\n.AppToolbar button::after{\n\tcontent: none;\n}\n\n.AppToolbar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.AppToolbar button:active, .AppToolbar button:focus{\n\tborder: none !important;\n\toutline: none !important;\n\tbox-shadow: none !important;\n\tcolor: var(--navClickedColor) !important;\n}\n\n.AppToolbar .homeButton{\n\tmargin-top: 2px;\n\tpadding-left: 4px;\n\tbackground-color: var(--navColor) !important;\n\tborder: none;\n\tcolor: var(--navTextColor);\n}\n\n.AppToolbar a{\n\tbackground-color: var(--cardBG) !important;\n\tcolor: var(--mainTextColor) !important;\n}\n\n.AppToolbar a:hover{\n\tfilter: brightness(95%);\n}\n\n.AppToolbar .dropdown-menu{\n\tbackground-color: var(--cardBG) !important;\n}\n\n\n";
+var css_248z$5 = ".AppToolbar{\n\tbackground-color: var(--navColor) !important;\n\t\n\twidth: 100%;\n\tcolor: var(--navTextColor);\n\tpadding: 0 30px 0 10px;\n\tz-index: 3;\n}\n\n.AppToolbar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\theight: var(--appToolbarHeight);\n\twidth: 70%;\n\tfloat: left;\n}\n\n.AppToolbar .brandingContainer{\n\tbox-sizing: border-box;\n\tposition: relative;\n\twidth: 30%;\n\ttext-align: right;\n\tfont-weight: bold;\n}\n\n.AppToolbar button{\n\tpadding: 0;\n\tbackground-color: transparent !important;\n\tborder: none;\n\tfont-size: 13pt;\n\tmargin-bottom: 4px;\n\tmargin-right: 40px;\n\tcolor: var(--navTextColor);\n\theight: 100%;\n}\n\n.AppToolbar button::after{\n\tcontent: none;\n}\n\n.AppToolbar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.AppToolbar button:active, .AppToolbar button:focus{\n\tborder: none !important;\n\toutline: none !important;\n\tbox-shadow: none !important;\n\tcolor: var(--navClickedColor) !important;\n}\n\n.AppToolbar a{\n\tbackground-color: var(--cardBG) !important;\n\tcolor: var(--mainTextColor) !important;\n}\n\n.AppToolbar a:hover{\n\tfilter: brightness(95%);\n}\n\n.AppToolbar .dropdown-menu{\n\tbackground-color: var(--cardBG) !important;\n}\n\n\n";
 styleInject(css_248z$5);
-
-function useSystem() {
-  return useContext(systemContext);
-}
 
 //can resize to fit around them
 
@@ -707,109 +888,64 @@ function usePresence(componentName, height, width) {
   var _useSystem = useSystem(),
       layout = _useSystem.layout;
 
-  function refreshCSS() {
+  function refreshCSS(layoutSettings) {
     var heightCSS = 'calc(100%';
     var widthCSS = 'calc(100%';
-    Object.values(layout.heights).forEach(function (h) {
+    Object.values(layoutSettings.heights).forEach(function (h) {
       if (h) {
         heightCSS = heightCSS + ' - ' + h;
       }
     });
-    Object.values(layout.widths).forEach(function (w) {
+    Object.values(layoutSettings.widths).forEach(function (w) {
       if (w) {
         widthCSS = widthCSS + ' - ' + w;
       }
     });
-    layout.heightCSS = heightCSS + ')';
-    layout.widthCSS = widthCSS + ')';
+    layoutSettings.heightCSS = heightCSS + ')';
+    layoutSettings.widthCSS = widthCSS + ')';
   }
 
-  layout.widths[componentName] = width;
-  layout.heights[componentName] = height;
-  refreshCSS();
-  return function () {
-    layout.widths[componentName] = 0;
-    layout.heights[componentName] = 0;
-    refreshCSS();
-  };
+  useEffect(function () {
+    var newLayout = _objectSpread2({}, layout.get());
+
+    newLayout.widths[componentName] = width;
+    newLayout.heights[componentName] = height;
+    refreshCSS(newLayout);
+    layout.set(newLayout);
+    return function () {
+      var newLayout = _objectSpread2({}, layout.get());
+
+      newLayout.widths[componentName] = 0;
+      newLayout.heights[componentName] = 0;
+      refreshCSS(newLayout);
+      layout.set(newLayout);
+    };
+  }, []);
 }
 
 function AppToolbar(props) {
-  var System = useSystem();
-  var devMode = '';
-
-  if (process.env.NODE_ENV === 'development') {
-    devMode = '(Dev Mode)';
-  } //Declare itself to the app so the modules can be fit around it 
-
-
-  usePresence('AppToolbar', 'var(--appToolbarHeight)');
-  var moduleList = System.getModules();
+  //Declare itself to the app so the modules can be fit around it 
+  usePresence('TouchPointAppToolbar', 'var(--appToolbarHeight)');
   return /*#__PURE__*/React.createElement("div", {
     className: "AppToolbar flexY",
     style: props.style
   }, /*#__PURE__*/React.createElement("div", {
     className: "buttonContainer flexY"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "homeButton",
-    onClick: function onClick(e) {
-      System.openModule(System.getHomeModule());
-      e.target.blur();
-    }
-  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faHome
-  }), " Home"), /*#__PURE__*/React.createElement(DropdownButton, {
-    title: "Application"
-  }, Object.keys(moduleList).map(function (m) {
-    if (m !== System.getHomeModule()) {
-      return /*#__PURE__*/React.createElement(Dropdown.Item, {
-        onClick: function onClick() {
-          return System.openModule(m);
-        },
-        key: 'SystemToolBarOpenModule' + m
-      }, moduleList[m].name);
-    } else return null;
-  })), /*#__PURE__*/React.createElement(DropdownButton, {
-    title: "Tools"
-  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "Class V Estimation")), /*#__PURE__*/React.createElement(DropdownButton, {
-    title: "Settings"
-  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "User Delegation"), /*#__PURE__*/React.createElement(Dropdown.Item, {
-    onClick: function onClick() {
-      return System.setTheme('blue');
-    }
-  }, "Blue Theme"), /*#__PURE__*/React.createElement(Dropdown.Item, {
-    onClick: function onClick() {
-      return System.setTheme('orange');
-    }
-  }, "Orange Theme"), /*#__PURE__*/React.createElement(Dropdown.Item, {
-    onClick: function onClick() {
-      return System.setTheme('dark');
-    }
-  }, "Dark Theme")), /*#__PURE__*/React.createElement(DropdownButton, {
-    title: "Support"
-  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "Request Change"), /*#__PURE__*/React.createElement(Dropdown.Item, null, "Report Bug"), /*#__PURE__*/React.createElement(Dropdown.Item, null, "Contact Dev Team")), /*#__PURE__*/React.createElement(DropdownButton, {
-    title: "Help"
-  }, /*#__PURE__*/React.createElement(Dropdown.Item, null, "View Help Files"), /*#__PURE__*/React.createElement(Dropdown.Item, null, "About DMS"))), /*#__PURE__*/React.createElement("div", {
+  }, props.children), /*#__PURE__*/React.createElement("div", {
     className: "brandingContainer"
-  }, "Bruce Power DMS ", devMode));
+  }, props.label));
 }
 
 var css_248z$6 = ".AppFooter{\n\twidth: 100%;\n\tpadding-top: 2px;\n\tbackground-color: var(--navColor) !important;\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tbottom:0px;\n\theight: var(--appToolbarHeight);\n\tfont-size: 13pt;\n\tcolor: var(--navTextColor);\n\ttext-align: right;\n\tz-index: 3;\n\t\n}\n\n.AppFooter .leftSide{\n\tposition: absolute;\n\tleft: 0;\n\tpadding: 0 10px;\n\ttext-align: left;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}\n\n.AppFooter .rightSide{\n\tposition: absolute;\n\tright: 0;\n\tpadding: 0 10px;\n\ttext-align: right;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}";
 styleInject(css_248z$6);
 
 function AppFooter(props) {
-  var System = useSystem();
-  var v = System.io.getVersion(); //Declare itself to the app so the modules can be fit around it
-
-  usePresence('AppFooter', 'var(--appToolbarHeight)');
+  //Declare itself to the app so the modules can be fit around it
+  usePresence('TouchPointAppFooter', 'var(--appToolbarHeight)');
   return /*#__PURE__*/React.createElement("div", {
     className: "AppFooter",
     style: props.style
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "leftSide"
-  }, System.io.getActiveUser(), " | Security Profile: ", System.io.getSecurityProfile(), " | Version: ", v.number + ' - ' + v.environment), /*#__PURE__*/React.createElement("span", {
-    className: "rightSide"
-  }));
+  }, props.children);
 }
 
 function AppDrawer$1(props) {
@@ -818,23 +954,23 @@ function AppDrawer$1(props) {
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
   var _useSystem = useSystem(),
-      drawer = _useSystem.drawer;
+      Drawer = _useSystem.Drawer;
 
   useEffect(function () {
     var newProps = _objectSpread2({}, props);
 
     newProps.locked = locked;
     newProps.exists = true;
-    drawer.setData(newProps);
+    Drawer.setData(newProps);
 
     if (props.defaultOpen) {
       setTimeout(function () {
-        drawer.open();
+        Drawer.open();
       }, 100);
     }
 
     return function () {
-      drawer.setData({});
+      Drawer.setData({});
       newProps.exists = false;
     };
   }, [props.children, props.style, props.locked]);
@@ -924,7 +1060,7 @@ Tile.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$9 = "/* Styles for all Input type components */\n\n.input{\n\tbackground-color: var(--inputColor);\n\tcolor: var(--mainTextColor);\n\toutline: none !important;\n\tpadding: 5px 15px;\n\tborder-radius: 20px;\n\tborder: none;\n\tfont-size: 12pt;\n}\n\n.input:hover, .input:focus{\n\tfilter: brightness(102%);\n}\n\n.input.locked, .locked .input\n.input.locked:hover, .locked .input:hover\n.input.locked:focus, .locked .input:focus{\n\tcursor: default !important;\n\tfilter: grayscale(50%);\n\topacity: 85%;\n\tcolor: var(--lockedTextColor);\n}\n";
+var css_248z$9 = "/* Styles for all Input type components */\n\n.input{\n\tbackground-color: var(--inputColor);\n\tcolor: var(--mainTextColor);\n\toutline: none !important;\n\tpadding: 5px 15px;\n\tborder-radius: 20px;\n\tborder: none;\n\tfont-size: 12pt;\n}\n\n.input.invalid{\n\tbackground-color: var(--inputInvalidColor);\n}\n\n.input.valid{\n\tbackground-color: var(--inputValidColor);\n}\n\n.input:hover, .input:focus{\n\tfilter: brightness(102%);\n}\n\n.input.locked, .locked .input\n.input.locked:hover, .locked .input:hover\n.input.locked:focus, .locked .input:focus{\n\tcursor: default !important;\n\tfilter: grayscale(50%);\n\topacity: 85%;\n\tcolor: var(--lockedTextColor);\n}\n";
 styleInject(css_248z$9);
 
 var _TextBox$propTypes;
@@ -998,9 +1134,10 @@ function useModuleContext() {
       return dataSource[key];
     },
     set: function set(key, value) {
-      setDataSource(produce(dataSource, function (draftSource) {
-        draftSource[key] = value;
-      }));
+      var newSource = _objectSpread2({}, dataSource);
+
+      newSource[key] = value;
+      setDataSource(newSource);
     },
     clear: function clear() {
       setDataSource({});
@@ -1028,12 +1165,23 @@ function SearchBar(props) {
 
   function focusSearchBar() {
     searchRef.current.focus();
+  } //ctrl f handler
+
+
+  function keyDownHandler(e) {
+    var isCtrl = e.ctrlKey || e.metaKey;
+
+    if (isCtrl && e.keyCode === 70) {
+      e.preventDefault();
+      focusSearchBar();
+    }
   }
 
   useEffect(function () {
-    moduleData.set('TouchPointSearchRef', focusSearchBar);
+    window.addEventListener('keydown', keyDownHandler);
     return function () {
-      moduleData.set('TouchPointSearchRef', null);
+      moduleData.clear();
+      window.removeEventListener('keydown', keyDownHandler);
     };
   }, []); //search
 
@@ -1097,7 +1245,8 @@ function RadioGroup(props) {
     onChange: onChange,
     groupName: groupName,
     locked: locked,
-    defaultValue: props.defaultValue
+    defaultValue: props.defaultValue,
+    value: props.value
   };
   return /*#__PURE__*/React.createElement(radioContext.Provider, {
     value: radioData
@@ -1108,10 +1257,11 @@ RadioGroup.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   locked: PropTypes.bool,
-  groupID: PropTypes.any
+  groupID: PropTypes.any,
+  value: PropTypes.any
 };
 
-var css_248z$b = ".RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
+var css_248z$b = ".RadioButton{\n\tpadding: 5px;\n}\n\n.RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n\tmargin-bottom: 0;\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
 styleInject(css_248z$b);
 
 function RadioButton(props) {
@@ -1136,30 +1286,34 @@ function RadioButton(props) {
     }
   }
 
-  var defaultChecked = radioData.defaultValue === props.value;
   return /*#__PURE__*/React.createElement("span", {
-    className: "RadioButton flexY " + lockedClass
+    className: "RadioButton flexY " + lockedClass,
+    style: props.style
   }, /*#__PURE__*/React.createElement("input", {
     type: "radio",
     className: 'input ' + lockedClass,
-    defaultChecked: defaultChecked,
+    defaultChecked: radioData.value !== undefined ? undefined : radioData.defaultValue === props.value,
     onClick: clickHandler,
     name: radioData.groupName,
     value: props.value,
+    style: props.buttonStyle,
     id: id,
-    style: props.style
+    checked: radioData.value !== undefined ? radioData.value === props.value : undefined,
+    readOnly: radioData.value !== undefined
   }), /*#__PURE__*/React.createElement("label", {
     className: lockedClass,
-    htmlFor: id
-  }, props.labelValue));
+    htmlFor: id,
+    style: props.labelStyle
+  }, props.children, props.labelValue));
 }
 RadioButton.propTypes = {
-  labelValue: PropTypes.string,
   value: PropTypes.any,
-  style: PropTypes.object
+  style: PropTypes.object,
+  labelStyle: PropTypes.object,
+  buttonStyle: PropTypes.object
 };
 
-var css_248z$c = ".ControlButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: transparent;\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n}\n\n.ControlButton:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlButton:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlButton.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n}\n";
+var css_248z$c = ".ControlButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: transparent;\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n}\n\n.ControlButton:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlButton:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlButton.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}\n";
 styleInject(css_248z$c);
 
 function ControlButton(props) {
@@ -1302,10 +1456,19 @@ function ComboBox(props) {
       defaultValue: props.defaultValue,
       onChange: changeHandler,
       disabled: locked,
-      style: props.style
+      style: props.style,
+      value: props.value
     }, kids);
   }
-}
+} //
+
+ComboBox.propTypes = {
+  hidden: PropTypes.bool,
+  locked: PropTypes.bool,
+  style: PropTypes.object,
+  value: PropTypes.string,
+  defaultValue: PropTypes.string
+};
 
 function CheckBox(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1339,7 +1502,9 @@ function CheckBox(props) {
     defaultChecked: props.defaultValue,
     onChange: changeHandler,
     onClick: clickHandler,
-    style: props.style
+    style: props.style,
+    checked: props.checked,
+    readOnly: props.checked !== undefined ? true : false
   }), /*#__PURE__*/React.createElement("span", {
     className: "checkmark"
   }), props.label);
@@ -1349,7 +1514,8 @@ CheckBox.propTypes = {
   hidden: PropTypes.bool,
   onChange: PropTypes.func,
   defaultValue: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
+  checked: PropTypes.bool
 };
 
 var css_248z$g = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\t\n\tfont-size: 9pt;\n\t\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
@@ -1441,7 +1607,11 @@ function InfoCard(props) {
   var titleBar;
 
   if (props.title) {
-    titleBar = /*#__PURE__*/React.createElement("h1", null, props.title);
+    titleBar = /*#__PURE__*/React.createElement("h1", {
+      style: {
+        color: props.stripeColor
+      }
+    }, props.title);
   }
 
   var closeButton;
@@ -1466,7 +1636,8 @@ function InfoCard(props) {
     }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
     }, /*#__PURE__*/React.createElement("div", {
-      className: "cardContainer"
+      className: "cardContainer",
+      style: props.innerStyle
     }, /*#__PURE__*/React.createElement("div", {
       className: "textBox " + stripe,
       style: stripeStyle
@@ -1482,17 +1653,17 @@ InfoCard.propTypes = {
   locked: PropTypes.bool,
   hidden: PropTypes.bool,
   onClick: PropTypes.func,
-  width: PropTypes.string,
-  height: PropTypes.string,
   className: PropTypes.string,
   onClose: PropTypes.func,
-  style: PropTypes.object
+  style: PropTypes.object,
+  innerStyle: PropTypes.object,
+  stripeColor: PropTypes.string
 };
 
-var css_248z$i = ".Popup .InfoCard{\n\tmax-width: 85%;\n\tmax-width: 90%;\n}\n\n.Popup .cardContainer{\n\tborder: 1px solid var(--labelColor);\n\tbox-sizing: var(--dynamicCardShadow);\n}\n\n\n\n";
+var css_248z$i = ".Popup .InfoCard{\n\tmax-width: 85%;\n\tmax-width: 90%;\n}\n\n.Popup .cardContainer{\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: var(--labelColor);\n\tbox-sizing: var(--dynamicCardShadow);\n}";
 styleInject(css_248z$i);
 
-function Popup(props) {
+function PopupCard(props) {
   var system = useSystem();
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined; //Clicking the background closes the popup
@@ -1502,27 +1673,41 @@ function Popup(props) {
   if (!props.forceOpen) {
     handleCloseButton = function handleCloseButton() {
       if (!props.forceOpen) {
-        system.closePopup();
+        system.Popup.close();
       }
     };
   }
 
+  useEffect(function () {
+    if (props.onOpen) {
+      props.onOpen();
+    }
+
+    return function () {
+      if (props.onClose) {
+        props.onClose();
+      }
+    };
+  }, []);
   return /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: locked
   }, /*#__PURE__*/React.createElement(InfoCard, {
     className: 'Popup ',
     stripe: true,
     title: props.title,
-    width: props.width,
-    height: props.height,
     onClose: handleCloseButton,
-    style: props.style
+    style: _objectSpread2({}, props.style),
+    innerStyle: {
+      borderColor: props.stripeColor
+    },
+    stripeColor: props.stripeColor
   }, props.children));
 } //Proptypes
 
-Popup.propTypes = {
+PopupCard.propTypes = {
   title: PropTypes.string,
   onClose: PropTypes.func,
+  onOpen: PropTypes.func,
   forceOpen: PropTypes.bool,
   width: PropTypes.string,
   height: PropTypes.string,
@@ -1534,9 +1719,21 @@ Popup.propTypes = {
 
 var menuContext = /*#__PURE__*/createContext({});
 
-var css_248z$j = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding-top: 1px;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n}\n\n.MenuContainer{\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px !important;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):active, .Menu button:not(.FreeButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
+var css_248z$j = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\tmax-width: 180px;\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px !important;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
 styleInject(css_248z$j);
 
+var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  return /*#__PURE__*/React.createElement(menuContext.Provider, {
+    value: {
+      submenu: true
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: ref,
+    className: props.className + ' Menu ' + props.menuClass,
+    style: _objectSpread2(_objectSpread2({}, props.style), props.menuStyle),
+    onClick: props.onClickBody
+  }, typeof props.MenuContent == 'function' ? /*#__PURE__*/React.createElement(props.MenuContent, null) : props.MenuContent));
+});
 function MenuButton(props) {
   //deccides if the component is locked based on props and parents in the tree
   var lockedFromAbove = useContext(lockedContext);
@@ -1569,16 +1766,11 @@ function MenuButton(props) {
 
 
   var parentMenuData = useContext(menuContext);
-  var icon = null;
-
-  if (parentMenuData.submenu) {
-    icon = /*#__PURE__*/React.createElement("span", {
-      className: "subMenuIcon"
-    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-      icon: faCaretRight
-    }));
-  }
-
+  var icon = parentMenuData.submenu ? /*#__PURE__*/React.createElement("span", {
+    className: "subMenuIcon"
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faCaretRight
+  })) : null;
   var direction = props.direction;
 
   if (parentMenuData.submenu) {
@@ -1600,37 +1792,33 @@ function MenuButton(props) {
       ref: ref,
       style: props.style
     }, props.children, icon);
-  });
-  var dropMenu = /*#__PURE__*/React.forwardRef(function (_ref2, ref) {
-    var style = _ref2.style,
-        className = _ref2.className;
-    return /*#__PURE__*/React.createElement(menuContext.Provider, {
-      value: {
-        submenu: true
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      ref: ref,
-      className: className + ' MenuContainer'
-    }, /*#__PURE__*/React.createElement("div", _defineProperty({
-      style: style,
-      className: 'Menu'
-    }, "style", props.menuStyle), props.menuContent)));
-  }); //If locked return a button that does nothing, otherwise create a real dropdown button
+  }); //Prevent submenus from sticking around after their parent has closed
+
+  function onClickBody() {
+    if (parentMenuData.submenu) {
+      document.body.click();
+    }
+  } //If locked return a button that does nothing, otherwise create a real dropdown button
+
 
   if (locked) {
-    return dropButton;
-  } else {
-    return /*#__PURE__*/React.createElement("span", {
-      className: "menuButtonContainer"
-    }, /*#__PURE__*/React.createElement(Dropdown, {
-      drop: direction,
-      onToggle: toggleHandler
-    }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
-      as: dropButton
-    }), /*#__PURE__*/React.createElement(Dropdown.Menu, {
-      as: dropMenu
-    })));
-  }
+    return /*#__PURE__*/React.createElement("button", {
+      className: 'MenuButton ' + props.className + ' ' + lockedClass,
+      style: props.style
+    }, props.children, icon);
+  } else return /*#__PURE__*/React.createElement("span", {
+    className: "menuButtonContainer"
+  }, /*#__PURE__*/React.createElement(Dropdown, {
+    drop: direction,
+    onToggle: toggleHandler
+  }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
+    as: dropButton
+  }), /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement(Dropdown.Menu, {
+    as: dropMenu,
+    MenuContent: props.menuContent,
+    menuStyle: props.menuStyle,
+    onClickBody: onClickBody
+  }), document.body)));
 } //Proptypes
 
 MenuButton.propTypes = {
@@ -1645,202 +1833,292 @@ MenuButton.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$k = ".MainTable{\n\toverflow-x: auto;\n\tpadding: 0px 10px;\n\twidth:100%;\n\tbackground-color: var(--bodyAltBG);\n\theight: 100vh;\n\tpadding-bottom: 75vh;\n\tcolor: var(--mainTextColor);\n\tposition: relative;\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .titleBar{\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .topBar{\n\tdisplay: flex;\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tposition: sticky;\n\ttop:0;\n\tz-index: 20;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\t\n}\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding-top: 4px;\n\tpadding-bottom: 4px;\n\tpadding-left: 0;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n}\n\n.MainTable .badge:empty{\n\tbackground-color: transparent !important;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .tableControls{\n\twidth: 50%;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\twidth: 50%;\n\tright: 0;\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n}\n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}\n\n";
+var css_248z$k = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 35px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 30px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: 3px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}\n\n\n";
 styleInject(css_248z$k);
 
-var css_248z$l = ".MainTableRow{\n\twidth:100%;\n\tbackground-color: transparent;\n\tpadding: 4px 10px;\n\theight: 40px;\n\ttransition: all 0.2s;\n\tbox-sizing: border-box;\n}\n\n.MainTableRow.pointer{\n\tcursor: pointer;\n}\n\n.MainTableRow.dynamic:hover{\n\tpadding: 1px 0;\n}\n\n.MainTableRow.dynamic:active{\n\ttransition: all 0.05s ease-out;\n\tpadding: 3px 7px;\n}\n\n.MainTableRow span{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow .rowContainer{\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: var(--cardBG);\n\tpadding: 4px 15px;\n\tborder-radius: 10px;\n\tbox-shadow: var(--cardShadow);\n\ttransition: all 0.3s, color 0.15s ease-out;\t\n\toverflow: hidden;\n}\n\n.MainTableRow.dynamic .rowContainer:hover{\n\tbox-shadow: var(--dynamicCardShadow);\n\tpadding-left: 20px;\n\tpadding-top: 6px;\n}\n\n.MainTableRow .active{\n\tcolor: var(--tableActiveColor);\n}\n\n\n";
+var css_248z$l = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTableRow.active .topRow{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTableRow span{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow .InputCell{\n\tborder: none;\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 100%;\n\tcolor: inherit;\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\t\n\tpadding: 4px 0;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tpadding: 7px 0;\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n.MainTableRow .keepInView{\n\ttransition: none !important;\n\tposition: sticky;\n\ttop: 0;\n}";
 styleInject(css_248z$l);
 
-var css_248z$m = ".InputCell.cellTextBox{\n\tborder: none;\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 100%;\n\tcolor: inherit;\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n}\n";
-styleInject(css_248z$m);
-
 function InputCell(props) {
-  var _useState = useState(props.defaultValue),
+  var _useState = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
       _useState2 = _slicedToArray(_useState, 2),
       initalValue = _useState2[0],
-      setInitialValue = _useState2[1]; //When you focus on an item, the value is saved. if you escape, its restored
+      setInitialValue = _useState2[1];
 
+  var _useState3 = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentValue = _useState4[0],
+      setCurrentValue = _useState4[1]; // Update the value if the data is changed by an outside source
+
+
+  useEffect(function () {
+    var newVal = props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : '';
+    setCurrentValue(props.header.format(newVal));
+    setInitialValue(newVal);
+  }, [props.dataRow[props.header.headerID]]); //When you focus on an item, the value is saved. if you escape, its restored
 
   function focusHandler(e) {
     setInitialValue(e.target.value);
+  } //Chaches the value and updates the dataset when you're done editing
+
+
+  function changeHandler(e) {
+    setCurrentValue(e.target.value);
   } //Handles keypresses, for enter or esc keys
 
 
   function keyHandler(e) {
     if (e.keyCode === 27) {
       //esc
-      e.target.value = initalValue;
+      setCurrentValue(initalValue);
       e.target.blur();
     } else if (e.keyCode === 13) {
       //enter
-      console.log('You pressed the enter key!');
+      e.target.blur();
     }
-  } //Handles changes (commit changes)
-
-  switch (props.dataHeader.dataType.kind) {
-    default:
-      return /*#__PURE__*/React.createElement("input", {
-        className: "InputCell cellTextBox input",
-        defaultValue: props.defaultValue,
-        onKeyDown: keyHandler,
-        onFocus: focusHandler
-      });
   }
-} //Proptypes
 
-InputCell.propTypes = {
-  defaultValue: PropTypes.string,
-  dataRow: PropTypes.object
-};
+  var _useState5 = useState(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      validClass = _useState6[0],
+      setValidClass = _useState6[1];
+
+  function flashRed() {
+    setValidClass('invalid');
+    setTimeout(function () {
+      return setValidClass('');
+    }, 200);
+  }
+
+  function flashGreen() {
+    setValidClass('valid');
+    setTimeout(function () {
+      return setValidClass('');
+    }, 0);
+  } //Check if the input is valid and commit
+
+
+  function commitChanges() {
+    return _commitChanges.apply(this, arguments);
+  }
+
+  function _commitChanges() {
+    _commitChanges = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var newData, newCellValue, res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+
+              if (!props.header.compare(props.dataRow[props.header.headerID], currentValue)) {
+                _context.next = 3;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 3:
+              newData = JSON.parse(JSON.stringify(_toConsumableArray(props.dataset.read())));
+              newCellValue = props.header.parse(currentValue);
+              newData[props.rowIndex][props.header.headerID] = newCellValue;
+              _context.next = 8;
+              return props.header.onEdit(currentValue, newData[props.rowIndex], initalValue, props.dataset.read()[props.rowIndex]);
+
+            case 8:
+              res = _context.sent;
+
+              if (res || res === undefined) {
+                props.dataset.set(newData);
+                setCurrentValue(props.header.format(currentValue));
+                flashGreen();
+              } else {
+                setCurrentValue(props.header.format(initalValue));
+                flashRed();
+              }
+
+              _context.next = 16;
+              break;
+
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context["catch"](0);
+              setCurrentValue(props.header.format(initalValue));
+              flashRed();
+
+            case 16:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 12]]);
+    }));
+    return _commitChanges.apply(this, arguments);
+  }
+
+  function blurHandler() {
+    commitChanges(); //Force it to wait untill React finishes all updates before executing
+  }
+
+  return /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    className: 'InputCell input ' + validClass,
+    onKeyDown: keyHandler,
+    onFocus: focusHandler,
+    onBlur: blurHandler,
+    value: currentValue,
+    onChange: changeHandler
+  });
+}
 
 function MainTableRow(props) {
-  var dynamicClass = '';
-  var pointerClass = '';
-
-  if (props.dynamic) {
-    dynamicClass = 'dynamic';
-  }
-
-  if (props.setActiveRecord) {
-    pointerClass = 'pointer';
-  } //Check if this is the active row for style reasons 
-
-
-  var _useState = useState(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      activeClass = _useState2[0],
-      setActiveClass = _useState2[1]; //sends the dataRow object to the select record function
-
+  var activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] ? ' active ' : '';
 
   function rowClickHandler() {
-    if (props.setActiveRecord) {
-      setActiveClass('active');
-      props.setActiveRecord(props.dataRow);
+    if (!props.noActive) {
+      props.dataset.selectRecord(props.dataRow[props.dataset.primaryKey]);
     }
   }
 
-  useEffect(function () {
-    if (props.activeRecord === props.dataRow) {
-      setActiveClass('active');
-    } else {
-      setActiveClass('');
-    }
-  }, [props.activeRecord, props.dataRow]); //Only continue building the row if it's actually required
-
-  var row = props.dataHeaders.map(function (hdr) {
+  var rowContent = props.dataHeaders.map(function (hdr, i) {
     if (hdr.visible) {
       //Decide if the cell is editable or not based on the locked status, and the header onEdit function
-      var cellContent = props.dataRow[hdr.headerID];
+      var cellContent;
+      var cellClass = '';
 
       if (!props.locked && hdr.onEdit && !hdr.locked) {
         cellContent = /*#__PURE__*/React.createElement(InputCell, {
-          dataHeader: hdr,
-          defaultValue: cellContent,
-          dataRow: props.dataRow
+          header: hdr,
+          dataRow: props.dataRow,
+          rowIndex: props.rowIndex,
+          dataset: props.dataset
         });
-      } //No conditional formatting
-
+        cellClass = 'inputWrapper';
+      } else {
+        cellContent = hdr.format(props.dataRow[hdr.headerID]);
+      }
 
       if (!hdr.styling) {
+        //No conditional formatting
         return /*#__PURE__*/React.createElement("span", {
           key: hdr.headerID + props.rowKey,
           style: {
-            width: hdr.width + '%'
-          }
+            width: hdr.width + 'px'
+          },
+          className: cellClass
         }, cellContent);
       } else {
-        //apply the styling function in the header object
+        //with coniditional formatting
         var myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow);
-        return (
-          /*#__PURE__*/
-          //with coniditional formatting
-          React.createElement("span", {
-            className: "badge",
-            key: hdr.headerID + props.rowKey,
-            style: {
-              width: 'calc(' + hdr.width + '% - 23px',
-              color: myStyle.textColor,
-              backgroundColor: myStyle.badgeColor,
-              marginLeft: '23px'
-            }
-          }, cellContent)
-        );
+        return /*#__PURE__*/React.createElement("span", {
+          className: 'badge ' + cellClass,
+          key: hdr.headerID + props.rowKey + i,
+          style: _objectSpread2(_objectSpread2({
+            width: 'calc(' + hdr.width + 'px - 23px)'
+          }, myStyle), {}, {
+            marginLeft: '23px'
+          })
+        }, cellContent);
       }
     }
-  }); // only the row if it passes the filter
+  });
 
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      expanded = _useState2[0],
+      setExpanded = _useState2[1];
+
+  var expandedClass = expanded ? ' expanded ' : '';
+
+  function expandHandler(e) {
+    //don't set the active row when collapsing 
+    if (expanded) {
+      e.stopPropagation();
+    }
+
+    setExpanded(!expanded);
+  } //Listeners to expand all and collapse all events from the parent maintable
+
+
+  useEffect(function () {
+    setExpanded(true);
+  }, [props.expandTrigger]);
+  useEffect(function () {
+    setExpanded(false);
+  }, [props.collapseTrigger]); //Allow nested components to update their dataRow
+
+  function setDataRow(newRow) {
+    var newData = _toConsumableArray(props.dataset.read());
+
+    newData[props.rowIndex] = newRow;
+    props.dataset.set(newData);
+  }
+
+  var expandIcon = props.nestedComponent ? /*#__PURE__*/React.createElement("span", {
+    className: "expandButton",
+    onClick: expandHandler
+  }, expanded ? /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faMinus
+  }) : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faPlus
+  })) : null;
   return /*#__PURE__*/React.createElement("div", {
-    className: 'MainTableRow ' + dynamicClass + ' ' + pointerClass,
+    className: 'MainTableRow ' + activeClass + expandedClass,
     onClick: rowClickHandler
   }, /*#__PURE__*/React.createElement("div", {
-    className: "rowContainer " + activeClass
-  }, row));
-} //Proptypes
-
-MainTableRow.propTypes = {
-  dataHeaders: PropTypes.array.isRequired,
-  dataRow: PropTypes.object.isRequired,
-  setActiveRecord: PropTypes.func,
-  locked: PropTypes.bool,
-  dynamic: PropTypes.bool
-};
-
-function InfoTab(props) {
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined;
-
-  if (!props.hidden) {
-    return /*#__PURE__*/React.createElement(lockedContext.Provider, {
-      value: locked
-    }, /*#__PURE__*/React.createElement("div", {
-      className: 'InfoTab ' + props.tabID,
-      style: props.style
-    }, props.children));
-  } else return null;
-} //Proptypes
-
-InfoTab.propTypes = {
-  tabTitle: PropTypes.string,
-  tabID: PropTypes.string.isRequired,
-  style: PropTypes.object
-};
-
-var css_248z$n = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 30;\n}\n\n.InfoTabContainer .nav-tabs a{\n\tpadding: 6px 30px;\n\tpadding-top: 0;\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\tborder-top-right-radius: 9px;\n\tborder-top-left-radius: 9px;\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\t\n\tborder-bottom-style: solid;\n\tborder-bottom-color: var(--navTextColor);\n\tborder-bottom-width: 6px;\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\ttext-shadow: 1px 0px 0px var(--navHoverColor);\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
-styleInject(css_248z$n);
-
-function InfoTabContainer(props) {
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
-    value: locked
+    className: 'topRow'
+  }, expandIcon, rowContent), expanded && props.nestedComponent ? /*#__PURE__*/React.createElement("div", {
+    className: "componentWrapper"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "InfoTabContainer"
-  }, /*#__PURE__*/React.createElement(Tabs, {
-    defaultActiveKey: props.defaultTab,
-    transition: false,
-    onSelect: function onSelect(tabID) {
-      if (props.onTabChange) {
-        props.onTabChange(tabID, locked);
-      }
+    className: "keepInView",
+    style: {
+      width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 35px)' : null,
+      left: props.scrollPos
     }
-  }, React.Children.map(props.children, function (child) {
-    if (!child.props.hidden) {
-      return /*#__PURE__*/React.createElement(Tab, {
-        eventKey: child.props.tabID,
-        title: child.props.tabTitle
-      }, child);
-    } else return null;
-  }))));
-} //Proptypes
+  }, /*#__PURE__*/React.createElement(props.nestedComponent, _extends({}, props.nestedProps, {
+    dataRow: props.dataRow,
+    setDataRow: setDataRow
+  })))) : null);
+}
 
-InfoTabContainer.propTypes = {
-  defaultTab: PropTypes.string,
-  onTabChange: PropTypes.func,
-  locked: PropTypes.bool
-};
+var css_248z$m = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 45%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 55%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}\n\n\n";
+styleInject(css_248z$m);
 
-var css_248z$o = ".FilterMenu{\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tmax-height: inherit;\n\tposition: relative;\n}\n\n.FilterMenu .topMenu{\n\tposition: sticky;\n\ttop: 0px;\n\tmargin-top: 0 !important;\n\tz-index: 3;\n\tbackground-color: var(--cardBG);\n}\n\n.FilterMenu .selectAll{\n\tfont-weight: bold;\n}";
-styleInject(css_248z$o);
+function SortMenu(props) {
+  function sortData(e) {
+    props.dataHeaders.addSortRule(props.header.headerID, e.target.value, props.header.index);
+    props.data.sort();
+  }
+
+  var sortRule = props.dataHeaders.getSortRules().find(function (sr) {
+    return sr.headerID === props.header.headerID;
+  });
+  var sortDir = sortRule ? sortRule.direction : '';
+  var cancelIcon = /*#__PURE__*/React.createElement("span", {
+    className: "sortIcon",
+    onClick: function onClick(e) {
+      props.dataHeaders.removeSortRule(props.header.headerID);
+      props.data.sort();
+      e.stopPropagation();
+    }
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faTimes
+  }));
+
+  if (!props.noSort) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "SortMenu"
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: sortData,
+      className: "fullButton sortButton",
+      value: 'asc'
+    }, "Sort Ascending", sortDir === 'asc' ? cancelIcon : null), /*#__PURE__*/React.createElement("button", {
+      onClick: sortData,
+      className: "fullButton sortButton",
+      value: 'desc'
+    }, "Sort Descending", sortDir === 'desc' ? cancelIcon : null));
+  } else return null;
+}
 
 function FilterMenu(props) {
   var values = props.header.uniqueValues;
@@ -1850,13 +2128,12 @@ function FilterMenu(props) {
 
     if (e.target !== cb) {
       cb.checked = !cb.checked;
-    } //using immer to modify the dataHeaders state without breaking immutability rules
+    }
 
+    var newHeaders = _toConsumableArray(props.dataHeaders.get());
 
-    props.dataHeaders.set(produce(props.dataHeaders.get(), function (draftHeaders) {
-      draftHeaders[props.header.index].uniqueValues[cb.value] = cb.checked;
-    }));
-    props.data.filter();
+    newHeaders[props.header.index].uniqueValues[cb.value] = cb.checked;
+    props.dataHeaders.set(newHeaders);
   }
 
   function selectAll(e) {
@@ -1864,120 +2141,387 @@ function FilterMenu(props) {
 
     if (e.target !== cb) {
       cb.checked = !cb.checked;
-    } //using immer to modify the dataHeaders state without breaking immutability rules
+    }
 
+    var newHeaders = _toConsumableArray(props.dataHeaders.get());
 
-    props.dataHeaders.set(produce(props.dataHeaders.get(), function (draftHeaders) {
-      draftHeaders[props.header.index].selectAll(cb.checked);
-    }));
-    props.data.filter();
+    if (cb.checked) {
+      newHeaders[props.header.index].clearFilter();
+    } else {
+      newHeaders[props.header.index].selectAll(cb.checked);
+    }
+
+    props.dataHeaders.set(newHeaders);
   }
 
   var spanStyle = {
     textAlign: 'left',
     paddingLeft: '7px'
   };
-  return /*#__PURE__*/React.createElement("div", {
-    className: "FilterMenu"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "topMenu"
-  }, props.children, /*#__PURE__*/React.createElement("button", {
-    onClick: selectAll,
-    className: "selectAll"
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "checkbox",
-    defaultChecked: !props.header.hasFilter(),
-    id: props.header.headerID + 'selectAll',
-    style: {
-      cursor: 'pointer'
-    }
-  }), /*#__PURE__*/React.createElement("span", {
-    style: spanStyle
-  }, 'Select All'))), /*#__PURE__*/React.createElement("div", {
-    className: "filterOptions"
-  }, Object.keys(values).map(function (v, i) {
-    return /*#__PURE__*/React.createElement("button", {
-      key: props.header.id + 'fv' + i,
-      onClick: function onClick(e) {
-        return clickHandler(e, props.header.headerID + 'fcb' + i);
-      }
+  var count = -1;
+  var lim = 200;
+
+  if (!props.noFilter) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "FilterMenu"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "stickyMenu"
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: selectAll,
+      className: "selectAll fullButton"
     }, /*#__PURE__*/React.createElement("input", {
       type: "checkbox",
-      defaultChecked: values[v],
-      id: props.header.headerID + 'fcb' + i,
-      value: v,
+      checked: !props.header.hasFilter(),
+      id: props.header.headerID + 'selectAll',
       style: {
         cursor: 'pointer'
-      }
+      },
+      readOnly: true
     }), /*#__PURE__*/React.createElement("span", {
       style: spanStyle
-    }, v !== 0 && !v ? 'Blank' : v));
+    }, 'Select All'))), Object.keys(values).map(function (v, i) {
+      count++; //Limit the number of checkboxes that are rendered to 200
+
+      if (count < lim) {
+        return /*#__PURE__*/React.createElement("button", {
+          className: 'fullButton',
+          key: props.header.id + 'fv' + count,
+          onClick: function onClick(e) {
+            return clickHandler(e, props.header.headerID + 'fcb' + i);
+          },
+          title: v
+        }, /*#__PURE__*/React.createElement("input", {
+          type: "checkbox",
+          checked: values[v],
+          id: props.header.headerID + 'fcb' + i,
+          value: v,
+          style: {
+            cursor: 'pointer'
+          },
+          readOnly: true
+        }), /*#__PURE__*/React.createElement("span", {
+          style: spanStyle
+        }, v !== 0 && !v ? 'Blank' : props.header.format(v)));
+      } else return null;
+    }), count >= lim ? /*#__PURE__*/React.createElement("button", null, "... ", count - lim, " More") : null);
+  } else return null;
+}
+
+var DataFilter = /*#__PURE__*/function () {
+  function DataFilter(options) {
+    _classCallCheck(this, DataFilter);
+
+    this.options = options;
+    this.displayName = options.type;
+    this.filter = DataFilter.getFilterTypes()[options.id] ? DataFilter.getFilterTypes()[options.id].func : function () {
+      return true;
+    };
+    this.displayName = DataFilter.getFilterTypes()[options.id].displayName;
+    this.args = DataFilter.getFilterTypes()[options.id].args;
+    this.options.value = options.value.toString().toLowerCase();
+  }
+
+  _createClass(DataFilter, [{
+    key: "func",
+    value: function func(val) {
+      try {
+        return this.filter(val, this.options);
+      } catch (err) {
+        return false;
+      }
+    }
+  }], [{
+    key: "getFilterTypes",
+    value: function getFilterTypes() {
+      return {
+        includes: {
+          func: function func(val, options) {
+            return val.toString().toLowerCase().includes(options.value);
+          },
+          displayName: 'Includes',
+          availableTo: ['string']
+        },
+        doesNotInclude: {
+          func: function func(val, options) {
+            return !val.toString().toLowerCase().includes(options.value);
+          },
+          displayName: "Doesn't Include",
+          availableTo: ['string']
+        },
+        lessThan: {
+          func: function func(val, options) {
+            return val < options.value || moment(val).isBefore(options.value, 'day');
+          },
+          displayName: 'Less than',
+          availableTo: ['number', 'date']
+        },
+        greaterThan: {
+          func: function func(val, options) {
+            return val > options.value || moment(val).isAfter(options.value, 'day');
+          },
+          displayName: 'Greater than',
+          availableTo: ['number', 'date']
+        },
+        equals: {
+          func: function func(val, options) {
+            return val.toString().toLowerCase() == options.value || moment(val).isSame(options.value, 'day');
+          },
+          displayName: 'Equals',
+          availableTo: ['string', 'number', 'boolean', 'date']
+        },
+        doesNotEqual: {
+          func: function func(val, options) {
+            return val.toString().toLowerCase() != options.value && !moment(val).isSame(options.value, 'day');
+          },
+          displayName: "Doesn't Equal",
+          availableTo: ['string', 'number', 'boolean', 'date']
+        }
+      };
+    }
+  }]);
+
+  return DataFilter;
+}();
+
+function MoreFilterButtonActive(props) {
+  var _useState = useState(props.header.filterList[props.filterID] && props.header.filterList[props.filterID].options.value ? props.header.format(props.header.filterList[props.filterID].options.value) : ''),
+      _useState2 = _slicedToArray(_useState, 2),
+      currentValue = _useState2[0],
+      setCurrentValue = _useState2[1];
+
+  function changeHandler(e) {
+    setCurrentValue(e.target.value);
+  }
+
+  function commitHandler() {
+    var newHeaders = _toConsumableArray(props.dataHeaders.get());
+
+    newHeaders[props.header.index].addFilter({
+      id: props.filterID,
+      value: currentValue
+    });
+    props.dataHeaders.set(newHeaders);
+  }
+
+  function cancelHandler() {
+    props.setActive(false); //if filter exists, remove it
+
+    if (props.header.filterList[props.filterID]) {
+      var newHeaders = _toConsumableArray(props.dataHeaders.get());
+
+      newHeaders[props.header.index].removeFilter(props.filterID);
+      props.dataHeaders.set(newHeaders);
+    }
+
+    props.data.filter();
+  }
+
+  function keyDownHandler(e) {
+    if (e.key === 'Enter') {
+      e.target.blur();
+    }
+  }
+
+  function blurHandler(e) {
+    if (currentValue.trim() === '') {
+      cancelHandler();
+    } else {
+      commitHandler();
+    }
+  }
+
+  return /*#__PURE__*/React.createElement("button", {
+    className: "MoreFilterButtonActive disabled"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tag"
+  }, props.filter.displayName), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    className: 'input wrap',
+    autoFocus: true,
+    onChange: changeHandler,
+    value: currentValue,
+    onKeyDown: keyDownHandler,
+    onBlur: blurHandler
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "cancelIcon",
+    onClick: cancelHandler
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faTimes
+  })));
+}
+
+function MoreFilterButton(props) {
+  var _useState = useState(props.header.filterList[props.filterID] ? true : false),
+      _useState2 = _slicedToArray(_useState, 2),
+      active = _useState2[0],
+      setActive = _useState2[1];
+
+  function activate() {
+    if (!active) {
+      setActive(true);
+
+      var newHeaders = _toConsumableArray(props.dataHeaders.get());
+
+      newHeaders[props.header.index].addFilter({
+        id: props.filterID,
+        value: ''
+      });
+      props.dataHeaders.set(newHeaders);
+    }
+  }
+
+  useEffect(function () {
+    var newActive = props.header.filterList[props.filterID] ? true : false;
+
+    if (active !== newActive) {
+      setActive(newActive);
+    }
+  });
+
+  if (!active) {
+    return /*#__PURE__*/React.createElement("button", {
+      onClick: activate,
+      className: "MoreFilterButton"
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        paddingRight: '10px'
+      }
+    }, props.filter.displayName));
+  } else {
+    return /*#__PURE__*/React.createElement(MoreFilterButtonActive, {
+      dataHeaders: props.dataHeaders,
+      data: props.data,
+      filter: props.filter,
+      filterID: props.filterID,
+      header: props.header,
+      setActive: setActive,
+      active: active
+    });
+  }
+}
+
+function MoreFilters(props) {
+  var filterList = DataFilter.getFilterTypes();
+
+  if (!props.noFilter) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "MoreFilters"
+    }, Object.keys(filterList).map(function (f, i) {
+      if (filterList[f].availableTo.includes(props.header.type)) {
+        return /*#__PURE__*/React.createElement(MoreFilterButton, {
+          key: 'MoreFilterButton' + i,
+          filter: filterList[f],
+          filterID: f,
+          header: props.header,
+          dataHeaders: props.dataHeaders,
+          data: props.data,
+          openTrigger: props.openTrigger
+        });
+      } else return null;
+    }));
+  } else return null;
+}
+
+function TheadMenu(props) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "TheadMenu"
+  }, /*#__PURE__*/React.createElement(FilterMenu, {
+    dataHeaders: props.dataHeaders,
+    header: props.header,
+    data: props.data,
+    openTrigger: props.openTrigger,
+    noFilter: props.noFilter
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "sideMenu",
+    style: {
+      width: props.noFilter ? '100%' : null
+    }
+  }, /*#__PURE__*/React.createElement(SortMenu, {
+    data: props.data,
+    header: props.header,
+    dataHeaders: props.dataHeaders,
+    noSort: props.noSort
+  }), /*#__PURE__*/React.createElement(MoreFilters, {
+    header: props.header,
+    dataHeaders: props.dataHeaders,
+    data: props.data,
+    openTrigger: props.openTrigger,
+    noFilter: props.noFilter
   })));
 }
 
 function TheadButton(props) {
-  //Checks if the header has an active filter, to show a different icon
-  var _useState = useState(props.noFilter ? 'sort' : 'filter'),
-      _useState2 = _slicedToArray(_useState, 2),
-      defaultTab = _useState2[0],
-      setDefaultTab = _useState2[1]; //filter tab - if the correct props are available to enable filtering
-
-
-  var filterMenu = null;
-  filterMenu = /*#__PURE__*/React.createElement(InfoTab, {
-    tabID: "filter",
-    tabTitle: "Filter",
-    hidden: props.noFilter
-  }, /*#__PURE__*/React.createElement(FilterMenu, {
-    dataHeaders: props.dataHeaders,
-    header: props.header,
-    data: props.data
-  }, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faPlus
-  }), /*#__PURE__*/React.createElement("span", {
-    style: {
-      paddingLeft: '10px'
-    }
-  }, "More Filters")))); //Sort tab - if the correct props are available to enable sorting
-
-  var sortMenu = /*#__PURE__*/React.createElement(InfoTab, {
-    tabID: "sort",
-    tabTitle: "Sort",
-    hidden: props.noSort
-  }, /*#__PURE__*/React.createElement("button", null, "Sort Test")); //Combine available tabs - if at least one is avilable
-
-  var overallMenu = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(InfoTabContainer, {
-    defaultTab: defaultTab,
-    onTabChange: function onTabChange(tabID) {
-      setDefaultTab(tabID);
-    }
-  }, filterMenu, sortMenu)); //if there is a menu, add a dropdown icon
-
-  var icon = /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+  //if there is a menu, add a dropdown icon
+  var arrowIcon = /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faCaretDown
+  }));
+  var filterIcon = null;
+  var sortIcon = null;
+  var hasFilter = props.header.hasFilter();
+  var sortRule = props.dataHeaders.getSortRules().find(function (sr) {
+    return sr.headerID === props.header.headerID;
   });
-  var iconClass = '';
 
-  if (props.header.hasFilter()) {
-    icon = /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-      icon: faFilter
-    });
-    iconClass = 'smallerIcon';
+  if (sortRule) {
+    arrowIcon = null;
+    sortIcon = sortRule.direction === 'asc' ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faSortAlphaDown
+    })) : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faSortAlphaDownAlt
+    }));
   }
+
+  if (hasFilter) {
+    arrowIcon = null;
+    filterIcon = /*#__PURE__*/React.createElement("span", {
+      className: "smallIcon",
+      style: {
+        paddingLeft: '5px'
+      }
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faFilter
+    }));
+  } //changes every time the menu opens. Used by useEffect listeners in teh menu to respond to the open event
+
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      openTrigger = _useState2[0],
+      setOpenTrigger = _useState2[1];
+
+  var _useState3 = useState(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isOpen = _useState4[0],
+      setIsOpen = _useState4[1];
+
+  var openClass = isOpen ? ' open ' : '';
 
   if (props.noSort && props.noFilter) {
     return props.children;
   } else {
     return /*#__PURE__*/React.createElement(MenuButton, {
-      className: "TheadButton",
+      className: 'TheadButton ' + openClass,
       locked: false,
-      menuContent: overallMenu,
+      onOpen: function onOpen() {
+        setOpenTrigger(!openTrigger);
+        setIsOpen(true);
+      },
+      onClose: function onClose() {
+        props.data.filter();
+        setIsOpen(false);
+      },
+      menuContent: /*#__PURE__*/React.createElement(TheadMenu, {
+        dataHeaders: props.dataHeaders,
+        header: props.header,
+        data: props.data,
+        openTrigger: props.openTrigger,
+        noSort: props.noSort,
+        noFilter: props.noFilter
+      }),
       menuStyle: {
-        maxHeight: '50vh'
+        maxWidth: props.noFilter ? '180px' : '350px',
+        maxHeight: '310px'
       }
-    }, props.children, /*#__PURE__*/React.createElement("span", {
-      className: iconClass
-    }, icon));
+    }, props.children, arrowIcon, sortIcon, filterIcon);
   }
 }
 
@@ -2017,7 +2561,9 @@ function CheckButton(props) {
     style: {
       cursor: 'pointer'
     },
-    disabled: props.disabled
+    disabled: props.disabled,
+    checked: props.checked,
+    readOnly: props.checked !== undefined ? true : false
   }), /*#__PURE__*/React.createElement("span", {
     style: spanStyle
   }, props.children));
@@ -2027,32 +2573,25 @@ CheckButton.propTypes = {
   value: PropTypes.any,
   label: PropTypes.string,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  checked: PropTypes.bool
 };
 
-function TableSettings(props) {
+function ColumnSettings(props) {
   function clickHandler(checked, idx) {
     props.setTransitionClass('noTransition');
-    var reFilter = false;
-    props.headers.set(produce(props.headers.get(), function (draftHeaders) {
-      draftHeaders[idx].visible = checked;
-
-      if (!checked && draftHeaders[idx].hasFilter()) {
-        draftHeaders[idx].clearFilter();
-        reFilter = true;
-      }
-    }));
+    props.headers.setVisible(idx, checked);
     setTimeout(function () {
-      if (reFilter) {
-        props.data.filter();
-      }
-
+      props.data.sort();
       props.setTransitionClass('');
     }, 0);
   }
 
   return /*#__PURE__*/React.createElement(MenuButton, {
     locked: false,
+    menuStyle: {
+      maxHeight: '300px'
+    },
     menuContent: /*#__PURE__*/React.createElement("div", {
       style: {
         overflowY: 'auto'
@@ -2061,22 +2600,172 @@ function TableSettings(props) {
       return /*#__PURE__*/React.createElement(CheckButton, {
         key: 'customizeHeader' + h.headerID,
         disabled: h.required,
-        defaultChecked: h.visible,
+        checked: h.visible,
         value: h.index,
         onClick: clickHandler
       }, h.displayName);
     }))
   }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faCog
-  }), " Table Settings");
+    icon: faColumns
+  }), " Column Settings");
+}
+
+var css_248z$n = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
+styleInject(css_248z$n);
+
+var css_248z$o = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
+styleInject(css_248z$o);
+
+function ConfirmButton(props) {
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      expanded = _useState2[0],
+      setExpanded = _useState2[1];
+
+  function clickHandler(e) {
+    if (expanded) {
+      if (props.onClick) {
+        props.onClick(e);
+      }
+
+      setExpanded(false);
+    } else {
+      e.stopPropagation();
+      setExpanded(true);
+      e.stopPropagation();
+    }
+  }
+
+  function blurHandler() {
+    setExpanded(false);
+  }
+
+  return /*#__PURE__*/React.createElement(CoreButton, {
+    className: props.className + ' ConfirmButton ' + (expanded ? ' expanded ' : '') + props.purpose,
+    locked: props.locked,
+    hidden: props.hidden,
+    onClick: clickHandler,
+    style: props.style,
+    onBlur: blurHandler
+  }, expanded ? props.expandedContent : props.content);
+} //
+
+ConfirmButton.propTypes = {
+  hidden: PropTypes.bool,
+  locked: PropTypes.bool,
+  onClick: PropTypes.func,
+  style: PropTypes.object,
+  expandedStyle: PropTypes.object,
+  className: PropTypes.string,
+  content: PropTypes.any,
+  expandedContent: PropTypes.any,
+  purpose: PropTypes.string
+};
+
+function SaveTableLayout(props) {
+  var _useState = useState(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      saveName = _useState2[0],
+      setSaveName = _useState2[1];
+
+  var _useState3 = useState(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      validClass = _useState4[0],
+      setValidClass = _useState4[1];
+
+  function changeHandler(e) {
+    setSaveName(e.target.value);
+    setValidClass('');
+  }
+
+  var savedLayouts = props.headers.getSavedLayouts();
+
+  function commitHandler() {
+    var nameExists = Object.values(savedLayouts).some(function (f) {
+      return f.name === saveName;
+    });
+
+    if (saveName.trim() !== '' && !nameExists) {
+      setSaveName('');
+      props.headers.saveLayout(saveName);
+    } else {
+      setValidClass('invalid');
+    }
+  }
+
+  function keyDownHandler(e) {
+    if (e.key === 'Enter') {
+      commitHandler();
+      e.target.blur();
+    }
+  }
+
+  function applyLayout(f) {
+    props.headers.loadLayout(f);
+    props.data.sort();
+  }
+
+  return /*#__PURE__*/React.createElement(MenuButton, {
+    locked: false,
+    onClose: function onClose() {
+      return setValidClass('');
+    },
+    menuStyle: {
+      width: '250px'
+    },
+    menuContent: /*#__PURE__*/React.createElement("div", {
+      className: "SaveTableLayout"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "inputMenu"
+    }, /*#__PURE__*/React.createElement("span", null, "Save Current Layout"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+      className: 'input ' + validClass,
+      value: saveName,
+      onChange: changeHandler,
+      onKeyDown: keyDownHandler
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "commitIcon",
+      onClick: commitHandler
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faCheck
+    }))), Object.keys(savedLayouts).map(function (f) {
+      return /*#__PURE__*/React.createElement("button", {
+        className: 'layoutButton',
+        key: 'saveLayoutButton' + f,
+        onClick: function onClick() {
+          applyLayout(f);
+        }
+      }, /*#__PURE__*/React.createElement(ConfirmButton, {
+        className: "cancelIcon",
+        onClick: function onClick(e) {
+          props.headers.deleteLayout(f);
+          e.stopPropagation();
+        },
+        content: /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+          icon: faTimes
+        }),
+        expandedContent: 'Delete',
+        style: {
+          backgroundColor: 'var(--cardBG)',
+          color: 'var(--lockedTextColor)',
+          padding: '0 5px'
+        },
+        locked: false
+      }), /*#__PURE__*/React.createElement("span", {
+        className: "layoutButtonText"
+      }, savedLayouts[f].name));
+    }))
+  }, /*#__PURE__*/React.createElement("span", {
+    className: ""
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faWindowRestore
+  })), " Saved Layouts");
 }
 
 function TableControls(props) {
   var clearFilterButton = null;
-  var sortButton = null;
-  var filterButton = null;
+  var layoutButton = null;
   var settingsButton = null;
-  var System = useSystem();
+  var expandControls;
 
   if (props.hasFilter && !props.noFilter) {
     clearFilterButton = /*#__PURE__*/React.createElement("button", {
@@ -2086,477 +2775,74 @@ function TableControls(props) {
     }), " Clear Filter");
   }
 
-  if (!props.noFilter) {
-    filterButton = /*#__PURE__*/React.createElement(MenuButton, {
-      menuContent: /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(MenuButton, {
-        menuContent: /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", null, "Outstanding Tasks"), /*#__PURE__*/React.createElement("button", null, "Assigned To Me"), /*#__PURE__*/React.createElement("button", null, "Due Soon"))
-      }, "Saved Filters"), /*#__PURE__*/React.createElement("button", {
-        onClick: function onClick() {
-          System.openPopup( /*#__PURE__*/React.createElement(Popup, {
-            title: "Save Filter"
-          }, /*#__PURE__*/React.createElement("label", null, "Filter Name: "), /*#__PURE__*/React.createElement(TextBox, {
-            autoFocus: true
-          }), /*#__PURE__*/React.createElement(FreeButton, {
-            onClick: function onClick() {
-              System.closePopup();
-            }
-          }, "Save")));
-        }
-      }, "Save Current Filter"))
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "smallIcon"
-    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-      icon: faFilter
-    })), " Filter");
-  }
-
-  if (!props.noSort) {
-    sortButton = /*#__PURE__*/React.createElement(MenuButton, {
-      menuContent: /*#__PURE__*/React.createElement(MenuButton, {
-        menuContent: /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", null, "test2"), /*#__PURE__*/React.createElement("button", null, "test2"), /*#__PURE__*/React.createElement("button", null, "test2"))
-      }, "test")
-    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-      icon: faSortAmountUp
-    }), " Sort");
+  if (!props.noFilter && !props.noSort) {
+    layoutButton = /*#__PURE__*/React.createElement(SaveTableLayout, {
+      headers: props.dataHeaders,
+      data: props.data
+    });
   }
 
   if (!props.noOptions) {
-    settingsButton = /*#__PURE__*/React.createElement(TableSettings, {
+    settingsButton = /*#__PURE__*/React.createElement(ColumnSettings, {
       headers: props.dataHeaders,
       data: props.data,
       setTransitionClass: props.setTransitionClass
     });
   }
 
+  if (props.showExpandControls) {
+    expandControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        props.setExpandTrigger(!props.expandTrigger);
+      }
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faPlus
+    }), " Expand All"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        props.setCollapseTrigger(!props.collapseTrigger);
+      }
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faMinus
+    }), " Collapse All"));
+  }
+
   return /*#__PURE__*/React.createElement("div", {
     className: "tableControls"
-  }, settingsButton, sortButton, filterButton, clearFilterButton);
+  }, settingsButton, layoutButton, expandControls, clearFilterButton);
 }
 
-function MainTable(props) {
-  //Sorting and filtering are optional (via props), only supported with if a dataset is provided
-  var noSort = props.noSort;
-  var noFilter = props.noFilter;
-  var noOptions = props.noOptions;
-  var searchable = props.searchable; //support for dataSets or for just arrays
-
-  var data = props.data;
-  var metaData = [{}];
-
-  if (props.data.isDataset) {
-    data = props.data.read();
-    metaData = props.data.getMetaData();
-  } else {
-    noSort = true;
-    noFilter = true;
-    searchable = false;
-  } //For dataSets - runs when dataSet refreshes (sets the filter options to match)
-
-
-  useEffect(function () {
-    if (!noFilter) {
-      props.dataHeaders.embedData(data, metaData);
-      props.data.setHeaders(props.dataHeaders);
-    }
-  }, [props.data.lastResolved]); //Active page handling
-
-  var _useState = useState(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      activePage = _useState2[0],
-      setActivePage = _useState2[1]; //get the length of the data with the filter applied
-
-
-  var dataLength = 0;
-  data.forEach(function (r, idx) {
-    if (metaData[idx]) {
-      if (metaData[idx].visible && !metaData[idx].searchHidden) {
-        dataLength++;
-      }
-    } else {
-      dataLength++;
-    }
-  }); //if there's no way to set the active record, then no record is active
-
-  var activeRecord;
-
-  if (props.activeRecord && props.setActiveRecord) {
-    activeRecord = props.activeRecord;
-  } //default page Size
-
-
-  var pageSize = props.pageSize;
-
-  if (!pageSize) {
-    pageSize = 500;
-  } //deccides if the component is locked based on props and parents in the tree
-
-
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined; //If clicking sets the active record then its animated
-  //if there are editable cells the animations will be cancelled
-
-  var dynamic;
-
-  if (props.setActiveRecord) {
-    dynamic = true;
-  } //Normalize column widths to ensure they always add up to 100%
-
-
-  var hasFilter = false;
-  props.dataHeaders.get().forEach(function (hdr) {
-    //if you have input cells in the table, hover effects will be cancelled
-    if (hdr.onEdit) {
-      dynamic = false;
-    } //check if any headers have active filters (to show a clear filter button)
-
-
-    if (hdr.hasFilter()) {
-      hasFilter = true;
-    }
-  }); //Counter for rendered rows
-
-  var i = 1; //Buttons for page controls
-
-  function pageForward() {
-    if (activePage < Math.floor(dataLength / pageSize) - 1) {
-      setActivePage(activePage + 1);
-    }
-
-    i = 1;
-  }
-
-  function BackButton() {
-    if (activePage > 0) {
-      return /*#__PURE__*/React.createElement("button", {
-        onClick: pageBack
-      }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-        icon: faCaretLeft
-      }));
-    } else return null;
-  }
+function PageContols(props) {
+  var showPageBack = props.activePage > 0;
+  var showPageForward = (props.activePage + 1) * props.pageSize < props.dataLength;
 
   function pageBack() {
-    if (activePage > 0) {
-      setActivePage(activePage - 1);
-    }
-
-    i = 1;
-  }
-
-  function ForwardButton() {
-    if (activePage < Math.floor(dataLength / pageSize) - 1) {
-      return /*#__PURE__*/React.createElement("button", {
-        onClick: pageForward
-      }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-        icon: faCaretRight
-      }));
-    } else return null;
-  }
-
-  function clearFilter() {
-    props.dataHeaders.set(produce(props.dataHeaders.get(), function (draft) {
-      draft.forEach(function (hdr) {
-        hdr.clearFilter();
-      });
-    }));
-    props.data.filter();
-  }
-
-  function PageControls() {
-    if (dataLength > pageSize) {
-      return /*#__PURE__*/React.createElement("div", {
-        className: "pageControls"
-      }, /*#__PURE__*/React.createElement(BackButton, null), /*#__PURE__*/React.createElement("button", {
-        className: "textButton"
-      }, "Showing ", 1 + activePage * pageSize, "-", Math.min((1 + activePage) * pageSize, dataLength) + ' ', "of ", "  ".concat(dataLength)), /*#__PURE__*/React.createElement(ForwardButton, null));
-    } else return null;
-  }
-
-  var _useState3 = useState(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      transitionClass = _useState4[0],
-      setTransitionClass = _useState4[1]; //Render
-
-
-  return /*#__PURE__*/React.createElement("div", {
-    className: "MainTable " + transitionClass
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "titleBar"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "topBar"
-  }, /*#__PURE__*/React.createElement(TableControls, {
-    hasFilter: hasFilter,
-    noFilter: noFilter,
-    noSort: noSort,
-    clearFilter: clearFilter,
-    noOptions: noOptions,
-    dataHeaders: props.dataHeaders,
-    data: props.data,
-    setTransitionClass: setTransitionClass
-  }), /*#__PURE__*/React.createElement(PageControls, null)), /*#__PURE__*/React.createElement("div", {
-    className: "theadBar"
-  }, props.dataHeaders.get().map(function (hdr) {
-    if (hdr.visible) {
-      return /*#__PURE__*/React.createElement("span", {
-        style: {
-          width: hdr.width + '%'
-        },
-        key: 'header' + hdr.headerID
-      }, /*#__PURE__*/React.createElement(TheadButton, {
-        header: hdr,
-        data: props.data,
-        dataHeaders: props.dataHeaders,
-        noFilter: noFilter,
-        o: true,
-        noSort: noSort
-      }, hdr.displayName + ' '));
-    } else return null;
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: 'tableBody ' + props.data.lastResolved
-  }, data.map(function (dr, idx) {
-    //render the allowed numebr of rows, on th selected page
-    if (i > activePage * pageSize && i <= (1 + activePage) * pageSize) {
-      var renderRow = dr !== [];
-
-      if (searchable) {
-        renderRow = !metaData[idx].searchHidden;
-      }
-
-      renderRow = renderRow && (noFilter || metaData[idx].visible);
-      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
-        dataRow: dr,
-        dataHeaders: props.dataHeaders.get(),
-        setActiveRecord: props.setActiveRecord,
-        activeRecord: activeRecord,
-        rowKey: 'MainTableRow' + i,
-        key: 'MainTableRow' + i,
-        locked: locked,
-        dynamic: dynamic
-      }) : null;
-
-      if (r) {
-        i++;
-      } //Count the number of rows actually renedered (not filtered out)
-
-
-      return r;
-    } else if (i <= (1 + activePage) * pageSize) {
-      i++;
-    }
-
-    return null;
-  })));
-} //Proptypes
-
-MainTable.propTypes = {
-  setActiveRecord: PropTypes.func,
-  onEdit: PropTypes.func,
-  dataHeaders: PropTypes.object.isRequired,
-  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-  pageSize: PropTypes.number,
-  locked: PropTypes.bool,
-  searchable: PropTypes.bool,
-  noSort: PropTypes.bool,
-  noFilter: PropTypes.bool,
-  noOptions: PropTypes.bool
-};
-
-var css_248z$p = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tposition: relative;\n}";
-styleInject(css_248z$p);
-
-function Module(props) {
-  var moduleData = useModuleContext();
-
-  function keyDownHandler(e) {
-    var isCtrl = e.ctrlKey || e.metaKey;
-
-    if (isCtrl && e.keyCode === 70) {
-      e.preventDefault();
-      console.log(moduleData.get('TouchPointSearchRef'));
-
-      if (moduleData.get('TouchPointSearchRef')) {
-        moduleData.get('TouchPointSearchRef')();
-      }
+    if (showPageBack) {
+      props.setActivePage(props.activePage - 1);
     }
   }
 
-  useEffect(function () {
-    moduleData.clear();
-    window.addEventListener('keydown', keyDownHandler);
-    return function () {
-      moduleData.clear();
-      window.removeEventListener('keydown', keyDownHandler);
-    };
-  }, []);
-  return /*#__PURE__*/React.createElement("div", {
-    className: 'Module ' + props.moduleName,
-    style: props.style
-  }, props.children);
-} //Proptypes
-
-Module.propTypes = {
-  moduleName: PropTypes.string,
-  style: PropTypes.object
-};
-
-var css_248z$q = ".SplitScreen{\n\theight: 100%;\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tpointer-events: none;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.SplitScreen .topView{\n\tbackground-color: transparent;\n\tpointer-events: none;\n}\n\n.SplitScreen .bottomView{\n\tbox-sizing: border-box;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n\tbackground-color: var(--bodyAltBG);\n\tcolor: var(--mainTextColor);\n\tpointer-events: all;\n}\n\n.SplitScreen .gutter{\n\twidth: 100vw;\n\tbackground-color: var(--navColor);\n\tcursor: n-resize;\n\tpointer-events: all;\n\ttransition: all 100ms;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
-styleInject(css_248z$q);
-
-function SplitScreen(props) {
-  var splitSize = 50;
-
-  if (props.defaultSize) {
-    splitSize = props.defaultSize;
+  function pageForward() {
+    if (showPageForward) {
+      props.setActivePage(props.activePage + 1);
+    }
   }
 
-  return /*#__PURE__*/React.createElement("div", {
-    className: "SplitScreen"
-  }, /*#__PURE__*/React.createElement(Split, {
-    direction: "vertical",
-    sizes: [100 - splitSize, splitSize],
-    minSize: 150,
-    gutterSize: 8,
-    snapOffset: 1
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "topView"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "bottomView",
-    style: props.style
-  }, props.children)));
-} //Proptypes
-
-SplitScreen.propTypes = {
-  defaultSize: PropTypes.number,
-  style: PropTypes.object
-};
-
-var css_248z$r = ".ControlledTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.ControlledTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.ControlledTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.ControlledTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.ControlledTabContainer .nav-tabs{\n\tdisplay: none;\n}\n\n/* InfoCard components styled differntly */\n.ControlledTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
-styleInject(css_248z$r);
-
-function ControlledTabContainer(props) {
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
-    value: locked
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "ControlledTabContainer",
-    style: props.style
-  }, /*#__PURE__*/React.createElement(Tabs, {
-    activeKey: props.activeTab,
-    transition: false,
-    onSelect: function onSelect(tabID) {
-      if (props.onTabChange) {
-        props.onTabChange(tabID, locked);
-      }
-    }
-  }, React.Children.map(props.children, function (child) {
-    if (!child.props.hidden) {
-      return /*#__PURE__*/React.createElement(Tab, {
-        eventKey: child.props.tabID,
-        title: child.props.tabTitle
-      }, child);
-    } else return null;
-  }))));
-} //Proptypes
-
-ControlledTabContainer.propTypes = {
-  activeTab: PropTypes.string,
-  onTabChange: PropTypes.func,
-  locked: PropTypes.bool,
-  style: PropTypes.object
-};
-
-var css_248z$s = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
-styleInject(css_248z$s);
-
-function Dock(props) {
-  usePresence('TouchPointDock', 0, 'var(--dockWidth)'); //locking the item. If a component somewhere above in the tree is locked, the context will 
-
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  return /*#__PURE__*/React.createElement("div", {
-    className: "Dock",
-    style: props.style
-  }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
-    value: locked
-  }, props.children));
+  if (props.dataLength > props.pageSize) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "pageControls"
+    }, showPageBack ? /*#__PURE__*/React.createElement("button", {
+      onClick: pageBack
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faCaretLeft
+    })) : null, /*#__PURE__*/React.createElement("button", {
+      className: "textButton"
+    }, "Showing ", 1 + props.activePage * props.pageSize, "-", Math.min((1 + props.activePage) * props.pageSize, props.dataLength) + ' ', "of ", "  ".concat(props.dataLength)), showPageForward ? /*#__PURE__*/React.createElement("button", {
+      onClick: pageForward
+    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faCaretRight
+    })) : null);
+  } else return null;
 }
-Dock.propTypes = {
-  locked: PropTypes.bool,
-  style: PropTypes.object
-};
-
-var DataType = /*#__PURE__*/function () {
-  function DataType(kind, options) {
-    _classCallCheck(this, DataType);
-
-    if (kind) {
-      this.kind = kind.toLowerCase();
-    } else {
-      this.kind = 'string';
-    }
-
-    this.options = options;
-  } //checks if an input is valid for the datatype
-
-
-  _createClass(DataType, [{
-    key: "validate",
-    value: function validate(input) {
-      switch (this.kind) {
-        case 'string':
-          return true;
-
-        case 'number':
-          try {
-            parseFloat(input);
-            return true;
-          } catch (err) {
-            return false;
-          }
-
-        case 'list':
-          if (this.options.includes.listValues(input)) {
-            return true;
-          } else {
-            return false;
-          }
-
-        case 'custom':
-          //This needs so much work...
-          if (this.options.validator(input)) {
-            return true;
-          } else {
-            return false;
-          }
-
-      } //if its not a valid type then ignore validation and just return true
-
-
-      return true;
-    } //Compares a value an search string to see if the value should be included in the search
-
-  }, {
-    key: "search",
-    value: function search(value, searchText) {
-      switch (this.kind) {
-        case 'string':
-          if (typeof value === 'string') {
-            value = value.toLowerCase();
-            return value.includes(searchText.toLowerCase());
-          } else {
-            return false;
-          }
-
-      } //if its not a vald type just return false until i deccide how to handle this better
-
-
-      return false;
-    }
-  }]);
-
-  return DataType;
-}();
 
 var DataHeader = /*#__PURE__*/function () {
   function DataHeader(options) {
@@ -2566,25 +2852,79 @@ var DataHeader = /*#__PURE__*/function () {
 
     this.headerID = options.headerID;
     this.displayName = options.displayName;
-    this.width = options.width ? options.width : 10;
+    this.width = options.width ? options.width : 100;
     this.required = options.required ? options.required : false;
     this.visible = !options.visible === undefined ? options.visible : true;
     this.index = options.index;
     this.onEdit = options.onEdit ? options.onEdit : null;
     this.locked = options.locked ? options.locked : false;
-    this.dataType = options.dataType ? options.dataType : new DataType('string');
     this.styling = options.styling ? options.styling : null;
-    this.uniqueValues = {}; //Default filter list only has 1 functions (array filter)
-    //By default no values are selected, which is the same as saying 'select all'
+    this.uniqueValues = {};
+    this.type = options.type ? options.type : 'string'; //Default filter list only has 1 functions (array filter)
 
     this.filterList = {
       arrayFilter: {
         func: function func(cellValue) {
           return _this.uniqueValues[cellValue] || _this.uniqueValues[cellValue] === undefined;
-        },
-        displayName: 'Array Filter'
+        }
+      }
+    }; //format for displaying certain types of data
+
+    var formatFunctions = {
+      date: function date(cellValue) {
+        return cellValue ? moment(cellValue).format('DD-MMM-YY') : '';
+      },
+      boolean: function boolean(cellValue) {
+        return cellValue ? 'True' : 'False';
+      },
+      other: function other(cellValue) {
+        return cellValue;
+      }
+    }; //Takes a user input and changes it to the correct data type (eg. Date string to new Date object)
+
+    var parseFunctions = {
+      date: function date(input) {
+        if (input.toString().toLowerCase() === 'today') {
+          return new Date();
+        }
+
+        return new Date(input);
+      },
+      boolean: function boolean(input) {
+        var testVal = input.toString().toLowerCase();
+
+        if (testVal === 'true' || testVal === 'yes' || testVal == 1 || testVal === 'y') {
+          return true;
+        } else return false;
+      },
+      number: function number(input) {
+        var newValue = Number(input);
+
+        if (!isNaN(newValue)) {
+          return newValue;
+        } else {
+          throw new Error('invalid input - not a number');
+        }
+      },
+      other: function other(input) {
+        return input;
+      }
+    }; //Compares 2 values that may not be directly equal (eg. date object and date string)
+
+    var compareFunctions = {
+      date: function date(a, b) {
+        return moment(a).isSame(b, 'day');
+      },
+      boolean: function boolean(a, b) {
+        return _this.parse(a) === _this.parse(b);
+      },
+      other: function other(a, b) {
+        return a == b;
       }
     };
+    this.format = formatFunctions[this.type] ? formatFunctions[this.type] : formatFunctions.other;
+    this.parse = parseFunctions[this.type] ? parseFunctions[this.type] : parseFunctions.other;
+    this.compare = compareFunctions[this.type] ? compareFunctions[this.type] : compareFunctions.other;
   }
 
   _createClass(DataHeader, [{
@@ -2600,12 +2940,10 @@ var DataHeader = /*#__PURE__*/function () {
     }
   }, {
     key: "addFilter",
-    value: function addFilter(filterID, filterFunction, displayName) {
-      this.filterList[filterID] = {
-        func: filterFunction,
-        displayName: displayName,
-        id: filterID
-      };
+    value: function addFilter(options) {
+      this.filterList[options.id] = new DataFilter(_objectSpread2(_objectSpread2({}, options), {}, {
+        headerType: this.type
+      }));
     }
   }, {
     key: "removeFilter",
@@ -2616,7 +2954,7 @@ var DataHeader = /*#__PURE__*/function () {
   }, {
     key: "embedData",
     value: function embedData(data, metaData) {
-      this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues);
+      this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues, this.type);
     }
   }, {
     key: "selectAll",
@@ -2661,17 +2999,12 @@ var DataHeader = /*#__PURE__*/function () {
       };
       this.selectAll(true);
     }
-  }, {
-    key: "setVisible",
-    value: function setVisible(bool) {
-      this.visible = bool;
-    }
   }]);
 
   return DataHeader;
 }(); //Returns an array of unique values from a column of DataRow objects
 
-function uniqueByColumn(data, metaData, columnID, oldValues) {
+function uniqueByColumn(data, metaData, columnID, oldValues, type) {
   var res = {};
   data.forEach(function (r, idx) {
     if (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';') {
@@ -2684,14 +3017,623 @@ function uniqueByColumn(data, metaData, columnID, oldValues) {
     }
   });
   var orderedRes = {};
-  Object.keys(res).sort().forEach(function (key) {
+  var sortFunction = type === 'date' ? function (a, b) {
+    return a - b;
+  } : undefined;
+  Object.keys(res).sort(sortFunction).forEach(function (key) {
     orderedRes[key] = res[key];
   });
   return orderedRes;
 }
 
-function useDataset(fetchFunction) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{}];
+function useHeaders() {
+  var dataHeaders = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+  var _useState = useState(dataHeaders.map(function (hdr, i) {
+    var obj = new DataHeader(hdr);
+    obj.index = i;
+    return obj;
+  })),
+      _useState2 = _slicedToArray(_useState, 2),
+      headers = _useState2[0],
+      setHeaders = _useState2[1];
+
+  var _useState3 = useState({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      savedLayouts = _useState4[0],
+      setSavedLayouts = _useState4[1];
+
+  var _useState5 = useState({
+    save: function save() {}
+  }),
+      _useState6 = _slicedToArray(_useState5, 2),
+      settingsEngine = _useState6[0],
+      setSettingsEngine = _useState6[1];
+
+  var _useState7 = useState(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      tokenTrigger = _useState8[0],
+      setTokenTrigger = _useState8[1];
+
+  var sortRules = useRef([]);
+
+  var setSortRules = function setSortRules(value) {
+    sortRules.current = value;
+  }; //Coverts the current layout to JSON and saves it
+
+
+  function saveLayout(layoutName) {
+    var newLayouts = _objectSpread2({}, savedLayouts);
+
+    var saveID = v4();
+    newLayouts[saveID] = {
+      name: layoutName,
+      headerOptions: {},
+      sortRules: sortRules.current
+    };
+    headers.forEach(function (h) {
+      newLayouts[saveID].headerOptions[h.headerID] = {
+        visible: h.visible,
+        filterList: []
+      };
+      Object.values(h.filterList).forEach(function (f) {
+        if (f.options) {
+          newLayouts[saveID].headerOptions[h.headerID].filterList.push(f.options);
+        }
+      });
+    });
+    setSavedLayouts(newLayouts);
+    setTokenTrigger(true);
+  }
+
+  function loadLayout(id) {
+    if (savedLayouts[id]) {
+      var newHeaders = [];
+      headers.forEach(function (h) {
+        h.clearFilter();
+        h.visible = savedLayouts[id].headerOptions[h.headerID].visible;
+        savedLayouts[id].headerOptions[h.headerID].filterList.forEach(function (f) {
+          h.addFilter(f);
+        });
+        newHeaders.push(h);
+      });
+      setHeaders(newHeaders);
+      setSortRules(savedLayouts[id].sortRules);
+      setTokenTrigger(true);
+    }
+  }
+
+  function deleteLayout(id) {
+    var newLayouts = _objectSpread2({}, savedLayouts);
+
+    delete newLayouts[id];
+    setSavedLayouts(newLayouts);
+    setTokenTrigger(true);
+  } //Saves a list of unique values in each column (header) - to be used in the filter dropdowns
+
+
+  function embedData(data, metaData) {
+    var newHeaders = _toConsumableArray(headers);
+
+    newHeaders.forEach(function (hdr) {
+      hdr.embedData(data, metaData);
+    });
+    setHeaders(newHeaders);
+  }
+
+  function applyToken(token) {
+    var newSettings = JSON.parse(token);
+    setSavedLayouts(newSettings.savedLayouts);
+
+    var newHeaders = _toConsumableArray(headers);
+
+    newHeaders.forEach(function (h) {
+      h.visible = newSettings.headerOptions[h.headerID].visible;
+    });
+    setSortRules(newSettings.sortRules ? newSettings.sortRules : []);
+    setHeaders(newHeaders);
+  }
+
+  function setVisible(index, bool) {
+    var newHeaders = _toConsumableArray(headers);
+
+    newHeaders[index].visible = bool;
+    setHeaders(newHeaders);
+    setSortRules(_toConsumableArray(sortRules.current).filter(function (sr) {
+      return sr.headerID !== headers[index].headerID;
+    }));
+    setTokenTrigger(true);
+  } //If settings have changed since the last render, create and save a new token
+
+
+  if (tokenTrigger) {
+    setTokenTrigger(false);
+    var res = {
+      savedLayouts: savedLayouts,
+      headerOptions: {},
+      sortRules: sortRules.current
+    };
+    headers.forEach(function (hdr) {
+      res.headerOptions[hdr.headerID] = {
+        visible: hdr.visible
+      };
+    });
+    settingsEngine.save(JSON.stringify(res));
+  }
+
+  function removeSortRule(headerID) {
+    setSortRules(_toConsumableArray(sortRules.current).filter(function (sr) {
+      return sr.headerID !== headerID;
+    }));
+    setTokenTrigger(true);
+  }
+
+  function addSortRule(headerID, direction, headerIndex) {
+    var newSortRules = _toConsumableArray(sortRules.current).filter(function (sr) {
+      return sr.headerID !== headerID;
+    });
+
+    newSortRules.push({
+      headerID: headerID,
+      direction: direction,
+      index: headerIndex
+    });
+    setSortRules(newSortRules);
+    setTokenTrigger(true);
+  }
+
+  return {
+    get: function get() {
+      return headers;
+    },
+    set: setHeaders,
+    embedData: embedData,
+    applyToken: applyToken,
+    saveLayout: saveLayout,
+    loadLayout: loadLayout,
+    deleteLayout: deleteLayout,
+    getSavedLayouts: function getSavedLayouts() {
+      return savedLayouts;
+    },
+    setSettingsEngine: setSettingsEngine,
+    setVisible: setVisible,
+    addSortRule: addSortRule,
+    removeSortRule: removeSortRule,
+    getSortRules: function getSortRules() {
+      return sortRules.current;
+    }
+  };
+}
+
+function MainTable(props) {
+  var headers = useHeaders(props.headers); //Sorting and filtering are optional (via props), only supported with if a dataset is provided
+
+  var noSort = props.noSort || !props.data.sort;
+  var noFilter = props.noFilter;
+  var noOptions = props.noOptions || !props.settingsID;
+  var searchable = props.searchable;
+  var noActive = props.noActive; //expanded rows (if applicable)
+
+  var hasNestedClass = props.nestedComponent ? ' hasNested ' : null; //support for dataSets or for just arrays
+
+  var data = props.data;
+  var metaData = [{}]; //deccides if the component is locked based on props and parents in the tree
+
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+
+  if (props.data.isDataset) {
+    data = props.data.read();
+    metaData = props.data.getMetaData();
+  } else {
+    noSort = true;
+    noFilter = true;
+    noActive = true;
+    searchable = false;
+    locked = true;
+  } //Settings token support 
+
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      sortTrigger = _useState2[0],
+      setSortTrigger = _useState2[1];
+
+  var saveSettings = useSettings(props.settingsID, function (token) {
+    headers.applyToken(token);
+
+    if (!noSort) {
+      setSortTrigger(true);
+    }
+  });
+
+  if (sortTrigger) {
+    setSortTrigger(false);
+    setTimeout(props.data.sort, 0);
+  } //Active page handling
+
+
+  var _useState3 = useState(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      activePage = _useState4[0],
+      setActivePage = _useState4[1]; //get the length of the data with the filter applied
+
+
+  var dataLength = 0;
+  data.forEach(function (r, idx) {
+    if (metaData[idx]) {
+      if (metaData[idx].visible && !metaData[idx].searchHidden) {
+        dataLength++;
+      }
+    } else {
+      dataLength++;
+    }
+  }); //For dataSets - runs when dataSet refreshes (sets the filter options to match)
+
+  useEffect(function () {
+    if (!noFilter) {
+      headers.embedData(data, metaData);
+      props.data.setHeaders(headers);
+    }
+
+    if (!noOptions) {
+      headers.setSettingsEngine({
+        save: saveSettings
+      });
+    }
+  }, [props.data.lastResolved, props.data.lastEdited]); //If clicking sets the active record then its animated
+  //if there are editable cells the animations will be cancelled
+
+  var dynamic;
+  var hasActiveClass = '';
+
+  if (!noActive) {
+    dynamic = true;
+    hasActiveClass = ' hasActive ';
+  }
+
+  var hasFilter = false;
+  var totalHeaderWidth = 70;
+  headers.get().forEach(function (hdr) {
+    //if you have input cells in the table, hover effects will be cancelled
+    if (hdr.onEdit) {
+      dynamic = false;
+    }
+
+    if (hdr.visible) {
+      totalHeaderWidth = totalHeaderWidth + hdr.width;
+    } //check if any headers have active filters (to show a clear filter button)
+
+
+    if (hdr.hasFilter()) {
+      hasFilter = true;
+    }
+  });
+
+  function clearFilter() {
+    var newHeaders = _toConsumableArray(headers.get());
+
+    newHeaders.forEach(function (hdr) {
+      hdr.clearFilter();
+    });
+    headers.set(newHeaders);
+    props.data.filter();
+  }
+
+  var _useState5 = useState(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      transitionClass = _useState6[0],
+      setTransitionClass = _useState6[1]; //Counter for rendered rows
+
+
+  var rowCount = 1; //Positioning for nested components
+
+  var _useState7 = useState(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      expandTrigger = _useState8[0],
+      setExpandTrigger = _useState8[1];
+
+  var _useState9 = useState(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      collapseTrigger = _useState10[0],
+      setCollapseTrigger = _useState10[1];
+
+  var tableRef = useRef();
+
+  var _useState11 = useState(0),
+      _useState12 = _slicedToArray(_useState11, 2),
+      scrollPos = _useState12[0],
+      setScrollPos = _useState12[1];
+
+  function scrollHandler(e) {
+    if (e.target.scrollLeft !== scrollPos) {
+      setScrollPos(e.target.scrollLeft);
+    }
+  } //Render
+
+
+  return /*#__PURE__*/React.createElement("div", {
+    className: 'MainTable ' + hasActiveClass + hasNestedClass,
+    ref: tableRef,
+    onScroll: hasNestedClass ? scrollHandler : undefined
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "topBar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "topBarContainer"
+  }), /*#__PURE__*/React.createElement(TableControls, {
+    hasFilter: hasFilter,
+    noFilter: noFilter,
+    noSort: noSort,
+    clearFilter: clearFilter,
+    noOptions: noOptions,
+    dataHeaders: headers,
+    data: props.data,
+    setTransitionClass: setTransitionClass,
+    setExpandTrigger: setExpandTrigger,
+    setCollapseTrigger: setCollapseTrigger,
+    expandTrigger: expandTrigger,
+    collapseTrigger: collapseTrigger,
+    showExpandControls: props.nestedComponent ? true : false
+  }), /*#__PURE__*/React.createElement(PageContols, {
+    activePage: activePage,
+    setActivePage: setActivePage,
+    dataLength: dataLength,
+    pageSize: props.pageSize
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "theadBar",
+    style: {
+      top: 'var(--topBarHeight)',
+      width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
+    }
+  }, headers.get().map(function (hdr, i) {
+    if (hdr.visible) {
+      return /*#__PURE__*/React.createElement("span", {
+        style: {
+          width: hdr.width + 'px'
+        },
+        key: 'header' + i
+      }, /*#__PURE__*/React.createElement(TheadButton, {
+        header: hdr,
+        data: props.data,
+        dataHeaders: headers,
+        noFilter: noFilter,
+        noSort: noSort
+      }, hdr.displayName + ' '));
+    } else return null;
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mainSection" + transitionClass,
+    style: {
+      width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: 'tableBody ' + props.data.lastResolved
+  }, data.map(function (dr, idx) {
+    //render the allowed numebr of rows, on th selected page
+    if (rowCount > activePage * props.pageSize && rowCount <= (1 + activePage) * props.pageSize) {
+      var renderRow = dr !== [];
+
+      if (searchable) {
+        renderRow = !metaData[idx].searchHidden;
+      }
+
+      renderRow = renderRow && (noFilter || metaData[idx].visible);
+      var rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx;
+      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
+        dataRow: dr,
+        dataset: props.data,
+        dataHeaders: headers.get(),
+        rowKey: rowKey,
+        key: rowKey,
+        locked: locked,
+        dynamic: dynamic,
+        rowIndex: idx,
+        nestedComponent: props.nestedComponent,
+        nestedProps: props.nestedProps,
+        expandTrigger: expandTrigger,
+        collapseTrigger: collapseTrigger,
+        noActive: noActive,
+        tableRef: tableRef,
+        scrollPos: scrollPos
+      }) : null;
+
+      if (r) {
+        rowCount++;
+      } //Count the number of rows actually renedered (not filtered out)
+
+
+      return r;
+    } else if (rowCount <= (1 + activePage) * props.pageSize) {
+      rowCount++;
+    }
+
+    return null;
+  }))));
+} //Proptypes
+
+MainTable.propTypes = {
+  onEdit: PropTypes.func,
+  headers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  pageSize: PropTypes.number,
+  locked: PropTypes.bool,
+  searchable: PropTypes.bool,
+  noSort: PropTypes.bool,
+  noFilter: PropTypes.bool,
+  noOptions: PropTypes.bool,
+  noActive: PropTypes.bool,
+  nestedProps: PropTypes.object,
+  nestedComponent: PropTypes.func,
+  primaryKey: PropTypes.string
+};
+MainTable.defaultProps = {
+  pageSize: 100
+};
+
+function InfoTab(props) {
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+
+  if (!props.hidden) {
+    return /*#__PURE__*/React.createElement(lockedContext.Provider, {
+      value: locked
+    }, /*#__PURE__*/React.createElement("div", {
+      className: 'InfoTab ' + props.tabID,
+      style: props.style
+    }, props.children));
+  } else return null;
+} //Proptypes
+
+InfoTab.propTypes = {
+  tabTitle: PropTypes.string,
+  tabID: PropTypes.string.isRequired,
+  style: PropTypes.object
+};
+
+var css_248z$p = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 30;\n}\n\n.InfoTabContainer .nav-tabs a{\n\tpadding: 6px 30px;\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\t\n\tborder-bottom-style: solid;\n\tborder-bottom-color: var(--navTextColor);\n\tborder-bottom-width: 6px;\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\ttext-shadow: 1px 0px 0px var(--navHoverColor);\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
+styleInject(css_248z$p);
+
+function InfoTabContainer(props) {
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
+    value: locked
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "InfoTabContainer"
+  }, /*#__PURE__*/React.createElement(Tabs, {
+    defaultActiveKey: props.defaultTab,
+    transition: false,
+    onSelect: function onSelect(tabID) {
+      if (props.onTabChange) {
+        props.onTabChange(tabID, locked);
+      }
+    }
+  }, React.Children.map(props.children, function (child) {
+    if (!child.props.hidden) {
+      return /*#__PURE__*/React.createElement(Tab, {
+        eventKey: child.props.tabID,
+        title: child.props.tabTitle
+      }, child);
+    } else return null;
+  }))));
+} //Proptypes
+
+InfoTabContainer.propTypes = {
+  defaultTab: PropTypes.string,
+  onTabChange: PropTypes.func,
+  locked: PropTypes.bool
+};
+
+var css_248z$q = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tposition: relative;\n}";
+styleInject(css_248z$q);
+
+function Module(props) {
+  var moduleData = useModuleContext();
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+  useEffect(function () {
+    moduleData.clear();
+    return function () {
+      moduleData.clear();
+    };
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: 'Module ' + props.moduleName,
+    style: props.style
+  }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
+    value: locked
+  }, props.children));
+} //Proptypes
+
+Module.propTypes = {
+  moduleName: PropTypes.string,
+  style: PropTypes.object,
+  locked: PropTypes.bool
+};
+
+var css_248z$r = ".SplitScreen{\n\theight: calc(100% - var(--controlBarHeight));\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.SplitScreen>div{\n\twidth: 100%;\n}\n\n.SplitScreen .gutter{\n\twidth: 100%;\n\tbackground-color: var(--navColor);\n\topacity: 60%;\n\tcursor: ns-resize;\n\tpointer-events: all;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
+styleInject(css_248z$r);
+
+function SplitScreen(props) {
+  var splitSize = 50;
+
+  if (props.defaultSize) {
+    splitSize = props.defaultSize;
+  }
+
+  return /*#__PURE__*/React.createElement("div", {
+    className: "SplitScreen"
+  }, /*#__PURE__*/React.createElement(Split, {
+    direction: "vertical",
+    sizes: [100 - splitSize, splitSize],
+    minSize: 100,
+    gutterSize: 8,
+    snapOffset: 1,
+    dragInterval: 20
+  }, props.children));
+} //Proptypes
+
+SplitScreen.propTypes = {
+  defaultSize: PropTypes.number
+};
+
+var css_248z$s = ".ControlledTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.ControlledTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.ControlledTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.ControlledTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.ControlledTabContainer .nav-tabs{\n\tdisplay: none;\n}\n\n/* InfoCard components styled differntly */\n.ControlledTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
+styleInject(css_248z$s);
+
+function ControlledTabContainer(props) {
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
+    value: locked
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ControlledTabContainer",
+    style: props.style
+  }, /*#__PURE__*/React.createElement(Tabs, {
+    activeKey: props.activeTab,
+    transition: false,
+    onSelect: function onSelect(tabID) {
+      if (props.onTabChange) {
+        props.onTabChange(tabID, locked);
+      }
+    }
+  }, React.Children.map(props.children, function (child) {
+    if (!child.props.hidden) {
+      return /*#__PURE__*/React.createElement(Tab, {
+        eventKey: child.props.tabID,
+        title: child.props.tabTitle
+      }, child);
+    } else return null;
+  }))));
+} //Proptypes
+
+ControlledTabContainer.propTypes = {
+  activeTab: PropTypes.string,
+  onTabChange: PropTypes.func,
+  locked: PropTypes.bool,
+  style: PropTypes.object
+};
+
+var css_248z$t = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
+styleInject(css_248z$t);
+
+function Dock(props) {
+  usePresence('TouchPointDock', 0, 'var(--dockWidth)'); //locking the item. If a component somewhere above in the tree is locked, the context will 
+
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "Dock",
+    style: props.style
+  }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
+    value: locked
+  }, props.children));
+}
+Dock.propTypes = {
+  locked: PropTypes.bool,
+  style: PropTypes.object
+};
+
+function useDataset(fetchFunction, primaryKey) {
+  var defaultValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [{}];
 
   //The array contains an empty object by default
   var _useState = useState(defaultValue),
@@ -2717,14 +3659,48 @@ function useDataset(fetchFunction) {
       lastResolved = _useState8[0],
       setLastResolved = _useState8[1];
 
-  var _useState9 = useState({
+  var _useState9 = useState(),
+      _useState10 = _slicedToArray(_useState9, 2),
+      lastEdited = _useState10[0],
+      setLastEdited = _useState10[1];
+
+  var _useState11 = useState({
     get: function get() {
+      return [];
+    },
+    getSortRules: function getSortRules() {
       return [];
     }
   }),
-      _useState10 = _slicedToArray(_useState9, 2),
-      headers = _useState10[0],
-      setHeaders = _useState10[1]; //Search data on change
+      _useState12 = _slicedToArray(_useState11, 2),
+      headers = _useState12[0],
+      setHeaders = _useState12[1];
+
+  var _useState13 = useState({}),
+      _useState14 = _slicedToArray(_useState13, 2),
+      activeRecord = _useState14[0],
+      setActiveRecord = _useState14[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
+
+
+  function _selectRecord(newPrimaryKey) {
+    var fromData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : data;
+    var newIndex = fromData.findIndex(function (r) {
+      return r[primaryKey] == newPrimaryKey;
+    });
+
+    if (newIndex > -1) {
+      setActiveRecord(fromData[newIndex]);
+      return fromData[newIndex];
+    } else {
+      setActiveRecord({});
+      return {};
+    }
+  }
+
+  function getActiveRecord() {
+    //Ensure the row is valid and has the correct primary key
+    return activeRecord;
+  } //Search data on change
 
 
   var searchText = useModuleContext().get('TouchPointSearchText');
@@ -2737,7 +3713,12 @@ function useDataset(fetchFunction) {
 
       if (searchText) {
         rowMeta.searchHidden = !headers.get().some(function (hdr) {
-          return hdr.dataType.search(r[hdr.headerID], searchText);
+          try {
+            var newValue = r[hdr.headerID].toString().toLowerCase();
+            return newValue.includes(searchText.toLowerCase());
+          } catch (err) {
+            return false;
+          }
         });
       }
 
@@ -2757,8 +3738,9 @@ function useDataset(fetchFunction) {
       rowMeta.filteredBy = '';
       var noRender = false;
       headers.get().forEach(function (h) {
-        //filter
-        if (!h.filter(r[h.headerID], r)) {
+        var fltr = h.filter(r[h.headerID], r);
+
+        if (!fltr && fltr != 'arrayFilter' && h.visible) {
           noRender = true;
           rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';';
         }
@@ -2767,6 +3749,35 @@ function useDataset(fetchFunction) {
       newMetaData.push(rowMeta);
     });
     return newMetaData;
+  }
+
+  function sortData(values) {
+    var newValues = _toConsumableArray(values);
+
+    headers.getSortRules().forEach(function (sr) {
+      if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
+        newValues = newValues.sort(function (aRow, bRow) {
+          if (sr.direction === 'asc') {
+            if (aRow[sr.headerID] > bRow[sr.headerID]) {
+              return 1;
+            } else if (aRow[sr.headerID] < bRow[sr.headerID]) {
+              return -1;
+            }
+
+            return 0;
+          } else {
+            if (aRow[sr.headerID] < bRow[sr.headerID]) {
+              return 1;
+            } else if (aRow[sr.headerID] > bRow[sr.headerID]) {
+              return -1;
+            }
+
+            return 0;
+          }
+        });
+      }
+    });
+    return newValues;
   } //Fetch data and update state once the operation is complete. Keep the old value in the meantime
 
 
@@ -2777,7 +3788,7 @@ function useDataset(fetchFunction) {
 
   function _fetchData() {
     _fetchData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var value;
+      var newData;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -2788,40 +3799,66 @@ function useDataset(fetchFunction) {
               return fetchFunction();
 
             case 4:
-              value = _context.sent;
-              setMetaData(searchData(value));
-              setMetaData(filterData(value));
-              setData(value);
+              newData = _context.sent;
+              newData = sortData(newData);
+              setMetaData(searchData(newData));
+              setMetaData(filterData(newData));
+              setData(newData);
+
+              _selectRecord(activeRecord[primaryKey], newData);
+
               setStatus('Resolved');
               setLastResolved(Date());
               return _context.abrupt("return", status);
 
-            case 13:
-              _context.prev = 13;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](1);
               setStatus('Rejected');
               console.error(_context.t0);
               return _context.abrupt("return", status);
 
-            case 18:
+            case 20:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 13]]);
+      }, _callee, null, [[1, 15]]);
     }));
     return _fetchData.apply(this, arguments);
   }
 
   function refreshData() {
-    if (status !== 'Pending') {
-      fetchData();
-    }
+    return _refreshData.apply(this, arguments);
   } //Automatically run the fetching function the first time, then wait for a refresh
   //If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 
 
+  function _refreshData() {
+    _refreshData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (status !== 'Pending') {
+                fetchData();
+              }
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return _refreshData.apply(this, arguments);
+  }
+
   useEffect(function () {
+    if (!primaryKey) {
+      console.error('Missing primary key for dataset!');
+    }
+
     fetchData();
   }, []); //Return a Dataset object
 
@@ -2829,66 +3866,40 @@ function useDataset(fetchFunction) {
     read: function read() {
       return data;
     },
+    refresh: refreshData,
+    selectRecord: function selectRecord(primaryKey) {
+      return _selectRecord(primaryKey);
+    },
+    getActiveRecord: getActiveRecord,
+    status: status,
+    lastResolved: lastResolved,
+    lastEdited: lastEdited,
+    //TouchPoint Controls
+    setHeaders: setHeaders,
+    isDataset: true,
+    primaryKey: primaryKey,
     getMetaData: function getMetaData() {
       return metaData;
     },
-    refresh: refreshData,
-    status: status,
-    lastResolved: lastResolved,
-    setHeaders: setHeaders,
-    isDataset: true,
     filter: function filter() {
       var newMeta = filterData(data);
       setMetaData(newMeta);
       headers.embedData(data, newMeta);
+    },
+    sort: function sort() {
+      var newData = sortData(data);
+      var newMeta = filterData(newData);
+      setMetaData(newMeta);
+      setData(newData);
+    },
+    set: function set(newData) {
+      setData(newData);
+      setLastEdited(Date());
+
+      _selectRecord(activeRecord[primaryKey], newData);
     }
   };
 }
 
-function useHeaders() {
-  var dataHeaders = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-  function normalize(headerArray) {
-    var totalWidth = 0;
-    headerArray.forEach(function (hdr) {
-      if (hdr.visible) {
-        totalWidth = totalWidth + hdr.width;
-      }
-    });
-    return headerArray.map(function (hdr, i) {
-      hdr.width = 99 * (hdr.width / totalWidth);
-      hdr.index = i;
-      return hdr;
-    });
-  } //Saves a list of unique values in each column (header) - to be used in the filter dropdowns
-
-
-  function embedData(data, metaData) {
-    //using Immer to edit the header state while keeping it immutable
-    setHeaders(produce(headers, function (draft) {
-      draft.map(function (hdr) {
-        hdr.embedData(data, metaData);
-      });
-    }));
-  }
-
-  var _useState = useState(normalize(dataHeaders.map(function (hdr) {
-    return new DataHeader(hdr);
-  }))),
-      _useState2 = _slicedToArray(_useState, 2),
-      headers = _useState2[0],
-      setHeaders = _useState2[1];
-
-  return {
-    get: function get() {
-      return headers;
-    },
-    set: function set(val) {
-      setHeaders(normalize(val));
-    },
-    embedData: embedData
-  };
-}
-
-export { AppDrawer$1 as AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ControlBar, ControlButton, ControlledTabContainer, CoreButton, DataHeader, DataType, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable, MenuButton, Module, Popup, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useHeaders, useModuleContext as useModuleData, usePresence, useSystem };
+export { AppDrawer$1 as AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ControlBar, ControlButton, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useSystem };
 //# sourceMappingURL=index.js.map
