@@ -51,7 +51,7 @@ export function getTableData(){
 	
 	const c = Math.round(Math.random() * 10)
 	
-	for(let i = 0; i<500; i++){
+	for(let i = 0; i<200; i++){
 		data.push({
 			vendor: vendors[i % 4], 
 			project: project[i % 5], 

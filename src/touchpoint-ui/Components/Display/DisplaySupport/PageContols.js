@@ -5,7 +5,7 @@ import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 export default function PageContols(props) {
 	
 	const showPageBack = props.activePage > 0
-	const showPageForward = props.activePage < Math.floor(props.dataLength / props.pageSize) + 1
+	const showPageForward = ((props.activePage + 1) * props.pageSize) < props.dataLength
 	
 	
 	function pageBack() {

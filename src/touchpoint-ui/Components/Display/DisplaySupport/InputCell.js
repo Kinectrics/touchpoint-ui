@@ -52,12 +52,11 @@ export default function InputCell(props) {
 	
 	//Check if the input is valid and commit
 	async function commitChanges(){
-		if(props.header.compare(props.dataRow[props.header.headerID], currentValue)){return}
-			
-		const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
-		
-		newData[props.rowIndex][props.header.headerID] = props.header.parse(currentValue)
 		try{
+			if (props.header.compare(props.dataRow[props.header.headerID], currentValue)) { return }
+			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
+			newData[props.rowIndex][props.header.headerID] = props.header.parse(currentValue)
+			
 			const res = await props.header.onEdit(currentValue, newData[props.rowIndex], initalValue, props.dataset.read()[props.rowIndex])
 			
 			if(res || res === undefined){
@@ -70,10 +69,8 @@ export default function InputCell(props) {
 			}
 			
 		} catch (err){
-			
 			setCurrentValue(props.header.format(initalValue))
 			flashRed()
-			
 		}
 		
 	}
