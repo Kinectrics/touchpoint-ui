@@ -275,7 +275,7 @@ function SystemModuleContainer(props) {
     width: props.system.layout.get().widthCSS,
     right: '0'
   };
-  var moduleList = props.system.getModules();
+  var moduleList = props.system.Modules.list();
   var moduleDataState = useState({}); //Render the chosen module
 
   return /*#__PURE__*/React.createElement(moduleContext.Provider, {
@@ -291,7 +291,7 @@ function SystemModuleContainer(props) {
     });
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/",
-    component: moduleList[props.system.getHomeModule()].component
+    component: moduleList[props.system.Modules.getHomeName()].component
   }))));
 }
 
@@ -667,19 +667,6 @@ function TouchPointApp(props) {
 
 
   var System = {
-    //Create a copy of props.modules, excluding any hidden modules. 
-    getModules: function getModules() {
-      var modules = {};
-      Object.keys(props.modules).forEach(function (m) {
-        if (!props.modules[m].hidden) {
-          modules[m] = props.modules[m];
-        }
-      });
-      return modules;
-    },
-    getHomeModule: function getHomeModule() {
-      return props.homeModule;
-    },
     //Setting system wide variables
     Theme: {
       set: function set(themeName) {
@@ -688,29 +675,44 @@ function TouchPointApp(props) {
         saveSettings('TouchPointAppTheme', themeName);
       }
     },
-    //Interacting with the parent app
-    openModule: function openModule(moduleName) {
-      if (props.modules[moduleName]) {
-        //setActiveModule(moduleName)
-        window.location.href = '#/' + moduleName;
-        setModuleLock(props.modules[moduleName].locked);
+    Modules: {
+      open: function open(moduleName) {
+        if (props.modules[moduleName]) {
+          //setActiveModule(moduleName)
+          window.location.href = '#/' + moduleName;
+          setModuleLock(props.modules[moduleName].locked);
 
-        if (props.onOpenModule) {
-          props.onOpenModule(moduleName);
+          if (props.onOpenModule) {
+            props.onOpenModule(moduleName);
+          }
+        }
+      },
+      list: function list() {
+        var modules = {};
+        Object.keys(props.modules).forEach(function (m) {
+          if (!props.modules[m].hidden) {
+            modules[m] = props.modules[m];
+          }
+        });
+        return modules;
+      },
+      getHomeName: function getHomeName() {
+        return props.homeModule;
+      }
+    },
+    Input: {
+      enable: function enable() {
+        setScreenBlock(false);
+      },
+      disable: function disable(forTime) {
+        setScreenBlock(true);
+
+        if (forTime) {
+          setTimeout(function () {
+            return setScreenBlock(false);
+          }, forTime);
         }
       }
-    },
-    disableInput: function disableInput(forTime) {
-      setScreenBlock(true);
-
-      if (forTime) {
-        setTimeout(function () {
-          return setScreenBlock(false);
-        }, forTime);
-      }
-    },
-    enableInput: function enableInput() {
-      setScreenBlock(false);
     },
     Popup: {
       open: function open(PopupComponent) {
@@ -934,7 +936,11 @@ function AppToolbar(props) {
   }, props.children), /*#__PURE__*/React.createElement("div", {
     className: "brandingContainer"
   }, props.label));
-}
+} //
+
+AppToolbar.propTypes = {
+  label: PropTypes.any
+};
 
 var css_248z$6 = ".AppFooter{\n\twidth: 100%;\n\tpadding-top: 2px;\n\tbackground-color: var(--navColor) !important;\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tbottom:0px;\n\theight: var(--appToolbarHeight);\n\tfont-size: 13pt;\n\tcolor: var(--navTextColor);\n\ttext-align: right;\n\tz-index: 3;\n\t\n}\n\n.AppFooter .leftSide{\n\tposition: absolute;\n\tleft: 0;\n\tpadding: 0 10px;\n\ttext-align: left;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}\n\n.AppFooter .rightSide{\n\tposition: absolute;\n\tright: 0;\n\tpadding: 0 10px;\n\ttext-align: right;\n\tmax-width: calc(50% - 20px);\n\toverflow-x: hidden;\n}";
 styleInject(css_248z$6);
@@ -3463,7 +3469,7 @@ MainTable.propTypes = {
   noActive: PropTypes.bool,
   nestedProps: PropTypes.object,
   nestedComponent: PropTypes.func,
-  primaryKey: PropTypes.string
+  settingsID: PropTypes.string
 };
 MainTable.defaultProps = {
   pageSize: 100

@@ -11,7 +11,7 @@ export default function LockScreen() {
 	const notifications = queryNotifications(system.getSecurityProfile, 'VendorRubrics')
 	let i = 0;
 	
-	const moduleList = system.getModules()
+	const moduleList = system.Modules.list()
 	
 	return (
 		
@@ -22,12 +22,12 @@ export default function LockScreen() {
 
 					{Object.keys(moduleList).map((m) =>{
 						
-						if(m != system.getHomeModule()){return(
+						if(m != system.Modules.getHomeName()){return(
 							<Tile 
 								key = {'SystemLockScreenAppIcon' + m}
 								title = {moduleList[m].name}
 								icon = {moduleList[m].icon}
-								onClick = {() => {system.openModule(m)}}
+								onClick = {() => {system.Modules.open(m)}}
 								splashScreen
 								locked = {false}
 							/>

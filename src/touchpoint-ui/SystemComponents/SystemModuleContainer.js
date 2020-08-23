@@ -11,7 +11,7 @@ export default function SystemModuleContainer(props){
 		right: '0'
 	}
 
-	const moduleList = props.system.getModules();
+	const moduleList = props.system.Modules.list();
 	const moduleDataState = useState({})
 
 	//Render the chosen module
@@ -25,7 +25,7 @@ export default function SystemModuleContainer(props){
 						{Object.keys(moduleList).map(m => {
 							return <Route path={'/' + m} key={'routeFor' + m} component={moduleList[m].component} />
 						})}
-						<Route path='/' component={moduleList[props.system.getHomeModule()].component} />
+						<Route path='/' component={moduleList[props.system.Modules.getHomeName()].component} />
 					</Switch>
 				</div>
 				

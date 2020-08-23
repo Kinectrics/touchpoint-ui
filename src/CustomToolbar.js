@@ -9,7 +9,7 @@ export default function CustomToolbar() {
 	const devMode = process.env.NODE_ENV === 'development' ? ' (Dev Mode)' : ''
 	
 	const System =  useSystem()
-	const moduleList = System.getModules()
+	const moduleList = System.Modules.list()
 	
 	return (
 		<AppToolbar label = {'Bruce Power DMS' + devMode}>
@@ -22,7 +22,7 @@ export default function CustomToolbar() {
 					color: 'var(--navTextColor)',
 				}}
 				onClick={(e) => {
-					System.openModule(System.getHomeModule())
+					System.Modules.open(System.Modules.getHomeName())
 					e.target.blur()
 				}}
 			>
@@ -32,10 +32,10 @@ export default function CustomToolbar() {
 			<MenuButton title="Application"
 				menuContent={
 					Object.keys(moduleList).map((m) => {
-						if (m !== System.getHomeModule()) {
+						if (m !== System.Modules.getHomeName()) {
 							return (
 								<button
-									onClick={() => System.openModule(m)}
+									onClick={() => System.Modules.open(m)}
 									key={'SystemToolBarOpenModule' + m}
 								>{moduleList[m].name}</button>
 							)

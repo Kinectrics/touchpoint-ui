@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './AppToolbar.css'
 import usePresence from '../../Hooks/UsePresence'
+import propTypes from 'prop-types'
 
 export default function AppToolbar(props){
 	
@@ -20,4 +21,9 @@ export default function AppToolbar(props){
 		</div>
 		
 	)
+}
+
+//
+AppToolbar.propTypes={
+	label: propTypes.any
 }

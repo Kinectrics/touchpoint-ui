@@ -266,8 +266,7 @@ MainTable.propTypes = {
 	noActive: PropTypes.bool,
 	nestedProps: PropTypes.object,
 	nestedComponent: PropTypes.func,
-	
-	primaryKey: PropTypes.string,
+	settingsID: PropTypes.string,
 }
 
 MainTable.defaultProps = {

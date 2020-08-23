@@ -43,20 +43,6 @@ export default function TouchPointApp(props){
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
 	const System = {
 		
-		//Create a copy of props.modules, excluding any hidden modules. 
-		getModules: () => {
-			const modules = {}
-			Object.keys(props.modules).forEach((m)=>{
-				if(!props.modules[m].hidden){
-					modules[m] = props.modules[m]
-				}
-			})
-			
-			return modules
-		},
-		
-		getHomeModule: () => {return props.homeModule},
-		
 		//Setting system wide variables
 		Theme: {
 			set:(themeName) => {
@@ -66,27 +52,43 @@ export default function TouchPointApp(props){
 			}
 		},
 		
-		//Interacting with the parent app
-		openModule: (moduleName) => {
+		Modules: {
+			open: (moduleName) => {
+
+				if (props.modules[moduleName]) {
+					//setActiveModule(moduleName)
+					window.location.href = '#/' + moduleName
+					setModuleLock(props.modules[moduleName].locked)
+
+					if (props.onOpenModule) { props.onOpenModule(moduleName) }
+				}
+			},
 			
-			if(props.modules[moduleName]){
-				//setActiveModule(moduleName)
-				window.location.href = '#/' + moduleName
-				setModuleLock(props.modules[moduleName].locked)
-				
-				if(props.onOpenModule){ props.onOpenModule(moduleName) }
-			}
+			list: () => {
+				const modules = {}
+				Object.keys(props.modules).forEach((m) => {
+					if (!props.modules[m].hidden) {
+						modules[m] = props.modules[m]
+					}
+				})
+
+				return modules
+			},
+			
+			getHomeName: () => { return props.homeModule },
 		},
 		
-		disableInput: (forTime) => {
-			setScreenBlock(true)
+		Input: {
+			enable:() => {setScreenBlock(false)},
 			
-			if(forTime){
-				setTimeout(() => setScreenBlock(false), forTime)
-			}
+			disable: (forTime) => {
+				setScreenBlock(true)
+
+				if (forTime) {
+					setTimeout(() => setScreenBlock(false), forTime)
+				}
+			},
 		},
-		
-		enableInput: () => {setScreenBlock(false)},
 		
 		Popup: {
 			open: (PopupComponent) => {
