@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react'
 import radioContext from '../../Contexts/RadioContext'
-import './InputStyles.css'
 import PropTypes from 'prop-types'
 import './RadioButton.css'
 import {v4 as uuid} from 'uuid'

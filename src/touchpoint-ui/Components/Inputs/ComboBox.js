@@ -1,7 +1,6 @@
 import React, {useContext} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import './ComboBox.css'
-import './InputStyles.css'
 import PropTypes from 'prop-types'
 
 export default function ComboBox(props) {

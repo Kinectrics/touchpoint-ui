@@ -22,7 +22,7 @@ export default function CheckButton(props) {
 	
 	return (<button
 		onClick={(e) => clickHandler(e, checkID)}
-		style ={{color: 'var(--mainTextColor'}}
+		style ={{color: 'var(--mainTextColor)'}}
 	>
 
 		<input
@@ -30,7 +30,7 @@ export default function CheckButton(props) {
 			defaultChecked={props.defaultChecked}
 			id={checkID}
 			value={props.value}
-			style={{cursor: 'pointer'}}
+			style={{cursor: 'pointer', }}
 			disabled = {props.disabled}
 			checked = {props.checked}
 			readOnly = {props.checked !== undefined ? true : false}

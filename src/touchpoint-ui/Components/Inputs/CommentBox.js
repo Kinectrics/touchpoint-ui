@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
-import './InputStyles.css'
 import PropTypes from 'prop-types'
 import './CommentBox.css'
 

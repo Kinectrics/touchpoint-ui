@@ -29,28 +29,28 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = [
-		{headerID:'id',displayName:'ID', width: 200, required: true},
-		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell, row)=>{
+		{headerID:'id',displayName:'ID', width: 100, required: true},
+		{headerID: 'vendor', displayName:'My Vendor', width: 200, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
 			
 			if(cell === '1'){throw('ERR')}
 		}},
-		{headerID: 'project', displayName: 'Project', width: 300, onEdit: (cell) => { console.log(cell) }, type: 'number'},
+		{headerID: 'project', displayName: 'Project', width: 100, onEdit: (cell) => { console.log(cell) }, type: 'number'},
 		{headerID: 'projectName', displayName:'Project Name', width: 350,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 200, type: 'date', onEdit: (cell)=>{
 			return true
 		}},
 		{headerID: 'SM', displayName:'SM', width: 300, },
-		{headerID: 'intern', displayName:'Intern', width: 300,},
+		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	
 	//Data from the 'server'
 	const data  = useDataset(getTableData, 'id')
 	
 	return (
-		<Module moduleName = "VendorRubrics">
-			<ControlBar searchBar>
+		<Module moduleName = "VendorRubrics" >
+			<ControlBar searchBar locked={false}>
 				
 				<ControlButton onClick={()=>{
 					data.selectRecord('7')
@@ -85,7 +85,7 @@ export default function VendorRubrics(){
 					data={data}
 					headers={dataHeaders}
 					pageSize={100}
-					searchable
+					searchable={true}
 					settingsID={'VendorRubricsMainTable'}
 					nestedComponent = {TestExpandedRows}
 					nestedProps={{ content: 'Hello World'}}
@@ -102,7 +102,7 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						{/* <RubricDetail /> */}
+						<RubricDetail />
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>

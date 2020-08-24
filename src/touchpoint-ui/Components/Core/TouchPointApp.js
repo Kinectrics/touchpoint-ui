@@ -1,4 +1,5 @@
 import './TouchPointApp.css'
+import '../Inputs/InputStyles.css'
 import React, {useState, useEffect} from 'react'
 import SystemPopupHandler from '../../SystemComponents/SystemPopupHandler'
 import SystemModuleContainer from '../../SystemComponents/SystemModuleContainer'
