@@ -1,6 +1,5 @@
 import DataFilter from './DataFilter'
-import moment from 'moment'
-
+import DataType from './DataType'
 
 export default class DataHeader{
 	
@@ -26,53 +25,11 @@ export default class DataHeader{
 			},
 		}
 		
-		//format for displaying certain types of data
-		const formatFunctions = {
-			date: (cellValue) => cellValue ? moment(cellValue).format('DD-MMM-YY') : '',
-			boolean: (cellValue) => cellValue ? 'True' : 'False',
-			other: (cellValue) => cellValue,
-		}
+		this.dataType = new DataType(this.type)
 		
-		//Takes a user input and changes it to the correct data type (eg. Date string to new Date object)
-		const parseFunctions = {
-			date: (input) => {
-				
-				if(input.toString().toLowerCase() === 'today'){
-					const fullDate = new Date()
-					return new Date()
-				}
-				return new Date(input)
-			},
-			
-			boolean: (input) => {
-				const testVal = input.toString().toLowerCase()
-				if(testVal === 'true' || testVal === 'yes' || testVal == 1 || testVal === 'y'){
-					return true
-				} else return false
-			},
-		
-			number: (input) => {
-				const newValue = Number(input)
-				if(!isNaN(newValue)){
-					return newValue
-				} else{
-					throw new Error('invalid input - not a number')
-				}
-			},
-			
-			other: (input) => input,
-		}
-		
-		//Compares 2 values that may not be directly equal (eg. date object and date string)
-		const compareFunctions = {
-			date: (a,b) => moment(a).isSame(b,'day'),
-			boolean: (a,b) => this.parse(a) === this.parse(b),
-			other: (a,b) => a==b,
-		}
-		
-		this.format = formatFunctions[this.type] ? formatFunctions[this.type] : formatFunctions.other
-		this.parse = parseFunctions[this.type] ? parseFunctions[this.type] : parseFunctions.other
-		this.compare = compareFunctions[this.type] ? compareFunctions[this.type] : compareFunctions.other
+		this.format = this.dataType.format
+		this.parse = this.dataType.parse
+		this.compare = this.dataType.compare
 		
 	}
 
@@ -98,7 +55,7 @@ export default class DataHeader{
 	
 	//Saves a list of unique values in the column - to be used in the filter dropdowns
 	embedData(data, metaData){
-		this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues, this.type)
+		this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues)
 	}
 	
 	
@@ -137,7 +94,7 @@ export default class DataHeader{
 
 
 //Returns an array of unique values from a column of DataRow objects
-function uniqueByColumn(data, metaData, columnID, oldValues, type) {
+function uniqueByColumn(data, metaData, columnID, oldValues) {
 	const res = {}
 	
 	data.forEach((r, idx) => {
@@ -153,9 +110,6 @@ function uniqueByColumn(data, metaData, columnID, oldValues, type) {
 	})
 	
 	const orderedRes = {}
-	// const sortFunction = type === 'date' ? (a, b) => {
-	// 	return a - b
-	// } : undefined
 	
 	Object.keys(res).sort().forEach((key)=>{
 		orderedRes[key] = res[key]

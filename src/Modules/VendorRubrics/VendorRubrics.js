@@ -10,6 +10,7 @@ import PBI from '../../Temp/PBI.jpg'
 import './StatusLog'
 import StatusLog from './StatusLog'
 import TestExpandedRows from './TestExpandedRows'
+import moment from 'moment'
 
 //And begin
 export default function VendorRubrics(){
@@ -37,10 +38,11 @@ export default function VendorRubrics(){
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number'},
 		{headerID: 'projectName', displayName:'Project Name', width: 350,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
+		
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: (cell)=>{
-			console.log(cell)
-			return cell > new Date()
+			return moment(cell).isAfter(moment())
 		}},
+		
 		{headerID: 'SM', displayName:'SM', width: 200, },
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]

@@ -71,6 +71,7 @@ export default function InputCell(props) {
 			}
 			
 		} catch (err){
+			console.error(err)
 			setCurrentValue(props.header.format(initalValue))
 			flashRed()
 		}

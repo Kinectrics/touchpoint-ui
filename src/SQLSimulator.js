@@ -20,7 +20,6 @@ export function queryNotifications(){
 //
 export function fakeData(n = 500){
 	
-	const c = Math.round(Math.random() * 10)
 	const data = []
 	const statuses = ['Complete', 'In Progress', 'Pending Approval']
 	
@@ -38,8 +37,8 @@ export function fakeData(n = 500){
 			toq: faker.random.number(7000000),
 			perparedBy: faker.name.findName(),
 			approvedBy: faker.name.findName(),
-			preparedDate: '',
-			approvedDate: '',
+			preparedDate: faker.date.past(),
+			approvedDate: faker.date.past(),
 			
 			scrList: [...new Array(2 + i% 7)].map(()=>faker.random.number(2000000)),
 			
@@ -50,5 +49,5 @@ export function fakeData(n = 500){
 	}
 
 
-	return (data)
+	return (JSON.parse(JSON.stringify(data)))
 }
