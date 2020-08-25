@@ -35,7 +35,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	}
 	
 	
-	//Search data on change
+	//Search data a and generate new metadata
 	const searchText = useModuleData().get('TouchPointSearchText')
 	
 	function searchData(values) {
@@ -48,15 +48,12 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 			rowMeta.searchHidden = false
 
 			if (searchText) {
-
-				rowMeta.searchHidden = !headers.get().some((hdr) => {
-					try {
-						const newValue = r[hdr.headerID].toString().toLowerCase()
-						return newValue.includes(searchText.toLowerCase())
-					} catch (err) {
-						return false
-					}
-				})
+				try {
+					const testVal = JSON.stringify(r).toLowerCase()
+					return testVal.includes(searchText.toLowerCase())
+				} catch (err) {
+					return false
+				}
 			}
 
 			newMetaData.push(rowMeta)
