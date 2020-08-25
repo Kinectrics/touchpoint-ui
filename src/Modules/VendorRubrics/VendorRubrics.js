@@ -3,7 +3,7 @@ import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, C
 import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt} from "@fortawesome/free-solid-svg-icons"
-import {getTableData} from '../../SQLSimulator'
+import {fakeData} from '../../SQLSimulator'
 import RubricHeader from './RubricHeader'
 import RubricDetail  from './RubricDetail'
 import PBI from '../../Temp/PBI.jpg'
@@ -21,41 +21,41 @@ export default function VendorRubrics(){
 	const statusStyle = (cellValue) => {
 		switch(cellValue){
 			case 'Complete': return {color: 'white', backgroundColor: '#66CD00'}
-			case 'Pending': return {color: 'white', backgroundColor: '#EE0000'}
-			case 'Open': return {color: 'red', border: '1px solid red', paddingTop:'0px'}
-			default: return {color: ''}
+			case 'Pending Approval': return {color: 'white', backgroundColor: '#EE0000'}
+			case 'In Progress': return { color: 'white', backgroundColor: '#00ccff' }
+			default: return {color: 'white', backgroundColor:'blue'}
 		}
 	}
 	
 	//Headers for table
 	const dataHeaders = [
 		{headerID:'id',displayName:'ID', width: 100, required: true},
-		{headerID: 'vendor', displayName:'My Vendor', width: 200, onEdit: (cell, row)=>{
+		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell, row)=>{
 			console.log(cell + ' ' + row.id)
-			
 			if(cell === '1'){throw('ERR')}
 		}},
-		{headerID: 'project', displayName: 'Project', width: 100, onEdit: (cell) => { console.log(cell) }, type: 'number'},
+		{headerID: 'project', displayName: 'Project', width: 100, type: 'number'},
 		{headerID: 'projectName', displayName:'Project Name', width: 350,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
-		{headerID: 'due', displayName: 'Due', width: 200, type: 'date', onEdit: (cell)=>{
-			return true
+		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: (cell)=>{
+			console.log(cell)
+			return cell > new Date()
 		}},
-		{headerID: 'SM', displayName:'SM', width: 300, },
+		{headerID: 'SM', displayName:'SM', width: 200, },
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	
 	//Data from the 'server'
-	const data  = useDataset(getTableData, 'id')
+	const data  = useDataset(()=>fakeData(50), 'id')
 	
 	return (
 		<Module moduleName = "VendorRubrics" >
 			<ControlBar searchBar locked={false}>
 				
 				<ControlButton onClick={()=>{
-					data.selectRecord('7')
+					console.log(data.read())
 				}}>
-					<FontAwesomeIcon icon={faCalendarAlt} /> Activate
+					<FontAwesomeIcon icon={faCalendarAlt} /> Log Data
 				</ControlButton>
 				
 				<ControlButton onClick={()=>{

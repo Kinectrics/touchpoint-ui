@@ -153,11 +153,11 @@ function uniqueByColumn(data, metaData, columnID, oldValues, type) {
 	})
 	
 	const orderedRes = {}
-	const sortFunction = type === 'date' ? (a, b) => {
-		return a - b
-	} : undefined
+	// const sortFunction = type === 'date' ? (a, b) => {
+	// 	return a - b
+	// } : undefined
 	
-	Object.keys(res).sort(sortFunction).forEach((key)=>{
+	Object.keys(res).sort().forEach((key)=>{
 		orderedRes[key] = res[key]
 	})
 	
