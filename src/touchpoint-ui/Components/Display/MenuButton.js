@@ -114,14 +114,12 @@ export default function MenuButton(props){
 				
 				<Dropdown.Toggle as={dropButton}/>
 				
-				{
-					ReactDOM.createPortal(<Dropdown.Menu 
-						as={dropMenu}
-						MenuContent = {props.menuContent}
-						menuStyle = {props.menuStyle}
-						onClickBody = {onClickBody}
-					/>, document.body)
-				}
+				{ReactDOM.createPortal(<Dropdown.Menu 
+					as={dropMenu}
+					MenuContent = {props.menuContent}
+					menuStyle = {props.menuStyle}
+					onClickBody = {onClickBody}
+				/>, document.body)}
 				
 			</Dropdown>
 		</span>

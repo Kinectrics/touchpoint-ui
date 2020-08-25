@@ -67,7 +67,7 @@ export default function TheadButton(props){
 				/>}
 				
 				menuStyle = {{
-					maxWidth: props.noFilter ? '180px' : '350px', 
+					maxWidth: props.noFilter ? '180px' : '400px', 
 					maxHeight: '310px'
 				}}
 			>

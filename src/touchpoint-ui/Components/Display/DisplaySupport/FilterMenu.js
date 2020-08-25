@@ -43,7 +43,7 @@ export default function FilterMenu(props){
 			
 			<div className='stickyMenu'>
 				
-				<button onClick={selectAll} className = 'selectAll fullButton'>
+				<button onClick={selectAll} className = 'selectAll fullButton compactText'>
 			
 					<input
 						type='checkbox'
@@ -63,7 +63,7 @@ export default function FilterMenu(props){
 				
 				//Limit the number of checkboxes that are rendered to 200
 				if(count < lim){return (<button
-					className = {'fullButton'}
+					className = {'fullButton compactText'}
 					key={props.header.id + 'fv' + count}
 					onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
 					title = {v}
@@ -77,7 +77,11 @@ export default function FilterMenu(props){
 						style= {{cursor:'pointer'}}
 						readOnly
 					/>
-					<span style={spanStyle}>{v !== 0 && !v ? 'Blank' : props.header.format(v)}</span>
+					<span 
+						style={spanStyle}
+					>
+						{v !== 0 && !v ? 'Blank' : props.header.format(v)}
+					</span>
 					
 				</button>)} else return null
 				
