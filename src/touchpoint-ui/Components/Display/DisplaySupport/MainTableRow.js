@@ -21,7 +21,8 @@ export default function MainTableRow(props) {
 			
 			//Decide if the cell is editable or not based on the locked status, and the header onEdit function
 			let cellContent
-			let cellClass = ''
+			let cellClass = 'plain'
+			const cellText = hdr.format(props.dataRow[hdr.headerID])
 			
 			if(!props.locked && hdr.onEdit && !hdr.locked){
 				
@@ -35,7 +36,7 @@ export default function MainTableRow(props) {
 				cellClass = 'inputWrapper'
 				
 			} else {
-				cellContent = hdr.format(props.dataRow[hdr.headerID])
+				cellContent = cellText
 			}
 			
 			
@@ -44,6 +45,7 @@ export default function MainTableRow(props) {
 					key = {hdr.headerID + props.rowKey} 
 					style = {{width: hdr.width + 'px'}}
 					className = {cellClass}
+					title={cellText}
 				>
 					{cellContent}
 				</span>)

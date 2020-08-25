@@ -35,6 +35,11 @@
 	overflow: hidden;
 }
 
+.MainTableRow span.plain{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .MainTableRow .InputCell{
 	border: none;
 	outline: none !important;
