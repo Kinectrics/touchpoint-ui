@@ -23,10 +23,12 @@ export function fakeData(n = 500){
 	const data = []
 	const statuses = ['Complete', 'In Progress', 'Pending Approval']
 	
+	const c = Math.round(Math.random() * 10)
+	
 	for (let i = 0; i < n; i++) {
 		
 		data.push({
-			id: i,
+			id: i + c + 1,
 			vendor: faker.company.companyName(),
 			project: faker.random.number(40000),
 			SM: faker.name.findName(),
@@ -42,8 +44,11 @@ export function fakeData(n = 500){
 			
 			scrList: [...new Array(2 + i% 7)].map(()=>faker.random.number(2000000)),
 			
-			statusLog: [],
-			
+			statusLog: [...new Array(2 + i % 7)].map((ad, idx) => {return {
+				date: faker.date.past(),
+				notes: faker.lorem.sentence(),
+				status: statuses[(i+idx) % 3],
+			}}),
 		})
 		
 	}

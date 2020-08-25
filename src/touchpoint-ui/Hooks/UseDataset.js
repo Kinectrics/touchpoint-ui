@@ -30,7 +30,6 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 	
 	
 	function getActiveRecord(){
-		//Ensure the row is valid and has the correct primary key
 		return activeRecord
 	}
 	
@@ -48,14 +47,12 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}
 			rowMeta.searchHidden = false
 
 			if (searchText) {
-				try {
-					const testVal = JSON.stringify(r).toLowerCase()
-					return testVal.includes(searchText.toLowerCase())
-				} catch (err) {
-					return false
-				}
-			}
 
+				const testVal = JSON.stringify(r).toLowerCase()
+				rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase())
+				
+			}
+			
 			newMetaData.push(rowMeta)
 		})
 		
