@@ -3,6 +3,8 @@ import './Tile.css'
 import {useState} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDatabase } from '@fortawesome/free-solid-svg-icons'
 
 export default function Tile(props) {
 	
@@ -26,7 +28,7 @@ export default function Tile(props) {
 		<div style = {props.style} className={"Tile " + splash} onClick = {clickHandler}> 
 		
 			<div className="logo flexCenter">
-				<img src={props.icon}/> 
+				{props.children}
 			</div> 
 			
 			{props.title}
@@ -39,7 +41,6 @@ export default function Tile(props) {
 //Proptypes
 Tile.propTypes = {
 	locked: PropTypes.bool,
-	icon: PropTypes.any,
 	title: PropTypes.string,
 	splashScreen: PropTypes.bool,
 	onClick: PropTypes.func,

@@ -26,11 +26,10 @@ export default function LockScreen() {
 							<Tile 
 								key = {'SystemLockScreenAppIcon' + m}
 								title = {moduleList[m].name}
-								icon = {moduleList[m].icon}
 								onClick = {() => {system.Modules.open(m)}}
 								splashScreen
 								locked = {false}
-							/>
+							><img src={moduleList[m].icon}/></Tile>
 							
 						)} else return null
 						
@@ -57,7 +56,7 @@ export default function LockScreen() {
 						const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
 						
 						return (
-							<InfoCard onClick = {() => {setTimeout(()=>system.openModule(ntf.moduleID),120)}}
+							<InfoCard onClick = {() => {setTimeout(()=>system.Modules.open(ntf.moduleID),120)}}
 								key = {'NotificationCard'+i}
 								dynamicX = {true}
 								stripe = {true}
