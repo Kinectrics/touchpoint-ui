@@ -15,6 +15,7 @@ export default class DataHeader{
 		this.styling = options.styling ? options.styling : null
 		this.uniqueValues = {}
 		this.type = options.type ? options.type : 'string'
+		this.onClick = options.onClick
 		
 		//Default filter list only has 1 functions (array filter)
 		this.filterList = {

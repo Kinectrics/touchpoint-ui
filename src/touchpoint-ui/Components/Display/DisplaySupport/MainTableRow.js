@@ -16,12 +16,29 @@ export default function MainTableRow(props) {
 		}
 	}
 	
+	//Allow nested components and onClicks to update their dataRow
+	function setRow(newRow) {
+		const newData = [...props.dataset.read()]
+		newData[props.rowIndex] = newRow
+		props.dataset.set(newData)
+	}
+	
 	const rowContent = props.dataHeaders.map((hdr, i) => {
 		if(hdr.visible){
 			
+			function cellClickHandler(){
+				if(hdr.onClick){
+					hdr.onClick({
+						cellValue: props.dataRow[hdr.headerID],
+						row: props.dataRow,
+						setRow: setRow,
+					})
+				}
+			}
+			
 			//Decide if the cell is editable or not based on the locked status, and the header onEdit function
 			let cellContent
-			let cellClass = 'plain'
+			let cellClass = hdr.onClick && !props.locked ? ' clickable plain ' : ' plain '
 			const cellText = hdr.format(props.dataRow[hdr.headerID])
 			
 			if(!props.locked && hdr.onEdit && !hdr.locked){
@@ -31,9 +48,10 @@ export default function MainTableRow(props) {
 					dataRow = {props.dataRow}
 					rowIndex = {props.rowIndex}
 					dataset = {props.dataset}
+					setRow = {setRow}
 				/>
 				
-				cellClass = 'inputWrapper'
+				cellClass = cellClass + ' inputWrapper ' 
 				
 			} else {
 				cellContent = cellText
@@ -46,6 +64,7 @@ export default function MainTableRow(props) {
 					style = {{width: hdr.width + 'px'}}
 					className = {cellClass}
 					title={cellText}
+					onClick = {cellClickHandler}
 				>
 					{cellContent}
 				</span>)
@@ -56,13 +75,16 @@ export default function MainTableRow(props) {
 				const myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow)
 				
 				return( 
-					<span className = {'badge ' + cellClass}
-					key = {hdr.headerID + props.rowKey + i} 
-					style = {{
-						width: 'calc(' + hdr.width + 'px - 23px)',
-						...myStyle,
-						marginLeft: '23px'
-					}}>
+					<span 
+						className = {'badge ' + cellClass}
+						key = {hdr.headerID + props.rowKey + i} 
+						onClick={cellClickHandler}
+						style = {{
+							width: 'calc(' + hdr.width + 'px - 23px)',
+							...myStyle,
+							marginLeft: '23px'
+						}}
+					>
 						{cellContent}
 					</span>
 				)
@@ -70,6 +92,7 @@ export default function MainTableRow(props) {
 		}
 	})
 	
+	//Nested rows
 	const [expanded, setExpanded] = useState(false)
 	const expandedClass = expanded ? ' expanded ' : ''
 	
@@ -87,13 +110,6 @@ export default function MainTableRow(props) {
 	useEffect(() => {
 		setExpanded(false)
 	}, [props.collapseTrigger])
-	
-	//Allow nested components to update their dataRow
-	function setDataRow(newRow){
-		const newData = [...props.dataset.read()]
-		newData[props.rowIndex] = newRow
-		props.dataset.set(newData)
-	}
 	
 	const expandIcon = props.nestedComponent ? <span className='expandButton' onClick={expandHandler}>
 		{expanded ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />}
@@ -119,7 +135,7 @@ export default function MainTableRow(props) {
 					<props.nestedComponent
 						{...props.nestedProps}
 						dataRow = {props.dataRow}
-						setDataRow = {setDataRow}
+						setRow = {setRow}
 					/>
 				</div>
 				

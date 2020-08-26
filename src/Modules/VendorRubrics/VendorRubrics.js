@@ -31,16 +31,11 @@ export default function VendorRubrics(){
 	//Headers for table
 	const dataHeaders = [
 		{headerID:'id',displayName:'ID', width: 100, required: true},
-		{headerID: 'vendor', displayName:'My Vendor', width: 300, onEdit: (cell, row)=>{
-			console.log(cell + ' ' + row.id)
-			if(cell === '1'){throw('ERR')}
-		}},
+		{headerID: 'vendor', displayName:'My Vendor', width: 300},
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number'},
 		{headerID: 'projectName', displayName:'Project Name', width: 220,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
-		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: (cell)=>{
-			return moment(cell).isAfter(moment())
-		}},
+		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
 		{headerID: 'SM', displayName:'SM', width: 200, },
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
