@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect} from 'react'
-import PropTypes from 'prop-types'
 import './CoreTable.css'
 import MainTableRow from './MainTableRow'
 import lockedContext from '../../../Contexts/LockedContext'
@@ -235,29 +234,6 @@ export default function MainTable(props){
 			</div>
 		</div>
 	)
-}
-
-
-//Proptypes
-MainTable.propTypes = {
-	onEdit: PropTypes.func,
-	headers: PropTypes.arrayOf(PropTypes.object).isRequired,
-	
-	data: PropTypes.oneOfType([
-		PropTypes.object,
-		PropTypes.array
-	]).isRequired,
-	
-	pageSize: PropTypes.number,
-	locked: PropTypes.bool,
-	searchable: PropTypes.bool,
-	noSort: PropTypes.bool,
-	noFilter: PropTypes.bool,
-	noOptions: PropTypes.bool,
-	noActive: PropTypes.bool,
-	nestedProps: PropTypes.object,
-	nestedComponent: PropTypes.func,
-	settingsID: PropTypes.string,
 }
 
 MainTable.defaultProps = {
