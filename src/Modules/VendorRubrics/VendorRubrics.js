@@ -49,7 +49,7 @@ export default function VendorRubrics(){
 	const data  = useDataset(()=>{
 		const c = Math.round(Math.random() * 50)
 		return fakeData(c)
-	}, 'id')
+	}, {primaryKey: 'id'})
 	
 	return (
 		<Module moduleName = "VendorRubrics" >

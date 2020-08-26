@@ -10,11 +10,7 @@ export default function StatusLog(props) {
 	]
 	
 	//If the activerecorsd is undefined yet, use an empty array for now
-	const statusLogData = useDataset(() => props.dataRow ? props.dataRow.statusLog : {})
-	
-	useEffect(()=>{
-		statusLogData.refresh()
-	},[props.dataRow])
+	const statusLogData = props.dataRow && props.dataRow.statusLog ? props.dataRow.statusLog : []
 	
 	return (
 		

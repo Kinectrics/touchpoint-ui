@@ -3,10 +3,10 @@ import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
-export default function useDataset(fetchFunction, primaryKey, defaultValue = []) {
+export default function useDataset(fetchFunction, options = {}) {
 	
 	//The array contains an empty object by default
-	const [data, setData] = useState(defaultValue)
+	const [data, setData] = useState(options.defaultValue ? options.defaultValue : [])
 	const [metaData, setMetaData] = useState([{visible: true, filteredBy: ''}])
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
@@ -17,7 +17,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [])
 	//Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
 	function selectRecord(newPrimaryKey, fromData = data){
 
-		const newIndex = fromData.findIndex(r => r[primaryKey] == newPrimaryKey)
+		const newIndex = fromData.findIndex(r => r[options.primaryKey] == newPrimaryKey)
 		
 		if(newIndex > -1){
 			setActiveRecord(fromData[newIndex])
@@ -142,7 +142,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [])
 			setMetaData(filterData(newData))
 			setData(newData)
 			
-			selectRecord(activeRecord[primaryKey], newData)
+			selectRecord(activeRecord[options.primaryKey], newData)
 			
 			setStatus('Resolved')
 			setLastResolved(Date())
@@ -173,7 +173,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [])
 		read: () => { return data },
 		refresh: refreshData,
 		
-		selectRecord: (primaryKey) => selectRecord(primaryKey),
+		selectRecord: (newKey) => selectRecord(newKey),
 		getActiveRecord: getActiveRecord,
 		
 		status: status,
@@ -183,7 +183,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [])
 		//TouchPoint Controls
 		setHeaders: setHeaders,
 		isDataset: true,
-		primaryKey: primaryKey,
+		primaryKey: options.primaryKey,
 		getMetaData: () => { return metaData },
 		
 		filter: () => {
@@ -204,7 +204,7 @@ export default function useDataset(fetchFunction, primaryKey, defaultValue = [])
 		set: (newData)=>{
 			setData(newData)
 			setLastEdited(Date())
-			selectRecord(activeRecord[primaryKey], newData)
+			selectRecord(activeRecord[options.primaryKey], newData)
 		}
 	})
 }
