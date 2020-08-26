@@ -46,7 +46,10 @@ export default function VendorRubrics(){
 	]
 	
 	//Data from the 'server'
-	const data  = useDataset(()=>fakeData(Math.round(Math.random() * 50)), 'id', [{}])
+	const data  = useDataset(()=>{
+		const c = Math.round(Math.random() * 50)
+		return fakeData(c)
+	}, 'id')
 	
 	return (
 		<Module moduleName = "VendorRubrics" >
@@ -106,10 +109,10 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						{/* <StatusLog
+						<StatusLog
 							dataRow={data.getActiveRecord()}
 							statusStyle={statusStyle}
-						/> */}
+						/>
 					</InfoTab>								
 							
 				</InfoTabContainer>

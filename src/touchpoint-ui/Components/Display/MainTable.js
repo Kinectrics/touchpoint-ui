@@ -28,9 +28,6 @@ export default function MainTable(props){
 	const data = props.data.isDataset ? props.data.read() : props.data
 	const metaData = props.data.isDataset ? props.data.getMetaData() : [{}]
 	
-	console.log({metaData})
-	console.log({data})
-	
 	//deccides if the component is locked based on props and parents in the tree
 	const lockedFromAbove = useContext(lockedContext)
 	let locked = props.locked || (lockedFromAbove && props.locked === undefined) || !props.data.isDataset 
@@ -199,11 +196,11 @@ export default function MainTable(props){
 							
 							let renderRow = dr !== []
 							
-							if(searchable){
+							if(searchable && metaData[idx]){
 								renderRow = !metaData[idx].searchHidden
 							}
 							
-							renderRow = renderRow && (noFilter || metaData[idx].visible)
+							renderRow = renderRow && (noFilter || (metaData[idx] && metaData[idx].visible))
 							
 							const rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx
 							
