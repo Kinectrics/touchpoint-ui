@@ -47,8 +47,8 @@ export default function VendorRubrics(){
 	
 	//Data from the 'server'
 	const data  = useDataset(()=>{
-		const c = Math.round(Math.random() * 50)
-		return fakeData(c)
+		const c = Math.round(Math.random()*10)
+		return fakeData(52 * c)
 	}, {primaryKey: 'id'})
 	
 	return (

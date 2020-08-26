@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
 import PropTypes from 'prop-types'
-import './MainTable.css'
+import './CoreTable.css'
 import MainTableRow from './MainTableRow'
 import lockedContext from '../../../Contexts/LockedContext'
 import TheadButton from './TheadButton' 
@@ -154,6 +154,7 @@ export default function MainTable(props){
 						setActivePage = {setActivePage}
 						dataLength = {dataLength}
 						pageSize = {props.pageSize}
+						tableRef={tableRef}
 					/>
 			</div>
 

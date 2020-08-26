@@ -11,6 +11,7 @@ export default function PageContols(props) {
 	function pageBack() {
 		if (showPageBack) {
 			props.setActivePage(props.activePage - 1)
+			props.tableRef.current.scrollTop = 0
 		}
 	}
 	
@@ -18,6 +19,7 @@ export default function PageContols(props) {
 	function pageForward() {
 		if (showPageForward) {
 			props.setActivePage(props.activePage + 1)
+			props.tableRef.current.scrollTop = 0
 		}
 	}
 	
