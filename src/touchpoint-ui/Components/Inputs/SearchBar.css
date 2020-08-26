@@ -1,13 +1,15 @@
 .SearchBar .searchButton{
 	background-color: transparent;
 	border: none;
-	color: var(--mainTextColor);
 	font-size: 13pt;
 	transition: all 0.1s;
 	outline: none !important;
 	transform: translateX(-35px);
 	padding-top: 5px;
 	position: absolute;
+	
+	color: var(--lockedTextColor);
+	opacity: 80%;
 }
 
 .SearchBar input{

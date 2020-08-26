@@ -4,7 +4,7 @@ import TextBox from './TextBox'
 import PropTypes from 'prop-types'
 import './SearchBar.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faSearch} from "@fortawesome/free-solid-svg-icons"
+import {faSearch, faTimes, faTimesCircle} from "@fortawesome/free-solid-svg-icons"
 
 export default function SearchBar(props) {
 	
@@ -48,6 +48,13 @@ export default function SearchBar(props) {
 		searchRef.current.focus()
 	}
 	
+	//clear
+	function clearHandler() {
+		moduleData.set('TouchPointSearchText', '')
+		setSearchBarValue('')
+		searchRef.current.focus()
+	}
+	
 	
 	//handles the onChange event. Only fires if component is not locked
 	function changeHandler(e) {
@@ -58,6 +65,10 @@ export default function SearchBar(props) {
 		setSearchFunction(setTimeout(() => {
 			searchHandler()
 		}, 250))
+		
+		if(props.onChange){
+			props.onChange(e.target.value)
+		}
 	}
 	
 	
@@ -73,11 +84,11 @@ export default function SearchBar(props) {
 				style = {props.style}
 			/>
 			
-			<button className="searchButton"
-				onClick = {searchHandler}
+			{searchBarValue ? <button className="searchButton"
+				onClick = {clearHandler}
 			>
-				<FontAwesomeIcon icon={faSearch} />
-			</button>
+				<FontAwesomeIcon icon={faTimesCircle} />
+			</button> : null}
 		</span>
 	)
 }
@@ -87,4 +98,5 @@ export default function SearchBar(props) {
 SearchBar.propTypes = {
 	defaultValue: PropTypes.string,
 	style: PropTypes.object,
+	onChange: PropTypes.func,
 }
