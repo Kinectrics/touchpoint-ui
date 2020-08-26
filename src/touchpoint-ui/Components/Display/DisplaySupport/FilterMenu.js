@@ -66,7 +66,7 @@ export default function FilterMenu(props){
 					className = {'fullButton compactText'}
 					key={props.header.id + 'fv' + count}
 					onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
-					title = {v}
+					title = {props.header.format(v)}
 				>
 					
 					<input 

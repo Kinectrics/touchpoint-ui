@@ -17,7 +17,7 @@ export default function TableControls(props) {
 		><FontAwesomeIcon icon={faTimesCircle} /> Clear Filter</button>
 	}
 
-	if (!props.noFilter && !props.noSort) {
+	if (!props.noFilter && !props.noSort && !props.noOptions) {
 		layoutButton = <SaveTableLayout 
 			headers = {props.dataHeaders}
 			data = {props.data}

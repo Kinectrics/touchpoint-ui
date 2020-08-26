@@ -16,7 +16,7 @@
 	position: relative;
 }
 
-.MainTableRow.active .topRow{
+.MainTable.hasActive .MainTableRow.active .topRow{
 	color: var(--tableActiveColor);
 }
 
