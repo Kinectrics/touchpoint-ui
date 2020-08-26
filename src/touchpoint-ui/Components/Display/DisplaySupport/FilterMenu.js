@@ -26,7 +26,7 @@ export default function FilterMenu(props){
 		} else{
 			newHeaders[props.header.index].selectAll(cb.checked)
 		}
-			
+		
 		props.dataHeaders.set(newHeaders)
 	}
 	
