@@ -1,5 +1,5 @@
-import React from 'react'
-import {MainTable, useHeaders} from '../../touchpoint-ui'
+import React, { useEffect } from 'react'
+import {MainTable, useDataset} from '../../touchpoint-ui'
 
 export default function StatusLog(props) {
 	
@@ -10,8 +10,11 @@ export default function StatusLog(props) {
 	]
 	
 	//If the activerecorsd is undefined yet, use an empty array for now
-	let statusLogData = []
-	if(props.dataRow.statusLog){statusLogData = props.dataRow.statusLog}
+	const statusLogData = useDataset(() => props.dataRow ? props.dataRow.statusLog : {})
+	
+	useEffect(()=>{
+		statusLogData.refresh()
+	},[props.dataRow])
 	
 	return (
 		
@@ -20,6 +23,7 @@ export default function StatusLog(props) {
 				data = {statusLogData}
 				headers={dataHeaders}
 				pageSize={100}
+				noActive
 			/>
 		</div>
 		

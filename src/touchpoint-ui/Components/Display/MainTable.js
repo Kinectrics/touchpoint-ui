@@ -15,33 +15,26 @@ export default function MainTable(props){
 	const headers = useHeaders(props.headers)
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
-	let noSort = props.noSort || !props.data.sort  
-	let noFilter = props.noFilter
-	let noOptions = props.noOptions || !props.settingsID
-	let searchable = props.searchable
-	let noActive = props.noActive
+	const noSort = props.noSort || !props.data.sort || !props.data.isDataset 
+	const noFilter = props.noFilter || !props.data.isDataset 
+	const noOptions = props.noOptions || !props.settingsID
+	const searchable = props.searchable || !props.data.isDataset 
+	const noActive = props.noActive || !props.data.isDataset 
 	
 	//expanded rows (if applicable)
 	const hasNestedClass = props.nestedComponent ? ' hasNested ' : null
 	
 	//support for dataSets or for just arrays
-	let data = props.data
-	let metaData = [{}]
+	const data = props.data.isDataset ? props.data.read() : props.data
+	const metaData = props.data.isDataset ? props.data.getMetaData() : [{}]
+	
+	console.log({metaData})
+	console.log({data})
 	
 	//deccides if the component is locked based on props and parents in the tree
 	const lockedFromAbove = useContext(lockedContext)
-	let locked = props.locked || (lockedFromAbove && props.locked === undefined)
-	
-	if(props.data.isDataset){
-		data = props.data.read()
-		metaData = props.data.getMetaData()
-	} else{
-		noSort = true
-		noFilter = true
-		noActive = true
-		searchable =  false
-		locked = true
-	}
+	let locked = props.locked || (lockedFromAbove && props.locked === undefined) || !props.data.isDataset 
+
 	
 	//Settings token support 
 	const [sortTrigger, setSortTrigger] = useState(false)

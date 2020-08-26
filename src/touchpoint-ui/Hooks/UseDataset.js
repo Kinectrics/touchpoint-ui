@@ -3,7 +3,7 @@ import useModuleData from '../Hooks/UseModuleData'
 
 
 //Initialises a Dataset and caches the value
-export default function useDataset(fetchFunction, primaryKey, defaultValue = [{}]) {
+export default function useDataset(fetchFunction, primaryKey, defaultValue = []) {
 	
 	//The array contains an empty object by default
 	const [data, setData] = useState(defaultValue)
