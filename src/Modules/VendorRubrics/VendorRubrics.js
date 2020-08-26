@@ -2,7 +2,7 @@ import React from 'react'
 import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
 import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCalendarAlt, faChartArea, faSyncAlt} from "@fortawesome/free-solid-svg-icons"
+import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle} from "@fortawesome/free-solid-svg-icons"
 import {fakeData} from '../../SQLSimulator'
 import RubricHeader from './RubricHeader'
 import RubricDetail  from './RubricDetail'
@@ -36,7 +36,7 @@ export default function VendorRubrics(){
 		{headerID: 'projectName', displayName:'Project Name', width: 220,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
-		{headerID: 'SM', displayName:'SM', width: 200, },
+		{headerID: 'SM', displayName:'SM', width: 200, icon: ()=>{return<FontAwesomeIcon icon={faTimesCircle}/>}},
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	
