@@ -23,6 +23,7 @@ export default function TouchPointApp(props){
 	
 	const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 	const [screenEffect, setScreenEffect] = useState('')
+	const [drawerExists, setDrawerExists] = useState(false)
 	
 	const [layout, setLayout] = useState({
 		heightCSS: '100%',
@@ -110,8 +111,10 @@ export default function TouchPointApp(props){
 		
 		Drawer:{
 			open: ()=>{ if(!drawerIsOpen){
-				setScreenEffect('blurScreenEffect')
-				setDrawerIsOpen(true)
+				if(drawerExists){
+					setScreenEffect('blurScreenEffect')
+					setDrawerIsOpen(true)
+				}
 			}},
 			
 			close: () => { if(drawerIsOpen){
@@ -120,6 +123,9 @@ export default function TouchPointApp(props){
 			}},
 			
 			isOpen: drawerIsOpen,
+			
+			Exists: drawerExists,
+			setExists: setDrawerExists,
 			
 			portalDestination: portalDestination,
 			className: activePopup ? screenEffect : '',

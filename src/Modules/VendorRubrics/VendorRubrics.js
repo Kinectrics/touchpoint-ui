@@ -6,11 +6,9 @@ import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle} from "@fortawesome
 import {fakeData} from '../../SQLSimulator'
 import RubricHeader from './RubricHeader'
 import RubricDetail  from './RubricDetail'
-import PBI from '../../Temp/PBI.jpg'
 import './StatusLog'
 import StatusLog from './StatusLog'
 import TestExpandedRows from './TestExpandedRows'
-import moment from 'moment'
 
 //And begin
 export default function VendorRubrics(){
@@ -69,7 +67,7 @@ export default function VendorRubrics(){
 						height='90%'
 						title = 'Embedded Reports Coming Soon!'						
 					>
-						<img src={PBI} height={'90%'}/>
+						
 					</PopupCard>
 				)}>
 					<FontAwesomeIcon icon = {faChartArea}/> Business Intelligence

@@ -3,20 +3,14 @@ import './Tile.css'
 import {useState} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDatabase } from '@fortawesome/free-solid-svg-icons'
 
 export default function Tile(props) {
-	
-	//When a module is clicked, a splash screen is dispalyed for a second
-	const [splash, setSplash] = useState()
 	
 	const lockedFromAbove = useContext(lockedContext)
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	function clickHandler(){
 		if(!locked && props.splashScreen && props.onClick){
-			setSplash('splashScreen')
 			setTimeout( () => {props.onClick()}, 550)
 			
 		} else if(!locked && props.onClick){
@@ -25,14 +19,15 @@ export default function Tile(props) {
 	}
 	
 	return (
-		<div style = {props.style} className={"Tile " + splash} onClick = {clickHandler}> 
-		
-			<div className="logo flexCenter">
-				{props.children}
-			</div> 
+		<div style={props.style} className={'Tile' + (locked ? ' locked ' : '')}>
+			<div style = {props.innserStyle} className={'TileContainer '} onClick = {clickHandler}> 
 			
-			{props.title}
-			
+				<div className='logo flexCenter'>
+					{props.children}
+				</div> 
+				
+				<div className="title">{props.title}</div>
+			</div>
 		</div>
 	)
 	
@@ -42,7 +37,6 @@ export default function Tile(props) {
 Tile.propTypes = {
 	locked: PropTypes.bool,
 	title: PropTypes.string,
-	splashScreen: PropTypes.bool,
 	onClick: PropTypes.func,
 	style: PropTypes.object,
 }

@@ -16,13 +16,14 @@ export default function SystemPopupHandler(props) {
 	//If the active popup isn't null, render it
 	if(props.activePopup != null){
 		
-	return (
-		<div 
-			className = {"systemPopupBackdrop " + props.popupEffect + ' ' + forceClass} 
-			onClick = {clickBackdrop}
-		>
-			{props.activePopup}
-		</div>)
+		return (
+			<div 
+				className = {"systemPopupBackdrop " + props.popupEffect + ' ' + forceClass} 
+				onClick = {clickBackdrop}
+			>
+				{typeof (props.activePopup) == 'function' ? <props.activePopup /> : props.activePopup}
+			</div>
+		)
 			
 	} else return null
 }

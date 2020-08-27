@@ -1,5 +1,7 @@
 import React from 'react'
-import {useSystem, FreeButton, PopupCard, AppDrawer} from './touchpoint-ui'
+import {useSystem, FreeButton, PopupCard, AppDrawer, Tile} from './touchpoint-ui'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDatabase, faTimes, faFeather, faGamepad, faPager } from '@fortawesome/free-solid-svg-icons'
 
 export default function DrawerContent() {
 	
@@ -26,6 +28,27 @@ export default function DrawerContent() {
 				}}
 				purpose='positive'
 			>Test 2</FreeButton>
+			
+			<Tile title='TileDrawer'>
+				<FontAwesomeIcon icon={faDatabase} />
+			</Tile>
+			
+			<Tile title='TileDrawer'>
+				<FontAwesomeIcon icon={faTimes} title='Tile' />
+			</Tile>
+			
+			<Tile title='TileDrawer'>
+				<FontAwesomeIcon icon={faFeather} title='Tile' />
+			</Tile>
+			
+			<Tile title='TileDrawer'>
+				<FontAwesomeIcon icon={faGamepad} title='Tile' />
+			</Tile>
+			
+			<Tile title='TileDrawer'>
+				<FontAwesomeIcon icon={faPager} title='Tile' />
+			</Tile >
+			
 		</AppDrawer>
 	)
 }
