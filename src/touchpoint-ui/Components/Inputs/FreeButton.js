@@ -8,7 +8,6 @@ export default function FreeButton(props) {
 	
 	let purpose = 'neutral '
 	let wideClass = ''
-	let circleClass = ''
 	if (props.purpose){purpose = props.purpose.toLowerCase()}
 	if (props.wide){wideClass = 'wide '}
 	

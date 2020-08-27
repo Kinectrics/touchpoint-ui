@@ -21,3 +21,33 @@
 .ControlBar .SearchBar{
 	width: 100%;
 }
+
+/* ControlButton */
+.ControlBar button{
+	outline: none !important;
+	border: none;
+	border-radius: 15px;
+	
+	color: var(--navTextColor);
+	background-color: transparent;
+	
+	font-size: 14pt;
+	font-weight: bold;
+	margin:0;
+	margin-right: 30px;
+}
+
+.ControlBar button:hover{
+	color: var(--navHoverColor);
+}
+
+.ControlBar button:active{
+	color: var(--navClickedColor);
+}
+
+.ControlBar button.locked{
+	color: var(--navTextColor) !important;
+	filter: brightness(80%);
+	opacity: 60%;
+	cursor: default;
+}

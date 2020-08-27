@@ -50,19 +50,19 @@ export default function VendorRubrics(){
 		<Module moduleName = "VendorRubrics" >
 			<ControlBar searchBar locked={false}>
 				
-				<ControlButton onClick={()=>{
+				<button onClick={()=>{
 					console.log(data.read())
 				}}>
 					<FontAwesomeIcon icon={faCalendarAlt} /> Log Data
-				</ControlButton>
+				</button>
 				
-				<ControlButton onClick={()=>{
+				<button onClick={()=>{
 					data.refresh()
 				}}>
 					<FontAwesomeIcon icon={faSyncAlt} /> Refresh
-				</ControlButton>
+				</button>
 				
-				<ControlButton onClick={() => system.Popup.open(
+				<button onClick={() => system.Popup.open(
 					<PopupCard 
 						closeButton
 						width='fit-content'
@@ -73,7 +73,7 @@ export default function VendorRubrics(){
 					</PopupCard>
 				)}>
 					<FontAwesomeIcon icon = {faChartArea}/> Business Intelligence
-				</ControlButton>
+				</button>
 				
 			</ControlBar>
 			
