@@ -12,7 +12,6 @@
 	box-sizing: border-box;
 	position: relative;
 	height: var(--appToolbarHeight);
-	width: 70%;
 	float: left;
 	position: absolute;
 	left: 0;
@@ -23,13 +22,13 @@
 .AppToolbar .brandingContainer{
 	box-sizing: border-box;
 	position: relative;
-	width: 30%;
 	text-align: right;
 	font-weight: bold;
 	position: absolute;
 	right: 0;
 	padding-right: 10px;
 	padding-top: 2px;
+	background-color: var(--navColor);
 }
 
 .AppToolbar button{

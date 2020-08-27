@@ -6,16 +6,23 @@
 	color: var(--navTextColor);
 	height: var(--controlBarHeight);
 	box-sizing: border-box;
+	position: relative;
 }
 
 .ControlBar .buttonContainer{
 	box-sizing: border-box;
-	width: 80%;
+	position: absolute;
+	left: 10px;
+	background-color: var(--navColor);
+	height: 100%;
+	
 }
 
 .ControlBar .searchContainer{
+	position: absolute;
+	right: 10px;
 	box-sizing: border-box;
-	width: 20%;
+	width: max(20%, 250px);
 }
 
 .ControlBar .SearchBar{
@@ -29,7 +36,7 @@
 	border-radius: 15px;
 	
 	color: var(--navTextColor);
-	background-color: transparent;
+	background-color: var(--navColor);
 	
 	font-size: 14pt;
 	font-weight: bold;

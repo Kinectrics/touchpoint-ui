@@ -15,12 +15,12 @@ export default function ControlBar(props) {
 		return (
 			<lockedContext.Provider value = {locked}>
 				<div className="ControlBar flexY" style = {props.style}>
-					<div className="buttonContainer">{props.children}</div>
+					
 					<div className="searchContainer">
-						
 						<SearchBar />
-						
 					</div>
+					
+					<div className="buttonContainer flexY" >{props.children}</div>
 				</div>
 			</lockedContext.Provider>
 				
