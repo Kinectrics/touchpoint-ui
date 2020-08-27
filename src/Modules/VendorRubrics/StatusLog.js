@@ -19,7 +19,6 @@ export default function StatusLog(props) {
 				data = {statusLogData}
 				headers={dataHeaders}
 				pageSize={100}
-				noActive
 			/>
 		</div>
 		

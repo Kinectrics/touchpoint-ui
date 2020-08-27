@@ -6,13 +6,12 @@ import PropTypes from 'prop-types'
 
 export default function MainTable(props){
 	
-	//Converts static data to an array 
+	//Converts static data to an array
 	const newProps = {...props}
 	newProps.data = useDataset(props.data.isDataset ? ()=>[] : ()=>props.data )
+	newProps.nestedComponent = null
+	newProps.noActive = true
 	
-	if ((!props.data.isDataset) || (!props.data.primaryKey) ){
-		newProps.nestedComponent = null
-	}
 	
 	useEffect(()=>{
 		if (!props.data.isDataset){
@@ -20,15 +19,12 @@ export default function MainTable(props){
 		}
 	},[props.data])
 	
+	
 	if(props.data.isDataset){
-		
 		return (<CoreTable {...props}/>)
-		
 	} else{
-		
 		return (<CoreTable {...newProps} />)
 	}
-	
 }
 
 //Proptypes

@@ -3744,7 +3744,7 @@ function useDataset(fetchFunction) {
 }
 
 function MainTable$1(props) {
-  //Converts static data to an array 
+  //Converts static data to an array
   var newProps = _objectSpread2({}, props);
 
   newProps.data = useDataset(props.data.isDataset ? function () {
@@ -3752,11 +3752,8 @@ function MainTable$1(props) {
   } : function () {
     return props.data;
   });
-
-  if (!props.data.isDataset || !props.data.primaryKey) {
-    newProps.nestedComponent = null;
-  }
-
+  newProps.nestedComponent = null;
+  newProps.noActive = true;
   useEffect(function () {
     if (!props.data.isDataset) {
       newProps.data.refresh();
