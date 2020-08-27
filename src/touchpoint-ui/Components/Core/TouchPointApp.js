@@ -39,6 +39,17 @@ export default function TouchPointApp(props){
 		}
 	}
 	
+	async function getSettings(settingsID) {
+		try {
+			if (props.getSettings && settingsID) {
+				return await props.getSettings(settingsID)
+			}
+		} catch (err) {
+			console.error(err)
+			return null
+		}
+	}
+	
 	//Functions that are available to all modules and can be used system-wode 
 	//Used for things like switching modules, sending out emails, etc. for consistency across the system
 	const System = {
@@ -137,14 +148,7 @@ export default function TouchPointApp(props){
 		Settings: {
 			save: saveSettings,
 			
-			get: async (settingsID) => {
-				try {
-					return await props.getSettings(settingsID)
-				} catch(err){
-					console.error(err)
-					return null
-				}
-			}
+			get: getSettings
 		},
 		
 		io: props.io
@@ -153,12 +157,16 @@ export default function TouchPointApp(props){
 	//initial setup - theme and settings
 	useEffect(()=>{
 		async function applySavedTheme(){
+			
 			const newTheme = await System.Settings.get('TouchPointAppTheme')
-			if(newTheme){System.Theme.set(newTheme)}
+			if(newTheme){
+				const themeEngine = new SystemThemeEngine()
+				themeEngine.setTheme(newTheme)
+			}
 		}
 		
 		applySavedTheme()
-	})
+	},[])
 	
 	//Input blocker for clicks
 	let screenBlocker = null

@@ -58,10 +58,12 @@ export default function App() {
 	
 	
 	function saveSettings(id, token){
+		console.log({ set: token })
 		localStorage.setItem('DMSsettings-'+id, token)
 	}
 	
 	function getSettings(id){
+		console.log({ get: id })
 		return localStorage.getItem('DMSsettings-'+id)
 	}
 
