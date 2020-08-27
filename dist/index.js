@@ -1942,7 +1942,7 @@ function MainTableRow(props) {
 
   var rowContent = props.dataHeaders.map(function (hdr, i) {
     if (hdr.visible) {
-      function cellClickHandler() {
+      var cellClickHandler = function cellClickHandler() {
         if (hdr.onClick) {
           hdr.onClick({
             cellValue: props.dataRow[hdr.headerID],
@@ -1950,7 +1950,7 @@ function MainTableRow(props) {
             setRow: setRow
           });
         }
-      } //Decide if the cell is editable or not based on the locked status, and the header onEdit function
+      }; //Decide if the cell is editable or not based on the locked status, and the header onEdit function
 
 
       var cellContent;
