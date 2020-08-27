@@ -1,6 +1,6 @@
 import './TouchPointApp.css'
 import '../Inputs/InputStyles.css'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import SystemPopupHandler from '../../SystemComponents/SystemPopupHandler'
 import SystemModuleContainer from '../../SystemComponents/SystemModuleContainer'
 import systemContext from '../../Contexts/SystemContext'
@@ -8,14 +8,13 @@ import lockedContext from '../../Contexts/LockedContext'
 import SystemThemeEngine from '../../SystemComponents/ThemeEngine'
 import PropTypes from 'prop-types'
 import {HashRouter} from 'react-router-dom'
-import SystemDrawerHandler from '../../SystemComponents/SystemDrawerHandler'
-import useSettings from '../../Hooks/UseSettings'
-
 
 export default function TouchPointApp(props){
 	
 	//System-wide state
 	const [activePopup, setPopup] = useState(null);
+	
+	const portalDestination = useRef()
 	
 	//Set moduleTransition to 'transition' while the modules are being switched out
 	const [screenBlock, setScreenBlock] = useState(false) //if true, no clicks will register
@@ -23,7 +22,6 @@ export default function TouchPointApp(props){
 	const [moduleLock, setModuleLock] = useState(props.locked)
 	
 	const [drawerIsOpen, setDrawerIsOpen] = useState(false)
-	const [drawerData, setDrawerData] = useState()
 	const [screenEffect, setScreenEffect] = useState('')
 	
 	const [layout, setLayout] = useState({
@@ -121,10 +119,10 @@ export default function TouchPointApp(props){
 				if(!activePopup){setScreenEffect('')}
 			}},
 			
-			data: drawerData,
-			setData: setDrawerData,
+			isOpen: drawerIsOpen,
 			
-			isOpen: drawerIsOpen
+			portalDestination: portalDestination,
+			className: activePopup ? screenEffect : '',
 		},
 		
 		//Internal variables for structuring the app
@@ -171,11 +169,9 @@ export default function TouchPointApp(props){
 						<HashRouter>
 						{screenBlocker}
 						
-						<SystemDrawerHandler
-							className={ activePopup ? screenEffect : ''}
-							{...System.Drawer.data}
-							drawer={System.Drawer}
-						/>
+						<div ref = {portalDestination}>
+							{/* Portal Destination for App Drawer */}
+						</div>
 						
 						<div className={'screenEffect ' + screenEffect}>
 							

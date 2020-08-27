@@ -1,12 +1,12 @@
 import React from 'react'
-import {useSystem, FreeButton, PopupCard} from './touchpoint-ui'
+import {useSystem, FreeButton, PopupCard, AppDrawer} from './touchpoint-ui'
 
 export default function DrawerContent() {
 	
 	const System = useSystem()
 	
 	return (
-		<div>
+		<AppDrawer>
 			<FreeButton
 				onClick={() => {
 					System.Popup.open(<PopupCard stripeColor = 'red' title='Hello'>Testing</PopupCard>)
@@ -26,6 +26,6 @@ export default function DrawerContent() {
 				}}
 				purpose='positive'
 			>Test 2</FreeButton>
-		</div>
+		</AppDrawer>
 	)
 }

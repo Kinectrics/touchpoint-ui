@@ -25,16 +25,6 @@ export default function ETDB() {
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
 			
-			<RadioGroup value={radio} onChange={(value)=>{
-				setRadio(value)
-				console.log(value)
-			}}>
-				<RadioButton value={1}>1</RadioButton>
-				<RadioButton value={2}>2</RadioButton>
-				<RadioButton value={3}>3</RadioButton>
-				<RadioButton value={4}>4</RadioButton>
-			</RadioGroup>
-			
 		</Module>
 	)
 }

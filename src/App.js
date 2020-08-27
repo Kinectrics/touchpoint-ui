@@ -85,9 +85,8 @@ export default function App() {
 				</span>
 			</AppFooter>
 			
-			<AppDrawer title={'App Drawer'}>
-				<DrawerContent/>
-			</AppDrawer>
+			<DrawerContent/>
+
 			
 		</TouchPointApp>
 	)
