@@ -1,73 +1,56 @@
 .Tile{
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
+	padding: 10px;
+}
+
+.TileContainer{
+	padding-top: 4px;
+	height: 100%;
+	width: 100%;
 	background-color: var(--cardBG);
-	margin: 30px;
-	transition: all 0.3s;
-	font-size: 12pt;
+	transition: all 0.2s;
+	font-size: 10pt;
 	text-align: center;
 	color: var(--mainTextColor);
 	border-radius: 15px;
-	border-style: solid;
-	border-color: var(--bodyAltBG);
-	border-width: 1px;
-	
+	overflow: hidden;
+	line-height: 10pt;
+	position: relative;
 }
 
 .Tile .logo{
-	height: 80%;
-	font-size: 60pt;
+	height: 65%;
+	font-size: 30pt;
 	color: var(--labelColor)
 }
 
-.Tile:hover{
-	height: 160px;
-	width: 160px;
-	background-color: var(--navColor);
-	margin: 25px;
-	cursor: pointer;
-	color: var(--navTextColor);
-	box-shadow: var(--dynamicCardShadow);
+.Tile .title{
+	position: absolute;
+	bottom: 5px;
+	text-align: center;
+	width: 100%;
 }
 
-.Tile:hover > .logo{
-	color: var(--navTextColor);
-	transition: all 0.25s ease-in-out;
+.TileContainer:hover{
+	cursor: pointer;
+	filter: brightness(90%);
 }
 
 .Tile img{
-	height:85px;
+	height: 90%;
 }
 
-.Tile:hover img, .Tile.splashScreen img{
-	filter: brightness(0) saturate(100%) invert(100%);
-}
-
-.Tile:active{
-	height: 140px;
-	width: 140px;
-	margin: 35px;
+.TileContainer:active{
+	filter: brightness(80%);
 	transition: all 0.05s;
 }
 
-.Tile.splashScreen{
-	height: 100vh;
-	width: 100vw;
-	margin: 0;
-	z-index: 998;
-	transition: all 0.4s;
-	position: fixed;
-	right:0;
-	top:0;
-	border-radius: 0;
+.Tile.locked .TileContainer{
+	filter: opacity(60%);
 	cursor: default;
-	background-color: var(--navColor);
-	color: var(--navTextColor);
-	border:none;
 }
 
-.Tile.splashScreen > .logo{
-	color: var(--navTextColor);
-	transition: all 0.25s;
+.Tile.locked .logo{
+	filter: brightness(50%);
 }
-
