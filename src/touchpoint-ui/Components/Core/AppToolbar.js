@@ -10,13 +10,13 @@ export default function AppToolbar(props){
 	usePresence('TouchPointAppToolbar', 'var(--appToolbarHeight)')
 	
 	return (
-		<div className="AppToolbar flexY" style = {props.style}>
-			<div className="buttonContainer flexY">
-				{props.children}
-			</div>
-			
+		<div className="AppToolbar" style = {props.style}>
 			<div className="brandingContainer">
 				{props.label}
+			</div>
+			
+			<div className="buttonContainer flexY">
+				{props.children}
 			</div>
 		</div>
 		
