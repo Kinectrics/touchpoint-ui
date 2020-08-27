@@ -29,7 +29,7 @@ export default function DrawerContent() {
 				purpose='positive'
 			>Test 2</FreeButton>
 			
-			<Tile title='TileDrawer'>
+			<Tile title='TileDrawer' locked>
 				<FontAwesomeIcon icon={faDatabase} />
 			</Tile>
 			

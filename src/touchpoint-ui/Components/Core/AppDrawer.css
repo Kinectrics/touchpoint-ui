@@ -50,21 +50,3 @@
 	color: var(--labelColor);
 }
 
-/*  */
-.AppDrawer .Tile{
-	height: 100px;
-	width: 100px;
-	padding: 10px;
-}
-
-.AppDrawer .Tile .logo{
-	font-size: 30pt;
-}
-
-.AppDrawer .TileContainer{
-	border: 1px solid var(--borderColor);
-}
-
-.AppDrawer .TileContainer:hover{
-	border: none;
-}

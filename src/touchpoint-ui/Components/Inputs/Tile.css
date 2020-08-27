@@ -9,7 +9,7 @@
 	height: 100%;
 	width: 100%;
 	background-color: var(--cardBG);
-	transition: all 0.3s;
+	transition: all 0.2s;
 	font-size: 10pt;
 	text-align: center;
 	color: var(--mainTextColor);
@@ -33,25 +33,24 @@
 }
 
 .TileContainer:hover{
-	background-color: var(--navColor);
 	cursor: pointer;
-	color: var(--navTextColor);
-}
-
-.TileContainer:hover > .logo{
-	color: var(--navTextColor);
-	transition: all 0.25s ease-in-out;
+	filter: brightness(90%);
 }
 
 .Tile img{
 	height: 90%;
 }
 
-.Tile:hover img, .TileContainer.splashScreen img{
-	filter: brightness(0) saturate(100%) invert(100%);
-}
-
-.Tile:active{
+.TileContainer:active{
 	filter: brightness(80%);
 	transition: all 0.05s;
+}
+
+.Tile.locked .TileContainer{
+	filter: opacity(60%);
+	cursor: default;
+}
+
+.Tile.locked .logo{
+	filter: brightness(50%);
 }
