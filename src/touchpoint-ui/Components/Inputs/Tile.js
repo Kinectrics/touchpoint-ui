@@ -3,8 +3,6 @@ import './Tile.css'
 import {useState} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDatabase } from '@fortawesome/free-solid-svg-icons'
 
 export default function Tile(props) {
 	
