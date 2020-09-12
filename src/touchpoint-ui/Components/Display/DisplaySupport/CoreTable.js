@@ -55,12 +55,11 @@ export default function MainTable(props){
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(() => {
-		if (!noFilter) {
-			props.headers.embedData(data, metaData)
-		}
-
-		if (!noOptions) {
-			props.headers.setSettingsEngine({ save: saveSettings })
+		if (!noFilter) { props.headers.embedData(data, metaData) }
+		if (!noOptions) { props.headers.setSettingsEngine({ save: saveSettings }) }
+		
+		if(noOptions){
+			props.data.sort()
 		}
 
 	}, [props.data.lastResolved, props.data.lastEdited])

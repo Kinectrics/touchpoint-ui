@@ -24,7 +24,7 @@ export default function MainTable(props){
 	
 	useEffect(()=>{
 		if (!props.data.isDataset){
-			newProps.data.refresh()
+			data.refresh()
 		}
 	},[props.data])
 	
