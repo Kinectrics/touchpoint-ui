@@ -27,7 +27,7 @@ export default function MainTableRow(props) {
 		if(hdr.visible){
 			
 			function cellClickHandler(){
-				if(hdr.onClick && !hdr.locked){
+				if(hdr.onClick && !hdr.locked && !props.locked){
 					hdr.onClick({
 						cellValue: props.dataRow[hdr.headerID],
 						row: props.dataRow,
