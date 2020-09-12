@@ -41,13 +41,14 @@
 }
 
 .MainTableRow .InputCell{
-	border: none;
+	border: 1px solid var(--borderColor);
 	outline: none !important;
 	font-family: inherit;
 	font-size: inherit;
 	width: 100%;
 	margin: none;
-	height: 100%;
+	height: 20px;
+	box-sizing: border-box;
 	color: inherit;
 	padding: 1px 10px;
 	border-radius: 10px;

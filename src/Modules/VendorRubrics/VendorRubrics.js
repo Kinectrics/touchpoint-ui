@@ -41,7 +41,7 @@ export default function VendorRubrics(){
 	//Data from the 'server'
 	const data  = useDataset(()=>{
 		const c = Math.round(Math.random()*10)
-		return fakeData(52 * c)
+		return fakeData((52 * c) + 1)
 	}, {primaryKey: 'id'})
 	
 	return (
@@ -98,7 +98,7 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						<RubricDetail />
+						{/* <RubricDetail /> */}
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
