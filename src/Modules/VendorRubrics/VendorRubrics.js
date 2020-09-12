@@ -34,7 +34,7 @@ export default function VendorRubrics(){
 		{headerID: 'projectName', displayName:'Project Name', width: 220,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
-		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return true}, locked: true},
+		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return true}},
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	
