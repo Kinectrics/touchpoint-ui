@@ -58,9 +58,7 @@ export default function MainTable(props){
 		if (!noFilter) { props.headers.embedData(data, metaData) }
 		if (!noOptions) { props.headers.setSettingsEngine({ save: saveSettings }) }
 		
-		if(noOptions){
-			props.data.sort()
-		}
+		props.data.sort()
 
 	}, [props.data.lastResolved, props.data.lastEdited])
 	

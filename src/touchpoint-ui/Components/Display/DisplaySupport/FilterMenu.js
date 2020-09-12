@@ -58,7 +58,6 @@ export default function FilterMenu(props){
 			</div>
 			
 			{Object.keys(values).map((v, i) => {
-				
 				count++
 				
 				//Limit the number of checkboxes that are rendered to 200

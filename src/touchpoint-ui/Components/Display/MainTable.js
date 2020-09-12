@@ -135,9 +135,6 @@ export default function MainTable(props){
 		data.set(newData)
 	}
 	
-	//Apply sort and filter when the data is refreshed
-	useEffect(data.sort, [props.data.lastResolved])
-	
 	//Select and return:
 	//cleanProps - if a dataset is passed to the table, then no need to create one
 	//newProps - if a dataset is not passed to the table, then create one and pass it
