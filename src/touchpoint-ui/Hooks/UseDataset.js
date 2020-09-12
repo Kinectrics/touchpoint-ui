@@ -1,6 +1,4 @@
 import {useState, useEffect} from 'react'
-import useModuleData from '../Hooks/UseModuleData'
-
 
 //Initialises a Dataset and caches the value
 export default function useDataset(fetchFunction, options = {}) {
@@ -66,7 +64,7 @@ export default function useDataset(fetchFunction, options = {}) {
 	
 	//Return a Dataset object
 	return ({
-		read: () => { return data },
+		read: () => {return data},
 		refresh: refreshData,
 		
 		selectRecord: (newKey) => selectRecord(newKey),

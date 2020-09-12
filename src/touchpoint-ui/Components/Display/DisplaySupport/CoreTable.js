@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
 import './CoreTable.css'
 import MainTableRow from './MainTableRow'
-import lockedContext from '../../../Contexts/LockedContext'
 import TheadButton from './TheadButton' 
 import TableControls from './TableControls'
 import useSettings from '../../../Hooks/UseSettings'
@@ -11,11 +10,8 @@ import { useRef } from 'react'
 export default function MainTable(props){
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
-	const noSort = props.noSort 
-	const noFilter = props.noFilter 
+	const {noSort, noFilter, searchable, noActive, locked} = props
 	const noOptions = props.noOptions || !props.settingsID
-	const searchable = props.searchable
-	const noActive = props.noActive
 	
 	//expanded rows (if applicable)
 	const hasNestedClass = props.nestedComponent ? ' hasNested ' : null
@@ -23,10 +19,6 @@ export default function MainTable(props){
 	//support for dataSets or for just arrays
 	const data = props.data.read()
 	const metaData = props.metaData
-	
-	//deccides if the component is locked based on props and parents in the tree
-	const lockedFromAbove = useContext(lockedContext)
-	let locked = props.locked || (lockedFromAbove && props.locked === undefined) || !props.data.isDataset 
 	
 	//Settings token support 
 	const [sortTrigger, setSortTrigger] = useState(false)

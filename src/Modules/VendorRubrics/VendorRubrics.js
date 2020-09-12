@@ -31,10 +31,10 @@ export default function VendorRubrics(){
 		{headerID:'id',displayName:'ID', width: 100, required: true},
 		{headerID: 'vendor', displayName:'My Vendor', width: 300},
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number'},
-		{headerID: 'projectName', displayName:'Project Name', width: 220,},
+		{headerID: 'projectName', displayName:'Project Name', width: 220, onEdit: ()=>{return Math.random() > 0.3}},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
-		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return true}},
+		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return Math.random() > 0.5}},
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	

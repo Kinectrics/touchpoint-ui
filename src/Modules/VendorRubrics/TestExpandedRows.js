@@ -14,13 +14,19 @@ export default function TestExpandedRows(props) {
 			<br/>
 			{props.dataRow.vendor}
 			
-			<TextBox value={text} onChange = {(e=>setText(e.target.value))}/>
+			<TextBox value={text} onChange={(e => setText(e.target.value))} onEnter={() => {
+
+				const newRow = { ...props.dataRow }
+				newRow.projectName = text
+				props.setRow(newRow)
+
+			}}/>
 			
 			<FreeButton onClick = {()=>{
 				
 				const newRow = {...props.dataRow}
-				newRow.vendor = text
-				props.setDataRow(newRow)
+				newRow.projectName = text
+				props.setRow(newRow)
 				
 			}}>Test</FreeButton>
 			

@@ -1,26 +1,32 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import CoreTable from './DisplaySupport/CoreTable'
 import useDataset from '../../Hooks/UseDataset'
 import useModuleData from '../../Hooks/UseModuleData'
 import PropTypes from 'prop-types'
 import useHeaders from '../../Hooks/UseHeaders'
+import lockedContext from '../../Contexts/LockedContext'
 
 export default function MainTable(props){
 	
 	//Converts static data to a dataset
-	const wrapperDataset = useDataset(props.data.isDataset ? () => [] : () => props.data)
+	const wrapperDataset = useDataset(props.data.isDataset ? () => [] : () => props.data, {primaryKey: props.primaryKey})
 	const data = props.data.isDataset ? {...props.data} : wrapperDataset
+	
+	//deccides if the component is locked based on props and parents in the tree
+	const lockedFromAbove = useContext(lockedContext)
+	const locked = props.locked || (lockedFromAbove && props.locked === undefined) || !props.data.isDataset 
+	
+	const headers = useHeaders(props.headers)
 	
 	const newProps = {...props}
 	newProps.data = data
 	newProps.nestedComponent = null
 	newProps.noActive = true
+	newProps.headers = headers
 	
-	const headers = useHeaders(props.headers)
 	const cleanProps = {...props}
 	cleanProps.data = data
 	cleanProps.headers = headers
-	newProps.headers = headers
 	
 	useEffect(()=>{
 		if (!props.data.isDataset){
@@ -29,7 +35,7 @@ export default function MainTable(props){
 	},[props.data])
 	
 	//Sort, search, and filter functionality
-	const [metaData, setMetaData] = useState([{ visible: true, filteredBy: '' }])
+	const [metaData, setMetaData] = useState([{visible: true, filteredBy: ''}])
 	
 	//SEARCH
 	const searchText = useModuleData().get('TouchPointSearchText')
@@ -139,9 +145,9 @@ export default function MainTable(props){
 	//cleanProps - if a dataset is passed to the table, then no need to create one
 	//newProps - if a dataset is not passed to the table, then create one and pass it
 	if(props.data.isDataset){
-		return (<CoreTable {...cleanProps} metaData = {metaData}/>)
+		return (<CoreTable {...cleanProps} metaData = {metaData} locked={locked}/>)
 	} else{
-		return (<CoreTable {...newProps} metaData={metaData}/>)
+		return (<CoreTable {...newProps} metaData={metaData} locked={locked}/>)
 	}
 }
 
