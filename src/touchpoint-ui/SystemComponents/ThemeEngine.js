@@ -66,7 +66,7 @@ export default class ThemeEngine{
 				freeButtonTextColor: 'white',
 				
 				/* Inputs */
-				inputColor: 'rgb(238, 238, 238)',
+				inputColor: 'rgb(245, 245, 245)',
 				inputInvalidColor: 'rgb(236, 171, 171)',
 				inputValidColor: 'rgb(153, 238, 153)',
 			},

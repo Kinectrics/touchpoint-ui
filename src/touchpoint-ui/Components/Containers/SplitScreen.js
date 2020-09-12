@@ -14,7 +14,7 @@ export default function SplitScreen(props) {
 				direction="vertical" 
 				sizes={[100 - splitSize, splitSize]}
 				minSize={100}
-				gutterSize={8}
+				gutterSize={4}
 				snapOffset={1}
 				dragInterval={20}
 			>

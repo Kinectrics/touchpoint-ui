@@ -1,17 +1,26 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import CoreTable from './DisplaySupport/CoreTable'
 import useDataset from '../../Hooks/UseDataset'
-import { useEffect } from 'react'
+import useModuleData from '../../Hooks/UseModuleData'
 import PropTypes from 'prop-types'
+import useHeaders from '../../Hooks/UseHeaders'
 
 export default function MainTable(props){
 	
-	//Converts static data to an array
+	//Converts static data to a dataset
+	const wrapperDataset = useDataset(props.data.isDataset ? () => [] : () => props.data)
+	const data = props.data.isDataset ? {...props.data} : wrapperDataset
+	
 	const newProps = {...props}
-	newProps.data = useDataset(props.data.isDataset ? ()=>[] : ()=>props.data )
+	newProps.data = data
 	newProps.nestedComponent = null
 	newProps.noActive = true
 	
+	const headers = useHeaders(props.headers)
+	const cleanProps = {...props}
+	cleanProps.data = data
+	cleanProps.headers = headers
+	newProps.headers = headers
 	
 	useEffect(()=>{
 		if (!props.data.isDataset){
@@ -19,11 +28,123 @@ export default function MainTable(props){
 		}
 	},[props.data])
 	
+	//Sort, search, and filter functionality
+	const [metaData, setMetaData] = useState([{ visible: true, filteredBy: '' }])
 	
+	//SEARCH
+	const searchText = useModuleData().get('TouchPointSearchText')
+	
+	function searchData() {
+		if(props.searchable){
+			const values = data.read()
+			const newMetaData = []
+
+			values.forEach((r, idx) => {
+
+				const rowMeta = metaData[idx] ? metaData[idx] : {}
+				rowMeta.searchHidden = false
+
+				if (searchText) {
+
+					const testVal = JSON.stringify(r).toLowerCase()
+					rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase())
+
+				}
+
+				newMetaData.push(rowMeta)
+			})
+
+			setMetaData(newMetaData)
+		}
+	}
+	
+	useEffect(searchData, [searchText])
+	
+	//FILTER
+	function filterData(values) {
+		const newMetaData = []
+
+		values.forEach((r, idx) => {
+
+			const rowMeta = metaData[idx] ? metaData[idx] : {}
+			rowMeta.filteredBy = ''
+
+			let noRender = false
+
+			headers.get().forEach((h) => {
+				const fltr = h.filter(r[h.headerID], r)
+
+				if (!fltr && fltr != 'arrayFilter' && h.visible) {
+					noRender = true
+					rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';'
+				}
+			})
+
+			rowMeta.visible = !noRender
+			newMetaData.push(rowMeta)
+		})
+		
+		return newMetaData
+	}
+	
+	data.filter = () => {
+		const newMeta = filterData(data.read())
+		setMetaData(newMeta)
+		headers.embedData(data.read(), newMeta)
+	}
+	
+	//SORT
+	function sortData(values) {
+		let newValues = [...values]
+
+		headers.getSortRules().forEach((sr) => {
+
+			if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
+				newValues = newValues.sort((aRow, bRow) => {
+
+					if (sr.direction === 'asc') {
+						if (aRow[sr.headerID] > bRow[sr.headerID]) {
+							return 1
+						} else if (aRow[sr.headerID] < bRow[sr.headerID]) {
+							return -1
+						}
+
+						return 0
+
+					} else {
+						if (aRow[sr.headerID] < bRow[sr.headerID]) {
+							return 1
+						} else if (aRow[sr.headerID] > bRow[sr.headerID]) {
+							return -1
+						}
+						return 0
+					}
+				})
+			}
+
+		})
+		
+		return newValues
+	}
+	
+	data.sort = () => {
+		const newData = props.noSort ? data.read() : sortData(data.read()) 
+		const newMeta = props.noFilter ? newData : filterData(newData)
+		
+		setMetaData(newMeta)
+		data.set(newData)
+	}
+	
+	//Apply sort and filter when the data is refreshed
+	useEffect(data.sort, [props.data.lastResolved])
+	
+	//Select and return:
+	//cleanProps - if a dataset is passed to the table, then no need to create one
+	//newProps - if a dataset is not passed to the table, then create one and pass it
 	if(props.data.isDataset){
-		return (<CoreTable {...props}/>)
+		return (<CoreTable {...cleanProps} metaData = {metaData}/>)
 	} else{
-		return (<CoreTable {...newProps} />)
+		return (<CoreTable {...newProps} metaData={metaData}/>)
 	}
 }
 

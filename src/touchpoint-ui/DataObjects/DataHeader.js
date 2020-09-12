@@ -59,13 +59,11 @@ export default class DataHeader{
 		this.uniqueValues = uniqueByColumn(data, metaData, this.headerID, this.uniqueValues)
 	}
 	
-	
 	selectAll(setVal){
 		Object.keys(this.uniqueValues).map((uv)=>{
 			this.uniqueValues[uv] = setVal
 		})
 	}
-	
 	
 	//checks if there are any active filters, including the array filter
 	hasFilter(){
@@ -100,7 +98,7 @@ function uniqueByColumn(data, metaData, columnID, oldValues) {
 	
 	data.forEach((r, idx) => {
 		
-		if (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';'){
+		if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';')){
 			//New vales added as true, old values keep their value
 			if (oldValues[r[columnID]] === undefined){
 				res[r[columnID]] = true

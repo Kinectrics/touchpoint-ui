@@ -134,6 +134,7 @@ export default function MainTableRow(props) {
 				}}>
 					<props.nestedComponent
 						{...props.nestedProps}
+						row = {props.dataRow}
 						dataRow = {props.dataRow}
 						setRow = {setRow}
 					/>

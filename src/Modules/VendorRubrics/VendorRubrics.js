@@ -34,7 +34,7 @@ export default function VendorRubrics(){
 		{headerID: 'projectName', displayName:'Project Name', width: 220,},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
-		{headerID: 'SM', displayName:'SM', width: 200, icon: ()=>{return<FontAwesomeIcon icon={faTimesCircle}/>}},
+		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return true}, locked: true},
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	
@@ -102,10 +102,7 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						<StatusLog
-							dataRow={data.getActiveRecord()}
-							statusStyle={statusStyle}
-						/>
+						<StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/>
 					</InfoTab>								
 							
 				</InfoTabContainer>

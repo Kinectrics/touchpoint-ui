@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import CustomToolbar from './CustomToolbar'
-import {AppFooter} from './touchpoint-ui'
-import {TouchPointApp, AppDrawer} from './touchpoint-ui'
+import {TouchPointApp, AppFooter} from './touchpoint-ui'
 import DrawerContent from './DrawerContent'
 
 //The modules in the moduleList and their icons
@@ -12,7 +11,6 @@ import ETDB from './Modules/ETDB/ETDB'
 
 //This list of modules available to the app...
 const moduleList = {
-	
 	LockScreen: {
 		name: 'Home',
 		component: LockScreen,
@@ -32,7 +30,6 @@ const moduleList = {
 		locked: false,
 		hidden: false,
 	},
-	
 }
 
 export default function App() {
