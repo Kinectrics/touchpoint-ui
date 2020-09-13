@@ -10,6 +10,7 @@ export default function ETDB() {
 	return (
 		<Module moduleName = 'ETDB'>
 			
+			
 			<Dock locked = {false}>
 				
 				<DockIcon faIcon={faBars} style={{marginBottom: '50px'}} onClick={()=>{
@@ -24,6 +25,7 @@ export default function ETDB() {
 			</Dock>
 			
 			<TextBox />
+			<ControlBar searchBar locked={false}></ControlBar>
 			
 		</Module>
 	)

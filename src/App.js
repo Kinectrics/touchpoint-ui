@@ -72,7 +72,7 @@ export default function App() {
 			getSettings = {getSettings}
 		>
 			
-			<CustomToolbar />
+			{/* <CustomToolbar /> */}
 			
 			<AppFooter>
 				<span className="leftSide">

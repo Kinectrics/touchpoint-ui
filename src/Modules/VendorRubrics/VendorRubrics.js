@@ -46,6 +46,7 @@ export default function VendorRubrics(){
 	
 	return (
 		<Module moduleName = "VendorRubrics" >
+			
 			<ControlBar searchBar locked={false}>
 				
 				<button onClick={()=>{

@@ -1,8 +1,7 @@
 .ControlBar{
 	width:100%;
 	background-color: var(--navColor);	
-	padding: 10px;
-	padding-top: 5px;
+	padding: 5px 10px;
 	color: var(--navTextColor);
 	height: var(--controlBarHeight);
 	box-sizing: border-box;
@@ -20,9 +19,12 @@
 
 .ControlBar .searchContainer{
 	position: absolute;
-	right: 10px;
+	right: 5px;
 	box-sizing: border-box;
 	width: max(20%, 250px);
+	height: 100%;
+	display: flex;
+	align-items: center;
 }
 
 .ControlBar .SearchBar{
