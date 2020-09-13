@@ -36,6 +36,7 @@
 	outline: none !important;
 	border: none;
 	border-radius: 15px;
+	height: 100%;
 	
 	color: var(--navTextColor);
 	background-color: var(--navColor);
