@@ -1,11 +1,10 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import './CoreTable.css'
 import MainTableRow from './MainTableRow'
 import TheadButton from './TheadButton' 
 import TableControls from './TableControls'
 import useSettings from '../../../Hooks/UseSettings'
 import PageControls from './PageContols'
-import { useRef } from 'react'
 
 export default function CoreTable(props){
 	
@@ -96,21 +95,13 @@ export default function CoreTable(props){
 	//Positioning for nested components
 	const [expandTrigger, setExpandTrigger] = useState(false)
 	const [collapseTrigger, setCollapseTrigger] = useState(false)
-	const [scrollPos, setScrollPos] = useState(0)
 	const tableRef = useRef()
-
-	function scrollHandler(e){
-		if(e.target.scrollLeft !== scrollPos){
-			setScrollPos(e.target.scrollLeft)
-		}
-	}
 
 	//Render
 	return (
 		<div 
 			className={'MainTable ' + hasActiveClass + hasNestedClass} 
 			ref = {tableRef} 
-			onScroll={hasNestedClass ? scrollHandler : undefined}
 			style={props.style}
 		>
 
@@ -207,7 +198,6 @@ export default function CoreTable(props){
 									collapseTrigger = {collapseTrigger}
 									noActive = {noActive}
 									tableRef = {tableRef}
-									scrollPos = {scrollPos}
 								/> : null
 							
 							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
