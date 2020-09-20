@@ -1,5 +1,5 @@
 import React from 'react'
-import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, ControlButton, MainTable} from '../../touchpoint-ui'
+import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, MainTable} from '../../touchpoint-ui'
 import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle} from "@fortawesome/free-solid-svg-icons"

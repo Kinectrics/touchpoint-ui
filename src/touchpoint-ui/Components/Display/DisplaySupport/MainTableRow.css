@@ -125,3 +125,14 @@
 	position: sticky;
 	top: 0;
 }
+
+/* Nested Tables */
+.MainTableRow .componentWrapper .topBar,
+.MainTableRow .componentWrapper .theadBar,
+.MainTableRow .componentWrapper .tableControls{
+	background-color: transparent;
+}
+
+.MainTableRow .componentWrapper .MainTable{
+	background-color: transparent;
+}
