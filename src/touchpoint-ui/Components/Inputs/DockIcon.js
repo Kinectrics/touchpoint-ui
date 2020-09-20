@@ -34,6 +34,7 @@ export default function DockIcon(props) {
 			onOpen={props.onClick}
 			menuContent={props.menuContent}
 			direction='left'
+			menuStyle={props.menuStyle}
 		>
 			{notificationBadge}
 			<div className='pic' style={iconStyle}>{icon}{props.children}</div>
@@ -65,5 +66,6 @@ DockIcon.propTypes = {
 	notifications: PropTypes.number,
 	onClick: PropTypes.func,
 	menuContent: PropTypes.any,
+	menuStyle: PropTypes.object,
 }
 
