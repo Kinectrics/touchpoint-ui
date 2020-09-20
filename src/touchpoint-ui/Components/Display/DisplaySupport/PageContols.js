@@ -7,6 +7,9 @@ export default function PageContols(props) {
 	const showPageBack = props.activePage > 0
 	const showPageForward = ((props.activePage + 1) * props.pageSize) < props.dataLength
 	
+	if(!props.pageSize){
+		return null
+	}
 	
 	function pageBack() {
 		if (showPageBack) {

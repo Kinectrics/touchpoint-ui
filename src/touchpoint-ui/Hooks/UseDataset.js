@@ -12,13 +12,6 @@ export default function useDataset(fetchFunction, options = {}) {
 	
 	//Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
 	function selectRecord(newPrimaryKey, fromData = data){
-		if (!options.primaryKey){
-			if (process.env.NODE_ENV === 'development'){
-				console.error('A primary key is required to select a record. Please set a promary key in the dataset options.')
-			}
-			return
-		}
-		
 		const newIndex = fromData.findIndex(r => r[options.primaryKey] == newPrimaryKey)
 		
 		if(newIndex > -1){

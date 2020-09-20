@@ -27,13 +27,6 @@ export default function MainTable(props){
 	const cleanProps = {...props}
 	cleanProps.data = data
 	cleanProps.headers = headers
-	if(!props.data.primaryKey){
-		if (process.env.NODE_ENV === 'development') {
-			console.error('A primary key is required to select a record. Please set a promary key in the dataset options.')
-		}
-		cleanProps.nestedComponent = null
-		cleanProps.noActive = true
-	}
 	
 	useEffect(()=>{
 		if (!props.data.isDataset){

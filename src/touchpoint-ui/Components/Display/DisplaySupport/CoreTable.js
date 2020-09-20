@@ -170,7 +170,7 @@ export default function CoreTable(props){
 				<div className = {'tableBody ' + props.data.lastResolved}>
 					{data.map((dr, idx) => {
 						//render the allowed numebr of rows, on th selected page
-						if((rowCount > activePage * props.pageSize) && (rowCount <= (1 + activePage)*props.pageSize)){
+						if(!props.pageSize || ((rowCount > activePage * props.pageSize) && (rowCount <= (1 + activePage)*props.pageSize))){
 							
 							let renderRow = dr !== []
 							
@@ -211,9 +211,4 @@ export default function CoreTable(props){
 			</div>
 		</div>
 	)
-}
-
-CoreTable.defaultProps = {
-	pageSize: 100,
-	
 }
