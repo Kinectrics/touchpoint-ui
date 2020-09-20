@@ -145,9 +145,8 @@ export default function MainTableRow(props) {
 			{expanded && props.nestedComponent ? <div 
 				className = 'componentWrapper'
 			>
-				<div className="keepInView" style={{
-					width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 35px)' : null,
-					left: props.scrollPos
+				<div style={{
+					width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 48px)' : null,
 				}}>
 					<props.nestedComponent
 						{...props.nestedProps}

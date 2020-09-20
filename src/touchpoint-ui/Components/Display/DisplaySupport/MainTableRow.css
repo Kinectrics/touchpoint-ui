@@ -129,12 +129,6 @@
 	filter: brightness(50%) !important;
 }
 
-.MainTableRow .keepInView{
-	transition: none !important;
-	position: sticky;
-	top: 0;
-}
-
 /* Nested Tables */
 .MainTableRow .componentWrapper .topBar,
 .MainTableRow .componentWrapper .theadBar,
