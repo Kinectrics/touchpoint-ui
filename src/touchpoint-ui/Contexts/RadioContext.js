@@ -2,5 +2,5 @@
 import { createContext } from 'react'
 
 //Used by RadioGroup to connect all the radio buttons below
-const radioContext = createContext('')
+const radioContext = createContext({})
 export default radioContext 

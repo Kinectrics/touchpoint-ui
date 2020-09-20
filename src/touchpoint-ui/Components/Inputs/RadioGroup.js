@@ -10,7 +10,7 @@ export default function RadioGroup(props) {
 	//decides if the component is locked based on props and parents in the tree
 	const lockedFromAbove = useContext(lockedContext)
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
-	const [groupName] = useState(uuid())
+	const [groupName] = useState(uuid)
 	
 	function onChange(value){
 		if(props.onChange){

@@ -63,6 +63,10 @@ export default function MenuButton(props){
 		direction = 'right'
 	}
 
+	const notifications = props.notifications < 99 ? props.notifications : '99+'
+	const notificationBadge = props.notifications && !locked ?
+		<span className='notifications' style={props.notificationStyle}>{notifications}</span>
+		: null
 	
 	//button
 	const dropButton = React.forwardRef(({onClick}, ref)=> { 
@@ -79,6 +83,7 @@ export default function MenuButton(props){
 				ref={ref}
 				style={props.style}
 			>
+				{notificationBadge}
 				{props.children}
 				{icon}
 				
@@ -93,6 +98,7 @@ export default function MenuButton(props){
 		}
 	}
 	
+	if(props.hidden){return null}
 	
 	//If locked return a button that does nothing, otherwise create a real dropdown button
 	if(locked){
@@ -107,7 +113,9 @@ export default function MenuButton(props){
 
 		</button>)
 		
-	} else return(
+	}
+	
+	return(
 		
 		<span className = 'menuButtonContainer'>
 			<Dropdown drop={direction} onToggle = {toggleHandler}>
@@ -138,4 +146,5 @@ MenuButton.propTypes = {
 	onClose: PropTypes.func,
 	menuStyle: PropTypes.object,
 	style: PropTypes.object,
+	notificationStyle: PropTypes.object,
 }

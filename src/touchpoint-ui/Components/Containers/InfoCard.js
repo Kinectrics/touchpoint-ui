@@ -6,22 +6,16 @@ import CloseButton from '../Inputs/CloseButton'
 
 export default function InfoCard(props) {
 	
-	//locking the item. If a component somewhere above in the tree is locked, the context will 
-	//cause this card to be locked as well
 	const lockedFromAbove = useContext(lockedContext)
 	const locked = props.locked || (lockedFromAbove && props.locked ===undefined)
 	
 	//Assign classes based on props 
-	let stripe = '' //Adds a stripe down the left side
+	let stripe = ''
 	const hasStripe = props.stripe || props.stripeColor
 	if(hasStripe && !props.titleBar){stripe = 'stripe'}
 	
-	//Adds hover and click effects in the x, y or xy directions
-	let dynamic = '' //dynamic effects are ignored if locked
-	if(!locked){
-		if (props.dynamicX){dynamic = 'dynamicX '}
-		if (props.dynamicY){dynamic = dynamic + ' dynamicY '}
-	} 
+	//Adds hover and click effects
+	const dynamic = !locked && props.onClick ? 'dynamicX' : ''
 	
 	//handles the onClick event. Only fires if the component is not locked
 	function clickHandler(e){

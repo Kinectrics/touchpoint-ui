@@ -5,7 +5,7 @@ import useSystem from './UseSystem'
 //can resize to fit around them
 export default function usePresence(componentName, height, width) {
 	
-	const {layout} = useSystem()
+	const {Layout} = useSystem()
 	
 	function refreshCSS(layoutSettings){
 		
@@ -34,20 +34,20 @@ export default function usePresence(componentName, height, width) {
 	
 	useEffect(() => {
 		
-		const newLayout = {...layout.get()}
+		const newLayout = {...Layout.get()}
 		newLayout.widths[componentName] = width
 		newLayout.heights[componentName] = height
 
 		refreshCSS(newLayout)
-		layout.set(newLayout)
+		Layout.set(newLayout)
 		
 		return ()=>{
-			const newLayout = { ...layout.get() }
+			const newLayout = { ...Layout.get() }
 			newLayout.widths[componentName] = 0
 			newLayout.heights[componentName] = 0
 
 			refreshCSS(newLayout)
-			layout.set(newLayout)
+			Layout.set(newLayout)
 		}
 		
 	},[])

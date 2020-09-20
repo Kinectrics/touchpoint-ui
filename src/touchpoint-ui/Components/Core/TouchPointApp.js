@@ -143,7 +143,7 @@ export default function TouchPointApp(props){
 		},
 		
 		//Internal variables for structuring the app
-		layout: {get: ()=>layout, set: setLayout},
+		Layout: {get: ()=>layout, set: setLayout},
 		
 		Settings: {
 			save: saveSettings,

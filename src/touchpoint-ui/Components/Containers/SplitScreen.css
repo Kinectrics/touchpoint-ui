@@ -1,5 +1,5 @@
 .SplitScreen{
-	height: calc(100% - var(--controlBarHeight));
+	height: 100%;
 	display: flex;
 	width: 100%;
 	background-color: transparent;
@@ -9,8 +9,17 @@
 	bottom: 0;
 }
 
+.Module > .SplitScreen{
+	height: calc(100% - var(--controlBarHeight));
+}
+
 .SplitScreen>div{
 	width: 100%;
+}
+
+.SplitScreen>div>div{
+	height: 100%;
+	overflow-y:auto;
 }
 
 .SplitScreen .gutter{

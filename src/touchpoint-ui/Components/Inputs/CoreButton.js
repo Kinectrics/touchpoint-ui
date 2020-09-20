@@ -26,6 +26,7 @@ export default function CoreButton(props) {
 			onClick ={clickHandler}
 			style = {props.style}
 			onBlur = {props.onBlur}
+			type={props.type}
 		>
 			{props.children}
 		</button>
@@ -41,4 +42,5 @@ CoreButton.propTypes = {
 	className: PropTypes.string,
 	style: PropTypes.object,
 	onBlur: PropTypes.func,
+	type: PropTypes.string,
 }

@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import './Tile.css'
-import {useState} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import PropTypes from 'prop-types'
 
@@ -10,18 +9,21 @@ export default function Tile(props) {
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	function clickHandler(){
-		if(!locked && props.splashScreen && props.onClick){
-			setTimeout( () => {props.onClick()}, 550)
-			
-		} else if(!locked && props.onClick){
+		if(!locked && props.onClick){
 			props.onClick()
 		}
 	}
 	
+	const notifications = props.notifications < 99 ? props.notifications : '99+'
+	
+	const notificationBadge = props.notifications && !locked ?
+	<span className='notifications'>{notifications}</span>
+	: null
+	
 	return (
 		<div style={props.style} className={'Tile' + (locked ? ' locked ' : '')}>
 			<div style = {props.innserStyle} className={'TileContainer '} onClick = {clickHandler}> 
-			
+				{notificationBadge}
 				<div className='logo flexCenter'>
 					{props.children}
 				</div> 

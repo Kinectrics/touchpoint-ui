@@ -7,7 +7,11 @@ import {v4 as uuid} from 'uuid'
 export default function RadioButton(props) {
 	
 	const radioData = useContext(radioContext)
-	const [id] = useState(uuid())
+	const [id] = useState(uuid)
+	
+	if(!radioData.onChange){
+		console.error('Radio Buttons need to be inside a RadioGroup component.')
+	}
 	
 	let lockedClass = ''
 	if (radioData.locked) { lockedClass = 'locked ' }

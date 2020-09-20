@@ -96,9 +96,8 @@ export default function MainTable(props){
 	//Positioning for nested components
 	const [expandTrigger, setExpandTrigger] = useState(false)
 	const [collapseTrigger, setCollapseTrigger] = useState(false)
-	const tableRef = useRef()
 	const [scrollPos, setScrollPos] = useState(0)
-
+	const tableRef = useRef()
 
 	function scrollHandler(e){
 		if(e.target.scrollLeft !== scrollPos){
@@ -146,7 +145,7 @@ export default function MainTable(props){
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
 			}}>
 				{props.headers.get().map((hdr, i) => {
-					if (hdr.visible) {
+					if (hdr.visible || hdr.required) {
 						return (
 							<span style={{ width: hdr.width + 'px' }} key={'header' + i}>
 

@@ -38,8 +38,8 @@ export default function PopupCard(props) {
 				stripe
 				title = {props.title}
 				onClose ={handleCloseButton}
-				style = {{...props.style}}
-				innerStyle = {{borderColor: props.stripeColor}}
+				style = {{height: 'auto', ...props.style}}
+				innerStyle = {{borderColor: props.stripeColor, ...props.innerStyle}}
 				stripeColor = {props.stripeColor}
 			>
 				{props.children}
@@ -59,4 +59,5 @@ PopupCard.propTypes = {
 	height: PropTypes.string,
 	locked: PropTypes.bool,
 	style: PropTypes.object,
+	innerStyle: PropTypes.object,
 }

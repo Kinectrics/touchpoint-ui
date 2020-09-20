@@ -7,6 +7,7 @@ export {default as AppDrawer} from "./Components/Core/AppDrawer"
 //Inputs
 export {default as CoreButton} from "./Components/Inputs/CoreButton"
 export {default as FreeButton} from "./Components/Inputs/FreeButton"
+export {default as ConfirmButton} from "./Components/Inputs/ConfirmButton"
 export {default as Tile} from "./Components/Inputs/Tile"
 export {default as TextBox} from "./Components/Inputs/TextBox"
 export {default as SearchBar} from "./Components/Inputs/SearchBar"

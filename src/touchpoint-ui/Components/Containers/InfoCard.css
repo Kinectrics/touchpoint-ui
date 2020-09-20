@@ -1,7 +1,7 @@
 .InfoCard{
 	padding: 10px 20px;
 	margin: 0;
-	transition: all 0.25s;
+	transition: padding 0.25s;
 	
 }
 
@@ -9,7 +9,6 @@
 	box-shadow: none;
 	border: 1px solid var(--lockedTextColor);
 }
-
 
 .InfoCard .CloseButton{
 	position: absolute;
@@ -23,27 +22,14 @@
 	cursor: pointer;
 }
 
-.InfoCard.dynamicX:hover .cardContainer,
-.InfoCard.dynamicY:hover .cardContainer{
+.InfoCard.dynamicX:hover .cardContainer{
 	box-shadow: var(--dynamicCardShadow);
-}
-
-.InfoCard.dynamicY:hover{
-	padding-top: 13px;
-	padding-bottom: 13px;
-	cursor: pointer;
 }
 
 .InfoCard.dynamicX:active{
 	padding-left: 21px;
 	padding-right: 21px;
-	transition: all 0.05s;
-}
-
-.InfoCard.dynamicY:active{
-	padding-top: 21px;
-	padding-bottom: 21px;
-	transition: all 0.05s;
+	transition: padding 0.05s;
 }
 
 .InfoCard .cardContainer{
@@ -82,7 +68,8 @@
 .InfoCard h1{
 	font-size: 15pt;
 	font-weight: bold;
-	color: var(--labelColor)
+	color: var(--labelColor);
+	margin-top: 0;
 }
 
 .InfoCard h2{

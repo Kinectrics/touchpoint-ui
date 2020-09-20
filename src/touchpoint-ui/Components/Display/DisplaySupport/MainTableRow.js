@@ -24,7 +24,7 @@ export default function MainTableRow(props) {
 	}
 	
 	const rowContent = props.dataHeaders.map((hdr, i) => {
-		if(hdr.visible){
+		if(hdr.visible || hdr.required){
 			
 			function cellClickHandler(){
 				if(hdr.onClick && !hdr.locked && !props.locked){

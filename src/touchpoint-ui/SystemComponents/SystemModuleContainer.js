@@ -6,8 +6,8 @@ export default function SystemModuleContainer(props){
 	
 	//Adjusts the module container to fit between the system toolbars
 	const styleSettings = {
-		height: props.system.layout.get().heightCSS,
-		width: props.system.layout.get().widthCSS,
+		height: props.system.Layout.get().heightCSS,
+		width: props.system.Layout.get().widthCSS,
 		right: '0'
 	}
 

@@ -19,6 +19,7 @@ export default function FreeButton(props) {
 			hidden={props.hidden}
 			className = {"FreeButton " + purpose + ' ' + wideClass + ' ' + props.className}
 			style = {props.style}
+			type={props.type}
 		>
 			{props.children}
 		</CoreButton>
@@ -33,4 +34,5 @@ FreeButton.propTypes = {
 	purpose: PropTypes.string,
 	wide: PropTypes.bool,
 	style: PropTypes.object,
+	type: PropTypes.string,
 }
