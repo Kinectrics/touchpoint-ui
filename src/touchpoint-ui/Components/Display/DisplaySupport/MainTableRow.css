@@ -16,8 +16,12 @@
 	position: relative;
 }
 
-.MainTable.hasActive .MainTableRow.active .topRow{
+.MainTable.hasActive .MainTableRow .topRow.active{
 	color: var(--tableActiveColor);
+}
+
+.MainTable:not(.hasActive) .MainTableRow{
+	color: var(--mainTextColor);
 }
 
 .MainTable.hasActive .MainTableRow{
@@ -30,7 +34,13 @@
 }
 
 
-.MainTableRow span{
+.MainTable:not(.hasActive) .MainTableRow{
+	filter: none !important;
+	cursor: default;
+}
+
+
+.MainTableRow span.tableCell{
 	transition: inherit;
 	overflow: hidden;
 }
@@ -95,7 +105,6 @@
 }
 
 .MainTableRow .componentWrapper{
-	padding: 7px 0;
 	cursor: default;
 	position: relative;
 }
@@ -135,4 +144,28 @@
 
 .MainTableRow .componentWrapper .MainTable{
 	background-color: transparent;
+	width: 99%;
+}
+
+.MainTableRow .componentWrapper .MainTableRow{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.MainTableRow .componentWrapper .topRow{
+	border: none;
+	height: 30px;
+}
+
+.MainTableRow .componentWrapper .topBar{
+	display: none;
+}
+
+.MainTableRow .componentWrapper .theadBar{
+	top:0;
+	height: 20px;
+}
+
+.MainTableRow .componentWrapper .mainSection{
+	padding-top: 5px;
 }

@@ -6,7 +6,10 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 export default function MainTableRow(props) {
 	
-	const activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey]
+	const activeClass = 
+	props.dataset.getActiveRecord 
+	&& props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey]
+	&& !props.noActive
 	? ' active '
 	: ''
 	
@@ -38,7 +41,7 @@ export default function MainTableRow(props) {
 			
 			//Decide if the cell is editable or not based on the locked status, and the header onEdit function
 			let cellContent
-			let cellClass = hdr.onClick && !props.locked ? ' clickable plain ' : ' plain '
+			let cellClass = hdr.onClick && !props.locked ? ' clickable plain tableCell ' : ' plain tableCell'
 			const cellText = hdr.format(props.dataRow[hdr.headerID])
 			
 			if(!props.locked && hdr.onEdit && !hdr.locked){
@@ -63,7 +66,7 @@ export default function MainTableRow(props) {
 				return (<span
 					key={hdr.headerID + props.rowKey}
 					style={{ width: hdr.width + 'px' }}
-					className={'componentCell'}
+					className={'tableCell componentCell'}
 				>
 					<hdr.component
 						row={props.dataRow}
@@ -131,10 +134,10 @@ export default function MainTableRow(props) {
 	
 	return(
 		<div
-			className={'MainTableRow ' + activeClass + expandedClass} 
+			className={'MainTableRow ' + expandedClass} 
 			onClick = {rowClickHandler}
 		>
-			<div className={'topRow'}>
+			<div className={'topRow' + activeClass}>
 				{expandIcon}
 				{rowContent}
 			</div>
@@ -151,6 +154,7 @@ export default function MainTableRow(props) {
 						row = {props.dataRow}
 						dataRow = {props.dataRow}
 						setRow = {setRow}
+						rowIndex={props.rowIndex}
 					/>
 				</div>
 				

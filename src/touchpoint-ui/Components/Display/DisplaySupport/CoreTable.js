@@ -7,7 +7,7 @@ import useSettings from '../../../Hooks/UseSettings'
 import PageControls from './PageContols'
 import { useRef } from 'react'
 
-export default function MainTable(props){
+export default function CoreTable(props){
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
 	const {noSort, noFilter, searchable, noActive, locked} = props
@@ -111,6 +111,7 @@ export default function MainTable(props){
 			className={'MainTable ' + hasActiveClass + hasNestedClass} 
 			ref = {tableRef} 
 			onScroll={hasNestedClass ? scrollHandler : undefined}
+			style={props.style}
 		>
 
 			<div className="topBar">
@@ -141,7 +142,6 @@ export default function MainTable(props){
 
 
 			<div className="theadBar" style={{
-				top: 'var(--topBarHeight)',
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
 			}}>
 				{props.headers.get().map((hdr, i) => {
@@ -223,7 +223,7 @@ export default function MainTable(props){
 	)
 }
 
-MainTable.defaultProps = {
+CoreTable.defaultProps = {
 	pageSize: 100,
 	
 }

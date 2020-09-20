@@ -4,7 +4,7 @@
 	height: 100%;
 	overflow-x: auto;
 	overflow-y: auto;
-	--topBarHeight: 35px;
+	--topBarHeight: 29px;
 	color: var(--mainTextColor);
 	background-color: var(--bodyAltBG);
 }
@@ -15,7 +15,7 @@
 
 .MainTable .topBar{
 	padding: 7px 0px;
-	padding-top: 3px;
+	padding-top: 0px;
 	padding-left: 30px;
 	background-color: var(--bodyAltBG);
 	position: sticky;
@@ -32,6 +32,7 @@
 }
 
 .MainTable .theadBar{
+	top: var(--topBarHeight);
 	overflow-y: visible;
 	background-color: var(--bodyAltBG);
 	padding-left: 25px;
@@ -42,7 +43,7 @@
 }
 
 .MainTable.hasNested .theadBar>span:first-child{
-	padding-left: 30px;
+	padding-left: 10px;
 }
 
 .MainTable .TheadButton{
@@ -87,7 +88,6 @@
 .MainTable .tableControls{
 	color: var(--lockedTextColor);
 	font-size: 12pt;
-	padding-top: 3px;
 	background-color: var(--bodyAltBG);
 }
 
@@ -99,7 +99,7 @@
 	color: var(--lockedTextColor);
 	position: absolute;
 	right: 0;
-	top: 3px;
+	top: -2px;
 	background-color: var(--bodyAltBG);
 }
 

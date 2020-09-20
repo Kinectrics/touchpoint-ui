@@ -14,9 +14,9 @@ export default function TestExpandedRows(props) {
 	}
 	
 	const dataHeaders = [
-		{ headerID: 'date', displayName: 'Date', width: 200, type: 'date' },
-		{ headerID: 'status', displayName: 'Status', width: 300, styling: statusStyle, required: true },
-		{ headerID: 'notes', displayName: 'Notes', width: 600, required: true },
+		{ headerID: 'date', displayName: 'Date', width: 100, type: 'date' },
+		{ headerID: 'status', displayName: 'Status', width: 200, styling: statusStyle, required: true },
+		{ headerID: 'notes', displayName: 'Notes', width: 300, required: true },
 	]
 
 	//If the activerecorsd is undefined yet, use an empty array for now
@@ -26,10 +26,10 @@ export default function TestExpandedRows(props) {
 
 		<div>
 			<MainTable
+				style={{width: '50%'}}
 				data={statusLogData}
 				headers={dataHeaders}
 				pageSize={100}
-				noActive
 			/>
 		</div>
 

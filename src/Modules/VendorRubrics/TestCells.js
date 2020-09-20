@@ -4,7 +4,7 @@ export default function TestCells(props) {
 	
 	return (
 		<span>
-			.{props.row.project}
+			{props.row.project -1}
 		</span>
 		
 	)

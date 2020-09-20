@@ -5,13 +5,12 @@ import {faCaretDown, faFilter, faSortAlphaDown, faSortAlphaDownAlt} from '@forta
 import TheadMenu from './TheadMenu'
 import './TheadMenu'
 
-
 export default function TheadButton(props){
 	
 	//if there is a menu, add a dropdown icon
-	let arrowIcon = <span><FontAwesomeIcon icon={faCaretDown}/></span>	
-	let filterIcon = null
-	let sortIcon = null
+	let arrowIcon = <span className='theadIcon'><FontAwesomeIcon icon={faCaretDown}/></span>	
+	let filterIcon
+	let sortIcon
 	
 	const hasFilter = props.header.hasFilter()
 	
@@ -79,4 +78,3 @@ export default function TheadButton(props){
 		)
 	}
 }
-

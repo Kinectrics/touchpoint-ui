@@ -32,7 +32,7 @@ export default function VendorRubrics(){
 		{headerID: 'id',displayName:'ID', width: 100, required: true},
 		{headerID: 'vendor', displayName:'My Vendor', width: 300},
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number', type:'component', component: TestCells},
-		{headerID: 'projectName', displayName:'Project Name', width: 220, onEdit: ()=>{return Math.random() > 0.3}},
+		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
 		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return Math.random() > 0.5}},
@@ -82,7 +82,7 @@ export default function VendorRubrics(){
 				<MainTable
 					data={data}
 					headers={dataHeaders}
-					pageSize={100}
+					pageSize={50}
 					searchable={true}
 					settingsID={'VendorRubricsMainTable'}
 					nestedComponent = {TestExpandedRows}
