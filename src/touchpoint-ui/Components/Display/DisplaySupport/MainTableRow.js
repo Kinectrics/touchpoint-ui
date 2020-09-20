@@ -61,8 +61,7 @@ export default function MainTableRow(props) {
 			}
 			
 			
-			if(hdr.type === 'component' && hdr.component){ //custom component cells
-				
+			if(hdr.component){ //custom component cells
 				return (<span
 					key={hdr.headerID + props.rowKey}
 					style={{ width: hdr.width + 'px' }}
