@@ -9,6 +9,7 @@ import RubricDetail  from './RubricDetail'
 import './StatusLog'
 import StatusLog from './StatusLog'
 import TestExpandedRows from './TestExpandedRows'
+import TestCells from './TestCells'
 
 //And begin
 export default function VendorRubrics(){
@@ -28,9 +29,9 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = [
-		{headerID:'id',displayName:'ID', width: 100, required: true},
+		{headerID: 'id',displayName:'ID', width: 100, required: true},
 		{headerID: 'vendor', displayName:'My Vendor', width: 300},
-		{headerID: 'project', displayName: 'Project', width: 100, type: 'number'},
+		{headerID: 'project', displayName: 'Project', width: 100, type: 'number', type:'component', component: TestCells},
 		{headerID: 'projectName', displayName:'Project Name', width: 220, onEdit: ()=>{return Math.random() > 0.3}},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},

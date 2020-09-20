@@ -17,6 +17,11 @@ export default class DataHeader{
 		this.type = options.type ? options.type : 'string'
 		this.onClick = options.onClick
 		
+		if(options.type === 'component'){ 
+			this.component = options.component 
+			this.props = options.props
+		}
+		
 		//Default filter list only has 1 functions (array filter)
 		this.filterList = {
 			arrayFilter: {

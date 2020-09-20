@@ -146,6 +146,11 @@ export default function MainTable(props){
 			}}>
 				{props.headers.get().map((hdr, i) => {
 					if (hdr.visible || hdr.required) {
+						//Custom component type headers have no filters
+						if (hdr.type === 'component') return <span style={{ width: hdr.width + 'px' }} key={'header' + i}>
+							{hdr.displayName + ' '}
+						</span>
+						
 						return (
 							<span style={{ width: hdr.width + 'px' }} key={'header' + i}>
 

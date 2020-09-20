@@ -58,7 +58,21 @@ export default function MainTableRow(props) {
 			}
 			
 			
-			if (!hdr.styling){ //No conditional formatting
+			if(hdr.type === 'component' && hdr.component){ //custom component cells
+				
+				return (<span
+					key={hdr.headerID + props.rowKey}
+					style={{ width: hdr.width + 'px' }}
+					className={'componentCell'}
+				>
+					<hdr.component
+						row={props.dataRow}
+						setRow={setRow}
+						{...hdr.props}
+					/>
+				</span>)
+				
+			}else if (!hdr.styling){ //No conditional formatting
 				return(<span 
 					key = {hdr.headerID + props.rowKey} 
 					style = {{width: hdr.width + 'px'}}
