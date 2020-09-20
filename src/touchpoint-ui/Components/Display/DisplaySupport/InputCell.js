@@ -52,6 +52,15 @@ export default function InputCell(props) {
 	
 	//Check if the input is valid and commit
 	async function commitChanges(){
+		
+		const override = {value: false, newRow: {}}
+		
+		function customSetRow(newRow){
+			props.setRow(newRow)
+			override.value = true
+			override.newRow = newRow
+		}
+		
 		try{
 			if (props.header.compare(props.dataRow[props.header.headerID], currentValue)) { return }
 			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
@@ -64,12 +73,16 @@ export default function InputCell(props) {
 				row: newData[props.rowIndex], 
 				oldCellValue: initalValue, 
 				oldRow: props.dataset.read()[props.rowIndex],
-				setRow: props.setRow,
+				setRow: customSetRow,
 			})
 			
 			if(res || res === undefined){
-				props.dataset.set(newData)
-				setCurrentValue(props.header.format(currentValue))
+				if(override.value){
+					setCurrentValue(props.header.format(override.newRow[props.header.headerID]))
+				} else{
+					props.dataset.set(newData)
+					setCurrentValue(props.header.format(currentValue))
+				}
 				flashGreen()
 			} else{
 				setCurrentValue(props.header.format(initalValue))

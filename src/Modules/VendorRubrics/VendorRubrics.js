@@ -27,6 +27,12 @@ export default function VendorRubrics(){
 		}
 	}
 	
+	function editHandler(meta){
+		const newRow = {...meta.row}
+		newRow.SM = 'I force!'
+		meta.setRow(newRow)
+	}
+	
 	//Headers for table
 	const dataHeaders = [
 		{headerID: 'id',displayName:'ID', width: 100, required: true},
@@ -35,7 +41,7 @@ export default function VendorRubrics(){
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
-		{headerID: 'SM', displayName:'SM', width: 200, onEdit: ()=>{return Math.random() > 0.5}},
+		{headerID: 'SM', displayName:'SM', width: 200, onEdit: editHandler},
 		{headerID: 'intern', displayName:'Intern', width: 300},
 	]
 	
