@@ -50,26 +50,6 @@
 	white-space: nowrap;
 }
 
-.MainTableRow .InputCell{
-	border: 1px solid var(--borderColor);
-	outline: none !important;
-	font-family: inherit;
-	font-size: inherit;
-	width: 100%;
-	margin: none;
-	height: 20px;
-	box-sizing: border-box;
-	color: inherit;
-	padding: 1px 10px;
-	border-radius: 10px;
-	transition: background-color 750ms ease-out;
-}
-
-.MainTableRow .InputCell.invalid,
-.MainTableRow .InputCell.valid{
-	transition: all 0ms;
-}
-
 .MainTableRow .badge{
 	border-radius: 10px;
 	text-align: center;
@@ -79,22 +59,6 @@
 	transition: none;
 	display: inline-block;
 	height: 100%;
-}
-
-.MainTableRow .badge .InputCell{
-	background-color: transparent;
-	border-radius: 0;
-	height: 100%;
-	width: 100%;
-	text-align: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-	
-	padding: 4px 0;
-}
-
-.MainTableRow .badge.inputWrapper{
-	padding: 0;
 }
 
 /* expanded */

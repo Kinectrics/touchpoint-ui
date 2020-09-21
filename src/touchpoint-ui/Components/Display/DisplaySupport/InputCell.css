@@ -1,0 +1,37 @@
+.MainTableRow .InputCell{
+	outline: none !important;
+	font-family: inherit;
+	font-size: inherit;
+	width: 100%;
+	margin: none;
+	height: 20px;
+	box-sizing: border-box;
+	color: inherit;
+	padding: 1px 10px;
+	border-radius: 10px;
+	transition: background-color 750ms ease-out;
+}
+
+.MainTableRow .badge.inputWrapper{
+	padding: 0;
+}
+
+.MainTableRow .InputCell.invalid,
+.MainTableRow .InputCell.valid{
+	transition: all 0ms;
+}
+
+.MainTableRow .badge .InputCell{
+	background-color: transparent;
+	border-radius: 0;
+	height: 100%;
+	width: 100%;
+	text-align: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	
+	padding: 4px 0;
+}
+
+
+

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import './InputCell.css'
 
 export default function InputCell(props) {
 	

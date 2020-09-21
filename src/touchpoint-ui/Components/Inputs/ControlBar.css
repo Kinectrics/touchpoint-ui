@@ -31,6 +31,10 @@
 	width: 100%;
 }
 
+.ControlBar .input{
+	border: 1px solid var(--navTextColor);
+}
+
 /* ControlButton */
 .ControlBar button{
 	outline: none !important;

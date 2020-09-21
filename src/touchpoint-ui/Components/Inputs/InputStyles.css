@@ -18,8 +18,9 @@
 	background-color: var(--inputValidColor);
 }
 
-.input:hover, .input:focus{
-	filter: brightness(102%);
+.input:focus{
+	/* filter: brightness(102%); */
+	border-color: var(--tableActiveColor);
 }
 
 .input.locked, .locked .input
