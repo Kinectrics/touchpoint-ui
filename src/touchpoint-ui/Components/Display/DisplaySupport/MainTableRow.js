@@ -144,9 +144,7 @@ export default function MainTableRow(props) {
 			{expanded && props.nestedComponent ? <div 
 				className = 'componentWrapper'
 			>
-				<div style={{
-					width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 48px)' : null,
-				}}>
+				<div style={props.nestedProps.fitToWidth ? {width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 48px)' : null} : undefined}>
 					<props.nestedComponent
 						{...props.nestedProps}
 						row = {props.dataRow}

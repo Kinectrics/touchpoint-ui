@@ -92,7 +92,7 @@ export default function VendorRubrics(){
 					searchable={true}
 					settingsID={'VendorRubricsMainTable'}
 					nestedComponent = {TestExpandedRows}
-					nestedProps={{ content: 'Hello World'}}
+					nestedProps={{fitToWidth:true}}
 				/>
 				
 				
