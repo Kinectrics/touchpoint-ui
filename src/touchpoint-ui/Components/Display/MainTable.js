@@ -28,14 +28,14 @@ export default function MainTable(props){
 	cleanProps.data = data
 	cleanProps.headers = headers
 	
+	//Sort, search, and filter functionality
+	const [metaData, setMetaData] = useState([{ visible: true, filteredBy: '' }])
+	
 	useEffect(()=>{
-		if (!props.data.isDataset){
+		if(!props.data.isDataset){
 			data.refresh()
 		}
 	},[props.data])
-	
-	//Sort, search, and filter functionality
-	const [metaData, setMetaData] = useState([{visible: true, filteredBy: ''}])
 	
 	//SEARCH
 	const searchText = useModuleData().get('TouchPointSearchText')
