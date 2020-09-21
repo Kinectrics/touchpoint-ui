@@ -1,6 +1,4 @@
 import React from 'react'
-import './SortMenu'
-
 
 export default function FilterMenu(props){
 
