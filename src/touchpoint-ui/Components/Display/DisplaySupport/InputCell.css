@@ -7,6 +7,7 @@
 	height: 20px;
 	box-sizing: border-box;
 	color: inherit;
+	color: var(--mainTextColor);
 	padding: 1px 10px;
 	border-radius: 10px;
 	transition: background-color 750ms ease-out;
