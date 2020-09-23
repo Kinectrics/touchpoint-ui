@@ -70,6 +70,7 @@ a{
 	margin: 0;
 	padding: 0;
 	background-color: var(--navColor);
+	color: var(--mainTextColor);
 }
 
 .moduleContainer{

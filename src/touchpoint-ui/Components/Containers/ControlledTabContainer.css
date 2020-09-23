@@ -13,12 +13,14 @@
 	padding: 0;
 	height: 100%;
 	position: relative;
+	height: 100%;
 }
 
 .ControlledTabContainer .tab-pane{
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
+	height: 100%;
 }
 
 .ControlledTabContainer .InfoTab{
