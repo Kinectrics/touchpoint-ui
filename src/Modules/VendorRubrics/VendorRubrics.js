@@ -28,9 +28,7 @@ export default function VendorRubrics(){
 	}
 	
 	function editHandler(meta){
-		const newRow = {...meta.row}
-		newRow.SM = 'I force!'
-		meta.setRow(newRow)
+		return true
 	}
 	
 	//Headers for table

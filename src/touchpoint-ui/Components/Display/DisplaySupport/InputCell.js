@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './InputCell.css'
 
 export default function InputCell(props) {
@@ -29,10 +29,13 @@ export default function InputCell(props) {
 		setCurrentValue(e.target.value)
 	}
 	
+	const escRef = useRef(false)
+	
 	//Handles keypresses, for enter or esc keys
 	function keyHandler(e){
 		if(e.keyCode === 27) { //esc
 			setCurrentValue(initalValue)
+			escRef.current = true
 			e.target.blur()
 		} else if(e.keyCode === 13){ //enter
 			e.target.blur()
@@ -53,6 +56,11 @@ export default function InputCell(props) {
 	
 	//Check if the input is valid and commit
 	async function commitChanges(){
+		
+		if(escRef.current){
+			escRef.current = false
+			return
+		}
 		
 		const override = {value: false, newRow: {}}
 		
@@ -98,16 +106,12 @@ export default function InputCell(props) {
 		
 	}
 	
-	function blurHandler(){
-		commitChanges()//Force it to wait untill React finishes all updates before executing
-	}
-	
 	return(<input
 		type = 'text'
 		className = {'InputCell input ' + validClass}
 		onKeyDown = {keyHandler}
 		onFocus = {focusHandler}
-		onBlur = {blurHandler}
+		onBlur = {commitChanges}
 		value = {currentValue}
 		onChange = {changeHandler}
 	/>)

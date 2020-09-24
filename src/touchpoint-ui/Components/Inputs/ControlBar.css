@@ -36,7 +36,7 @@
 }
 
 /* ControlButton */
-.ControlBar button{
+.ControlBar button:not(.searchButton){
 	outline: none !important;
 	border: none;
 	border-radius: 15px;

@@ -21,7 +21,6 @@ function TestComp(props){
 	)
 }
 
-
 export default function ETDB() {
 		
 	const System = useSystem()
