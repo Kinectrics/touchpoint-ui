@@ -33,7 +33,7 @@ export default function TextBox(props) {
 	
 	return (
 		<input 
-			type="text" 
+			type={props.type ? props.type : "text"}
 			className={"input TextBox " + lockedClass}
 			defaultValue={props.defaultValue}
 			onChange={changeHandler}
