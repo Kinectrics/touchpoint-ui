@@ -1,0 +1,20 @@
+.PopupCard{
+	max-width: 90%;
+}
+
+.PopupCard .cardContainer{
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--labelColor);
+	box-sizing: var(--dynamicCardShadow);
+}
+
+.popupBlockClicks{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	cursor: default;
+}
+

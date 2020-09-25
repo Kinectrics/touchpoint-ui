@@ -12,7 +12,7 @@ import {HashRouter} from 'react-router-dom'
 export default function TouchPointApp(props){
 	
 	//System-wide state
-	const [activePopup, setPopup] = useState(null);
+	const [activePopups, setPopups] = useState([]);
 	
 	const portalDestination = useRef()
 	
@@ -108,15 +108,32 @@ export default function TouchPointApp(props){
 
 				setScreenEffect('blurScreenEffect')
 				setPopupEffect('transparent')
-				setPopup(PopupComponent)
+				
+				const newPopups = [...activePopups]
+				newPopups.push(PopupComponent)
+				setPopups(newPopups)
+				
 				setTimeout(() => setPopupEffect(''), 0)
 			},
 
 			close: () => {
 				// if(activePopup.props.onClose){activePopup.props.onClose()}
 				setPopupEffect('transparent')
-				setTimeout(() => setPopup(null), 100)
+				
+				const newPopups = [...activePopups]
+				newPopups.pop()
+				setTimeout(() => setPopups(newPopups), 100)
+				
 				if(!drawerIsOpen){setScreenEffect('')}
+			},
+			
+			closeAll: () => {
+				// if(activePopup.props.onClose){activePopup.props.onClose()}
+				setPopupEffect('transparent')
+
+				setTimeout(() => setPopups([]), 100)
+
+				if (!drawerIsOpen) { setScreenEffect('') }
 			},
 		},
 		
@@ -130,7 +147,7 @@ export default function TouchPointApp(props){
 			
 			close: () => { if(drawerIsOpen){
 				setDrawerIsOpen(false)
-				if(!activePopup){setScreenEffect('')}
+				if(activePopups.length === 0){setScreenEffect('')}
 			}},
 			
 			isOpen: drawerIsOpen,
@@ -139,7 +156,7 @@ export default function TouchPointApp(props){
 			setExists: setDrawerExists,
 			
 			portalDestination: portalDestination,
-			className: activePopup ? screenEffect : '',
+			className: activePopups.length > 0 ? screenEffect : '',
 		},
 		
 		//Internal variables for structuring the app
@@ -200,7 +217,7 @@ export default function TouchPointApp(props){
 						
 						<SystemPopupHandler 
 							system = {System} 
-							activePopup = {activePopup}
+							activePopups = {activePopups}
 							popupEffect = {popupEffect}
 						/>
 						

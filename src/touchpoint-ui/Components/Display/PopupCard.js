@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import lockedContext from '../../Contexts/LockedContext'
 import InfoCard from '../Containers/InfoCard'
-import './Popup.css'
+import './PopupCard.css'
 import useSystem from '../../Hooks/UseSystem'
 
 export default function PopupCard(props) {
@@ -30,23 +30,24 @@ export default function PopupCard(props) {
 		
 	},[])
 	
-	return(
-		<lockedContext.Provider value={locked}>
-			
-			<InfoCard 
-				className = {'Popup '}
+	
+	const content = <lockedContext.Provider value={locked}>
+		
+			<InfoCard
+				className={'PopupCard '}
 				stripe
-				title = {props.title}
-				onClose ={handleCloseButton}
-				style = {{height: 'auto', ...props.style}}
-				innerStyle = {{borderColor: props.stripeColor, ...props.innerStyle}}
-				stripeColor = {props.stripeColor}
+				title={props.title}
+				onClose={handleCloseButton}
+				style={{ height: 'auto', ...props.style }}
+				innerStyle={{ borderColor: props.stripeColor, ...props.innerStyle }}
+				stripeColor={props.stripeColor}
 			>
 				{props.children}
 			</InfoCard>
-			
-		</lockedContext.Provider>
-	)
+	</lockedContext.Provider>
+	
+	if(props.forceOpen){return (<div className={'popupBlockClicks'}>{content}</div>)}
+	return content
 }
 
 //Proptypes

@@ -3,27 +3,32 @@ import './SystemPopupHandler.css'
 
 export default function SystemPopupHandler(props) {
 	
+	const num = props.activePopups.length
+	
 	//Clicking the background closes the popup
 	function clickBackdrop(e){
-		if(e.target.classList.contains('systemPopupBackdrop') && (!props.activePopup.props.forceOpen)){
-			props.system.Popup.close()
+		if (e.target.classList.contains('systemPopupBackdrop')){
+			props.system.Popup.closeAll()
 		}
 	}
 	
-	let forceClass = ''
-	if(props.activePopup!==null && props.activePopup.props.forceOpen){forceClass = 'forceOpen'}
-	
 	//If the active popup isn't null, render it
-	if(props.activePopup != null){
-		
-		return (
-			<div 
-				className = {"systemPopupBackdrop " + props.popupEffect + ' ' + forceClass} 
-				onClick = {clickBackdrop}
+	if(num === 0){return null}
+	
+	return(
+		props.activePopups.map((Pop, idx)=>{
+			return <div 
+				className={"systemPopupBackdrop " + props.popupEffect}
+				onClick={clickBackdrop}
+				key = {idx}
+				style={{
+					display: idx === num - 1 ? null :  'none',
+					width: '100%',
+					height: '100%',
+				}}
 			>
-				{typeof (props.activePopup) == 'function' ? <props.activePopup /> : props.activePopup}
-			</div>
-		)
-			
-	} else return null
+				{typeof (Pop) == 'function' ? <Pop /> : Pop}
+			</div> 
+		})
+	)	
 }

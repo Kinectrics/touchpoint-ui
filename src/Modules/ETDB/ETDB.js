@@ -12,7 +12,7 @@ function TestComp(props){
 	return(
 		<PopupCard>
 			<FreeButton onClick={()=>{
-				System.Popup.open('Hello')
+				System.Popup.open(<PopupCard>Hi</PopupCard>)
 			}}>TestNest</FreeButton>
 			<h2>{count}</h2>
 			<FreeButton onClick={()=>setCount(count+1)}>+</FreeButton>
