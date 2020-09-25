@@ -4,7 +4,7 @@ import TextBox from './TextBox'
 import PropTypes from 'prop-types'
 import './SearchBar.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faSearch, faTimes, faTimesCircle} from "@fortawesome/free-solid-svg-icons"
+import {faTimesCircle} from "@fortawesome/free-solid-svg-icons"
 
 export default function SearchBar(props) {
 	

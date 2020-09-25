@@ -235,36 +235,41 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t--dockColor: rgb(37, 37, 37);\n\t--dockTextColor: var(--navTextColor);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t--borderColor:  rgba(211, 211, 211, 0.705);\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: rgb(0, 138, 230);\n\t--freeButtonNegativeBG: rgb(211, 67, 0);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t--inputInvalidColor: rgb(236, 171, 171);\n\t--inputValidColor: rgb(153, 238, 153);\n\t\n\t/* Structure Variables */\n\t--appToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n\t--dockWidth: 65px;\n\t--drawerWidth: 350px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n}\n\n*{\n\tbox-sizing: border-box;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n\tposition: fixed;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}\n";
+var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t--dockColor: rgb(37, 37, 37);\n\t--dockTextColor: var(--navTextColor);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t--borderColor:  rgba(211, 211, 211, 0.705);\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: rgb(0, 138, 230);\n\t--freeButtonNegativeBG: rgb(211, 67, 0);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t--inputInvalidColor: rgb(236, 171, 171);\n\t--inputValidColor: rgb(153, 238, 153);\n\t\n\t/* Structure Variables */\n\t--appToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n\t--dockWidth: 65px;\n\t--drawerWidth: 350px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n}\n\n*{\n\tbox-sizing: border-box;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n\tcolor: var(--mainTextColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n\tposition: fixed;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}\n";
 styleInject(css_248z);
 
-var css_248z$1 = "/* Styles for all Input type components */\n\n.input{\n\tbackground-color: var(--inputColor);\n\tcolor: var(--mainTextColor);\n\toutline: none !important;\n\tpadding: 5px 15px;\n\tborder-radius: 20px;\n\tborder: 1px solid var(--borderColor);\n\tfont-size: 12pt;\n}\n\n.input.invalid{\n\tbackground-color: var(--inputInvalidColor);\n}\n\n.input.valid{\n\tbackground-color: var(--inputValidColor);\n}\n\n.input:hover, .input:focus{\n\tfilter: brightness(102%);\n}\n\n.input.locked, .locked .input\n.input.locked:hover, .locked .input:hover\n.input.locked:focus, .locked .input:focus{\n\tcursor: default !important;\n\tfilter: grayscale(50%);\n\topacity: 85%;\n\tcolor: var(--lockedTextColor);\n}\n";
+var css_248z$1 = "/* Styles for all Input type components */\n\n.input{\n\tbackground-color: var(--inputColor);\n\tcolor: var(--mainTextColor);\n\toutline: none !important;\n\tpadding: 5px 15px;\n\tborder-radius: 20px;\n\tborder: 1px solid var(--borderColor);\n\tfont-size: 12pt;\n}\n\n.input.invalid{\n\tbackground-color: var(--inputInvalidColor);\n}\n\n.input.valid{\n\tbackground-color: var(--inputValidColor);\n}\n\n.input:focus{\n\t/* filter: brightness(102%); */\n\tborder-color: var(--tableActiveColor);\n}\n\n.input.locked, .locked .input\n.input.locked:hover, .locked .input:hover\n.input.locked:focus, .locked .input:focus{\n\tcursor: default !important;\n\tfilter: grayscale(50%);\n\topacity: 85%;\n\tcolor: var(--lockedTextColor);\n}\n";
 styleInject(css_248z$1);
 
-var css_248z$2 = ".systemPopupBackdrop{\n\tz-index: 300;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100vw;\n\theight: 100vh;\n\tposition: fixed;\n\ttop:0;\n\t\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\t\n\ttransition: opacity 300ms ease-out;\n}\n\n.systemPopupBackdrop:Hover{\n\tcursor: pointer;\n}\n\n.systemPopupBackdrop.forceOpen:Hover{\n\tcursor: default;\n}\n\n.systemPopupBackdrop.transparent{\n\topacity: 0;\n}\n\n.systemPopupBackdrop>.InfoCard{\n\twidth: 30%;\n\theight: 20%;\n\tcursor: default;\t\n}\n\n\n";
+var css_248z$2 = ".systemPopupBackdrop{\n\tz-index: 300;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100vw;\n\theight: 100vh;\n\tposition: fixed;\n\ttop:0;\n\t\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\t\n\ttransition: opacity 300ms ease-out;\n}\n\n.systemPopupBackdrop:Hover{\n\tcursor: pointer;\n}\n\n.systemPopupBackdrop.forceOpen:Hover{\n\tcursor: default;\n}\n\n.systemPopupBackdrop.transparent{\n\topacity: 0;\n}\n\n.systemPopupBackdrop>.InfoCard,\n.systemPopupBackdrop>div>.InfoCard{\n\twidth: 35%;\n\theight: 20%;\n\tcursor: default;\t\n}\n\n\n";
 styleInject(css_248z$2);
 
 function SystemPopupHandler(props) {
-  //Clicking the background closes the popup
+  var num = props.activePopups.length; //Clicking the background closes the popup
+
   function clickBackdrop(e) {
-    if (e.target.classList.contains('systemPopupBackdrop') && !props.activePopup.props.forceOpen) {
-      props.system.Popup.close();
+    if (e.target.classList.contains('systemPopupBackdrop')) {
+      props.system.Popup.closeAll();
     }
-  }
-
-  var forceClass = '';
-
-  if (props.activePopup !== null && props.activePopup.props.forceOpen) {
-    forceClass = 'forceOpen';
   } //If the active popup isn't null, render it
 
 
-  if (props.activePopup != null) {
+  if (num === 0) {
+    return null;
+  }
+
+  return props.activePopups.map(function (Pop, idx) {
     return /*#__PURE__*/React.createElement("div", {
-      className: "systemPopupBackdrop " + props.popupEffect + ' ' + forceClass,
-      onClick: clickBackdrop
-    }, typeof props.activePopup == 'function' ? /*#__PURE__*/React.createElement(props.activePopup, null) : props.activePopup);
-  } else return null;
+      className: "systemPopupBackdrop " + props.popupEffect,
+      onClick: clickBackdrop,
+      key: idx,
+      style: {
+        display: idx === num - 1 ? null : 'none',
+        width: '100%',
+        height: '100%'
+      }
+    }, typeof Pop == 'function' ? /*#__PURE__*/React.createElement(Pop, null) : Pop);
+  });
 }
 
 //Context hooks for variable and functions that are system wide
@@ -274,8 +279,8 @@ var moduleContext = /*#__PURE__*/createContext({});
 function SystemModuleContainer(props) {
   //Adjusts the module container to fit between the system toolbars
   var styleSettings = {
-    height: props.system.layout.get().heightCSS,
-    width: props.system.layout.get().widthCSS,
+    height: props.system.Layout.get().heightCSS,
+    width: props.system.Layout.get().widthCSS,
     right: '0'
   };
   var moduleList = props.system.Modules.list();
@@ -375,7 +380,7 @@ var ThemeEngine = /*#__PURE__*/function () {
         freeButtonTextColor: 'white',
 
         /* Inputs */
-        inputColor: 'rgb(238, 238, 238)',
+        inputColor: 'rgb(245, 245, 245)',
         inputInvalidColor: 'rgb(236, 171, 171)',
         inputValidColor: 'rgb(153, 238, 153)'
       },
@@ -445,10 +450,10 @@ var ThemeEngine = /*#__PURE__*/function () {
 
 function TouchPointApp(props) {
   //System-wide state
-  var _useState = useState(null),
+  var _useState = useState([]),
       _useState2 = _slicedToArray(_useState, 2),
-      activePopup = _useState2[0],
-      setPopup = _useState2[1];
+      activePopups = _useState2[0],
+      setPopups = _useState2[1];
 
   var portalDestination = useRef(); //Set moduleTransition to 'transition' while the modules are being switched out
 
@@ -600,7 +605,11 @@ function TouchPointApp(props) {
         }, 400);
         setScreenEffect('blurScreenEffect');
         setPopupEffect('transparent');
-        setPopup(PopupComponent);
+
+        var newPopups = _toConsumableArray(activePopups);
+
+        newPopups.push(PopupComponent);
+        setPopups(newPopups);
         setTimeout(function () {
           return setPopupEffect('');
         }, 0);
@@ -608,8 +617,23 @@ function TouchPointApp(props) {
       close: function close() {
         // if(activePopup.props.onClose){activePopup.props.onClose()}
         setPopupEffect('transparent');
+
+        var newPopups = _toConsumableArray(activePopups);
+
+        newPopups.pop();
         setTimeout(function () {
-          return setPopup(null);
+          return setPopups(newPopups);
+        }, 100);
+
+        if (!drawerIsOpen) {
+          setScreenEffect('');
+        }
+      },
+      closeAll: function closeAll() {
+        // if(activePopup.props.onClose){activePopup.props.onClose()}
+        setPopupEffect('transparent');
+        setTimeout(function () {
+          return setPopups([]);
         }, 100);
 
         if (!drawerIsOpen) {
@@ -630,7 +654,7 @@ function TouchPointApp(props) {
         if (drawerIsOpen) {
           setDrawerIsOpen(false);
 
-          if (!activePopup) {
+          if (activePopups.length === 0) {
             setScreenEffect('');
           }
         }
@@ -639,10 +663,10 @@ function TouchPointApp(props) {
       Exists: drawerExists,
       setExists: setDrawerExists,
       portalDestination: portalDestination,
-      className: activePopup ? screenEffect : ''
+      className: activePopups.length > 0 ? screenEffect : ''
     },
     //Internal variables for structuring the app
-    layout: {
+    Layout: {
       get: function get() {
         return layout;
       },
@@ -715,7 +739,7 @@ function TouchPointApp(props) {
     locked: props.locked || moduleLock
   })), /*#__PURE__*/React.createElement(SystemPopupHandler, {
     system: System,
-    activePopup: activePopup,
+    activePopups: activePopups,
     popupEffect: popupEffect
   })))));
 } //Proptypes
@@ -741,7 +765,7 @@ function useSystem() {
 
 function usePresence(componentName, height, width) {
   var _useSystem = useSystem(),
-      layout = _useSystem.layout;
+      Layout = _useSystem.Layout;
 
   function refreshCSS(layoutSettings) {
     var heightCSS = 'calc(100%';
@@ -761,19 +785,19 @@ function usePresence(componentName, height, width) {
   }
 
   useEffect(function () {
-    var newLayout = _objectSpread2({}, layout.get());
+    var newLayout = _objectSpread2({}, Layout.get());
 
     newLayout.widths[componentName] = width;
     newLayout.heights[componentName] = height;
     refreshCSS(newLayout);
-    layout.set(newLayout);
+    Layout.set(newLayout);
     return function () {
-      var newLayout = _objectSpread2({}, layout.get());
+      var newLayout = _objectSpread2({}, Layout.get());
 
       newLayout.widths[componentName] = 0;
       newLayout.heights[componentName] = 0;
       refreshCSS(newLayout);
-      layout.set(newLayout);
+      Layout.set(newLayout);
     };
   }, []);
 }
@@ -835,7 +859,8 @@ function CoreButton(props) {
       className: 'CoreButton ' + lockedClass + ' ' + props.className,
       onClick: clickHandler,
       style: props.style,
-      onBlur: props.onBlur
+      onBlur: props.onBlur,
+      type: props.type
     }, props.children);
   } else {
     return null;
@@ -848,7 +873,8 @@ CoreButton.propTypes = {
   hidden: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  type: PropTypes.string
 };
 
 var css_248z$7 = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparent;\n\toutline: none !important;\n\tposition: relative;\n\tcolor: var(--lockedTextColor);\n}\n\n.CloseButton:active{\n\tfilter: brightness(70%);\n}";
@@ -965,7 +991,8 @@ function FreeButton(props) {
     onClick: props.onClick,
     hidden: props.hidden,
     className: "FreeButton " + purpose + ' ' + wideClass + ' ' + props.className,
-    style: props.style
+    style: props.style,
+    type: props.type
   }, props.children);
 } //Proptypes
 
@@ -975,26 +1002,76 @@ FreeButton.propTypes = {
   hidden: PropTypes.bool,
   purpose: PropTypes.string,
   wide: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
+  type: PropTypes.string
 };
 
-var css_248z$9 = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\toverflow: hidden;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}";
+var css_248z$9 = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
 styleInject(css_248z$9);
+
+function ConfirmButton(props) {
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      expanded = _useState2[0],
+      setExpanded = _useState2[1];
+
+  function clickHandler(e) {
+    if (expanded) {
+      if (props.onClick) {
+        props.onClick(e);
+      }
+
+      setExpanded(false);
+    } else {
+      e.stopPropagation();
+      setExpanded(true);
+      e.stopPropagation();
+    }
+  }
+
+  function blurHandler() {
+    setExpanded(false);
+  }
+
+  return /*#__PURE__*/React.createElement(CoreButton, {
+    className: props.className + ' ConfirmButton ' + (expanded ? ' expanded ' : '') + props.purpose,
+    locked: props.locked,
+    hidden: props.hidden,
+    onClick: clickHandler,
+    style: props.style,
+    onBlur: blurHandler
+  }, expanded ? props.expandedContent : props.content);
+} //
+
+ConfirmButton.propTypes = {
+  hidden: PropTypes.bool,
+  locked: PropTypes.bool,
+  onClick: PropTypes.func,
+  style: PropTypes.object,
+  expandedStyle: PropTypes.object,
+  className: PropTypes.string,
+  content: PropTypes.any,
+  expandedContent: PropTypes.any,
+  purpose: PropTypes.string
+};
+
+var css_248z$a = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}\n\n.Tile .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: -2px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 4px 6px;\n}";
+styleInject(css_248z$a);
 
 function Tile(props) {
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
   function clickHandler() {
-    if (!locked && props.splashScreen && props.onClick) {
-      setTimeout(function () {
-        props.onClick();
-      }, 550);
-    } else if (!locked && props.onClick) {
+    if (!locked && props.onClick) {
       props.onClick();
     }
   }
 
+  var notifications = props.notifications < 99 ? props.notifications : '99+';
+  var notificationBadge = props.notifications && !locked ? /*#__PURE__*/React.createElement("span", {
+    className: "notifications"
+  }, notifications) : null;
   return /*#__PURE__*/React.createElement("div", {
     style: props.style,
     className: 'Tile' + (locked ? ' locked ' : '')
@@ -1002,7 +1079,7 @@ function Tile(props) {
     style: props.innserStyle,
     className: 'TileContainer ',
     onClick: clickHandler
-  }, /*#__PURE__*/React.createElement("div", {
+  }, notificationBadge, /*#__PURE__*/React.createElement("div", {
     className: "logo flexCenter"
   }, props.children), /*#__PURE__*/React.createElement("div", {
     className: "title"
@@ -1098,8 +1175,8 @@ function useModuleContext() {
   };
 }
 
-var css_248z$a = ".SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}";
-styleInject(css_248z$a);
+var css_248z$b = ".SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}";
+styleInject(css_248z$b);
 
 function SearchBar(props) {
   var moduleData = useModuleContext();
@@ -1189,14 +1266,14 @@ SearchBar.propTypes = {
 
 //Context hooks for variable and functions that are system wide
 
-var radioContext = /*#__PURE__*/createContext('');
+var radioContext = /*#__PURE__*/createContext({});
 
 function RadioGroup(props) {
   //decides if the component is locked based on props and parents in the tree
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
-  var _useState = useState(v4()),
+  var _useState = useState(v4),
       _useState2 = _slicedToArray(_useState, 1),
       groupName = _useState2[0];
 
@@ -1226,15 +1303,19 @@ RadioGroup.propTypes = {
   value: PropTypes.any
 };
 
-var css_248z$b = ".RadioButton{\n\tpadding: 5px;\n}\n\n.RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n\tmargin-bottom: 0;\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
-styleInject(css_248z$b);
+var css_248z$c = ".RadioButton{\n\tpadding: 5px;\n}\n\n.RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n\tmargin-bottom: 0;\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
+styleInject(css_248z$c);
 
 function RadioButton(props) {
   var radioData = useContext(radioContext);
 
-  var _useState = useState(v4()),
+  var _useState = useState(v4),
       _useState2 = _slicedToArray(_useState, 1),
       id = _useState2[0];
+
+  if (!radioData.onChange) {
+    console.error('Radio Buttons need to be inside a RadioGroup component.');
+  }
 
   var lockedClass = '';
 
@@ -1278,8 +1359,8 @@ RadioButton.propTypes = {
   buttonStyle: PropTypes.object
 };
 
-var css_248z$c = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 10px;\n\tpadding-top: 5px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n\tposition: relative;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tleft: 10px;\n\tbackground-color: var(--navColor);\n\theight: 100%;\n\t\n}\n\n.ControlBar .searchContainer{\n\tposition: absolute;\n\tright: 10px;\n\tbox-sizing: border-box;\n\twidth: max(20%, 250px);\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}\n\n/* ControlButton */\n.ControlBar button{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: var(--navColor);\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n}\n\n.ControlBar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlBar button:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlBar button.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}\n";
-styleInject(css_248z$c);
+var css_248z$d = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 5px 10px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n\tposition: relative;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tleft: 10px;\n\tbackground-color: var(--navColor);\n\theight: 100%;\n\t\n}\n\n.ControlBar .searchContainer{\n\tposition: absolute;\n\tright: 5px;\n\tbox-sizing: border-box;\n\twidth: max(20%, 250px);\n\theight: 100%;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}\n\n.ControlBar .input{\n\tborder: 1px solid var(--navTextColor);\n}\n\n/* ControlButton */\n.ControlBar button:not(.searchButton){\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\theight: 100%;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: var(--navColor);\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n}\n\n.ControlBar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlBar button:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlBar button.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}\n";
+styleInject(css_248z$d);
 
 function ControlBar(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -1300,7 +1381,8 @@ function ControlBar(props) {
     return /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
     }, /*#__PURE__*/React.createElement("div", {
-      className: "ControlBar flexY"
+      className: "ControlBar flexY",
+      style: props.style
     }, /*#__PURE__*/React.createElement("div", {
       className: "buttonContainer"
     }, props.children)));
@@ -1314,8 +1396,8 @@ ControlBar.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$d = ".CommentBox{\n\tresize: none;\n\tpadding: 20px;\n}";
-styleInject(css_248z$d);
+var css_248z$e = ".CommentBox{\n\tresize: none;\n\tpadding: 20px;\n}";
+styleInject(css_248z$e);
 
 function CommentBox(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1365,8 +1447,8 @@ CommentBox.propTypes = {
   value: PropTypes.string
 };
 
-var css_248z$e = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
-styleInject(css_248z$e);
+var css_248z$f = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
+styleInject(css_248z$f);
 
 function ComboBox(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1463,8 +1545,138 @@ CheckBox.propTypes = {
   checked: PropTypes.bool
 };
 
-var css_248z$f = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\t\n\tfont-size: 9pt;\n\t\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
-styleInject(css_248z$f);
+//Context hooks for variable and functions that are system wide
+
+var menuContext = /*#__PURE__*/createContext({});
+
+var css_248z$g = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\n.MenuButton:hover{\n\tfilter: brightness(95%)\n}\n\n.MenuButton:active{\n\tfilter: brightness(90%)\n}\n\n.MenuButton.locked{\n\tcursor: default;\n\tfilter: none;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\tmax-width: 180px;\n\toverflow-x: visible;\n}\n\n.MenuButton .notifications{\n\tposition: absolute;\n\ttop: -10px;\n\tright: -10px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 2px 6px;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
+styleInject(css_248z$g);
+
+var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  return /*#__PURE__*/React.createElement(menuContext.Provider, {
+    value: {
+      submenu: true
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: ref,
+    className: props.className + ' Menu ' + props.menuClass,
+    style: _objectSpread2(_objectSpread2({}, props.style), props.menuStyle),
+    onClick: props.onClickBody
+  }, typeof props.MenuContent == 'function' ? /*#__PURE__*/React.createElement(props.MenuContent, null) : props.MenuContent));
+});
+function MenuButton(props) {
+  //deccides if the component is locked based on props and parents in the tree
+  var lockedFromAbove = useContext(lockedContext);
+  var locked = props.locked || lockedFromAbove && props.locked === undefined;
+  var lockedClass;
+
+  if (locked) {
+    lockedClass = 'locked';
+  }
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      toggling = _useState2[0],
+      setToggling = _useState2[1]; //handles both onOpen and onClose
+
+
+  function toggleHandler(isOpen) {
+    if (!toggling && isOpen && props.onOpen) {
+      props.onOpen();
+    } else if (!toggling && props.onClose && !isOpen) {
+      props.onClose();
+      setToggling(true);
+    } //Prevent spamming
+
+
+    setTimeout(function () {
+      return setToggling(false);
+    }, 300);
+  } //check if it's inside of another menu, if so render as a submenu
+
+
+  var parentMenuData = useContext(menuContext);
+  var icon = parentMenuData.submenu ? /*#__PURE__*/React.createElement("span", {
+    className: "subMenuIcon"
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faCaretRight
+  })) : null;
+  var direction = props.direction;
+
+  if (parentMenuData.submenu) {
+    direction = 'right';
+  }
+
+  var notifications = props.notifications < 99 ? props.notifications : '99+';
+  var notificationBadge = props.notifications && !locked ? /*#__PURE__*/React.createElement("span", {
+    className: "notifications",
+    style: props.notificationStyle
+  }, notifications) : null; //button
+
+  var dropButton = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
+    var onClick = _ref.onClick;
+
+    function clickHandler(e) {
+      e.preventDefault();
+      onClick(e);
+    }
+
+    return /*#__PURE__*/React.createElement("button", {
+      className: 'MenuButton ' + props.className + ' ' + lockedClass,
+      onClick: clickHandler,
+      ref: ref,
+      style: props.style
+    }, notificationBadge, props.children, icon);
+  }); //Prevent submenus from sticking around after their parent has closed
+
+  function onClickBody() {
+    if (parentMenuData.submenu) {
+      document.body.click();
+    }
+  }
+
+  if (props.hidden) {
+    return null;
+  } //If locked return a button that does nothing, otherwise create a real dropdown button
+
+
+  if (locked) {
+    return /*#__PURE__*/React.createElement("button", {
+      className: 'MenuButton ' + props.className + ' ' + lockedClass,
+      style: props.style
+    }, props.children, icon);
+  }
+
+  return /*#__PURE__*/React.createElement("span", {
+    className: "menuButtonContainer"
+  }, /*#__PURE__*/React.createElement(Dropdown, {
+    drop: direction,
+    onToggle: toggleHandler
+  }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
+    as: dropButton
+  }), /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement(Dropdown.Menu, {
+    as: dropMenu,
+    MenuContent: props.menuContent,
+    menuStyle: props.menuStyle,
+    onClickBody: onClickBody
+  }), document.body)));
+} //Proptypes
+
+MenuButton.propTypes = {
+  locked: PropTypes.bool,
+  className: PropTypes.string,
+  menuContent: PropTypes.any.isRequired,
+  maxHeight: PropTypes.string,
+  direction: PropTypes.string,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
+  menuStyle: PropTypes.object,
+  style: PropTypes.object,
+  notificationStyle: PropTypes.object
+};
+
+var css_248z$h = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
+styleInject(css_248z$h);
 
 function DockIcon(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1476,24 +1688,43 @@ function DockIcon(props) {
   var iconStyle = {
     fontSize: props.title ? '17pt' : '20pt'
   };
-  var notifications = props.notifications < 90 ? props.notifications : '99+';
+  var notifications = props.notifications < 99 ? props.notifications : '99+';
   var notificationBadge = props.notifications && !locked ? /*#__PURE__*/React.createElement("span", {
     className: "notifications"
   }, notifications) : null;
 
-  if (!props.hidden) {
-    return /*#__PURE__*/React.createElement(CoreButton, {
+  if (props.hidden) {
+    return null;
+  }
+
+  if (props.menuContent) {
+    return /*#__PURE__*/React.createElement(MenuButton, {
       className: "DockIcon",
       style: props.style,
       locked: props.locked,
-      onClick: props.onClick
+      onOpen: props.onClick,
+      menuContent: props.menuContent,
+      direction: "left",
+      menuStyle: props.menuStyle
     }, notificationBadge, /*#__PURE__*/React.createElement("div", {
       className: "pic",
       style: iconStyle
-    }, icon), /*#__PURE__*/React.createElement("div", {
+    }, icon, props.children), /*#__PURE__*/React.createElement("div", {
       className: "title"
     }, props.title));
-  } else return null;
+  }
+
+  return /*#__PURE__*/React.createElement(CoreButton, {
+    className: "DockIcon",
+    style: props.style,
+    locked: props.locked,
+    onClick: props.onClick
+  }, notificationBadge, /*#__PURE__*/React.createElement("div", {
+    className: "pic",
+    style: iconStyle
+  }, icon, props.children), /*#__PURE__*/React.createElement("div", {
+    className: "title"
+  }, props.title));
 } //proptypes
 
 DockIcon.propTypes = {
@@ -1503,39 +1734,27 @@ DockIcon.propTypes = {
   faIcon: PropTypes.object,
   style: PropTypes.object,
   notifications: PropTypes.number,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  menuContent: PropTypes.any,
+  menuStyle: PropTypes.object
 };
 
-var css_248z$g = ".InfoCard{\n\tpadding: 10px 20px;\n\tmargin: 0;\n\ttransition: all 0.25s;\n\t\n}\n\n.InfoCard .InfoCard{\n\tbox-shadow: none;\n\tborder: 1px solid var(--lockedTextColor);\n}\n\n\n.InfoCard .CloseButton{\n\tposition: absolute;\n\tright: 6px;\n\ttop: 6px;\n}\n\n.InfoCard.dynamicX:hover{\n\tpadding-left: 13px;\n\tpadding-right: 13px;\n\tcursor: pointer;\n}\n\n.InfoCard.dynamicX:hover .cardContainer,\n.InfoCard.dynamicY:hover .cardContainer{\n\tbox-shadow: var(--dynamicCardShadow);\n}\n\n.InfoCard.dynamicY:hover{\n\tpadding-top: 13px;\n\tpadding-bottom: 13px;\n\tcursor: pointer;\n}\n\n.InfoCard.dynamicX:active{\n\tpadding-left: 21px;\n\tpadding-right: 21px;\n\ttransition: all 0.05s;\n}\n\n.InfoCard.dynamicY:active{\n\tpadding-top: 21px;\n\tpadding-bottom: 21px;\n\ttransition: all 0.05s;\n}\n\n.InfoCard .cardContainer{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tborder-radius: 11px;\n\toverflow: hidden;\n\tbox-shadow: var(--cardShadow);\n\theight: 100%;\n\twidth: 100%;\n\tposition: relative;\n}\n\n.InfoCard .textBox{\n\tpadding: 11px;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n}\n\n.InfoCard .textBox.stripe{\n\tborder-left-width: 5px;\n\tborder-left-style: solid;\n\tborder-left-color: var(--labelColor);\n\tfloat:left;\n\theight: 100%;\n}\n\n.InfoCard label{\n\tmargin:0 10px 0px 0;\n\tfont-size: 12pt;\n\tcolor: var(--labelColor);\n\n}\n\n.InfoCard h1{\n\tfont-size: 15pt;\n\tfont-weight: bold;\n\tcolor: var(--labelColor)\n}\n\n.InfoCard h2{\n\tmargin: 7px 0px;\n\tfont-size: 12pt;\n\tfont-weight: bold;\n}\n\n.InfoCard p{\n\tmargin:0;\n}\n\n/* Tabs in an infocard */\n.InfoCard .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.InfoCard .InfoTabContainer .nav-tabs,\n.InfoCard .InfoTabContainer .nav-tabs a{\n\tbackground-color: transparent !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 0;\n\tmargin-right: 20px;\n\tmargin-bottom: 6px;\t\n}\n\n.InfoCard .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n/* Maintable in an infocard */\n.InfoCard .MainTable{\n\tbackground-color: transparent;\n}\n\n.InfoCard .MainTable .titleBar{\n\tfont-weight: bold;\n}\n";
-styleInject(css_248z$g);
+var css_248z$i = ".InfoCard{\n\tpadding: 10px 20px;\n\tmargin: 0;\n\ttransition: padding 0.25s;\n\t\n}\n\n.InfoCard .InfoCard{\n\tbox-shadow: none;\n\tborder: 1px solid var(--lockedTextColor);\n}\n\n.InfoCard .CloseButton{\n\tposition: absolute;\n\tright: 6px;\n\ttop: 6px;\n}\n\n.InfoCard.dynamicX:hover{\n\tpadding-left: 13px;\n\tpadding-right: 13px;\n\tcursor: pointer;\n}\n\n.InfoCard.dynamicX:hover .cardContainer{\n\tbox-shadow: var(--dynamicCardShadow);\n}\n\n.InfoCard.dynamicX:active{\n\tpadding-left: 21px;\n\tpadding-right: 21px;\n\ttransition: padding 0.05s;\n}\n\n.InfoCard .cardContainer{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tborder-radius: 11px;\n\toverflow: hidden;\n\tbox-shadow: var(--cardShadow);\n\theight: 100%;\n\twidth: 100%;\n\tposition: relative;\n}\n\n.InfoCard .textBox{\n\tpadding: 11px;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n}\n\n.InfoCard .textBox.stripe{\n\tborder-left-width: 5px;\n\tborder-left-style: solid;\n\tborder-left-color: var(--labelColor);\n\tfloat:left;\n\theight: 100%;\n}\n\n.InfoCard label{\n\tmargin:0 10px 0px 0;\n\tfont-size: 12pt;\n\tcolor: var(--labelColor);\n\n}\n\n.InfoCard h1{\n\tfont-size: 15pt;\n\tfont-weight: bold;\n\tcolor: var(--labelColor);\n\tmargin-top: 0;\n}\n\n.InfoCard h2{\n\tmargin: 7px 0px;\n\tfont-size: 12pt;\n\tfont-weight: bold;\n}\n\n.InfoCard p{\n\tmargin:0;\n}\n\n/* Tabs in an infocard */\n.InfoCard .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.InfoCard .InfoTabContainer .nav-tabs,\n.InfoCard .InfoTabContainer .nav-tabs a{\n\tbackground-color: transparent !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 0;\n\tmargin-right: 20px;\n\tmargin-bottom: 6px;\t\n}\n\n.InfoCard .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n/* Maintable in an infocard */\n.InfoCard .MainTable{\n\tbackground-color: transparent;\n}\n\n.InfoCard .MainTable .titleBar{\n\tfont-weight: bold;\n}\n";
+styleInject(css_248z$i);
 
 function InfoCard(props) {
-  //locking the item. If a component somewhere above in the tree is locked, the context will 
-  //cause this card to be locked as well
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined; //Assign classes based on props 
 
-  var stripe = ''; //Adds a stripe down the left side
-
+  var stripe = '';
   var hasStripe = props.stripe || props.stripeColor;
 
   if (hasStripe && !props.titleBar) {
     stripe = 'stripe';
-  } //Adds hover and click effects in the x, y or xy directions
+  } //Adds hover and click effects
 
 
-  var dynamic = ''; //dynamic effects are ignored if locked
-
-  if (!locked) {
-    if (props.dynamicX) {
-      dynamic = 'dynamicX ';
-    }
-
-    if (props.dynamicY) {
-      dynamic = dynamic + ' dynamicY ';
-    }
-  } //handles the onClick event. Only fires if the component is not locked
-
+  var dynamic = !locked && props.onClick ? 'dynamicX' : ''; //handles the onClick event. Only fires if the component is not locked
 
   function clickHandler(e) {
     if (!locked && props.onClick !== undefined) {
@@ -1605,8 +1824,8 @@ InfoCard.propTypes = {
   stripeColor: PropTypes.string
 };
 
-var css_248z$h = ".Popup .InfoCard{\n\tmax-width: 85%;\n\tmax-width: 90%;\n}\n\n.Popup .cardContainer{\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: var(--labelColor);\n\tbox-sizing: var(--dynamicCardShadow);\n}";
-styleInject(css_248z$h);
+var css_248z$j = ".PopupCard{\n\tmax-width: 90%;\n}\n\n.PopupCard .cardContainer{\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: var(--labelColor);\n\tbox-sizing: var(--dynamicCardShadow);\n}\n\n.popupBlockClicks{\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\theight: 100%;\n\twidth: 100%;\n\tcursor: default;\n}\n\n";
+styleInject(css_248z$j);
 
 function PopupCard(props) {
   var system = useSystem();
@@ -1634,19 +1853,29 @@ function PopupCard(props) {
       }
     };
   }, []);
-  return /*#__PURE__*/React.createElement(lockedContext.Provider, {
+  var content = /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: locked
   }, /*#__PURE__*/React.createElement(InfoCard, {
-    className: 'Popup ',
+    className: 'PopupCard ',
     stripe: true,
     title: props.title,
     onClose: handleCloseButton,
-    style: _objectSpread2({}, props.style),
-    innerStyle: {
+    style: _objectSpread2({
+      height: 'auto'
+    }, props.style),
+    innerStyle: _objectSpread2({
       borderColor: props.stripeColor
-    },
+    }, props.innerStyle),
     stripeColor: props.stripeColor
   }, props.children));
+
+  if (props.forceOpen) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: 'popupBlockClicks'
+    }, content);
+  }
+
+  return content;
 } //Proptypes
 
 PopupCard.propTypes = {
@@ -1657,132 +1886,18 @@ PopupCard.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   locked: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
+  innerStyle: PropTypes.object
 };
 
-//Context hooks for variable and functions that are system wide
-
-var menuContext = /*#__PURE__*/createContext({});
-
-var css_248z$i = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\toverflow: hidden;\n}\n\n.MenuButton.locked{\n\tcursor: default;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\tmax-width: 180px;\n\toverflow-x: visible;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
-styleInject(css_248z$i);
-
-var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React.createElement(menuContext.Provider, {
-    value: {
-      submenu: true
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    ref: ref,
-    className: props.className + ' Menu ' + props.menuClass,
-    style: _objectSpread2(_objectSpread2({}, props.style), props.menuStyle),
-    onClick: props.onClickBody
-  }, typeof props.MenuContent == 'function' ? /*#__PURE__*/React.createElement(props.MenuContent, null) : props.MenuContent));
-});
-function MenuButton(props) {
-  //deccides if the component is locked based on props and parents in the tree
-  var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  var lockedClass;
-
-  if (locked) {
-    lockedClass = 'locked';
-  }
-
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      toggling = _useState2[0],
-      setToggling = _useState2[1]; //handles both onOpen and onClose
-
-
-  function toggleHandler(isOpen) {
-    if (!toggling && isOpen && props.onOpen) {
-      props.onOpen();
-    } else if (!toggling && props.onClose && !isOpen) {
-      props.onClose();
-      setToggling(true);
-    } //Prevent spamming
-
-
-    setTimeout(function () {
-      return setToggling(false);
-    }, 300);
-  } //check if it's inside of another menu, if so render as a submenu
-
-
-  var parentMenuData = useContext(menuContext);
-  var icon = parentMenuData.submenu ? /*#__PURE__*/React.createElement("span", {
-    className: "subMenuIcon"
-  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faCaretRight
-  })) : null;
-  var direction = props.direction;
-
-  if (parentMenuData.submenu) {
-    direction = 'right';
-  } //button
-
-
-  var dropButton = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
-    var onClick = _ref.onClick;
-
-    function clickHandler(e) {
-      e.preventDefault();
-      onClick(e);
-    }
-
-    return /*#__PURE__*/React.createElement("button", {
-      className: 'MenuButton ' + props.className + ' ' + lockedClass,
-      onClick: clickHandler,
-      ref: ref,
-      style: props.style
-    }, props.children, icon);
-  }); //Prevent submenus from sticking around after their parent has closed
-
-  function onClickBody() {
-    if (parentMenuData.submenu) {
-      document.body.click();
-    }
-  } //If locked return a button that does nothing, otherwise create a real dropdown button
-
-
-  if (locked) {
-    return /*#__PURE__*/React.createElement("button", {
-      className: 'MenuButton ' + props.className + ' ' + lockedClass,
-      style: props.style
-    }, props.children, icon);
-  } else return /*#__PURE__*/React.createElement("span", {
-    className: "menuButtonContainer"
-  }, /*#__PURE__*/React.createElement(Dropdown, {
-    drop: direction,
-    onToggle: toggleHandler
-  }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
-    as: dropButton
-  }), /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement(Dropdown.Menu, {
-    as: dropMenu,
-    MenuContent: props.menuContent,
-    menuStyle: props.menuStyle,
-    onClickBody: onClickBody
-  }), document.body)));
-} //Proptypes
-
-MenuButton.propTypes = {
-  locked: PropTypes.bool,
-  className: PropTypes.string,
-  menuContent: PropTypes.any.isRequired,
-  maxHeight: PropTypes.string,
-  direction: PropTypes.string,
-  onOpen: PropTypes.func,
-  onClose: PropTypes.func,
-  menuStyle: PropTypes.object,
-  style: PropTypes.object
-};
-
-var css_248z$j = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 35px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 30px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tpadding-top: 3px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: 3px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}\n\n\n";
-styleInject(css_248z$j);
-
-var css_248z$k = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow.active .topRow{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTableRow span{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .InputCell{\n\tborder: none;\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 100%;\n\tcolor: inherit;\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\t\n\tpadding: 4px 0;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tpadding: 7px 0;\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n.MainTableRow .keepInView{\n\ttransition: none !important;\n\tposition: sticky;\n\ttop: 0;\n}";
+var css_248z$k = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 29px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 0px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\ttop: var(--topBarHeight);\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 10px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: -2px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}";
 styleInject(css_248z$k);
+
+var css_248z$l = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 30px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}";
+styleInject(css_248z$l);
+
+var css_248z$m = ".MainTableRow .InputCell{\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 20px;\n\tbox-sizing: border-box;\n\tcolor: inherit;\n\tcolor: var(--mainTextColor);\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\t\n\tpadding: 4px 0;\n}\n\n\n\n";
+styleInject(css_248z$m);
 
 function InputCell(props) {
   var _useState = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
@@ -1809,13 +1924,15 @@ function InputCell(props) {
 
   function changeHandler(e) {
     setCurrentValue(e.target.value);
-  } //Handles keypresses, for enter or esc keys
+  }
 
+  var escRef = useRef(false); //Handles keypresses, for enter or esc keys
 
   function keyHandler(e) {
     if (e.keyCode === 27) {
       //esc
       setCurrentValue(initalValue);
+      escRef.current = true;
       e.target.blur();
     } else if (e.keyCode === 13) {
       //enter
@@ -1849,67 +1966,87 @@ function InputCell(props) {
 
   function _commitChanges() {
     _commitChanges = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var newData, newCellValue, res;
+      var override, customSetRow, newData, newCellValue, res;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
+              customSetRow = function _customSetRow(newRow) {
+                props.setRow(newRow);
+                override.value = true;
+                override.newRow = newRow;
+              };
+
+              if (!escRef.current) {
+                _context.next = 4;
+                break;
+              }
+
+              escRef.current = false;
+              return _context.abrupt("return");
+
+            case 4:
+              override = {
+                value: false,
+                newRow: {}
+              };
+              _context.prev = 5;
 
               if (!props.header.compare(props.dataRow[props.header.headerID], currentValue)) {
-                _context.next = 3;
+                _context.next = 8;
                 break;
               }
 
               return _context.abrupt("return");
 
-            case 3:
+            case 8:
               newData = JSON.parse(JSON.stringify(_toConsumableArray(props.dataset.read())));
               newCellValue = props.header.parse(currentValue);
               newData[props.rowIndex][props.header.headerID] = newCellValue;
-              _context.next = 8;
+              _context.next = 13;
               return props.header.onEdit({
                 cellValue: currentValue,
                 row: newData[props.rowIndex],
                 oldCellValue: initalValue,
                 oldRow: props.dataset.read()[props.rowIndex],
-                setRow: props.setRow
+                setRow: customSetRow
               });
 
-            case 8:
+            case 13:
               res = _context.sent;
 
               if (res || res === undefined) {
-                props.dataset.set(newData);
-                setCurrentValue(props.header.format(currentValue));
+                if (override.value) {
+                  setCurrentValue(props.header.format(override.newRow[props.header.headerID]));
+                } else {
+                  props.dataset.set(newData);
+                  setCurrentValue(props.header.format(currentValue));
+                }
+
                 flashGreen();
               } else {
                 setCurrentValue(props.header.format(initalValue));
                 flashRed();
               }
 
-              _context.next = 17;
+              _context.next = 22;
               break;
 
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](0);
+            case 17:
+              _context.prev = 17;
+              _context.t0 = _context["catch"](5);
               console.error(_context.t0);
               setCurrentValue(props.header.format(initalValue));
               flashRed();
 
-            case 17:
+            case 22:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 12]]);
+      }, _callee, null, [[5, 17]]);
     }));
     return _commitChanges.apply(this, arguments);
-  }
-
-  function blurHandler() {
-    commitChanges(); //Force it to wait untill React finishes all updates before executing
   }
 
   return /*#__PURE__*/React.createElement("input", {
@@ -1917,14 +2054,14 @@ function InputCell(props) {
     className: 'InputCell input ' + validClass,
     onKeyDown: keyHandler,
     onFocus: focusHandler,
-    onBlur: blurHandler,
+    onBlur: commitChanges,
     value: currentValue,
     onChange: changeHandler
   });
 }
 
 function MainTableRow(props) {
-  var activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] ? ' active ' : '';
+  var activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] && !props.noActive ? ' active ' : '';
 
   function rowClickHandler() {
     if (!props.noActive) {
@@ -1941,9 +2078,9 @@ function MainTableRow(props) {
   }
 
   var rowContent = props.dataHeaders.map(function (hdr, i) {
-    if (hdr.visible) {
+    if (hdr.visible || hdr.required) {
       var cellClickHandler = function cellClickHandler() {
-        if (hdr.onClick) {
+        if (hdr.onClick && !hdr.locked && !props.locked) {
           hdr.onClick({
             cellValue: props.dataRow[hdr.headerID],
             row: props.dataRow,
@@ -1954,7 +2091,7 @@ function MainTableRow(props) {
 
 
       var cellContent;
-      var cellClass = hdr.onClick && !props.locked ? ' clickable plain ' : ' plain ';
+      var cellClass = hdr.onClick && !props.locked ? ' clickable plain tableCell ' : ' plain tableCell';
       var cellText = hdr.format(props.dataRow[hdr.headerID]);
 
       if (!props.locked && hdr.onEdit && !hdr.locked) {
@@ -1970,7 +2107,19 @@ function MainTableRow(props) {
         cellContent = cellText;
       }
 
-      if (!hdr.styling) {
+      if (hdr.component) {
+        //custom component cells
+        return /*#__PURE__*/React.createElement("span", {
+          key: hdr.headerID + props.rowKey,
+          style: {
+            width: hdr.width + 'px'
+          },
+          className: 'tableCell componentCell'
+        }, /*#__PURE__*/React.createElement(hdr.component, _extends({
+          row: props.dataRow,
+          setRow: setRow
+        }, hdr.props)));
+      } else if (!hdr.styling) {
         //No conditional formatting
         return /*#__PURE__*/React.createElement("span", {
           key: hdr.headerID + props.rowKey,
@@ -2030,62 +2179,26 @@ function MainTableRow(props) {
     icon: faPlus
   })) : null;
   return /*#__PURE__*/React.createElement("div", {
-    className: 'MainTableRow ' + activeClass + expandedClass,
+    className: 'MainTableRow ' + expandedClass,
     onClick: rowClickHandler
   }, /*#__PURE__*/React.createElement("div", {
-    className: 'topRow'
+    className: 'topRow' + activeClass
   }, expandIcon, rowContent), expanded && props.nestedComponent ? /*#__PURE__*/React.createElement("div", {
     className: "componentWrapper"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "keepInView",
-    style: {
-      width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 35px)' : null,
-      left: props.scrollPos
-    }
+    style: props.nestedProps.fitToWidth ? {
+      width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 48px)' : null
+    } : undefined
   }, /*#__PURE__*/React.createElement(props.nestedComponent, _extends({}, props.nestedProps, {
+    row: props.dataRow,
     dataRow: props.dataRow,
-    setRow: setRow
+    setRow: setRow,
+    rowIndex: props.rowIndex
   })))) : null);
 }
 
-var css_248z$l = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
-styleInject(css_248z$l);
-
-function SortMenu(props) {
-  function sortData(e) {
-    props.dataHeaders.addSortRule(props.header.headerID, e.target.value, props.header.index);
-    props.data.sort();
-  }
-
-  var sortRule = props.dataHeaders.getSortRules().find(function (sr) {
-    return sr.headerID === props.header.headerID;
-  });
-  var sortDir = sortRule ? sortRule.direction : '';
-  var cancelIcon = /*#__PURE__*/React.createElement("span", {
-    className: "sortIcon",
-    onClick: function onClick(e) {
-      props.dataHeaders.removeSortRule(props.header.headerID);
-      props.data.sort();
-      e.stopPropagation();
-    }
-  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faTimes
-  }));
-
-  if (!props.noSort) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "SortMenu"
-    }, /*#__PURE__*/React.createElement("button", {
-      onClick: sortData,
-      className: "fullButton sortButton",
-      value: 'asc'
-    }, "Sort Ascending", sortDir === 'asc' ? cancelIcon : null), /*#__PURE__*/React.createElement("button", {
-      onClick: sortData,
-      className: "fullButton sortButton",
-      value: 'desc'
-    }, "Sort Descending", sortDir === 'desc' ? cancelIcon : null));
-  } else return null;
-}
+var css_248z$n = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
+styleInject(css_248z$n);
 
 function FilterMenu(props) {
   var values = props.header.uniqueValues;
@@ -2388,6 +2501,42 @@ function MoreFilters(props) {
   } else return null;
 }
 
+function SortMenu(props) {
+  function sortData(e) {
+    props.dataHeaders.addSortRule(props.header.headerID, e.target.value, props.header.index);
+    props.data.sort();
+  }
+
+  var sortRule = props.dataHeaders.getSortRules().find(function (sr) {
+    return sr.headerID === props.header.headerID;
+  });
+  var sortDir = sortRule ? sortRule.direction : '';
+  var cancelIcon = /*#__PURE__*/React.createElement("span", {
+    className: "sortIcon",
+    onClick: function onClick(e) {
+      props.dataHeaders.removeSortRule(props.header.headerID);
+      props.data.sort();
+      e.stopPropagation();
+    }
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faTimes
+  }));
+
+  if (!props.noSort) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "SortMenu"
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: sortData,
+      className: "fullButton sortButton",
+      value: 'asc'
+    }, "Sort Ascending", sortDir === 'asc' ? cancelIcon : null), /*#__PURE__*/React.createElement("button", {
+      onClick: sortData,
+      className: "fullButton sortButton",
+      value: 'desc'
+    }, "Sort Descending", sortDir === 'desc' ? cancelIcon : null));
+  } else return null;
+}
+
 function TheadMenu(props) {
   return /*#__PURE__*/React.createElement("div", {
     className: "TheadMenu"
@@ -2418,11 +2567,13 @@ function TheadMenu(props) {
 
 function TheadButton(props) {
   //if there is a menu, add a dropdown icon
-  var arrowIcon = /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+  var arrowIcon = /*#__PURE__*/React.createElement("span", {
+    className: "theadIcon"
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faCaretDown
   }));
-  var filterIcon = null;
-  var sortIcon = null;
+  var filterIcon;
+  var sortIcon;
   var hasFilter = props.header.hasFilter();
   var sortRule = props.dataHeaders.getSortRules().find(function (sr) {
     return sr.headerID === props.header.headerID;
@@ -2577,57 +2728,8 @@ function ColumnSettings(props) {
   }), " Column Settings");
 }
 
-var css_248z$m = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
-styleInject(css_248z$m);
-
-var css_248z$n = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
-styleInject(css_248z$n);
-
-function ConfirmButton(props) {
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      expanded = _useState2[0],
-      setExpanded = _useState2[1];
-
-  function clickHandler(e) {
-    if (expanded) {
-      if (props.onClick) {
-        props.onClick(e);
-      }
-
-      setExpanded(false);
-    } else {
-      e.stopPropagation();
-      setExpanded(true);
-      e.stopPropagation();
-    }
-  }
-
-  function blurHandler() {
-    setExpanded(false);
-  }
-
-  return /*#__PURE__*/React.createElement(CoreButton, {
-    className: props.className + ' ConfirmButton ' + (expanded ? ' expanded ' : '') + props.purpose,
-    locked: props.locked,
-    hidden: props.hidden,
-    onClick: clickHandler,
-    style: props.style,
-    onBlur: blurHandler
-  }, expanded ? props.expandedContent : props.content);
-} //
-
-ConfirmButton.propTypes = {
-  hidden: PropTypes.bool,
-  locked: PropTypes.bool,
-  onClick: PropTypes.func,
-  style: PropTypes.object,
-  expandedStyle: PropTypes.object,
-  className: PropTypes.string,
-  content: PropTypes.any,
-  expandedContent: PropTypes.any,
-  purpose: PropTypes.string
-};
+var css_248z$o = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
+styleInject(css_248z$o);
 
 function SaveTableLayout(props) {
   var _useState = useState(''),
@@ -2836,6 +2938,10 @@ function PageContols(props) {
   var showPageBack = props.activePage > 0;
   var showPageForward = (props.activePage + 1) * props.pageSize < props.dataLength;
 
+  if (!props.pageSize) {
+    return null;
+  }
+
   function pageBack() {
     if (showPageBack) {
       props.setActivePage(props.activePage - 1);
@@ -2865,6 +2971,379 @@ function PageContols(props) {
       icon: faCaretRight
     })) : null);
   } else return null;
+}
+
+function CoreTable(props) {
+  //Sorting and filtering are optional (via props), only supported with if a dataset is provided
+  var noSort = props.noSort,
+      noFilter = props.noFilter,
+      searchable = props.searchable,
+      noActive = props.noActive,
+      locked = props.locked;
+  var noOptions = props.noOptions || !props.settingsID; //expanded rows (if applicable)
+
+  var hasNestedClass = props.nestedComponent ? ' hasNested ' : null; //support for dataSets or for just arrays
+
+  var data = props.data.read();
+  var metaData = props.metaData; //Settings token support 
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      sortTrigger = _useState2[0],
+      setSortTrigger = _useState2[1];
+
+  var saveSettings = useSettings(props.settingsID, function (token) {
+    props.headers.applyToken(token);
+
+    if (!noSort) {
+      setSortTrigger(true);
+    }
+  });
+
+  if (sortTrigger) {
+    setSortTrigger(false);
+    setTimeout(props.data.sort, 0);
+  } //Active page handling
+
+
+  var _useState3 = useState(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      activePage = _useState4[0],
+      setActivePage = _useState4[1]; //get the length of the data with the filter applied
+
+
+  var dataLength = 0;
+  data.forEach(function (r, idx) {
+    if (metaData[idx]) {
+      if (metaData[idx].visible && !metaData[idx].searchHidden) {
+        dataLength++;
+      }
+    } else {
+      dataLength++;
+    }
+  }); //For dataSets - runs when dataSet refreshes (sets the filter options to match)
+
+  useEffect(function () {
+    if (!noFilter) {
+      props.headers.embedData(data, metaData);
+    }
+
+    if (!noOptions) {
+      props.headers.setSettingsEngine({
+        save: saveSettings
+      });
+    }
+
+    props.data.sort();
+  }, [props.data.lastResolved, props.data.lastEdited]); //If clicking sets the active record then its animated
+  //if there are editable cells the animations will be cancelled
+
+  var dynamic;
+  var hasActiveClass = '';
+
+  if (!noActive) {
+    dynamic = true;
+    hasActiveClass = ' hasActive ';
+  }
+
+  var hasFilter = false;
+  var totalHeaderWidth = 70;
+  props.headers.get().forEach(function (hdr) {
+    //if you have input cells in the table, hover effects will be cancelled
+    if (hdr.onEdit) {
+      dynamic = false;
+    }
+
+    if (hdr.visible) {
+      totalHeaderWidth = totalHeaderWidth + hdr.width;
+    } //check if any headers have active filters (to show a clear filter button)
+
+
+    if (hdr.hasFilter()) {
+      hasFilter = true;
+    }
+  });
+
+  function clearFilter() {
+    var newHeaders = _toConsumableArray(props.headers.get());
+
+    newHeaders.forEach(function (hdr) {
+      hdr.clearFilter();
+    });
+    props.headers.set(newHeaders);
+    props.data.filter();
+  }
+
+  var _useState5 = useState(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      transitionClass = _useState6[0],
+      setTransitionClass = _useState6[1]; //Counter for rendered rows
+
+
+  var rowCount = 1; //Positioning for nested components
+
+  var _useState7 = useState(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      expandTrigger = _useState8[0],
+      setExpandTrigger = _useState8[1];
+
+  var _useState9 = useState(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      collapseTrigger = _useState10[0],
+      setCollapseTrigger = _useState10[1];
+
+  var tableRef = useRef(); //Render
+
+  return /*#__PURE__*/React.createElement("div", {
+    className: 'MainTable ' + hasActiveClass + hasNestedClass,
+    ref: tableRef,
+    style: props.style
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "topBar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "topBarContainer"
+  }), /*#__PURE__*/React.createElement(TableControls, {
+    hasFilter: hasFilter,
+    noFilter: noFilter,
+    noSort: noSort,
+    clearFilter: clearFilter,
+    noOptions: noOptions,
+    dataHeaders: props.headers,
+    data: props.data,
+    setTransitionClass: setTransitionClass,
+    setExpandTrigger: setExpandTrigger,
+    setCollapseTrigger: setCollapseTrigger,
+    expandTrigger: expandTrigger,
+    collapseTrigger: collapseTrigger,
+    showExpandControls: props.nestedComponent ? true : false
+  }), /*#__PURE__*/React.createElement(PageContols, {
+    activePage: activePage,
+    setActivePage: setActivePage,
+    dataLength: dataLength,
+    pageSize: props.pageSize,
+    tableRef: tableRef
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "theadBar",
+    style: {
+      width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
+    }
+  }, props.headers.get().map(function (hdr, i) {
+    if (hdr.visible || hdr.required) {
+      //Custom component type headers have no filters
+      if (hdr.component) return /*#__PURE__*/React.createElement("span", {
+        style: {
+          width: hdr.width + 'px'
+        },
+        key: 'header' + i
+      }, hdr.displayName + ' ');
+      return /*#__PURE__*/React.createElement("span", {
+        style: {
+          width: hdr.width + 'px'
+        },
+        key: 'header' + i
+      }, /*#__PURE__*/React.createElement(TheadButton, {
+        header: hdr,
+        data: props.data,
+        dataHeaders: props.headers,
+        noFilter: noFilter,
+        noSort: noSort
+      }, hdr.displayName + ' '));
+    } else return null;
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "mainSection" + transitionClass,
+    style: {
+      width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: 'tableBody ' + props.data.lastResolved
+  }, data.map(function (dr, idx) {
+    //render the allowed numebr of rows, on th selected page
+    if (!props.pageSize || rowCount > activePage * props.pageSize && rowCount <= (1 + activePage) * props.pageSize) {
+      var renderRow = dr !== [];
+
+      if (searchable && metaData[idx]) {
+        renderRow = !metaData[idx].searchHidden;
+      }
+
+      renderRow = renderRow && (noFilter || metaData[idx] && metaData[idx].visible);
+      var rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx;
+      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
+        dataRow: dr,
+        dataset: props.data,
+        dataHeaders: props.headers.get(),
+        rowKey: rowKey,
+        key: rowKey,
+        locked: locked,
+        dynamic: dynamic,
+        rowIndex: idx,
+        nestedComponent: props.nestedComponent,
+        nestedProps: props.nestedProps,
+        expandTrigger: expandTrigger,
+        collapseTrigger: collapseTrigger,
+        noActive: noActive,
+        tableRef: tableRef
+      }) : null;
+
+      if (r) {
+        rowCount++;
+      } //Count the number of rows actually renedered (not filtered out)
+
+
+      return r;
+    } else if (rowCount <= (1 + activePage) * props.pageSize) {
+      rowCount++;
+    }
+
+    return null;
+  }))));
+}
+
+function useDataset(fetchFunction) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  //The array contains an empty object by default
+  var _useState = useState(options.defaultValue ? options.defaultValue : []),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = useState('Pending'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      status = _useState4[0],
+      setStatus = _useState4[1];
+
+  var _useState5 = useState(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      lastResolved = _useState6[0],
+      setLastResolved = _useState6[1];
+
+  var _useState7 = useState(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      lastEdited = _useState8[0],
+      setLastEdited = _useState8[1];
+
+  var _useState9 = useState({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      activeRecord = _useState10[0],
+      setActiveRecord = _useState10[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
+
+
+  function _selectRecord(newPrimaryKey) {
+    var fromData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : data;
+    var newIndex = fromData.findIndex(function (r) {
+      return r[options.primaryKey] == newPrimaryKey;
+    });
+
+    if (newIndex > -1) {
+      setActiveRecord(fromData[newIndex]);
+      return fromData[newIndex];
+    } else {
+      setActiveRecord({});
+      return {};
+    }
+  }
+
+  function getActiveRecord() {
+    return activeRecord;
+  } //Fetch data and update state once the operation is complete. Keep the old value in the meantime
+
+
+  function fetchData() {
+    return _fetchData.apply(this, arguments);
+  } //If it's a subdataset, forward the refresh request to the parent
+
+
+  function _fetchData() {
+    _fetchData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var newData;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              setStatus('Pending');
+              _context.prev = 1;
+              _context.next = 4;
+              return fetchFunction();
+
+            case 4:
+              newData = _context.sent;
+              setData(newData);
+
+              _selectRecord(activeRecord[options.primaryKey], newData);
+
+              setStatus('Resolved');
+              setLastResolved(Date());
+              return _context.abrupt("return", 'Resolved');
+
+            case 12:
+              _context.prev = 12;
+              _context.t0 = _context["catch"](1);
+              setStatus('Rejected');
+              console.error(_context.t0);
+              return _context.abrupt("return", 'Rejected');
+
+            case 17:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 12]]);
+    }));
+    return _fetchData.apply(this, arguments);
+  }
+
+  function refreshData() {
+    return _refreshData.apply(this, arguments);
+  } //Automatically run the fetching function the first time, then wait for a refresh
+  //If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
+
+
+  function _refreshData() {
+    _refreshData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (status !== 'Pending') {
+                fetchData();
+              }
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return _refreshData.apply(this, arguments);
+  }
+
+  useEffect(function () {
+    fetchData();
+  }, []); //Return a Dataset object
+
+  return {
+    read: function read() {
+      return data;
+    },
+    refresh: refreshData,
+    selectRecord: function selectRecord(newKey) {
+      return _selectRecord(newKey);
+    },
+    getActiveRecord: getActiveRecord,
+    status: status,
+    lastResolved: lastResolved,
+    lastEdited: lastEdited,
+    //TouchPoint Controls
+    isDataset: true,
+    primaryKey: options.primaryKey,
+    set: function set(newData) {
+      setData(newData);
+      setLastEdited(Date());
+
+      _selectRecord(activeRecord[options.primaryKey], newData);
+    }
+  };
 }
 
 var _this = undefined;
@@ -2957,7 +3436,9 @@ var DataHeader = /*#__PURE__*/function () {
     this.styling = options.styling ? options.styling : null;
     this.uniqueValues = {};
     this.type = options.type ? options.type : 'string';
-    this.onClick = options.onClick; //Default filter list only has 1 functions (array filter)
+    this.onClick = options.onClick;
+    this.component = options.component;
+    this.props = options.props; //Default filter list only has 1 functions (array filter)
 
     this.filterList = {
       arrayFilter: {
@@ -3052,7 +3533,7 @@ var DataHeader = /*#__PURE__*/function () {
 function uniqueByColumn(data, metaData, columnID, oldValues) {
   var res = {};
   data.forEach(function (r, idx) {
-    if (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';') {
+    if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';')) {
       //New vales added as true, old values keep their value
       if (oldValues[r[columnID]] === undefined) {
         res[r[columnID]] = true;
@@ -3248,333 +3729,68 @@ function useHeaders() {
 }
 
 function MainTable(props) {
-  var headers = useHeaders(props.headers); //Sorting and filtering are optional (via props), only supported with if a dataset is provided
-
-  var noSort = props.noSort;
-  var noFilter = props.noFilter;
-  var noOptions = props.noOptions || !props.settingsID;
-  var searchable = props.searchable;
-  var noActive = props.noActive; //expanded rows (if applicable)
-
-  var hasNestedClass = props.nestedComponent ? ' hasNested ' : null; //support for dataSets or for just arrays
-
-  var data = props.data.read();
-  var metaData = props.data.getMetaData(); //deccides if the component is locked based on props and parents in the tree
+  //Converts static data to a dataset
+  var wrapperDataset = useDataset(props.data.isDataset ? function () {
+    return [];
+  } : function () {
+    return props.data;
+  }, {
+    primaryKey: props.primaryKey
+  });
+  var data = props.data.isDataset ? _objectSpread2({}, props.data) : wrapperDataset; //deccides if the component is locked based on props and parents in the tree
 
   var lockedFromAbove = useContext(lockedContext);
-  var locked = props.locked || lockedFromAbove && props.locked === undefined || !props.data.isDataset; //Settings token support 
+  var locked = props.locked || lockedFromAbove && props.locked === undefined || !props.data.isDataset;
+  var headers = useHeaders(props.headers);
 
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      sortTrigger = _useState2[0],
-      setSortTrigger = _useState2[1];
+  var newProps = _objectSpread2({}, props);
 
-  var saveSettings = useSettings(props.settingsID, function (token) {
-    headers.applyToken(token);
+  newProps.data = data;
+  newProps.nestedComponent = null;
+  newProps.noActive = true;
+  newProps.headers = headers;
 
-    if (!noSort) {
-      setSortTrigger(true);
-    }
-  });
+  var cleanProps = _objectSpread2({}, props);
 
-  if (sortTrigger) {
-    setSortTrigger(false);
-    setTimeout(props.data.sort, 0);
-  } //Active page handling
+  cleanProps.data = data;
+  cleanProps.headers = headers; //Sort, search, and filter functionality
 
-
-  var _useState3 = useState(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      activePage = _useState4[0],
-      setActivePage = _useState4[1]; //get the length of the data with the filter applied
-
-
-  var dataLength = 0;
-  data.forEach(function (r, idx) {
-    if (metaData[idx]) {
-      if (metaData[idx].visible && !metaData[idx].searchHidden) {
-        dataLength++;
-      }
-    } else {
-      dataLength++;
-    }
-  }); //For dataSets - runs when dataSet refreshes (sets the filter options to match)
-
-  useEffect(function () {
-    if (!noFilter) {
-      headers.embedData(data, metaData);
-      props.data.setHeaders(headers);
-    }
-
-    if (!noOptions) {
-      headers.setSettingsEngine({
-        save: saveSettings
-      });
-    }
-  }, [props.data.lastResolved, props.data.lastEdited]); //If clicking sets the active record then its animated
-  //if there are editable cells the animations will be cancelled
-
-  var dynamic;
-  var hasActiveClass = '';
-
-  if (!noActive) {
-    dynamic = true;
-    hasActiveClass = ' hasActive ';
-  }
-
-  var hasFilter = false;
-  var totalHeaderWidth = 70;
-  headers.get().forEach(function (hdr) {
-    //if you have input cells in the table, hover effects will be cancelled
-    if (hdr.onEdit) {
-      dynamic = false;
-    }
-
-    if (hdr.visible) {
-      totalHeaderWidth = totalHeaderWidth + hdr.width;
-    } //check if any headers have active filters (to show a clear filter button)
-
-
-    if (hdr.hasFilter()) {
-      hasFilter = true;
-    }
-  });
-
-  function clearFilter() {
-    var newHeaders = _toConsumableArray(headers.get());
-
-    newHeaders.forEach(function (hdr) {
-      hdr.clearFilter();
-    });
-    headers.set(newHeaders);
-    props.data.filter();
-  }
-
-  var _useState5 = useState(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      transitionClass = _useState6[0],
-      setTransitionClass = _useState6[1]; //Counter for rendered rows
-
-
-  var rowCount = 1; //Positioning for nested components
-
-  var _useState7 = useState(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      expandTrigger = _useState8[0],
-      setExpandTrigger = _useState8[1];
-
-  var _useState9 = useState(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      collapseTrigger = _useState10[0],
-      setCollapseTrigger = _useState10[1];
-
-  var tableRef = useRef();
-
-  var _useState11 = useState(0),
-      _useState12 = _slicedToArray(_useState11, 2),
-      scrollPos = _useState12[0],
-      setScrollPos = _useState12[1];
-
-  function scrollHandler(e) {
-    if (e.target.scrollLeft !== scrollPos) {
-      setScrollPos(e.target.scrollLeft);
-    }
-  } //Render
-
-
-  return /*#__PURE__*/React.createElement("div", {
-    className: 'MainTable ' + hasActiveClass + hasNestedClass,
-    ref: tableRef,
-    onScroll: hasNestedClass ? scrollHandler : undefined
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "topBar"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "topBarContainer"
-  }), /*#__PURE__*/React.createElement(TableControls, {
-    hasFilter: hasFilter,
-    noFilter: noFilter,
-    noSort: noSort,
-    clearFilter: clearFilter,
-    noOptions: noOptions,
-    dataHeaders: headers,
-    data: props.data,
-    setTransitionClass: setTransitionClass,
-    setExpandTrigger: setExpandTrigger,
-    setCollapseTrigger: setCollapseTrigger,
-    expandTrigger: expandTrigger,
-    collapseTrigger: collapseTrigger,
-    showExpandControls: props.nestedComponent ? true : false
-  }), /*#__PURE__*/React.createElement(PageContols, {
-    activePage: activePage,
-    setActivePage: setActivePage,
-    dataLength: dataLength,
-    pageSize: props.pageSize,
-    tableRef: tableRef
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "theadBar",
-    style: {
-      top: 'var(--topBarHeight)',
-      width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
-    }
-  }, headers.get().map(function (hdr, i) {
-    if (hdr.visible) {
-      return /*#__PURE__*/React.createElement("span", {
-        style: {
-          width: hdr.width + 'px'
-        },
-        key: 'header' + i
-      }, /*#__PURE__*/React.createElement(TheadButton, {
-        header: hdr,
-        data: props.data,
-        dataHeaders: headers,
-        noFilter: noFilter,
-        noSort: noSort
-      }, hdr.displayName + ' '));
-    } else return null;
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "mainSection" + transitionClass,
-    style: {
-      width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: 'tableBody ' + props.data.lastResolved
-  }, data.map(function (dr, idx) {
-    //render the allowed numebr of rows, on th selected page
-    if (rowCount > activePage * props.pageSize && rowCount <= (1 + activePage) * props.pageSize) {
-      var renderRow = dr !== [];
-
-      if (searchable && metaData[idx]) {
-        renderRow = !metaData[idx].searchHidden;
-      }
-
-      renderRow = renderRow && (noFilter || metaData[idx] && metaData[idx].visible);
-      var rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx;
-      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
-        dataRow: dr,
-        dataset: props.data,
-        dataHeaders: headers.get(),
-        rowKey: rowKey,
-        key: rowKey,
-        locked: locked,
-        dynamic: dynamic,
-        rowIndex: idx,
-        nestedComponent: props.nestedComponent,
-        nestedProps: props.nestedProps,
-        expandTrigger: expandTrigger,
-        collapseTrigger: collapseTrigger,
-        noActive: noActive,
-        tableRef: tableRef,
-        scrollPos: scrollPos
-      }) : null;
-
-      if (r) {
-        rowCount++;
-      } //Count the number of rows actually renedered (not filtered out)
-
-
-      return r;
-    } else if (rowCount <= (1 + activePage) * props.pageSize) {
-      rowCount++;
-    }
-
-    return null;
-  }))));
-}
-MainTable.defaultProps = {
-  pageSize: 100
-};
-
-function useDataset(fetchFunction) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-  //The array contains an empty object by default
-  var _useState = useState(options.defaultValue ? options.defaultValue : []),
-      _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
-
-  var _useState3 = useState([{
+  var _useState = useState([{
     visible: true,
     filteredBy: ''
   }]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      metaData = _useState4[0],
-      setMetaData = _useState4[1];
+      _useState2 = _slicedToArray(_useState, 2),
+      metaData = _useState2[0],
+      setMetaData = _useState2[1];
 
-  var _useState5 = useState('Pending'),
-      _useState6 = _slicedToArray(_useState5, 2),
-      status = _useState6[0],
-      setStatus = _useState6[1];
-
-  var _useState7 = useState(),
-      _useState8 = _slicedToArray(_useState7, 2),
-      lastResolved = _useState8[0],
-      setLastResolved = _useState8[1];
-
-  var _useState9 = useState(),
-      _useState10 = _slicedToArray(_useState9, 2),
-      lastEdited = _useState10[0],
-      setLastEdited = _useState10[1];
-
-  var _useState11 = useState({
-    get: function get() {
-      return [];
-    },
-    getSortRules: function getSortRules() {
-      return [];
+  useEffect(function () {
+    if (!props.data.isDataset) {
+      data.refresh();
     }
-  }),
-      _useState12 = _slicedToArray(_useState11, 2),
-      headers = _useState12[0],
-      setHeaders = _useState12[1];
-
-  var _useState13 = useState({}),
-      _useState14 = _slicedToArray(_useState13, 2),
-      activeRecord = _useState14[0],
-      setActiveRecord = _useState14[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
-
-
-  function _selectRecord(newPrimaryKey) {
-    var fromData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : data;
-    var newIndex = fromData.findIndex(function (r) {
-      return r[options.primaryKey] == newPrimaryKey;
-    });
-
-    if (newIndex > -1) {
-      setActiveRecord(fromData[newIndex]);
-      return fromData[newIndex];
-    } else {
-      setActiveRecord({});
-      return {};
-    }
-  }
-
-  function getActiveRecord() {
-    return activeRecord;
-  } //Search data a and generate new metadata
-
+  }, [props.data]); //SEARCH
 
   var searchText = useModuleContext().get('TouchPointSearchText');
 
-  function searchData(values) {
-    var newMetaData = [];
-    values.forEach(function (r, idx) {
-      var rowMeta = metaData[idx] ? metaData[idx] : {};
-      rowMeta.searchHidden = false;
+  function searchData() {
+    if (props.searchable) {
+      var values = data.read();
+      var newMetaData = [];
+      values.forEach(function (r, idx) {
+        var rowMeta = metaData[idx] ? metaData[idx] : {};
+        rowMeta.searchHidden = false;
 
-      if (searchText) {
-        var testVal = JSON.stringify(r).toLowerCase();
-        rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase());
-      }
+        if (searchText) {
+          var testVal = JSON.stringify(r).toLowerCase();
+          rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase());
+        }
 
-      newMetaData.push(rowMeta);
-    });
-    return newMetaData;
+        newMetaData.push(rowMeta);
+      });
+      setMetaData(newMetaData);
+    }
   }
 
-  useEffect(function () {
-    setMetaData(searchData(data));
-  }, [searchText]); //Filters the data based on given headers
+  useEffect(searchData, [searchText]); //FILTER
 
   function filterData(values) {
     var newMetaData = [];
@@ -3595,6 +3811,13 @@ function useDataset(fetchFunction) {
     });
     return newMetaData;
   }
+
+  data.filter = function () {
+    var newMeta = filterData(data.read());
+    setMetaData(newMeta);
+    headers.embedData(data.read(), newMeta);
+  }; //SORT
+
 
   function sortData(values) {
     var newValues = _toConsumableArray(values);
@@ -3623,151 +3846,33 @@ function useDataset(fetchFunction) {
       }
     });
     return newValues;
-  } //Fetch data and update state once the operation is complete. Keep the old value in the meantime
-
-
-  function fetchData() {
-    return _fetchData.apply(this, arguments);
-  } //If it's a subdataset, forward the refresh request to the parent
-
-
-  function _fetchData() {
-    _fetchData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var newData;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              setStatus('Pending');
-              _context.prev = 1;
-              _context.t0 = sortData;
-              _context.next = 5;
-              return fetchFunction();
-
-            case 5:
-              _context.t1 = _context.sent;
-              newData = (0, _context.t0)(_context.t1);
-              setMetaData(searchData(newData));
-              setMetaData(filterData(newData));
-              setData(newData);
-
-              _selectRecord(activeRecord[options.primaryKey], newData);
-
-              setStatus('Resolved');
-              setLastResolved(Date());
-              return _context.abrupt("return", status);
-
-            case 16:
-              _context.prev = 16;
-              _context.t2 = _context["catch"](1);
-              setStatus('Rejected');
-              console.error(_context.t2);
-              return _context.abrupt("return", status);
-
-            case 21:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[1, 16]]);
-    }));
-    return _fetchData.apply(this, arguments);
   }
 
-  function refreshData() {
-    return _refreshData.apply(this, arguments);
-  } //Automatically run the fetching function the first time, then wait for a refresh
-  //If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
+  data.sort = function () {
+    var newData = props.noSort ? data.read() : sortData(data.read()); // const newMeta = props.noFilter ? newData : filterData(newData)
+    // setMetaData(newMeta)
 
+    data.set(newData);
+    data.filter();
+  }; //Select and return:
+  //cleanProps - if a dataset is passed to the table, then no need to create one
+  //newProps - if a dataset is not passed to the table, then create one and pass it
 
-  function _refreshData() {
-    _refreshData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              if (status !== 'Pending') {
-                fetchData();
-              }
-
-            case 1:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return _refreshData.apply(this, arguments);
-  }
-
-  useEffect(function () {
-    fetchData();
-  }, []); //Return a Dataset object
-
-  return {
-    read: function read() {
-      return data;
-    },
-    refresh: refreshData,
-    selectRecord: function selectRecord(newKey) {
-      return _selectRecord(newKey);
-    },
-    getActiveRecord: getActiveRecord,
-    status: status,
-    lastResolved: lastResolved,
-    lastEdited: lastEdited,
-    //TouchPoint Controls
-    setHeaders: setHeaders,
-    isDataset: true,
-    primaryKey: options.primaryKey,
-    getMetaData: function getMetaData() {
-      return metaData;
-    },
-    filter: function filter() {
-      var newMeta = filterData(data);
-      setMetaData(newMeta);
-      headers.embedData(data, newMeta);
-    },
-    sort: function sort() {
-      var newData = sortData(data);
-      var newMeta = filterData(newData);
-      setMetaData(newMeta);
-      setData(newData);
-    },
-    set: function set(newData) {
-      setData(newData);
-      setLastEdited(Date());
-
-      _selectRecord(activeRecord[options.primaryKey], newData);
-    }
-  };
-}
-
-function MainTable$1(props) {
-  //Converts static data to an array
-  var newProps = _objectSpread2({}, props);
-
-  newProps.data = useDataset(props.data.isDataset ? function () {
-    return [];
-  } : function () {
-    return props.data;
-  });
-  newProps.nestedComponent = null;
-  newProps.noActive = true;
-  useEffect(function () {
-    if (!props.data.isDataset) {
-      newProps.data.refresh();
-    }
-  }, [props.data]);
 
   if (props.data.isDataset) {
-    return /*#__PURE__*/React.createElement(MainTable, props);
+    return /*#__PURE__*/React.createElement(CoreTable, _extends({}, cleanProps, {
+      metaData: metaData,
+      locked: locked
+    }));
   } else {
-    return /*#__PURE__*/React.createElement(MainTable, newProps);
+    return /*#__PURE__*/React.createElement(CoreTable, _extends({}, newProps, {
+      metaData: metaData,
+      locked: locked
+    }));
   }
 } //Proptypes
 
-MainTable$1.propTypes = {
+MainTable.propTypes = {
   onEdit: PropTypes.func,
   headers: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
@@ -3780,7 +3885,8 @@ MainTable$1.propTypes = {
   noActive: PropTypes.bool,
   nestedProps: PropTypes.object,
   nestedComponent: PropTypes.func,
-  settingsID: PropTypes.string
+  settingsID: PropTypes.string,
+  style: PropTypes.object
 };
 
 function InfoTab(props) {
@@ -3803,8 +3909,8 @@ InfoTab.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$o = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 30;\n}\n\n.InfoTabContainer .nav-tabs a{\n\tpadding: 6px 30px;\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\t\n\tborder-bottom-style: solid;\n\tborder-bottom-color: var(--navTextColor);\n\tborder-bottom-width: 6px;\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\ttext-shadow: 1px 0px 0px var(--navHoverColor);\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
-styleInject(css_248z$o);
+var css_248z$p = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n\tposition: sticky;\n\ttop: 0;\n\tz-index: 30;\n}\n\n.InfoTabContainer .nav-tabs a{\n\tpadding: 6px 30px;\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\t\n\tborder-bottom-style: solid;\n\tborder-bottom-color: var(--navTextColor);\n\tborder-bottom-width: 6px;\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\ttext-shadow: 1px 0px 0px var(--navHoverColor);\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
+styleInject(css_248z$p);
 
 function InfoTabContainer(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -3837,8 +3943,8 @@ InfoTabContainer.propTypes = {
   locked: PropTypes.bool
 };
 
-var css_248z$p = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tposition: relative;\n}";
-styleInject(css_248z$p);
+var css_248z$q = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tposition: relative;\n}";
+styleInject(css_248z$q);
 
 function Module(props) {
   var moduleData = useModuleContext();
@@ -3864,8 +3970,8 @@ Module.propTypes = {
   locked: PropTypes.bool
 };
 
-var css_248z$q = ".SplitScreen{\n\theight: calc(100% - var(--controlBarHeight));\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.SplitScreen>div{\n\twidth: 100%;\n}\n\n.SplitScreen .gutter{\n\twidth: 100%;\n\tbackground-color: var(--navColor);\n\topacity: 60%;\n\tcursor: ns-resize;\n\tpointer-events: all;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
-styleInject(css_248z$q);
+var css_248z$r = ".SplitScreen{\n\theight: 100%;\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.Module > .SplitScreen{\n\theight: calc(100% - var(--controlBarHeight));\n}\n\n.SplitScreen>div{\n\twidth: 100%;\n}\n\n.SplitScreen>div>div{\n\theight: 100%;\n\toverflow-y:auto;\n}\n\n.SplitScreen .gutter{\n\twidth: 100%;\n\tbackground-color: var(--navColor);\n\topacity: 60%;\n\tcursor: ns-resize;\n\tpointer-events: all;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
+styleInject(css_248z$r);
 
 function SplitScreen(props) {
   var splitSize = 50;
@@ -3880,7 +3986,7 @@ function SplitScreen(props) {
     direction: "vertical",
     sizes: [100 - splitSize, splitSize],
     minSize: 100,
-    gutterSize: 8,
+    gutterSize: 4,
     snapOffset: 1,
     dragInterval: 20
   }, props.children));
@@ -3890,8 +3996,8 @@ SplitScreen.propTypes = {
   defaultSize: PropTypes.number
 };
 
-var css_248z$r = ".ControlledTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.ControlledTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n}\n\n.ControlledTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n}\n\n.ControlledTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.ControlledTabContainer .nav-tabs{\n\tdisplay: none;\n}\n\n/* InfoCard components styled differntly */\n.ControlledTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
-styleInject(css_248z$r);
+var css_248z$s = ".ControlledTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.ControlledTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: 100%;\n\tposition: relative;\n\theight: 100%;\n}\n\n.ControlledTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n\theight: 100%;\n}\n\n.ControlledTabContainer .InfoTab{\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.ControlledTabContainer .nav-tabs{\n\tdisplay: none;\n}\n\n/* InfoCard components styled differntly */\n.ControlledTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
+styleInject(css_248z$s);
 
 function ControlledTabContainer(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -3926,18 +4032,24 @@ ControlledTabContainer.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$s = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
-styleInject(css_248z$s);
+var css_248z$t = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
+styleInject(css_248z$t);
 
 function Dock(props) {
-  usePresence('TouchPointDock', 0, 'var(--dockWidth)'); //locking the item. If a component somewhere above in the tree is locked, the context will 
+  usePresence('TouchPointDock', 0, 'var(--dockWidth)');
+
+  var _useSystem = useSystem(),
+      Layout = _useSystem.Layout; //locking the item. If a component somewhere above in the tree is locked, the context will 
+
 
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", _defineProperty({
     className: "Dock",
     style: props.style
-  }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
+  }, "style", {
+    height: Layout.get().heightCSS
+  }), /*#__PURE__*/React.createElement(lockedContext.Provider, {
     value: locked
   }, props.children));
 }
@@ -3946,5 +4058,5 @@ Dock.propTypes = {
   style: PropTypes.object
 };
 
-export { AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ControlBar, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable$1 as MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useSystem };
+export { AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ConfirmButton, ControlBar, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useSystem };
 //# sourceMappingURL=index.js.map
