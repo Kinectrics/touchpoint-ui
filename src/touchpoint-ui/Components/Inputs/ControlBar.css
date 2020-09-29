@@ -44,11 +44,13 @@
 	
 	color: var(--navTextColor);
 	background-color: var(--navColor);
+	background-color: transparent;
 	
 	font-size: 14pt;
 	font-weight: bold;
 	margin:0;
 	margin-right: 30px;
+	white-space: nowrap;
 }
 
 .ControlBar button:hover{

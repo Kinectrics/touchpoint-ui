@@ -54,14 +54,30 @@ export default function WIP() {
 			</Dock>
 
 			<ControlBar searchBar={true}>
+				<MenuButton menuContent={<div>
+					<button>Hello</button>
+					<button>Hello</button>
+					<button>Hello</button>
+				</div>}>Menu</MenuButton>
+				
 				<CoreButton style={{ marginRight: '50px' }}><FontAwesomeIcon icon={faCopy} /> Copy</CoreButton>
 				<CoreButton style={{ marginRight: '50px' }}><FontAwesomeIcon icon={faCogs} /> Edit</CoreButton>
 				<CoreButton style={buttonStyle} onClick={()=>{
 					data.refresh()
 					data2.refresh()
 				}}> <FontAwesomeIcon icon={faSync} /> Refresh</CoreButton>
+				<MenuButton style={buttonStyle} menuContent={<div>
+					<button>Hello</button>
+					<button>Hello</button>
+					<button>Hello</button>
+				</div>}>Menu</MenuButton>
 				<CoreButton style={buttonStyle}><FontAwesomeIcon icon={faTimesCircle} /> Delete</CoreButton>
 				<CoreButton style={buttonStyle}><FontAwesomeIcon icon={faPrint} /> Print</CoreButton>
+				<MenuButton menuContent={<div>
+					<button>Hello</button>
+					<button>Hello</button>
+					<button>Hello</button>
+				</div>}>Menu</MenuButton>
 			</ControlBar>
 
 			<SplitScreen>
