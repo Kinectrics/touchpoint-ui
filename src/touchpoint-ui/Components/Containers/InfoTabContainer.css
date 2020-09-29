@@ -3,7 +3,7 @@
 	width: 100%;
 	height: 100%;
 	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-y: hidden;
 }
 
 .InfoTabContainer .tab-content{
@@ -11,33 +11,35 @@
 	width: 100%;
 	margin: 0;
 	padding: 0;
-	height: 100%;
+	height: calc(100% - var(--tabHeaderHeight));
 	position: relative;
+	
 }
 
 .InfoTabContainer .tab-pane{
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
+	height: 100%;
 }
 
 .InfoTabContainer .InfoTab{
 	overflow: hidden;
 	width: 100%;
+	height: 100%;
 }
 
 .InfoTabContainer .nav-tabs{
 	background-color: var(--navColor);
+	height: var(--tabHeaderHeight);
 	overflow: hidden;
 	border: none;
 	padding-left: 0px;
-	position: sticky;
-	top: 0;
-	z-index: 30;
 }
 
 .InfoTabContainer .nav-tabs a{
-	padding: 6px 30px;
+	height: var(--tabHeaderHeight);
+	padding: 0px 30px;
 	background-color: var(--navColor);
 	color: 	var(--navTextColor);
 	outline: none !important;
@@ -54,10 +56,7 @@
 	color: 	var(--navTextColor);
 	
 	text-shadow: 1px 0px 0px var(--navTextColor);
-	
-	border-bottom-style: solid;
-	border-bottom-color: var(--navTextColor);
-	border-bottom-width: 6px;
+	border-bottom: solid 3px var(--navTextColor);
 }
 
 .InfoTabContainer .nav-tabs a:hover{
