@@ -7,7 +7,6 @@
 	--topBarHeight: 29px;
 	color: var(--mainTextColor);
 	background-color: var(--bodyAltBG);
-	padding-top: 3px;
 }
 
 .MainTable.noTransition *{
@@ -16,7 +15,7 @@
 
 .MainTable .topBar{
 	padding: 7px 0px;
-	padding-top: 0px;
+	padding-top: 3px;
 	padding-left: 30px;
 	background-color: var(--bodyAltBG);
 	position: sticky;
