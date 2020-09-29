@@ -82,7 +82,7 @@ export default function WIP() {
 
 			<SplitScreen>
 				<div>
-					<InfoTabContainer defaultTab='tab1'>
+					<InfoTabContainer defaultTab='tab2'>
 						<InfoTab tabTitle='BL Commitments' tabID='tab1'>
 							<MainTable
 								pageSize={50}
@@ -110,7 +110,7 @@ export default function WIP() {
 
 				<div>
 					<div>
-						<InfoTabContainer defaultTab='tab1'>
+						<InfoTabContainer defaultTab='tab2'>
 							<InfoTab tabTitle='CSVN' tabID='tab1'>
 								<InfoCard stripe>
 									CSVN Module Goes Here

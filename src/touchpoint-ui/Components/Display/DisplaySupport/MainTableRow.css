@@ -122,6 +122,7 @@
 .MainTableRow .componentWrapper .theadBar{
 	top:0;
 	height: 20px;
+	z-index: 0;
 }
 
 .MainTableRow .componentWrapper .mainSection{
