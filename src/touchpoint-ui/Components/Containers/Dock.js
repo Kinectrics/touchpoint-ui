@@ -15,9 +15,7 @@ export default function Dock(props) {
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	return (
-		<div className = 'Dock' style = {props.style} style={{
-			height: Layout.get().heightCSS
-		}}>
+		<div className='Dock' style={{...props.style, height: Layout.get().heightCSS}}>
 			<lockedContext.Provider value={locked}>
 				{props.children}
 			</lockedContext.Provider>

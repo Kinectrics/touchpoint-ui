@@ -34,7 +34,7 @@ export default function TextBox(props) {
 	return (
 		<input 
 			type={props.type ? props.type : "text"}
-			className={"input TextBox " + lockedClass}
+			className={"input TextBox " + lockedClass + ' ' + props.className}
 			defaultValue={props.defaultValue}
 			onChange={changeHandler}
 			readOnly={locked}
@@ -63,5 +63,6 @@ TextBox.propTypes = {
 	autoFocus: PropTypes.bool,
 	value: PropTypes.string,
 	onEscape: PropTypes.func,
+	type: PropTypes.string,
 }
 

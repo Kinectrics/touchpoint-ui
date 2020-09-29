@@ -7,6 +7,7 @@
 	--topBarHeight: 29px;
 	color: var(--mainTextColor);
 	background-color: var(--bodyAltBG);
+	padding-top: 3px;
 }
 
 .MainTable.noTransition *{

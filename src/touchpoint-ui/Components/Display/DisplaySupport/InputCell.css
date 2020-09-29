@@ -13,6 +13,10 @@
 	transition: background-color 750ms ease-out;
 }
 
+.MainTableRow .inputWrapper{
+	height: 100%;
+}
+
 .MainTableRow .badge.inputWrapper{
 	padding: 0;
 }
@@ -34,5 +38,8 @@
 	padding: 4px 0;
 }
 
-
+/* Cells for nested tables */
+.MainTableRow .MainTableRow .InputCell{
+	height: calc(100% - 3px);
+}
 

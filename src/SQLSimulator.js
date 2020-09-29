@@ -17,6 +17,72 @@ export function queryNotifications(){
 	])
 }
 
+function createState() {
+	const stateOptions = ['At Risk', 'On Track', 'CSVN Required', 'CSVN Approved', 'CSVN In Progress', 'Not Required']
+	const idx = Math.floor(Math.random() * (stateOptions.length))
+	return (stateOptions[idx])
+}
+
+
+export function csqQuery(){
+	const list = []
+	const n = 60
+
+	for (let i = 0; i < n; i++) {
+		const row = {
+			id: i,
+			commitment: faker.date.future().toString(),
+			finish: faker.date.future().toString(),
+			pcs: faker.name.findName(),
+			pm: faker.name.findName(),
+			planner: faker.name.findName(),
+			programManager: faker.name.findName(),
+			materialBuyer: faker.name.findName(),
+			serviceBuyer: faker.name.findName(),
+			materialBuyer: faker.name.findName(),
+			buyerAnalyst: faker.name.findName(),
+			csq: Math.random() > 0.8 ? 'CSQ' : 'NCSQ',
+			lamp: Math.random() < 0.4 ? 'Yes' : 'No',
+			notes: faker.lorem.sentence(),
+			csvnDate: faker.date.future().toString(),
+			state: createState()
+		}
+
+		row.variance = 7
+		list.push(row)
+	}
+
+	return list
+}
+
+
+export function unplannedQuery(){
+	const list2 = []
+	const n2 = 60
+
+	for (let i = 0; i < n2; i++) {
+		const row = {
+			id: i,
+			tds: '3' + Math.floor(Math.random() * 10000),
+			scopetitle: faker.lorem.words(),
+			dateadded: faker.date.future().toString(),
+			addedby: faker.name.findName(),
+			comments: faker.lorem.sentences(),
+			cids: [...new Array(9)].map(() => {
+				return {
+					id: 'CID' + i.toString(),
+					number: Math.round(Math.random() * 100000),
+					desc: faker.lorem.sentence()
+				}
+			})
+
+		}
+		list2.push(row)
+	}
+
+	return list2
+}
+
 //
 export function fakeData(n = 500){
 	

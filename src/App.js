@@ -8,6 +8,7 @@ import LockScreen from './Modules/LockScreen/LockScreen'
 import VendorRubrics from './Modules/VendorRubrics/VendorRubrics'
 import VRIcon from './Modules/VendorRubrics/VRIcon.svg'
 import ETDB from './Modules/ETDB/ETDB'
+import WIP from './Modules/WIP/WIP'
 
 //This list of modules available to the app...
 const moduleList = {
@@ -30,6 +31,11 @@ const moduleList = {
 		locked: false,
 		hidden: false,
 	},
+	
+	WIP: {
+		name: 'Work In Progress',
+		component: WIP
+	}
 }
 
 export default function App() {

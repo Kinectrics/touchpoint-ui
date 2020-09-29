@@ -157,7 +157,7 @@ export default function MainTable(props){
 MainTable.propTypes = {
 	onEdit: PropTypes.func,
 	headers: PropTypes.arrayOf(PropTypes.object).isRequired,
-
+	
 	data: PropTypes.oneOfType([
 		PropTypes.object,
 		PropTypes.array
