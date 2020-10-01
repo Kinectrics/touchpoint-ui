@@ -108,6 +108,7 @@
 .MainTableRow .componentWrapper .MainTableRow{
 	margin-top: 2px;
 	margin-bottom: 2px;
+	background-color: transparent;
 }
 
 .MainTableRow .componentWrapper .topRow{
@@ -127,4 +128,44 @@
 
 .MainTableRow .componentWrapper .mainSection{
 	padding-top: 5px;
+}
+
+/* Nested Tabs */
+.MainTableRow .InfoTabContainer{
+	background-color: var(--cardBG);
+}
+
+.MainTableRow .InfoTab{
+	padding-top: 10px;
+}
+
+.MainTableRow .InfoTabContainer .nav-tabs{
+	border-radius: 10px;
+	background-color: var(--cardBG);
+}
+
+.MainTableRow .InfoTabContainer .nav-tabs a{
+	color: var(--navColor);
+	background-color: transparent;
+	padding: 0px 10px;
+}
+
+.MainTableRow .InfoTabContainer .nav-tabs a.active{
+	color: var(--navColor);
+	background-color: transparent;
+	text-shadow: 1px 0px 0px var(--navColor);
+	border-bottom: solid 3px var(--navColor);
+}
+
+.MainTableRow .InfoTabContainer .nav-tabs a:hover{
+	color:var(--navHoverColor);
+}
+
+.MainTableRow .InfoTabContainer .nav-tabs a:hover{
+	color:var(--navColor);
+	filter: brightness(60%);
+}
+
+.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{
+	color: 	var(--navColor);
 }

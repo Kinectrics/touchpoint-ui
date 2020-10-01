@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {MainTable, useDataset} from '../../touchpoint-ui'
+import {MainTable, useDataset, InfoTabContainer, InfoTab} from '../../touchpoint-ui'
 
 export default function Nest(props) {
 	
@@ -18,11 +18,20 @@ export default function Nest(props) {
 	
 	return (
 		<div>
-			
-			<MainTable
-				data = {data}
-				headers={headers}
-			/>
+			<InfoTabContainer defaultTab='1'>
+				<InfoTab title='Table' tabID='1'>
+					<MainTable
+						data={data}
+						headers={headers}
+						noActive
+					/>
+				</InfoTab>
+				
+				<InfoTab tabTitle='Else' tabID='2'>
+					Tab 2
+				</InfoTab>
+				
+			</InfoTabContainer>
 			
 		</div>
 	)

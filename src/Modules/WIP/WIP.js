@@ -60,8 +60,6 @@ export default function WIP() {
 					<button>Hello</button>
 				</div>}>Menu</MenuButton>
 				
-				<CoreButton style={{ marginRight: '50px' }}><FontAwesomeIcon icon={faCopy} /> Copy</CoreButton>
-				<CoreButton style={{ marginRight: '50px' }}><FontAwesomeIcon icon={faCogs} /> Edit</CoreButton>
 				<CoreButton style={buttonStyle} onClick={()=>{
 					data.refresh()
 					data2.refresh()
@@ -80,52 +78,33 @@ export default function WIP() {
 				</div>}>Menu</MenuButton>
 			</ControlBar>
 
-			<SplitScreen>
-				<div>
-					<InfoTabContainer defaultTab='tab2'>
-						<InfoTab tabTitle='BL Commitments' tabID='tab1'>
-							<MainTable
-								pageSize={50}
-								headers={headers}
-								data={data}
-								settingsID={'WIP_Table_1'}
-								searchable
-							/>
-						</InfoTab>
+	
+			<div style={{height: 'calc(100% - var(--controlBarHeight))'}}>
+				<InfoTabContainer defaultTab='tab2'>
+					<InfoTab tabTitle='BL Commitments' tabID='tab1'>
+						<MainTable
+							pageSize={50}
+							headers={headers}
+							data={data}
+							settingsID={'WIP_Table_1'}
+							searchable
+						/>
+					</InfoTab>
 
-						<InfoTab tabTitle='Unplanned Work' tabID='tab2'>
-							<MainTable
-								pageSize={50}
-								headers={headers2}
-								data={data2}
-								settingsID={'WIP_Table_2'}
-								searchable
-								nestedComponent={Nest}
-								nestedProps={{ content: 'Hello' }}
-							/>
-						</InfoTab>
-					</InfoTabContainer>
+					<InfoTab tabTitle='Unplanned Work' tabID='tab2'>
+						<MainTable
+							pageSize={50}
+							headers={headers2}
+							data={data2}
+							settingsID={'WIP_Table_2'}
+							searchable
+							nestedComponent={Nest}
+							nestedProps={{ content: 'Hello' }}
+						/>
+					</InfoTab>
+				</InfoTabContainer>
 
-				</div>
-
-				<div>
-					<div>
-						<InfoTabContainer defaultTab='tab2'>
-							<InfoTab tabTitle='CSVN' tabID='tab1'>
-								<InfoCard stripe>
-									CSVN Module Goes Here
-								</InfoCard>
-							</InfoTab>
-
-							<InfoTab tabTitle='Escalation' tabID='tab2'>
-								<InfoCard stripe>
-									Escalation Goes Here
-								</InfoCard>
-							</InfoTab>
-						</InfoTabContainer>
-					</div>
-				</div>
-			</SplitScreen>
+			</div>
 
 		</Module>
 	)

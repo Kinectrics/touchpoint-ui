@@ -40,7 +40,7 @@
 .InfoTabContainer .nav-tabs a{
 	height: var(--tabHeaderHeight);
 	padding: 0px 30px;
-	background-color: var(--navColor);
+	background-color: transparent;
 	color: 	var(--navTextColor);
 	outline: none !important;
 	border: none;
@@ -60,11 +60,13 @@
 }
 
 .InfoTabContainer .nav-tabs a:hover{
-	color:var(--navHoverColor);
+	filter: brightness(80%);
 }
 
 .InfoTabContainer .nav-tabs a.active:hover{
-	text-shadow: 1px 0px 0px var(--navHoverColor);
+	color: 	var(--navTextColor);
+	filter: none;
+	background-color: transparent;
 }
 
 /* InfoCard components styled differntly */

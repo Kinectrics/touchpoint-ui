@@ -8,7 +8,7 @@ import './InfoTabContainer.css'
 export default function InfoTabContainer(props) {
 	
 	const lockedFromAbove = useContext(lockedContext)
-	const locked = props.locked || (lockedFromAbove && props.locked ===undefined)
+	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	return (
 		<lockedContext.Provider value={locked}>
@@ -22,8 +22,10 @@ export default function InfoTabContainer(props) {
 				>
 					
 					{React.Children.map(props.children,(child) =>{
+						const tabTitle = child.props.tabTitle ? child.props.tabTitle : child.props.title
+						
 						if(!child.props.hidden){
-							return(<Tab eventKey={child.props.tabID} title={child.props.tabTitle}>
+							return(<Tab eventKey={child.props.tabID} title={tabTitle}>
 								{child}
 							</Tab>)
 						} else return null
