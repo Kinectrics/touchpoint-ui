@@ -43,6 +43,13 @@ export default function WIP() {
 		{ headerID: 'addedby', displayName: 'Added By', width: 200 },
 		{ headerID: 'comments', displayName: 'Comments', width: 500 },
 	]
+	
+	function testSetActive(){
+		const newRow = {...data2.getActiveRecord()}
+		newRow.cids[0].number = 1000
+		data2.setActiveRecord(newRow)
+	}
+	
 
 	return (
 		<Module>
@@ -69,7 +76,7 @@ export default function WIP() {
 					<button>Hello</button>
 					<button>Hello</button>
 				</div>}>Menu</MenuButton>
-				<CoreButton style={buttonStyle}><FontAwesomeIcon icon={faTimesCircle} /> Delete</CoreButton>
+				<CoreButton style={buttonStyle} onClick={testSetActive}><FontAwesomeIcon icon={faTimesCircle} /> Set Active</CoreButton>
 				<CoreButton style={buttonStyle}><FontAwesomeIcon icon={faPrint} /> Print</CoreButton>
 				<MenuButton menuContent={<div>
 					<button>Hello</button>

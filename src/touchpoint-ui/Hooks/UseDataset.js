@@ -49,11 +49,26 @@ export default function useDataset(fetchFunction, options = {}) {
 		}
 	}
 	
-	//If it's a subdataset, forward the refresh request to the parent
-	async function refreshData(){
-		if (status !== 'Pending') {
-			fetchData()
+	//Lets you edit the active row
+	function editActiveRecord(newRecord) {
+		const newData = newRecord ? [...data] : []
+		
+		const activeIndex = data.findIndex(r => r[options.primaryKey] === activeRecord[options.primaryKey])
+		
+		//if you call this function without passing a new record, the record is deleted
+		if(newRecord){
+			newData[activeIndex] = newRecord
+			setActiveRecord(newRecord)
+		}else{
+			data.forEach((r, idx)=>{
+				if(idx !== activeIndex){
+					newData.push(r)
+				}
+			})
+			setActiveRecord({})
 		}
+		
+		setData(newData)
 	}
 	
 	//Automatically run the fetching function the first time, then wait for a refresh
@@ -65,10 +80,11 @@ export default function useDataset(fetchFunction, options = {}) {
 	//Return a Dataset object
 	return ({
 		read: () => {return data},
-		refresh: refreshData,
+		refresh: fetchData,
 		
 		selectRecord: (newKey) => selectRecord(newKey),
 		getActiveRecord: getActiveRecord,
+		setActiveRecord: editActiveRecord,
 		
 		status: status,
 		lastResolved: lastResolved,
