@@ -27,7 +27,7 @@ export default function Nest(props) {
 					/>
 				</InfoTab>
 				
-				<InfoTab tabTitle='Else' tabID='2'>
+				<InfoTab title='Else' tabID='2'>
 					Tab 2
 				</InfoTab>
 				

@@ -13,7 +13,6 @@
 	padding: 0;
 	height: calc(100% - var(--tabHeaderHeight));
 	position: relative;
-	
 }
 
 .InfoTabContainer .tab-pane{

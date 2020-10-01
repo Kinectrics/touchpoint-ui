@@ -68,9 +68,9 @@ export function unplannedQuery(){
 			dateadded: faker.date.future().toString(),
 			addedby: faker.name.findName(),
 			comments: faker.lorem.sentences(),
-			cids: [...new Array(9)].map(() => {
+			cids: [...new Array(9)].map((r,j) => {
 				return {
-					id: 'CID' + i.toString(),
+					id: 'CID' + i.toString() + '.' + j.toString(),
 					number: Math.round(Math.random() * 100000),
 					desc: faker.lorem.sentence()
 				}
