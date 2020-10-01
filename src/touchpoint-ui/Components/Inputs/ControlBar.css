@@ -32,7 +32,7 @@
 }
 
 .ControlBar .input{
-	border: 1px solid var(--navTextColor);
+	border: none;
 }
 
 /* ControlButton */
