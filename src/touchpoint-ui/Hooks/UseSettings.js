@@ -12,7 +12,7 @@ export default function useSettings(settingsID, applySettings){
 				const token = await get(settingsID)
 				applySettings(token)
 			} catch(err){
-				console.error(err)
+				// console.error(err)
 			}
 		}
 		
