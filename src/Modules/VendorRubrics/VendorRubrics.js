@@ -20,7 +20,7 @@ export default function VendorRubrics(){
 	//Conditional formatting for the status
 	const statusStyle = (cellValue) => {
 		switch(cellValue){
-			case 'Complete': return {color: 'white', backgroundColor: '#66CD00'}
+			case 'Complete': return {color: 'white', backgroundColor: '#009933'}
 			case 'Pending Approval': return {color: 'white', backgroundColor: '#EE0000'}
 			case 'In Progress': return { color: 'white', backgroundColor: '#00ccff' }
 			default: return {color: 'white', backgroundColor:'blue'}
@@ -104,11 +104,11 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						{/* <RubricDetail /> */}
+						<RubricDetail />
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						{/* <StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/> */}
+						<StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/>
 					</InfoTab>								
 							
 				</InfoTabContainer>

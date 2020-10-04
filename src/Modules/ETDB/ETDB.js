@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton} from '../../touchpoint-ui'
+import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset} from '../../touchpoint-ui'
 import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import RubricDetail from '../VendorRubrics/RubricDetail'
 
 function TestComp(props){
 	
@@ -21,18 +22,42 @@ function TestComp(props){
 	)
 }
 
+
 export default function ETDB() {
-		
-	const System = useSystem()
 	
-	function pop(){
-		System.Popup.open(<TestComp System={System}/>)
+	const data = useDataset(()=>{
+		return [...new Array(20)].map((r, idx)=>{
+			return {id: idx, selected: idx%4}
+		})
+	}, {primaryKey: 'id'})
+	
+	
+	///
+	const changeHandler = async (val)=>{
+		const newRow = { ...data.getActiveRecord() }
+		
+		newRow.selected = val
+		data.setActiveRecord(newRow)
+		newRow.selected = val
+		data.setActiveRecord(newRow)
 	}
+	///
+	
+	
+	async function pop(){
+		data.refresh()
+		System.Popup.open(<PopupCard stripe style={{height: '97%', width: '90%'}}>
+			<RubricDetail/>
+		</PopupCard>)
+	}
+	
+	const System = useSystem()
+
 	
 	return (
 		<Module moduleName = 'ETDB'>
 			
-			
+			{data.getActiveRecord().selected}
 			<Dock locked = {false}>
 				
 				<DockIcon faIcon={faBars} style={{marginBottom: '50px'}} onClick={()=>{
@@ -71,6 +96,14 @@ export default function ETDB() {
 					<button>Hello</button>
 				</div>
 			}>Menu</MenuButton>
+			
+			
+			
+			<RadioGroup value = {data.getActiveRecord().selected} onChange={changeHandler}>
+				<RadioButton value = {1}>1</RadioButton>
+				<RadioButton value = {2}>2</RadioButton>
+				<RadioButton value = {3}>3</RadioButton>
+			</RadioGroup>
 			
 		</Module>
 	)
