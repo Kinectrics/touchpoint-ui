@@ -5,9 +5,9 @@
 	
 }
 
-.InfoCard .InfoCard{
+.InfoCard .InfoCard .cardContainer{
 	box-shadow: none;
-	border: 1px solid var(--lockedTextColor);
+	border: 1px solid var(--borderColor);
 }
 
 .InfoCard .CloseButton{

@@ -57,6 +57,7 @@ export default function ETDB() {
 	return (
 		<Module moduleName = 'ETDB'>
 			
+			
 			{data.getActiveRecord().selected}
 			<Dock locked = {false}>
 				
@@ -77,6 +78,9 @@ export default function ETDB() {
 				<DockIcon faIcon={faPlusSquare} title={'New TDS'} style={{ marginTop: '50px' }}/>
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
+			
+			<SearchBar />
+			<SearchBar />
 			
 			<FreeButton onClick={pop}>
 				Pop
