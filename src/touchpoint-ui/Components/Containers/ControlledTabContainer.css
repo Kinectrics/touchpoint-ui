@@ -34,10 +34,6 @@
 	width: 100%;
 }
 
-.ControlledTabContainer .nav-tabs{
-	display: none;
-}
-
 /* InfoCard components styled differntly */
 .ControlledTabContainer .InfoCard{
 	padding: 10px;
