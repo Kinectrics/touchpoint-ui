@@ -2,7 +2,7 @@ import React from 'react'
 import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, MainTable} from '../../touchpoint-ui'
 import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle} from "@fortawesome/free-solid-svg-icons"
+import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle, faPenFancy} from "@fortawesome/free-solid-svg-icons"
 import {fakeData} from '../../SQLSimulator'
 import RubricHeader from './RubricHeader'
 import RubricDetail  from './RubricDetail'
@@ -58,6 +58,12 @@ export default function VendorRubrics(){
 					console.log(data.read())
 				}}>
 					<FontAwesomeIcon icon={faCalendarAlt} /> Log Data
+				</button>
+				
+				<button onClick={() => {
+					data.setRecord('8', {vendor:'Hello', project: '700'})
+				}}>
+					<FontAwesomeIcon icon={faPenFancy} /> Edit Record
 				</button>
 				
 				<button onClick={()=>{

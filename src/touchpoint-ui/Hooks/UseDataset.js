@@ -55,7 +55,7 @@ export default function useDataset(fetchFunction, options = {}) {
 		
 		if(!options.primaryKey){console.error('No primary key set for this dataset.')}
 		
-		const activeIndex = data.findIndex(r => r[options.primaryKey] === activeRecord[options.primaryKey])
+		const activeIndex = data.findIndex(r => r[options.primaryKey] == activeRecord[options.primaryKey])
 		
 		//if you call this function without passing a new record, the record is deleted
 		if(newRecord && activeIndex > -1){
@@ -79,7 +79,7 @@ export default function useDataset(fetchFunction, options = {}) {
 		
 		if (!options.primaryKey) { console.error('No primary key set for this dataset.') }
 
-		const activeIndex = data.findIndex(r => r[options.primaryKey] === recordKey)
+		const activeIndex = data.findIndex(r => r[options.primaryKey] == recordKey)
 
 		//if you call this function without passing a new record, the record is deleted
 		if (newRecord && activeIndex > -1) {

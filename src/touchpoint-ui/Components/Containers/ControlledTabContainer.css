@@ -11,23 +11,6 @@
 	height: 100%;
 }
 
-.ControlledTabContainer .tab-content{
-	color: var(--mainTextColor);
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	position: relative;
-	height: 100%;
-}
-
-.ControlledTabContainer .tab-pane{
-	padding: 0;
-	margin: 0;
-	overflow: hidden;
-	height: 100%;
-}
-
 .ControlledTabContainer .InfoTab{
 	height: 100%;
 	overflow: auto;
@@ -38,4 +21,3 @@
 .ControlledTabContainer .InfoCard{
 	padding: 10px;
 }
-
