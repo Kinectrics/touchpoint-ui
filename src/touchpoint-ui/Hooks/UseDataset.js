@@ -53,10 +53,12 @@ export default function useDataset(fetchFunction, options = {}) {
 	function editActiveRecord(newRecord) {
 		const newData = newRecord ? [...data] : []
 		
+		if(!options.primaryKey){console.error('No primary key set for this dataset.')}
+		
 		const activeIndex = data.findIndex(r => r[options.primaryKey] === activeRecord[options.primaryKey])
 		
 		//if you call this function without passing a new record, the record is deleted
-		if(newRecord){
+		if(newRecord && activeIndex > -1){
 			newData[activeIndex] = newRecord
 			setActiveRecord(newRecord)
 		}else{
@@ -69,6 +71,29 @@ export default function useDataset(fetchFunction, options = {}) {
 		}
 		
 		setData(newData)
+	}
+	
+	//Lets you edit a record that isn't the active record by specifying a primary key
+	function editSpecificRecord(recordKey, newRecord){
+		const newData = newRecord ? [...data] : []
+		
+		if (!options.primaryKey) { console.error('No primary key set for this dataset.') }
+
+		const activeIndex = data.findIndex(r => r[options.primaryKey] === recordKey)
+
+		//if you call this function without passing a new record, the record is deleted
+		if (newRecord && activeIndex > -1) {
+			newData[activeIndex] = newRecord
+		} else {
+			data.forEach((r, idx) => {
+				if (idx !== activeIndex) {
+					newData.push(r)
+				}
+			})
+		}
+
+		setData(newData)
+		selectRecord(activeRecord[options.primaryKey], newData)
 	}
 	
 	//Automatically run the fetching function the first time, then wait for a refresh
@@ -85,6 +110,7 @@ export default function useDataset(fetchFunction, options = {}) {
 		selectRecord: (newKey) => selectRecord(newKey),
 		getActiveRecord: getActiveRecord,
 		setActiveRecord: editActiveRecord,
+		setRecord: editSpecificRecord,
 		
 		status: status,
 		lastResolved: lastResolved,

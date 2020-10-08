@@ -1,5 +1,5 @@
-import React from 'react'
-import { Module, Dock, ControlBar, CoreButton, DockIcon, SplitScreen, FreeButton, useSystem, PopupCard, useDataset, MainTable, InfoTabContainer, InfoCard, InfoTab, MenuButton, AppToolbar, SearchBar } from '../../touchpoint-ui'
+import React, {useState} from 'react'
+import { Module, Dock, ControlBar, CoreButton, DockIcon, ControlledTabContainer, SplitScreen, FreeButton, useSystem, PopupCard, useDataset, MainTable, InfoTabContainer, InfoCard, InfoTab, MenuButton, AppToolbar, SearchBar } from '../../touchpoint-ui'
 import { faCopy, faSave, faCogs, faTimesCircle, faPrint, faSync, faHome, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Nest from './Nest'
@@ -7,6 +7,8 @@ import {csqQuery, unplannedQuery} from '../../SQLSimulator'
 
 
 export default function WIP() {
+	
+	const [activeTab, setActiveTab] = useState('tab2')
 
 	const buttonStyle = {height: '100%', marginRight: '60px'}
 	
@@ -55,9 +57,8 @@ export default function WIP() {
 		<Module>
 			<Dock style={{ paddingTop: '20px' }}>
 				<DockIcon title={'Home'} faIcon={faHome} style={{ marginTop: '20px' }} notifications={45} />
-				<DockIcon title={'Query Editor'} faIcon={faDatabase} style={{ marginTop: '20px' }} />
-				<DockIcon title={'copy'} faIcon={faSave} style={{ marginTop: '20px' }} />
-				<DockIcon title={'copy'} faIcon={faSave} style={{ marginTop: '20px' }} />
+				<DockIcon title={'Planned'} faIcon={faDatabase} style={{ marginTop: '20px' }} onClick={()=>setActiveTab('tab1')}/>
+				<DockIcon title={'Unplanned'} faIcon={faSave} style={{ marginTop: '20px' }} onClick={() => setActiveTab('tab2')}/>
 			</Dock>
 
 			<ControlBar searchBar={true}>
@@ -87,7 +88,7 @@ export default function WIP() {
 
 	
 			<div style={{height: 'calc(100% - var(--controlBarHeight))'}}>
-				<InfoTabContainer defaultTab='tab2'>
+				<ControlledTabContainer activeTab={activeTab}>
 					<InfoTab tabTitle='BL Commitments' tabID='tab1'>
 						<MainTable
 							pageSize={50}
@@ -109,7 +110,7 @@ export default function WIP() {
 							nestedProps={{ content: 'Hello' }}
 						/>
 					</InfoTab>
-				</InfoTabContainer>
+				</ControlledTabContainer>
 
 			</div>
 

@@ -19,7 +19,7 @@ export default function Nest(props) {
 	return (
 		<div>
 			<InfoTabContainer defaultTab='1'>
-				<InfoTab title='Table' tabID='1'>
+				<InfoTab tabTitle='Table' tabID='1'>
 					<MainTable
 						data={data}
 						headers={headers}
@@ -27,7 +27,7 @@ export default function Nest(props) {
 					/>
 				</InfoTab>
 				
-				<InfoTab title='Else' tabID='2'>
+				<InfoTab tabTitle='Else' tabID='2'>
 					Tab 2
 				</InfoTab>
 				

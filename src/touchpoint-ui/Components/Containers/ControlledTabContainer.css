@@ -6,6 +6,11 @@
 	overflow-y: auto;
 }
 
+.ControlledTabContainer .tabWrapper{
+	width: 100%;
+	height: 100%;
+}
+
 .ControlledTabContainer .tab-content{
 	color: var(--mainTextColor);
 	width: 100%;
@@ -24,7 +29,8 @@
 }
 
 .ControlledTabContainer .InfoTab{
-	overflow: hidden;
+	height: 100%;
+	overflow: auto;
 	width: 100%;
 }
 
