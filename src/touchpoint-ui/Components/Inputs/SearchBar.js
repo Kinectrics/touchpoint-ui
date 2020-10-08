@@ -14,6 +14,8 @@ export default function SearchBar(props) {
 	const searchRef = useRef()
 	const [searchBarValue, setSearchBarValue] = useState('')
 	
+	const searchContext = moduleData.get('TouchPointSearchText')
+	
 	
 	function focusSearchBar(){
 		searchRef.current.focus()
@@ -40,6 +42,10 @@ export default function SearchBar(props) {
 		})
 
 	}, [])
+	
+	useEffect(()=>{
+		setSearchBarValue(searchContext)
+	}, [searchContext])
 	
 	
 	//search
