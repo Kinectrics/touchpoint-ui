@@ -35,6 +35,7 @@ export default function CommentBox(props) {
 			onBlur = {blurHandler}
 			style = {props.style}
 			value={props.value}
+			maxLength={props.maxLength}
 		></textarea>
 	)
 }
@@ -51,5 +52,6 @@ CommentBox.propTypes = {
 	height: PropTypes.string,
 	width: PropTypes.string,
 	value: PropTypes.string,
+	maxLength: PropTypes.number,
 }
 

@@ -45,6 +45,7 @@ export default function TextBox(props) {
 			autoFocus = {props.autoFocus}
 			style = {props.style}
 			value = {props.value}
+			maxLength={props.maxLength}
 		/>
 	)
 }
@@ -64,5 +65,6 @@ TextBox.propTypes = {
 	value: PropTypes.string,
 	onEscape: PropTypes.func,
 	type: PropTypes.string,
+	maxLength:PropTypes.number,
 }
 
