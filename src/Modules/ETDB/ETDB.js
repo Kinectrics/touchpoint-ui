@@ -79,8 +79,11 @@ export default function ETDB() {
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
 			
-			<SearchBar />
-			<SearchBar />
+			<InfoCard stripe>
+				<InfoCard>
+					hello
+				</InfoCard>
+			</InfoCard>
 			
 			<FreeButton onClick={pop}>
 				Pop
