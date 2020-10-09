@@ -27,7 +27,7 @@ export default function CommentBox(props) {
 	
 	return (
 		<textarea
-			className={"input CommentBox " + lockedClass}
+			className={"input CommentBox " + lockedClass + ' ' + props.className}
 			defaultValue={props.defaultValue}
 			onChange={changeHandler}
 			readOnly={locked}

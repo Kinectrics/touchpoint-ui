@@ -61,7 +61,6 @@ DockIcon.propTypes = {
 	locked: PropTypes.bool,
 	hidden: PropTypes.bool,
 	title: PropTypes.string,
-	faIcon: PropTypes.object,
 	style: PropTypes.object,
 	notifications: PropTypes.number,
 	onClick: PropTypes.func,

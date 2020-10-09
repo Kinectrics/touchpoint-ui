@@ -10,12 +10,14 @@ import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
 
 const dropMenu = React.forwardRef(
 	(props, ref) => {
+		const menuMaxWidth = props.menuStyle && props.menuStyle.width ? null : '180px'
+		
 		return (
 			<menuContext.Provider value={{submenu: true}}>
 				<div
 					ref={ref}
 					className={props.className + ' Menu ' + props.menuClass}
-					style={{...props.style, ...props.menuStyle}}
+					style={{maxWidth: menuMaxWidth, ...props.style, ...props.menuStyle}}
 					onClick={props.onClickBody}
 				>
 					{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}

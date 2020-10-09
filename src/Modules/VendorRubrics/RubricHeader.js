@@ -25,9 +25,10 @@ export default function RubricHeader(props) {
 				<InfoCard height='450px' title = 'General'>
 					
 					<ConfirmButton
-						content = {<FontAwesomeIcon icon={faTimes}/>}
-						expandedContent = 'helloooo'
+						content = {<span><FontAwesomeIcon icon={faTimes}/> Click</span>}
+						expandedContent = 'Are you sure'
 						onClick = {()=>{console.log('button')}}
+
 					/>
 
 					<table><tbody>

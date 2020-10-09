@@ -20,10 +20,10 @@ export default function Escalation() {
 		<Module>
 			<Dock>
 				<DockIcon menuContent={AddMenu} menuStyle ={{
-					width: '400px'
+					width: '900px',
 				}}title ='Add Escalation'><FontAwesomeIcon icon={faDatabase}/></DockIcon>
 			</Dock>
-
+			
 			<div>
 				
 			</div>
