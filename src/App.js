@@ -9,6 +9,7 @@ import VendorRubrics from './Modules/VendorRubrics/VendorRubrics'
 import VRIcon from './Modules/VendorRubrics/VRIcon.svg'
 import ETDB from './Modules/ETDB/ETDB'
 import WIP from './Modules/WIP/WIP'
+import Escalation from './Modules/Escalation/Escalation'
 
 //This list of modules available to the app...
 const moduleList = {
@@ -35,7 +36,13 @@ const moduleList = {
 	WIP: {
 		name: 'Work In Progress',
 		component: WIP
-	}
+	},
+	
+	Escalation: {
+		name: 'Escalation',
+		component: Escalation
+	},
+	
 }
 
 export default function App() {
