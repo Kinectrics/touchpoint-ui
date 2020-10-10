@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Module, Dock, ControlBar, CoreButton, DockIcon, SplitScreen, FreeButton, useSystem, ControlledTabContainer, PopupCard, useDataset, MainTable, InfoTabContainer, InfoCard, InfoTab, MenuButton, AppToolbar, SearchBar } from '../../touchpoint-ui'
-import { faCopy, faSave, faCogs, faTimesCircle, faPrint, faSync, faHome, faDatabase, faTasks, faHardHat, faFire } from "@fortawesome/free-solid-svg-icons";
+import { Module, Dock, ControlBar, CoreButton, DockIcon, SplitScreen, FreeButton, useSystem, ControlledTabContainer, PopupCard, useDataset, MainTable, InfoTabContainer, InfoCard, InfoTab, MenuButton, AppToolbar, SearchBar, TextBox } from '../../touchpoint-ui'
+import { faCopy, faSave, faCogs, faTimesCircle, faPrint, faSync, faHome, faDatabase, faTasks, faHardHat, faFire, faCircleNotch, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddMenu from "./AddMenu";
+import './Escalation.css'
+import {Loading}from '../../touchpoint-ui'
 
 
 export default function Escalation() {
@@ -17,16 +19,17 @@ export default function Escalation() {
 	];
 
 	return (
-		<Module>
+		<Module moduleName='Escalation'>
 			<Dock>
 				<DockIcon menuContent={AddMenu} menuStyle ={{
 					width: '900px',
 				}}title ='Add Escalation'><FontAwesomeIcon icon={faDatabase}/></DockIcon>
 			</Dock>
 			
-			<div>
-				
-			</div>
+			<Loading>
+				{/* <FontAwesomeIcon icon={faSync}/> */}
+			</Loading>
+			
 			
 		</Module>
 	);

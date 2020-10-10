@@ -77,7 +77,7 @@
 }
 
 .Menu a:hover, 
-.Menu button:not(.FreeButton):hover{
+.Menu button:not(.FreeButton):not(.ConfirmButton):hover{
 	background-color: var(--cardBG);
 	filter: brightness(95%);
 	color: var(--mainTextColor);
