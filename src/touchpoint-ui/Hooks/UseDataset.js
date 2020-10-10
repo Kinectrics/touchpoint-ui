@@ -28,24 +28,26 @@ export default function useDataset(fetchFunction, options = {}) {
 	}
 	
 	//Fetch data and update state once the operation is complete. Keep the old value in the meantime
-	async function fetchData() {
-		setStatus('Pending')
+	async function fetchData(override) {
+		
+		if(override || (status !== 'Pending')){
+			setStatus('Pending')
+			
+			try {
+				const newData = await fetchFunction()
+				setData(newData)
 
-		try {
-			
-			const newData = await fetchFunction()
-			setData(newData)
-			
-			selectRecord(activeRecord[options.primaryKey], newData)
-			
-			setStatus('Resolved')
-			setLastResolved(Date())
-			return 'Resolved'
-			
-		} catch (e) {
-			setStatus('Rejected')
-			console.error(e)
-			return 'Rejected'
+				selectRecord(activeRecord[options.primaryKey], newData)
+
+				setStatus('Resolved')
+				setLastResolved(new Date())
+				return 'Resolved'
+
+			} catch (e) {
+				setStatus('Rejected')
+				console.error(e)
+				return 'Rejected'
+			}
 		}
 	}
 	
@@ -99,7 +101,7 @@ export default function useDataset(fetchFunction, options = {}) {
 	//Automatically run the fetching function the first time, then wait for a refresh
 	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 	useEffect(()=>{ 
-		fetchData()
+		fetchData(true)
 	},[])
 	
 	//Return a Dataset object
