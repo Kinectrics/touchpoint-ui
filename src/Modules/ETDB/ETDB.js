@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset} from '../../touchpoint-ui'
+import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset, CommentBox} from '../../touchpoint-ui'
 import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -78,6 +78,9 @@ export default function ETDB() {
 				<DockIcon faIcon={faPlusSquare} title={'New TDS'} style={{ marginTop: '50px' }}/>
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
+			
+			<TextBox maxLength={4}/>
+			<CommentBox maxLength={4}/>
 			
 			<InfoCard stripe>
 				<InfoCard>
