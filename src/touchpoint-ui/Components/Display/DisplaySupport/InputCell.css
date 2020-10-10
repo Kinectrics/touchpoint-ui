@@ -34,8 +34,9 @@
 	text-align: inherit;
 	font-size: inherit;
 	font-weight: inherit;
-	
+	color: inherit;
 	padding: 4px 0;
+	border: none;
 }
 
 /* Cells for nested tables */

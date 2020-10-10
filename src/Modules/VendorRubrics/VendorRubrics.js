@@ -10,6 +10,7 @@ import './StatusLog'
 import StatusLog from './StatusLog'
 import TestExpandedRows from './TestExpandedRows'
 import TestCells from './TestCells'
+import {RefreshButton} from '../../touchpoint-ui'
 
 //And begin
 export default function VendorRubrics(){
@@ -37,7 +38,7 @@ export default function VendorRubrics(){
 		{headerID: 'vendor', displayName:'My Vendor', width: 300},
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number', type:'component', component: TestCells},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
-		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle},
+		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onClick: ({cellValue})=>console.log(cellValue)},
 		{headerID: 'SM', displayName:'SM', width: 200, onEdit: editHandler},
 		{headerID: 'intern', displayName:'Intern', width: 300},
@@ -66,11 +67,9 @@ export default function VendorRubrics(){
 					<FontAwesomeIcon icon={faPenFancy} /> Edit Record
 				</button>
 				
-				<button onClick={()=>{
-					data.refresh()
-				}}>
-					<FontAwesomeIcon icon={faSyncAlt} /> Refresh
-				</button>
+				<RefreshButton
+					data = {data}
+				/>
 				
 				<button onClick={() => system.Popup.open(
 					<PopupCard 

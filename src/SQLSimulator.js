@@ -56,6 +56,7 @@ export function csqQuery(){
 }
 
 
+
 export function unplannedQuery(){
 	const list2 = []
 	const n2 = 60
@@ -84,7 +85,7 @@ export function unplannedQuery(){
 }
 
 //
-export function fakeData(n = 500){
+function fakeDataEngine(n = 500){
 	
 	const data = []
 	const statuses = ['Complete', 'In Progress', 'Pending Approval']
@@ -121,4 +122,12 @@ export function fakeData(n = 500){
 
 
 	return (JSON.parse(JSON.stringify(data)))
+}
+
+export function fakeData(n){
+	return new Promise((resolve, reject)=>{
+		setTimeout(()=>{
+			resolve(fakeDataEngine(n))
+		}, 1000)
+	})
 }

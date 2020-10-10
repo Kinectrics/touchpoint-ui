@@ -103,7 +103,6 @@ export default function InputCell(props) {
 			setCurrentValue(props.header.format(initalValue))
 			flashRed()
 		}
-		
 	}
 	
 	return(<input

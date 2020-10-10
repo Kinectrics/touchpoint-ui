@@ -1,13 +1,21 @@
 import React from 'react'
 import MainTableRow from './MainTableRow'
+import Loading from '../Loading'
 
 export default function TableBody(props) {
 	
 	//Counter for rendered rows
 	let rowCount = 1
 	
+	//Loading option
+	if (props.data.status === 'Pending' && !props.noLoading){
+		return <div className='loadingContainer flexCenter'>
+			<Loading style={{ fontSize: '40pt' }} />
+		</div> 
+	}
+	
 	return (
-		<div className={'tableBody ' + props.data.lastResolved}>
+		<div className={'TableBody tableBody ' + props.data.lastResolved}>
 			{props.dataArray.map((dr, idx) => {
 				//render the allowed numebr of rows, on th selected page
 				if (!props.pageSize || ((rowCount > props.activePage * props.pageSize) && (rowCount <= (1 + props.activePage) * props.pageSize))) {
