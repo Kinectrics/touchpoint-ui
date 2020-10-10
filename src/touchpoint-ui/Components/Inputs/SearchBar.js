@@ -44,7 +44,7 @@ export default function SearchBar(props) {
 	}, [])
 	
 	useEffect(()=>{
-		setSearchBarValue(searchContext)
+		setSearchBarValue(searchContext ? searchContext : '')
 	}, [searchContext])
 	
 	
