@@ -1,10 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react'
 import './CoreTable.css'
-import MainTableRow from './MainTableRow'
 import TheadButton from './TheadButton' 
 import TableControls from './TableControls'
 import useSettings from '../../../Hooks/UseSettings'
 import PageControls from './PageContols'
+import TableBody from './TableBody'
 
 export default function CoreTable(props){
 	
@@ -88,9 +88,6 @@ export default function CoreTable(props){
 	}
 	
 	const [transitionClass, setTransitionClass] = useState('')
-	
-	//Counter for rendered rows
-	let rowCount = 1
 
 	//Positioning for nested components
 	const [expandTrigger, setExpandTrigger] = useState(false)
@@ -114,7 +111,7 @@ export default function CoreTable(props){
 						clearFilter={clearFilter}
 						noOptions={noOptions}
 						dataHeaders={props.headers}
-						data={props.data}
+						dataset={props.dataset}
 						setTransitionClass={setTransitionClass}
 						setExpandTrigger = {setExpandTrigger}
 						setCollapseTrigger = {setCollapseTrigger}
@@ -165,49 +162,22 @@ export default function CoreTable(props){
 			<div className={"mainSection" + transitionClass} style={{
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
 			}}>
-				
-				{/* Table body data */}
-				<div className = {'tableBody ' + props.data.lastResolved}>
-					{data.map((dr, idx) => {
-						//render the allowed numebr of rows, on th selected page
-						if(!props.pageSize || ((rowCount > activePage * props.pageSize) && (rowCount <= (1 + activePage)*props.pageSize))){
-							
-							let renderRow = dr !== []
-							
-							if(searchable && metaData[idx]){
-								renderRow = !metaData[idx].searchHidden
-							}
-							
-							renderRow = renderRow && (noFilter || (metaData[idx] && metaData[idx].visible))
-							
-							const rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx
-							
-							const r = renderRow ? 
-								<MainTableRow
-									dataRow = {dr}
-									dataset = {props.data}
-									dataHeaders={props.headers.get()}
-									rowKey = {rowKey}
-									key = {rowKey}
-									locked = {locked}
-									dynamic = {dynamic}
-									rowIndex = {idx}
-									nestedComponent = {props.nestedComponent}
-									nestedProps = {props.nestedProps}
-									expandTrigger = {expandTrigger}
-									collapseTrigger = {collapseTrigger}
-									noActive = {noActive}
-									tableRef = {tableRef}
-								/> : null
-							
-							if(r){rowCount++}//Count the number of rows actually renedered (not filtered out)
-							
-							return r
-						} else if(rowCount <= (1 + activePage)*props.pageSize){rowCount++}
-						
-						return null
-					})}
-				</div>
+				<TableBody
+					data={props.data}
+					dataHeaders={props.headers.get()}
+					locked={locked}
+					dynamic={dynamic}
+					nestedComponent={props.nestedComponent}
+					nestedProps={props.nestedProps}
+					expandTrigger={expandTrigger}
+					collapseTrigger={collapseTrigger}
+					noActive={noActive}
+					tableRef={tableRef}
+					pageSize={props.pageSize}
+					activePage={activePage}
+					metaData={metaData}
+					dataArray = {data}
+				/>
 			</div>
 		</div>
 	)

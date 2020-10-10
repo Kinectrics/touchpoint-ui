@@ -26,9 +26,6 @@ export default function Escalation() {
 				}}title ='Add Escalation'><FontAwesomeIcon icon={faDatabase}/></DockIcon>
 			</Dock>
 			
-			<Loading>
-				{/* <FontAwesomeIcon icon={faSync}/> */}
-			</Loading>
 			
 			
 		</Module>
