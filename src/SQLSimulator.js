@@ -127,7 +127,8 @@ function fakeDataEngine(n = 500){
 export function fakeData(n){
 	return new Promise((resolve, reject)=>{
 		setTimeout(()=>{
-			resolve(fakeDataEngine(n))
-		}, 1000)
+			const data = fakeDataEngine(n)
+			resolve(data)
+		},3)
 	})
 }
