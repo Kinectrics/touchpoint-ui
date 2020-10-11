@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { HashRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faTimesCircle, faCaretRight, faMinus, faPlus, faSortAlphaDown, faSortAlphaDownAlt, faCaretDown, faFilter, faColumns, faCheck, faWindowRestore, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faTimesCircle, faCaretRight, faSortAlphaDown, faSortAlphaDownAlt, faCaretDown, faFilter, faColumns, faCheck, faWindowRestore, faPlus, faMinus, faCaretLeft, faCircleNotch, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import ReactDOM from 'react-dom';
 import { v4 } from 'uuid';
 import { Dropdown, Tabs, Tab } from 'react-bootstrap';
@@ -1136,7 +1136,8 @@ function TextBox(props) {
     ref: props.inputRef,
     autoFocus: props.autoFocus,
     style: props.style,
-    value: props.value
+    value: props.value,
+    maxLength: props.maxLength
   });
 } //Proptypes
 
@@ -1151,7 +1152,7 @@ TextBox.propTypes = (_TextBox$propTypes = {
   value: PropTypes.string,
   inputRef: PropTypes.object,
   autoFocus: PropTypes.bool
-}, _defineProperty(_TextBox$propTypes, "value", PropTypes.string), _defineProperty(_TextBox$propTypes, "onEscape", PropTypes.func), _defineProperty(_TextBox$propTypes, "type", PropTypes.string), _TextBox$propTypes);
+}, _defineProperty(_TextBox$propTypes, "value", PropTypes.string), _defineProperty(_TextBox$propTypes, "onEscape", PropTypes.func), _defineProperty(_TextBox$propTypes, "type", PropTypes.string), _defineProperty(_TextBox$propTypes, "maxLength", PropTypes.number), _TextBox$propTypes);
 
 function useModuleContext() {
   var _useContext = useContext(moduleContext),
@@ -1217,7 +1218,7 @@ function SearchBar(props) {
     };
   }, []);
   useEffect(function () {
-    setSearchBarValue(searchContext);
+    setSearchBarValue(searchContext ? searchContext : '');
   }, [searchContext]); //search
 
   function searchHandler() {
@@ -1428,14 +1429,15 @@ function CommentBox(props) {
   }
 
   return /*#__PURE__*/React.createElement("textarea", {
-    className: "input CommentBox " + lockedClass,
+    className: "input CommentBox " + lockedClass + ' ' + props.className,
     defaultValue: props.defaultValue,
     onChange: changeHandler,
     readOnly: locked,
     placeholder: props.placeholder,
     onBlur: blurHandler,
     style: props.style,
-    value: props.value
+    value: props.value,
+    maxLength: props.maxLength
   });
 } //Proptypes
 
@@ -1449,7 +1451,8 @@ CommentBox.propTypes = {
   className: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
+  maxLength: PropTypes.number
 };
 
 var css_248z$f = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
@@ -1554,10 +1557,11 @@ CheckBox.propTypes = {
 
 var menuContext = /*#__PURE__*/createContext({});
 
-var css_248z$g = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\n.MenuButton:hover{\n\tfilter: brightness(95%)\n}\n\n.MenuButton:active{\n\tfilter: brightness(90%)\n}\n\n.MenuButton.locked{\n\tcursor: default;\n\tfilter: none;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\tmax-width: 180px;\n\toverflow-x: visible;\n}\n\n.MenuButton .notifications{\n\tposition: absolute;\n\ttop: -10px;\n\tright: -10px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 2px 6px;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
+var css_248z$g = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\n.MenuButton:hover{\n\tfilter: brightness(95%)\n}\n\n.MenuButton:active{\n\tfilter: brightness(90%)\n}\n\n.MenuButton.locked{\n\tcursor: default;\n\tfilter: none;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\toverflow-x: visible;\n}\n\n.MenuButton .notifications{\n\tposition: absolute;\n\ttop: -10px;\n\tright: -10px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 2px 6px;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):not(.ConfirmButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
 styleInject(css_248z$g);
 
 var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
+  var menuMaxWidth = props.menuStyle && props.menuStyle.width ? null : '180px';
   return /*#__PURE__*/React.createElement(menuContext.Provider, {
     value: {
       submenu: true
@@ -1565,7 +1569,9 @@ var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
   }, /*#__PURE__*/React.createElement("div", {
     ref: ref,
     className: props.className + ' Menu ' + props.menuClass,
-    style: _objectSpread2(_objectSpread2({}, props.style), props.menuStyle),
+    style: _objectSpread2(_objectSpread2({
+      maxWidth: menuMaxWidth
+    }, props.style), props.menuStyle),
     onClick: props.onClickBody
   }, typeof props.MenuContent == 'function' ? /*#__PURE__*/React.createElement(props.MenuContent, null) : props.MenuContent));
 });
@@ -1680,7 +1686,7 @@ MenuButton.propTypes = {
   notificationStyle: PropTypes.object
 };
 
-var css_248z$h = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
+var css_248z$h = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n\tpadding-left: 0;\n\tpadding-right: 0;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\ttext-align: center;\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
 styleInject(css_248z$h);
 
 function DockIcon(props) {
@@ -1736,7 +1742,6 @@ DockIcon.propTypes = {
   locked: PropTypes.bool,
   hidden: PropTypes.bool,
   title: PropTypes.string,
-  faIcon: PropTypes.object,
   style: PropTypes.object,
   notifications: PropTypes.number,
   onClick: PropTypes.func,
@@ -1898,312 +1903,8 @@ PopupCard.propTypes = {
 var css_248z$k = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 29px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\ttop: var(--topBarHeight);\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 10px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: -2px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}";
 styleInject(css_248z$k);
 
-var css_248z$l = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 30px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
+var css_248z$l = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
 styleInject(css_248z$l);
-
-var css_248z$m = ".MainTableRow .InputCell{\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 20px;\n\tbox-sizing: border-box;\n\tcolor: inherit;\n\tcolor: var(--mainTextColor);\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .inputWrapper{\n\theight: 100%;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\t\n\tpadding: 4px 0;\n}\n\n/* Cells for nested tables */\n.MainTableRow .MainTableRow .InputCell{\n\theight: calc(100% - 3px);\n}\n\n";
-styleInject(css_248z$m);
-
-function InputCell(props) {
-  var _useState = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
-      _useState2 = _slicedToArray(_useState, 2),
-      initalValue = _useState2[0],
-      setInitialValue = _useState2[1];
-
-  var _useState3 = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      currentValue = _useState4[0],
-      setCurrentValue = _useState4[1]; // Update the value if the data is changed by an outside source
-
-
-  useEffect(function () {
-    var newVal = props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : '';
-    setCurrentValue(props.header.format(newVal));
-    setInitialValue(newVal);
-  }, [props.dataRow[props.header.headerID]]); //When you focus on an item, the value is saved. if you escape, its restored
-
-  function focusHandler(e) {
-    setInitialValue(e.target.value);
-  } //Chaches the value and updates the dataset when you're done editing
-
-
-  function changeHandler(e) {
-    setCurrentValue(e.target.value);
-  }
-
-  var escRef = useRef(false); //Handles keypresses, for enter or esc keys
-
-  function keyHandler(e) {
-    if (e.keyCode === 27) {
-      //esc
-      setCurrentValue(initalValue);
-      escRef.current = true;
-      e.target.blur();
-    } else if (e.keyCode === 13) {
-      //enter
-      e.target.blur();
-    }
-  }
-
-  var _useState5 = useState(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      validClass = _useState6[0],
-      setValidClass = _useState6[1];
-
-  function flashRed() {
-    setValidClass('invalid');
-    setTimeout(function () {
-      return setValidClass('');
-    }, 200);
-  }
-
-  function flashGreen() {
-    setValidClass('valid');
-    setTimeout(function () {
-      return setValidClass('');
-    }, 0);
-  } //Check if the input is valid and commit
-
-
-  function commitChanges() {
-    return _commitChanges.apply(this, arguments);
-  }
-
-  function _commitChanges() {
-    _commitChanges = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var override, customSetRow, newData, newCellValue, res;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              customSetRow = function _customSetRow(newRow) {
-                props.setRow(newRow);
-                override.value = true;
-                override.newRow = newRow;
-              };
-
-              if (!escRef.current) {
-                _context.next = 4;
-                break;
-              }
-
-              escRef.current = false;
-              return _context.abrupt("return");
-
-            case 4:
-              override = {
-                value: false,
-                newRow: {}
-              };
-              _context.prev = 5;
-
-              if (!props.header.compare(props.dataRow[props.header.headerID], currentValue)) {
-                _context.next = 8;
-                break;
-              }
-
-              return _context.abrupt("return");
-
-            case 8:
-              newData = JSON.parse(JSON.stringify(_toConsumableArray(props.dataset.read())));
-              newCellValue = props.header.parse(currentValue);
-              newData[props.rowIndex][props.header.headerID] = newCellValue;
-              _context.next = 13;
-              return props.header.onEdit({
-                cellValue: currentValue,
-                row: newData[props.rowIndex],
-                oldCellValue: initalValue,
-                oldRow: props.dataset.read()[props.rowIndex],
-                setRow: customSetRow
-              });
-
-            case 13:
-              res = _context.sent;
-
-              if (res || res === undefined) {
-                if (override.value) {
-                  setCurrentValue(props.header.format(override.newRow[props.header.headerID]));
-                } else {
-                  props.dataset.set(newData);
-                  setCurrentValue(props.header.format(currentValue));
-                }
-
-                flashGreen();
-              } else {
-                setCurrentValue(props.header.format(initalValue));
-                flashRed();
-              }
-
-              _context.next = 22;
-              break;
-
-            case 17:
-              _context.prev = 17;
-              _context.t0 = _context["catch"](5);
-              console.error(_context.t0);
-              setCurrentValue(props.header.format(initalValue));
-              flashRed();
-
-            case 22:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[5, 17]]);
-    }));
-    return _commitChanges.apply(this, arguments);
-  }
-
-  return /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    className: 'InputCell input ' + validClass,
-    onKeyDown: keyHandler,
-    onFocus: focusHandler,
-    onBlur: commitChanges,
-    value: currentValue,
-    onChange: changeHandler
-  });
-}
-
-function MainTableRow(props) {
-  var activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] && !props.noActive ? ' active ' : '';
-
-  function rowClickHandler() {
-    if (!props.noActive) {
-      props.dataset.selectRecord(props.dataRow[props.dataset.primaryKey]);
-    }
-  } //Allow nested components and onClicks to update their dataRow
-
-
-  function setRow(newRow) {
-    var newData = _toConsumableArray(props.dataset.read());
-
-    newData[props.rowIndex] = newRow;
-    props.dataset.set(newData);
-  }
-
-  var rowContent = props.dataHeaders.map(function (hdr, i) {
-    if (hdr.visible || hdr.required) {
-      var cellClickHandler = function cellClickHandler() {
-        if (hdr.onClick && !hdr.locked && !props.locked) {
-          hdr.onClick({
-            cellValue: props.dataRow[hdr.headerID],
-            row: props.dataRow,
-            setRow: setRow
-          });
-        }
-      }; //Decide if the cell is editable or not based on the locked status, and the header onEdit function
-
-
-      var cellContent;
-      var cellClass = hdr.onClick && !props.locked ? ' clickable plain tableCell ' : ' plain tableCell';
-      var cellText = hdr.format(props.dataRow[hdr.headerID]);
-
-      if (!props.locked && hdr.onEdit && !hdr.locked) {
-        cellContent = /*#__PURE__*/React.createElement(InputCell, {
-          header: hdr,
-          dataRow: props.dataRow,
-          rowIndex: props.rowIndex,
-          dataset: props.dataset,
-          setRow: setRow
-        });
-        cellClass = cellClass + ' inputWrapper ';
-      } else {
-        cellContent = cellText;
-      }
-
-      if (hdr.component) {
-        //custom component cells
-        return /*#__PURE__*/React.createElement("span", {
-          key: hdr.headerID + props.rowKey,
-          style: {
-            width: hdr.width + 'px'
-          },
-          className: 'tableCell componentCell'
-        }, /*#__PURE__*/React.createElement(hdr.component, _extends({
-          row: props.dataRow,
-          setRow: setRow
-        }, hdr.props)));
-      } else if (!hdr.styling) {
-        //No conditional formatting
-        return /*#__PURE__*/React.createElement("span", {
-          key: hdr.headerID + props.rowKey,
-          style: {
-            width: hdr.width + 'px'
-          },
-          className: cellClass,
-          title: cellText,
-          onClick: cellClickHandler
-        }, cellContent);
-      } else {
-        //with coniditional formatting
-        var myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow);
-        return /*#__PURE__*/React.createElement("span", {
-          className: 'badge ' + cellClass,
-          key: hdr.headerID + props.rowKey + i,
-          onClick: cellClickHandler,
-          style: _objectSpread2(_objectSpread2({
-            width: 'calc(' + hdr.width + 'px - 23px)'
-          }, myStyle), {}, {
-            marginLeft: '23px'
-          })
-        }, cellContent);
-      }
-    }
-  }); //Nested rows
-
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      expanded = _useState2[0],
-      setExpanded = _useState2[1];
-
-  var expandedClass = expanded ? ' expanded ' : '';
-
-  function expandHandler(e) {
-    //don't set the active row when collapsing 
-    if (expanded) {
-      e.stopPropagation();
-    }
-
-    setExpanded(!expanded);
-  } //Listeners to expand all and collapse all events from the parent maintable
-
-
-  useEffect(function () {
-    setExpanded(true);
-  }, [props.expandTrigger]);
-  useEffect(function () {
-    setExpanded(false);
-  }, [props.collapseTrigger]);
-  var expandIcon = props.nestedComponent ? /*#__PURE__*/React.createElement("span", {
-    className: "expandButton",
-    onClick: expandHandler
-  }, expanded ? /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faMinus
-  }) : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faPlus
-  })) : null;
-  return /*#__PURE__*/React.createElement("div", {
-    className: 'MainTableRow ' + expandedClass,
-    onClick: rowClickHandler
-  }, /*#__PURE__*/React.createElement("div", {
-    className: 'topRow' + activeClass
-  }, expandIcon, rowContent), expanded && props.nestedComponent ? /*#__PURE__*/React.createElement("div", {
-    className: "componentWrapper"
-  }, /*#__PURE__*/React.createElement("div", {
-    style: props.nestedProps && props.nestedProps.fitToWidth ? {
-      width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 48px)' : null
-    } : undefined
-  }, /*#__PURE__*/React.createElement(props.nestedComponent, _extends({}, props.nestedProps, {
-    row: props.dataRow,
-    dataRow: props.dataRow,
-    setRow: setRow,
-    rowIndex: props.rowIndex
-  })))) : null);
-}
-
-var css_248z$n = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
-styleInject(css_248z$n);
 
 function FilterMenu(props) {
   var values = props.header.uniqueValues;
@@ -2733,8 +2434,8 @@ function ColumnSettings(props) {
   }), " Column Settings");
 }
 
-var css_248z$o = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
-styleInject(css_248z$o);
+var css_248z$m = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
+styleInject(css_248z$m);
 
 function SaveTableLayout(props) {
   var _useState = useState(''),
@@ -2977,6 +2678,390 @@ function PageContols(props) {
   } else return null;
 }
 
+var css_248z$n = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 30px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
+styleInject(css_248z$n);
+
+var css_248z$o = ".MainTableRow .InputCell{\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 20px;\n\tbox-sizing: border-box;\n\tcolor: inherit;\n\tcolor: var(--mainTextColor);\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .inputWrapper{\n\theight: 100%;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tcolor: inherit;\n\tpadding: 4px 0;\n\tborder: none;\n}\n\n/* Cells for nested tables */\n.MainTableRow .MainTableRow .InputCell{\n\theight: calc(100% - 3px);\n}\n\n";
+styleInject(css_248z$o);
+
+function InputCell(props) {
+  var _useState = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
+      _useState2 = _slicedToArray(_useState, 2),
+      initalValue = _useState2[0],
+      setInitialValue = _useState2[1];
+
+  var _useState3 = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentValue = _useState4[0],
+      setCurrentValue = _useState4[1]; // Update the value if the data is changed by an outside source
+
+
+  useEffect(function () {
+    var newVal = props.dataRow[props.header.headerID] ? props.dataRow[props.header.headerID] : '';
+    setCurrentValue(props.header.format(newVal));
+    setInitialValue(newVal);
+  }, [props.dataRow[props.header.headerID]]); //When you focus on an item, the value is saved. if you escape, its restored
+
+  function focusHandler(e) {
+    setInitialValue(e.target.value);
+  } //Chaches the value and updates the dataset when you're done editing
+
+
+  function changeHandler(e) {
+    setCurrentValue(e.target.value);
+  }
+
+  var escRef = useRef(false); //Handles keypresses, for enter or esc keys
+
+  function keyHandler(e) {
+    if (e.keyCode === 27) {
+      //esc
+      setCurrentValue(initalValue);
+      escRef.current = true;
+      e.target.blur();
+    } else if (e.keyCode === 13) {
+      //enter
+      e.target.blur();
+    }
+  }
+
+  var _useState5 = useState(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      validClass = _useState6[0],
+      setValidClass = _useState6[1];
+
+  function flashRed() {
+    setValidClass('invalid');
+    setTimeout(function () {
+      return setValidClass('');
+    }, 200);
+  }
+
+  function flashGreen() {
+    setValidClass('valid');
+    setTimeout(function () {
+      return setValidClass('');
+    }, 0);
+  } //Check if the input is valid and commit
+
+
+  function commitChanges() {
+    return _commitChanges.apply(this, arguments);
+  }
+
+  function _commitChanges() {
+    _commitChanges = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var override, customSetRow, newData, newCellValue, res;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              customSetRow = function _customSetRow(newRow) {
+                props.setRow(newRow);
+                override.value = true;
+                override.newRow = newRow;
+              };
+
+              if (!escRef.current) {
+                _context.next = 4;
+                break;
+              }
+
+              escRef.current = false;
+              return _context.abrupt("return");
+
+            case 4:
+              override = {
+                value: false,
+                newRow: {}
+              };
+              _context.prev = 5;
+
+              if (!props.header.compare(props.dataRow[props.header.headerID], currentValue)) {
+                _context.next = 8;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 8:
+              newData = JSON.parse(JSON.stringify(_toConsumableArray(props.dataset.read())));
+              newCellValue = props.header.parse(currentValue);
+              newData[props.rowIndex][props.header.headerID] = newCellValue;
+              _context.next = 13;
+              return props.header.onEdit({
+                cellValue: currentValue,
+                row: newData[props.rowIndex],
+                oldCellValue: initalValue,
+                oldRow: props.dataset.read()[props.rowIndex],
+                setRow: customSetRow
+              });
+
+            case 13:
+              res = _context.sent;
+
+              if (res || res === undefined) {
+                if (override.value) {
+                  setCurrentValue(props.header.format(override.newRow[props.header.headerID]));
+                } else {
+                  props.dataset.set(newData);
+                  setCurrentValue(props.header.format(currentValue));
+                }
+
+                flashGreen();
+              } else {
+                setCurrentValue(props.header.format(initalValue));
+                flashRed();
+              }
+
+              _context.next = 22;
+              break;
+
+            case 17:
+              _context.prev = 17;
+              _context.t0 = _context["catch"](5);
+              console.error(_context.t0);
+              setCurrentValue(props.header.format(initalValue));
+              flashRed();
+
+            case 22:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[5, 17]]);
+    }));
+    return _commitChanges.apply(this, arguments);
+  }
+
+  return /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    className: 'InputCell input ' + validClass,
+    onKeyDown: keyHandler,
+    onFocus: focusHandler,
+    onBlur: commitChanges,
+    value: currentValue,
+    onChange: changeHandler
+  });
+}
+
+function MainTableRow(props) {
+  var activeClass = props.dataset.getActiveRecord && props.dataset.getActiveRecord()[props.dataset.primaryKey] === props.dataRow[props.dataset.primaryKey] && !props.noActive ? ' active ' : '';
+
+  function rowClickHandler() {
+    if (!props.noActive) {
+      props.dataset.selectRecord(props.dataRow[props.dataset.primaryKey]);
+    }
+  } //Allow nested components and onClicks to update their dataRow
+
+
+  function setRow(newRow) {
+    var newData = _toConsumableArray(props.dataset.read());
+
+    newData[props.rowIndex] = newRow;
+    props.dataset.set(newData);
+  }
+
+  var rowContent = props.dataHeaders.map(function (hdr, i) {
+    if (hdr.visible || hdr.required) {
+      var cellClickHandler = function cellClickHandler() {
+        if (hdr.onClick && !hdr.locked && !props.locked) {
+          hdr.onClick({
+            cellValue: props.dataRow[hdr.headerID],
+            row: props.dataRow,
+            setRow: setRow
+          });
+        }
+      }; //Decide if the cell is editable or not based on the locked status, and the header onEdit function
+
+
+      var cellContent;
+      var cellClass = hdr.onClick && !props.locked ? ' clickable plain tableCell ' : ' plain tableCell';
+      var cellText = hdr.format(props.dataRow[hdr.headerID]);
+
+      if (!props.locked && hdr.onEdit && !hdr.locked) {
+        cellContent = /*#__PURE__*/React.createElement(InputCell, {
+          header: hdr,
+          dataRow: props.dataRow,
+          rowIndex: props.rowIndex,
+          dataset: props.dataset,
+          setRow: setRow
+        });
+        cellClass = cellClass + ' inputWrapper ';
+      } else {
+        cellContent = cellText;
+      }
+
+      if (hdr.component) {
+        //custom component cells
+        return /*#__PURE__*/React.createElement("span", {
+          key: hdr.headerID + props.rowKey,
+          style: {
+            width: hdr.width + 'px'
+          },
+          className: 'tableCell componentCell'
+        }, /*#__PURE__*/React.createElement(hdr.component, _extends({
+          row: props.dataRow,
+          setRow: setRow
+        }, hdr.props)));
+      } else if (!hdr.styling) {
+        //No conditional formatting
+        return /*#__PURE__*/React.createElement("span", {
+          key: hdr.headerID + props.rowKey,
+          style: {
+            width: hdr.width + 'px'
+          },
+          className: cellClass,
+          title: cellText,
+          onClick: cellClickHandler
+        }, cellContent);
+      } else {
+        //with coniditional formatting
+        var myStyle = hdr.styling(props.dataRow[hdr.headerID], props.dataRow);
+        return /*#__PURE__*/React.createElement("span", {
+          className: 'badge ' + cellClass,
+          key: hdr.headerID + props.rowKey + i,
+          onClick: cellClickHandler,
+          style: _objectSpread2(_objectSpread2({
+            width: 'calc(' + hdr.width + 'px - 23px)'
+          }, myStyle), {}, {
+            marginLeft: '23px'
+          })
+        }, cellContent);
+      }
+    }
+  }); //Nested rows
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      expanded = _useState2[0],
+      setExpanded = _useState2[1];
+
+  var expandedClass = expanded ? ' expanded ' : '';
+
+  function expandHandler(e) {
+    //don't set the active row when collapsing 
+    if (expanded) {
+      e.stopPropagation();
+    }
+
+    setExpanded(!expanded);
+  } //Listeners to expand all and collapse all events from the parent maintable
+
+
+  useEffect(function () {
+    setExpanded(true);
+  }, [props.expandTrigger]);
+  useEffect(function () {
+    setExpanded(false);
+  }, [props.collapseTrigger]);
+  var expandIcon = props.nestedComponent ? /*#__PURE__*/React.createElement("span", {
+    className: "expandButton",
+    onClick: expandHandler
+  }, expanded ? /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faMinus
+  }) : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faPlus
+  })) : null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: 'MainTableRow ' + expandedClass,
+    onClick: rowClickHandler
+  }, /*#__PURE__*/React.createElement("div", {
+    className: 'topRow' + activeClass
+  }, expandIcon, rowContent), expanded && props.nestedComponent ? /*#__PURE__*/React.createElement("div", {
+    className: "componentWrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: props.nestedProps && props.nestedProps.fitToWidth ? {
+      width: props.tableRef.current ? 'calc(' + props.tableRef.current.clientWidth + 'px - 48px)' : null
+    } : undefined
+  }, /*#__PURE__*/React.createElement(props.nestedComponent, _extends({}, props.nestedProps, {
+    row: props.dataRow,
+    dataRow: props.dataRow,
+    setRow: setRow,
+    rowIndex: props.rowIndex
+  })))) : null);
+}
+
+var css_248z$p = ".Loading{\n\tfont-size: 30pt;\n\tdisplay: inline-block;\n\topacity: 60%;\n}\n\n.Loading .rotate{\n\tanimation: spin 0.7s infinite linear;\n\tdisplay: inline-block;\n}\n\n.Loading .pulse{\n\tanimation: pulse 0.7s infinite ease-in-out;\n\tdisplay: inline-block;\n}\n\n@keyframes spin {\n    0% {transform:rotate(0deg);}\n    100% {transform:rotate(360deg);}\n}\n\n@keyframes pulse {\n    0% {transform:scale(1);}\n    20% {transform:scale(1.2);}\n    100% {transform:scale(1);}\n}";
+styleInject(css_248z$p);
+
+function Loading(props) {
+  return /*#__PURE__*/React.createElement("span", {
+    className: 'Loading ' + props.className,
+    style: props.style
+  }, /*#__PURE__*/React.createElement("span", {
+    className: props.animation ? props.animation : 'rotate'
+  }, props.children ? props.children : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faCircleNotch
+  })));
+}
+Loading.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+  animation: PropTypes.string
+};
+
+function TableBody(props) {
+  //Counter for rendered rows
+  var rowCount = 1; //Loading option
+
+  if (props.data.status === 'Pending' && !props.noLoading) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: props.tableRef.current ? props.tableRef.current.clientWidth : '100%'
+      },
+      className: "loadingContainer flexCenter"
+    }, /*#__PURE__*/React.createElement(Loading, {
+      style: {
+        fontSize: '40pt'
+      }
+    }));
+  }
+
+  return /*#__PURE__*/React.createElement("div", {
+    className: 'TableBody tableBody ' + props.data.lastResolved
+  }, props.dataArray.map(function (dr, idx) {
+    //render the allowed numebr of rows, on th selected page
+    if (!props.pageSize || rowCount > props.activePage * props.pageSize && rowCount <= (1 + props.activePage) * props.pageSize) {
+      var renderRow = dr !== [];
+
+      if (props.searchable && props.metaData[idx]) {
+        renderRow = !props.metaData[idx].searchHidden;
+      }
+
+      renderRow = renderRow && (props.noFilter || props.metaData[idx] && props.metaData[idx].visible);
+      var rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx;
+      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
+        dataRow: dr,
+        dataset: props.data,
+        dataHeaders: props.dataHeaders,
+        rowKey: rowKey,
+        key: rowKey,
+        locked: props.locked,
+        dynamic: props.dynamic,
+        rowIndex: idx,
+        nestedComponent: props.nestedComponent,
+        nestedProps: props.nestedProps,
+        expandTrigger: props.expandTrigger,
+        collapseTrigger: props.collapseTrigger,
+        noActive: props.noActive,
+        tableRef: props.tableRef
+      }) : null;
+
+      if (r) {
+        rowCount++;
+      } //Count the number of rows actually renedered (not filtered out)
+
+
+      return r;
+    } else if (rowCount <= (1 + props.activePage) * props.pageSize) {
+      rowCount++;
+    }
+
+    return null;
+  }));
+}
+
 function CoreTable(props) {
   //Sorting and filtering are optional (via props), only supported with if a dataset is provided
   var noSort = props.noSort,
@@ -3081,10 +3166,8 @@ function CoreTable(props) {
   var _useState5 = useState(''),
       _useState6 = _slicedToArray(_useState5, 2),
       transitionClass = _useState6[0],
-      setTransitionClass = _useState6[1]; //Counter for rendered rows
+      setTransitionClass = _useState6[1]; //Positioning for nested components
 
-
-  var rowCount = 1; //Positioning for nested components
 
   var _useState7 = useState(false),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -3113,7 +3196,7 @@ function CoreTable(props) {
     clearFilter: clearFilter,
     noOptions: noOptions,
     dataHeaders: props.headers,
-    data: props.data,
+    dataset: props.dataset,
     setTransitionClass: setTransitionClass,
     setExpandTrigger: setExpandTrigger,
     setCollapseTrigger: setCollapseTrigger,
@@ -3158,48 +3241,22 @@ function CoreTable(props) {
     style: {
       width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: 'tableBody ' + props.data.lastResolved
-  }, data.map(function (dr, idx) {
-    //render the allowed numebr of rows, on th selected page
-    if (!props.pageSize || rowCount > activePage * props.pageSize && rowCount <= (1 + activePage) * props.pageSize) {
-      var renderRow = dr !== [];
-
-      if (searchable && metaData[idx]) {
-        renderRow = !metaData[idx].searchHidden;
-      }
-
-      renderRow = renderRow && (noFilter || metaData[idx] && metaData[idx].visible);
-      var rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx;
-      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
-        dataRow: dr,
-        dataset: props.data,
-        dataHeaders: props.headers.get(),
-        rowKey: rowKey,
-        key: rowKey,
-        locked: locked,
-        dynamic: dynamic,
-        rowIndex: idx,
-        nestedComponent: props.nestedComponent,
-        nestedProps: props.nestedProps,
-        expandTrigger: expandTrigger,
-        collapseTrigger: collapseTrigger,
-        noActive: noActive,
-        tableRef: tableRef
-      }) : null;
-
-      if (r) {
-        rowCount++;
-      } //Count the number of rows actually renedered (not filtered out)
-
-
-      return r;
-    } else if (rowCount <= (1 + activePage) * props.pageSize) {
-      rowCount++;
-    }
-
-    return null;
-  }))));
+  }, /*#__PURE__*/React.createElement(TableBody, {
+    data: props.data,
+    dataHeaders: props.headers.get(),
+    locked: locked,
+    dynamic: dynamic,
+    nestedComponent: props.nestedComponent,
+    nestedProps: props.nestedProps,
+    expandTrigger: expandTrigger,
+    collapseTrigger: collapseTrigger,
+    noActive: noActive,
+    tableRef: tableRef,
+    pageSize: props.pageSize,
+    activePage: activePage,
+    metaData: metaData,
+    dataArray: data
+  })));
 }
 
 function useDataset(fetchFunction) {
@@ -3252,46 +3309,51 @@ function useDataset(fetchFunction) {
   } //Fetch data and update state once the operation is complete. Keep the old value in the meantime
 
 
-  function fetchData() {
+  function fetchData(_x) {
     return _fetchData.apply(this, arguments);
   } //Lets you edit the active row
 
 
   function _fetchData() {
-    _fetchData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    _fetchData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(override) {
       var newData;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              if (!(override || status !== 'Pending')) {
+                _context.next = 18;
+                break;
+              }
+
               setStatus('Pending');
-              _context.prev = 1;
-              _context.next = 4;
+              _context.prev = 2;
+              _context.next = 5;
               return fetchFunction();
 
-            case 4:
+            case 5:
               newData = _context.sent;
               setData(newData);
 
               _selectRecord(activeRecord[options.primaryKey], newData);
 
               setStatus('Resolved');
-              setLastResolved(Date());
+              setLastResolved(new Date());
               return _context.abrupt("return", 'Resolved');
 
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](1);
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](2);
               setStatus('Rejected');
               console.error(_context.t0);
               return _context.abrupt("return", 'Rejected');
 
-            case 17:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 12]]);
+      }, _callee, null, [[2, 13]]);
     }));
     return _fetchData.apply(this, arguments);
   }
@@ -3352,7 +3414,9 @@ function useDataset(fetchFunction) {
 
 
   useEffect(function () {
-    fetchData();
+    setTimeout(function () {
+      return fetchData(true);
+    }, 0);
   }, []); //Return a Dataset object
 
   return {
@@ -3884,9 +3948,7 @@ function MainTable(props) {
   }
 
   data.sort = function () {
-    var newData = props.noSort ? data.read() : sortData(data.read()); // const newMeta = props.noFilter ? newData : filterData(newData)
-    // setMetaData(newMeta)
-
+    var newData = props.noSort ? _toConsumableArray(data.read()) : sortData(data.read());
     data.set(newData);
     data.filter();
   }; //Select and return:
@@ -3924,6 +3986,39 @@ MainTable.propTypes = {
   style: PropTypes.object
 };
 
+function RefreshButton(props) {
+  if (props.data.status === 'Pending') {
+    return /*#__PURE__*/React.createElement(CoreButton, {
+      style: props.style,
+      className: props.className
+    }, /*#__PURE__*/React.createElement(Loading, {
+      style: {
+        fontSize: 'inherit',
+        opacity: '100%'
+      }
+    }, props.icon ? props.icon : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+      icon: faSyncAlt
+    })), props.title ? props.title : ' Refresh');
+  }
+
+  return /*#__PURE__*/React.createElement(CoreButton, {
+    style: props.style,
+    className: props.className,
+    onClick: function onClick() {
+      props.data.refresh();
+    }
+  }, props.icon ? props.icon : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faSyncAlt
+  }), props.title ? props.title : ' Refresh');
+}
+RefreshButton.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+  data: PropTypes.object.isRequired,
+  icon: PropTypes.object,
+  title: PropTypes.string
+};
+
 function InfoTab(props) {
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
@@ -3944,8 +4039,8 @@ InfoTab.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$p = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: hidden;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: calc(100% - var(--tabHeaderHeight));\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n\theight: 100%;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: auto;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\theight: var(--tabHeaderHeight);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n}\n\n.InfoTabContainer .nav-tabs a{\n\theight: var(--tabHeaderHeight);\n\tpadding: 0px 30px;\n\tbackground-color: transparent;\n\tcolor: \tvar(--navTextColor);\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\tborder-bottom: solid 3px var(--navTextColor);\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tfilter: brightness(80%);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navTextColor);\n\tfilter: none;\n\tbackground-color: transparent;\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
-styleInject(css_248z$p);
+var css_248z$q = ".InfoTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: hidden;\n}\n\n.InfoTabContainer .tab-content{\n\tcolor: var(--mainTextColor);\n\twidth: 100%;\n\tmargin: 0;\n\tpadding: 0;\n\theight: calc(100% - var(--tabHeaderHeight));\n\tposition: relative;\n}\n\n.InfoTabContainer .tab-pane{\n\tpadding: 0;\n\tmargin: 0;\n\toverflow: hidden;\n\theight: 100%;\n}\n\n.InfoTabContainer .InfoTab{\n\toverflow: auto;\n\twidth: 100%;\n\theight: 100%;\n}\n\n.InfoTabContainer .nav-tabs{\n\tbackground-color: var(--navColor);\n\theight: var(--tabHeaderHeight);\n\toverflow: hidden;\n\tborder: none;\n\tpadding-left: 0px;\n}\n\n.InfoTabContainer .nav-tabs a{\n\theight: var(--tabHeaderHeight);\n\tpadding: 0px 30px;\n\tbackground-color: transparent;\n\tcolor: \tvar(--navTextColor);\n\toutline: none !important;\n\tborder: none;\n\tmargin-right: 8px;\n\tmargin-left: 8px;\n\ttext-align: center;\n\tfont-size: 14pt;\n\tbox-sizing: border-box;\n}\n\n.InfoTabContainer .nav-tabs a.active{\n\tbackground-color: var(--navColor);\n\tcolor: \tvar(--navTextColor);\n\t\n\ttext-shadow: 1px 0px 0px var(--navTextColor);\n\tborder-bottom: solid 3px var(--navTextColor);\n}\n\n.InfoTabContainer .nav-tabs a:hover{\n\tfilter: brightness(80%);\n}\n\n.InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navTextColor);\n\tfilter: none;\n\tbackground-color: transparent;\n}\n\n/* InfoCard components styled differntly */\n.InfoTabContainer .InfoCard{\n\tpadding: 10px;\n}\n\n";
+styleInject(css_248z$q);
 
 function InfoTabContainer(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -3980,8 +4075,8 @@ InfoTabContainer.propTypes = {
   locked: PropTypes.bool
 };
 
-var css_248z$q = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tposition: relative;\n}";
-styleInject(css_248z$q);
+var css_248z$r = ".Module{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tposition: relative;\n}";
+styleInject(css_248z$r);
 
 function Module(props) {
   var moduleData = useModuleContext();
@@ -4007,8 +4102,8 @@ Module.propTypes = {
   locked: PropTypes.bool
 };
 
-var css_248z$r = ".SplitScreen{\n\theight: 100%;\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.Module > .SplitScreen{\n\theight: calc(100% - var(--controlBarHeight));\n}\n\n.SplitScreen>div{\n\twidth: 100%;\n}\n\n.SplitScreen>div>div{\n\theight: 100%;\n\toverflow-y:auto;\n}\n\n.SplitScreen .gutter{\n\twidth: 100%;\n\tbackground-color: var(--navColor);\n\topacity: 60%;\n\tcursor: ns-resize;\n\tpointer-events: all;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
-styleInject(css_248z$r);
+var css_248z$s = ".SplitScreen{\n\theight: 100%;\n\tdisplay: flex;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tz-index: 1;\n\tbox-sizing: border-box;\n\tbottom: 0;\n}\n\n.Module > .SplitScreen{\n\theight: calc(100% - var(--controlBarHeight));\n}\n\n.SplitScreen>div{\n\twidth: 100%;\n}\n\n.SplitScreen>div>div{\n\theight: 100%;\n\toverflow-y:auto;\n}\n\n.SplitScreen .gutter{\n\twidth: 100%;\n\tbackground-color: var(--navColor);\n\topacity: 60%;\n\tcursor: ns-resize;\n\tpointer-events: all;\n}\n\n/* InfoCard components styled differntly */\n.SplitScreen .InfoCard{\n\tpadding: 10px !important;\n}\n\n.SplitScreen .MainTable{\n\tpadding-bottom: 0;\n}";
+styleInject(css_248z$s);
 
 function SplitScreen(props) {
   var splitSize = 50;
@@ -4033,8 +4128,8 @@ SplitScreen.propTypes = {
   defaultSize: PropTypes.number
 };
 
-var css_248z$s = ".ControlledTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.ControlledTabContainer .tabWrapper{\n\twidth: 100%;\n\theight: 100%;\n}\n\n.ControlledTabContainer .InfoTab{\n\theight: 100%;\n\toverflow: auto;\n\twidth: 100%;\n}\n\n/* InfoCard components styled differntly */\n.ControlledTabContainer .InfoCard{\n\tpadding: 10px;\n}";
-styleInject(css_248z$s);
+var css_248z$t = ".ControlledTabContainer{\n\tbackground-color: var(--bodyAltBG);\n\twidth: 100%;\n\theight: 100%;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n}\n\n.ControlledTabContainer .tabWrapper{\n\twidth: 100%;\n\theight: 100%;\n}\n\n.ControlledTabContainer .InfoTab{\n\theight: 100%;\n\toverflow: auto;\n\twidth: 100%;\n}\n\n/* InfoCard components styled differntly */\n.ControlledTabContainer .InfoCard{\n\tpadding: 10px;\n}";
+styleInject(css_248z$t);
 
 function ControlledTabContainer(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -4063,8 +4158,8 @@ ControlledTabContainer.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$t = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
-styleInject(css_248z$t);
+var css_248z$u = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
+styleInject(css_248z$u);
 
 function Dock(props) {
   usePresence('TouchPointDock', 0, 'var(--dockWidth)');
@@ -4089,5 +4184,5 @@ Dock.propTypes = {
   style: PropTypes.object
 };
 
-export { AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ConfirmButton, ControlBar, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useSystem };
+export { AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ConfirmButton, ControlBar, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, Loading, MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, RefreshButton, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useSystem };
 //# sourceMappingURL=index.js.map

@@ -1,5 +1,6 @@
 import React from 'react'
-import {CoreButton, Loading} from '../..'
+import CoreButton from '../Inputs/CoreButton'
+import Loading from './Loading'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faSyncAlt} from "@fortawesome/free-solid-svg-icons"
 import propTypes from 'prop-types'
