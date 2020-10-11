@@ -9,7 +9,12 @@ export default function TableBody(props) {
 	
 	//Loading option
 	if (props.data.status === 'Pending' && !props.noLoading){
-		return <div className='loadingContainer flexCenter'>
+		return <div 
+			style={{ 
+				width: props.tableRef.current ? props.tableRef.current.clientWidth : '100%',
+			}} 
+			className='loadingContainer flexCenter'
+		>
 			<Loading style={{ fontSize: '40pt' }} />
 		</div> 
 	}
