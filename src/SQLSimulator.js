@@ -130,6 +130,6 @@ export function fakeData(n){
 		setTimeout(()=>{
 			const data = fakeDataEngine(n)
 			resolve(data)
-		},3)
+		},0)
 	})
 }

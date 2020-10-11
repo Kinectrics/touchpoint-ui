@@ -57,6 +57,7 @@ export default function VendorRubrics(){
 			<ControlBar searchBar locked={false}>
 				
 				<button onClick={()=>{
+					console.log(data)
 					console.log(data.read())
 				}}>
 					<FontAwesomeIcon icon={faCalendarAlt} /> Log Data
@@ -99,7 +100,6 @@ export default function VendorRubrics(){
 					nestedProps={{fitToWidth:true}}
 				/>
 				
-				
 				<InfoTabContainer defaultTab='RubricHeader'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
@@ -110,11 +110,11 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						<RubricDetail />
+						{/* <RubricDetail /> */}
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						<StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/>
+						{/* <StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/> */}
 					</InfoTab>								
 							
 				</InfoTabContainer>

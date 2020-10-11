@@ -134,10 +134,7 @@ export default function MainTable(props){
 	}
 	
 	data.sort = () => {
-		const newData = props.noSort ? data.read() : sortData(data.read()) 
-		
-		// const newMeta = props.noFilter ? newData : filterData(newData)
-		// setMetaData(newMeta)
+		const newData = props.noSort ? [...data.read()] : sortData(data.read()) 
 		
 		data.set(newData)
 		data.filter()

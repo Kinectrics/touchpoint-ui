@@ -36,7 +36,6 @@ export default function useDataset(fetchFunction, options = {}) {
 			try {
 				const newData = await fetchFunction()
 				setData(newData)
-
 				selectRecord(activeRecord[options.primaryKey], newData)
 
 				setStatus('Resolved')
@@ -101,7 +100,8 @@ export default function useDataset(fetchFunction, options = {}) {
 	//Automatically run the fetching function the first time, then wait for a refresh
 	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 	useEffect(()=>{ 
-		fetchData(true)
+		setTimeout(()=>fetchData(true),0)
+		
 	},[])
 	
 	//Return a Dataset object
