@@ -177,6 +177,7 @@ export default function CoreTable(props){
 					activePage={activePage}
 					metaData={metaData}
 					dataArray = {data}
+					noLoading = {props.noLoading}
 				/>
 			</div>
 		</div>

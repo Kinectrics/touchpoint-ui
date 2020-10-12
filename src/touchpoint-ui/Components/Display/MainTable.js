@@ -171,4 +171,5 @@ MainTable.propTypes = {
 	nestedComponent: PropTypes.func,
 	settingsID: PropTypes.string,
 	style: PropTypes.object,
+	noLoading: PropTypes.bool,
 }
