@@ -32,6 +32,8 @@ export default function VendorRubrics(){
 		return true
 	}
 	
+	const System = useSystem()
+	
 	//Headers for table
 	const dataHeaders = [
 		{headerID: 'id',displayName:'ID', width: 100, required: true},
@@ -55,6 +57,8 @@ export default function VendorRubrics(){
 		<Module moduleName = "VendorRubrics" >
 			
 			<ControlBar searchBar locked={false}>
+				
+				<button onClick={System.Drawer.open}>Drawer</button>
 				
 				<button onClick={()=>{
 					console.log(data)
