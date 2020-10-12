@@ -1402,7 +1402,7 @@ ControlBar.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$e = ".CommentBox{\n\tresize: none;\n\tpadding: 20px;\n}";
+var css_248z$e = ".CommentBox{\n\tresize: none;\n\tpadding: 5px;\n\tborder-radius: 7px;\n}";
 styleInject(css_248z$e);
 
 function CommentBox(props) {
@@ -1426,6 +1426,15 @@ function CommentBox(props) {
     if (!locked && props.onBlur) {
       props.onBlur(e);
     }
+  } //For the onEnter event
+
+
+  function keyPressHandler(e) {
+    if (!locked && e.key === 'Enter' && props.onEnter !== undefined) {
+      e.preventDefault();
+      e.target.blur();
+      props.onEnter(e);
+    }
   }
 
   return /*#__PURE__*/React.createElement("textarea", {
@@ -1437,7 +1446,9 @@ function CommentBox(props) {
     onBlur: blurHandler,
     style: props.style,
     value: props.value,
-    maxLength: props.maxLength
+    maxLength: props.maxLength,
+    onKeyPress: keyPressHandler,
+    autoFocus: props.autoFocus
   });
 } //Proptypes
 
@@ -1452,7 +1463,8 @@ CommentBox.propTypes = {
   height: PropTypes.string,
   width: PropTypes.string,
   value: PropTypes.string,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
+  autoFocus: PropTypes.bool
 };
 
 var css_248z$f = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
@@ -2678,7 +2690,7 @@ function PageContols(props) {
   } else return null;
 }
 
-var css_248z$n = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 30px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
+var css_248z$n = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 32px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
 styleInject(css_248z$n);
 
 var css_248z$o = ".MainTableRow .InputCell{\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 20px;\n\tbox-sizing: border-box;\n\tcolor: inherit;\n\tcolor: var(--mainTextColor);\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .inputWrapper{\n\theight: 100%;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tcolor: inherit;\n\tpadding: 4px 0;\n\tborder: none;\n}\n\n/* Cells for nested tables */\n.MainTableRow .MainTableRow .InputCell{\n\theight: calc(100% - 3px);\n}\n\n";
@@ -2790,7 +2802,7 @@ function InputCell(props) {
               newData[props.rowIndex][props.header.headerID] = newCellValue;
               _context.next = 13;
               return props.header.onEdit({
-                cellValue: currentValue,
+                cellValue: newCellValue,
                 row: newData[props.rowIndex],
                 oldCellValue: initalValue,
                 oldRow: props.dataset.read()[props.rowIndex],
@@ -2802,10 +2814,11 @@ function InputCell(props) {
 
               if (res || res === undefined) {
                 if (override.value) {
+                  //if the onEdit handler is assuming control, dont edit the dataset in here
                   setCurrentValue(props.header.format(override.newRow[props.header.headerID]));
                 } else {
                   props.dataset.set(newData);
-                  setCurrentValue(props.header.format(currentValue));
+                  setCurrentValue(props.header.format(newCellValue));
                 }
 
                 flashGreen();
@@ -3005,7 +3018,7 @@ function TableBody(props) {
   //Counter for rendered rows
   var rowCount = 1; //Loading option
 
-  if (props.data.status === 'Pending' && !props.noLoading) {
+  if (props.data.status === 'Pending' && !props.noLoading && props.data.isDataset && props.data.read().length === 0) {
     return /*#__PURE__*/React.createElement("div", {
       style: {
         width: props.tableRef.current ? props.tableRef.current.clientWidth : '100%'
@@ -3031,29 +3044,28 @@ function TableBody(props) {
 
       renderRow = renderRow && (props.noFilter || props.metaData[idx] && props.metaData[idx].visible);
       var rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx;
-      var r = renderRow ? /*#__PURE__*/React.createElement(MainTableRow, {
-        dataRow: dr,
-        dataset: props.data,
-        dataHeaders: props.dataHeaders,
-        rowKey: rowKey,
-        key: rowKey,
-        locked: props.locked,
-        dynamic: props.dynamic,
-        rowIndex: idx,
-        nestedComponent: props.nestedComponent,
-        nestedProps: props.nestedProps,
-        expandTrigger: props.expandTrigger,
-        collapseTrigger: props.collapseTrigger,
-        noActive: props.noActive,
-        tableRef: props.tableRef
-      }) : null;
 
-      if (r) {
+      if (renderRow) {
         rowCount++;
-      } //Count the number of rows actually renedered (not filtered out)
-
-
-      return r;
+        return /*#__PURE__*/React.createElement(MainTableRow, {
+          dataRow: dr,
+          dataset: props.data,
+          dataHeaders: props.dataHeaders,
+          rowKey: rowKey,
+          key: rowKey,
+          locked: props.locked,
+          dynamic: props.dynamic,
+          rowIndex: idx,
+          nestedComponent: props.nestedComponent,
+          nestedProps: props.nestedProps,
+          expandTrigger: props.expandTrigger,
+          collapseTrigger: props.collapseTrigger,
+          noActive: props.noActive,
+          tableRef: props.tableRef
+        });
+      } else {
+        return null;
+      }
     } else if (rowCount <= (1 + props.activePage) * props.pageSize) {
       rowCount++;
     }
@@ -3242,6 +3254,7 @@ function CoreTable(props) {
       width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
     }
   }, /*#__PURE__*/React.createElement(TableBody, {
+    searchable: props.searchable,
     data: props.data,
     dataHeaders: props.headers.get(),
     locked: locked,
@@ -3255,7 +3268,8 @@ function CoreTable(props) {
     pageSize: props.pageSize,
     activePage: activePage,
     metaData: metaData,
-    dataArray: data
+    dataArray: data,
+    noLoading: props.noLoading
   })));
 }
 
@@ -3983,7 +3997,8 @@ MainTable.propTypes = {
   nestedProps: PropTypes.object,
   nestedComponent: PropTypes.func,
   settingsID: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  noLoading: PropTypes.bool
 };
 
 function RefreshButton(props) {

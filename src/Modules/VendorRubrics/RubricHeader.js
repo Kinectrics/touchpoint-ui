@@ -55,6 +55,7 @@ export default function RubricHeader(props) {
 						<tr>
 							<td><label>Vendor Performance: </label></td>
 							<td><CommentBox
+								autoFocus
 								width={'900px'}
 								height='150px'
 		
