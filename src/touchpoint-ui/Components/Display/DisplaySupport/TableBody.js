@@ -21,12 +21,14 @@ export default function TableBody(props) {
 	
 	return (
 		<div className={'TableBody tableBody ' + props.data.lastResolved}>
+			
 			{props.dataArray.map((dr, idx) => {
 				//render the allowed numebr of rows, on th selected page
 				if (!props.pageSize || ((rowCount > props.activePage * props.pageSize) && (rowCount <= (1 + props.activePage) * props.pageSize))) {
 
 					let renderRow = dr !== []
-
+					
+					
 					if (props.searchable && props.metaData[idx]) {
 						renderRow = !props.metaData[idx].searchHidden
 					}
@@ -35,8 +37,10 @@ export default function TableBody(props) {
 
 					const rowKey = dr[props.data.primaryKey] ? dr[props.data.primaryKey] : idx
 
-					const r = renderRow ?
-						<MainTableRow
+					if(renderRow){
+						rowCount++
+						
+						return <MainTableRow
 							dataRow={dr}
 							dataset={props.data}
 							dataHeaders={props.dataHeaders}
@@ -51,15 +55,16 @@ export default function TableBody(props) {
 							collapseTrigger={props.collapseTrigger}
 							noActive={props.noActive}
 							tableRef={props.tableRef}
-						/> : null
-
-					if (r) { rowCount++ }//Count the number of rows actually renedered (not filtered out)
-
-					return r
+						/> 
+					} else{
+						return null
+					}
+						
 				} else if (rowCount <= (1 + props.activePage) * props.pageSize) { rowCount++ }
 
 				return null
 			})}
+			
 		</div>
 	)
 }

@@ -163,6 +163,7 @@ export default function CoreTable(props){
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
 			}}>
 				<TableBody
+					searchable={props.searchable}
 					data={props.data}
 					dataHeaders={props.headers.get()}
 					locked={locked}
