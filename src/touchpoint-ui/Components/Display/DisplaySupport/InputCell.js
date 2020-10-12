@@ -78,7 +78,7 @@ export default function InputCell(props) {
 			newData[props.rowIndex][props.header.headerID] = newCellValue
 			
 			const res = await props.header.onEdit({
-				cellValue: currentValue, 
+				cellValue: newCellValue, 
 				row: newData[props.rowIndex], 
 				oldCellValue: initalValue, 
 				oldRow: props.dataset.read()[props.rowIndex],
@@ -86,11 +86,11 @@ export default function InputCell(props) {
 			})
 			
 			if(res || res === undefined){
-				if(override.value){
+				if(override.value){//if the onEdit handler is assuming control, dont edit the dataset in here
 					setCurrentValue(props.header.format(override.newRow[props.header.headerID]))
 				} else{
 					props.dataset.set(newData)
-					setCurrentValue(props.header.format(currentValue))
+					setCurrentValue(props.header.format(newCellValue))
 				}
 				flashGreen()
 			} else{
