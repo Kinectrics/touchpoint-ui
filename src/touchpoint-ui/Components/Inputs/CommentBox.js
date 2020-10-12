@@ -25,6 +25,15 @@ export default function CommentBox(props) {
 		} 
 	}
 	
+	//For the onEnter event
+	function keyPressHandler(e) {
+		if (!locked && e.key === 'Enter' && props.onEnter !== undefined) {
+			e.preventDefault()
+			e.target.blur()
+			props.onEnter(e)
+		}
+	}
+	
 	return (
 		<textarea
 			className={"input CommentBox " + lockedClass + ' ' + props.className}
@@ -36,6 +45,7 @@ export default function CommentBox(props) {
 			style = {props.style}
 			value={props.value}
 			maxLength={props.maxLength}
+			onKeyPress={keyPressHandler}
 		></textarea>
 	)
 }
