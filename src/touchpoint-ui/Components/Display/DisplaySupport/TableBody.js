@@ -8,7 +8,7 @@ export default function TableBody(props) {
 	let rowCount = 1
 	
 	//Loading option
-	if (props.data.status === 'Pending' && !props.noLoading && props.data.read().length === 0){
+	if (props.data.status === 'Pending' && !props.noLoading && props.data.isDataset && props.data.read().length === 0){
 		return <div 
 			style={{ 
 				width: props.tableRef.current ? props.tableRef.current.clientWidth : '100%',
