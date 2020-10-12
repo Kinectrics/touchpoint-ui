@@ -57,12 +57,7 @@ export default function RubricHeader(props) {
 							<td><CommentBox
 								width={'900px'}
 								height='150px'
-								onEnter={
-									(e)=>console.log(e.target.value)
-								}
-								onEscape={()=>{
-									console.log('hello')
-								}}
+		
 							/></td>
 						</tr>
 					
