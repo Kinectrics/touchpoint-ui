@@ -46,6 +46,7 @@ export default function CommentBox(props) {
 			value={props.value}
 			maxLength={props.maxLength}
 			onKeyPress={keyPressHandler}
+			autoFocus ={props.autoFocus}
 		></textarea>
 	)
 }
@@ -63,5 +64,6 @@ CommentBox.propTypes = {
 	width: PropTypes.string,
 	value: PropTypes.string,
 	maxLength: PropTypes.number,
+	autoFocus: PropTypes.bool,
 }
 
