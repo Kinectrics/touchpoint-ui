@@ -101,7 +101,6 @@ export default function useDataset(fetchFunction, options = {}) {
 	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 	useEffect(()=>{ 
 		setTimeout(()=>fetchData(true),0)
-		
 	},[])
 	
 	//Return a Dataset object
