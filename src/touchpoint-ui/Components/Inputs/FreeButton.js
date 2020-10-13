@@ -20,6 +20,7 @@ export default function FreeButton(props) {
 			className = {"FreeButton " + purpose + ' ' + wideClass + ' ' + props.className}
 			style = {props.style}
 			type={props.type}
+			loading={props.loading}
 		>
 			{props.children}
 		</CoreButton>

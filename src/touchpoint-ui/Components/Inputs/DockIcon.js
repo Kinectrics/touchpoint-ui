@@ -35,6 +35,7 @@ export default function DockIcon(props) {
 			menuContent={props.menuContent}
 			direction='left'
 			menuStyle={props.menuStyle}
+			menuProps = {props.menuProps}
 		>
 			{notificationBadge}
 			<div className='pic' style={iconStyle}>{icon}{props.children}</div>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset, CommentBox} from '../../touchpoint-ui'
+import {Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, CoreButton, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset, CommentBox} from '../../touchpoint-ui'
 import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,6 +22,12 @@ function TestComp(props){
 	)
 }
 
+
+function MenuComp(props){
+	return <div>
+		{props.test}
+	</div>
+}
 
 export default function ETDB() {
 	
@@ -92,20 +98,17 @@ export default function ETDB() {
 				Pop
 			</FreeButton>
 			
-			<Tile title='DB Time' notifications='72'>
+			<CoreButton loading onClick={pop}>
+				Pop
+			</CoreButton>
+			
+			<Tile title='DB Time' notifications='72' loading>
 				<FontAwesomeIcon icon={faDatabase}/>
 			</Tile>
 			
 			<MenuButton style={{
 				backgroundColor: 'white', borderRadius: '10px', height: '50px', width: '50px'
-			}}  menuContent={
-				<div>
-					<button>Hello</button>
-					<button>Hello</button>
-					<button>Hello</button>
-					<button>Hello</button>
-				</div>
-			}>Menu</MenuButton>
+			}}  menuContent={MenuComp} menuProps={{test:'Helloworld'}}>Menu</MenuButton>
 			
 			
 			

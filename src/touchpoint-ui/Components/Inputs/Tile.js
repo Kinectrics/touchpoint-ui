@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import './Tile.css'
 import lockedContext from '../../Contexts/LockedContext'
 import PropTypes from 'prop-types'
+import Loading from '../Display/Loading'
 
 export default function Tile(props) {
 	
@@ -9,7 +10,7 @@ export default function Tile(props) {
 	const locked = props.locked || (lockedFromAbove && props.locked === undefined)
 	
 	function clickHandler(){
-		if(!locked && props.onClick){
+		if((!locked) && (!props.loading) && props.onClick){
 			props.onClick()
 		}
 	}
@@ -25,7 +26,10 @@ export default function Tile(props) {
 			<div style = {props.innserStyle} className={'TileContainer '} onClick = {clickHandler}> 
 				{notificationBadge}
 				<div className='logo flexCenter'>
-					{props.children}
+					{props.loading ? <Loading style={{
+						fontSize: 'inherit',
+						opacity: '100%'
+					}} /> : props.children}
 				</div> 
 				
 				<div className="title">{props.title}</div>

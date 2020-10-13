@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import lockedContext from '../../Contexts/LockedContext'
 import PropTypes from 'prop-types'
 import './CoreButton.css'
+import Loading from '../Display/Loading'
 
 
 export default function CoreButton(props) {
@@ -15,7 +16,7 @@ export default function CoreButton(props) {
 	
 	//handles the onChange event. Only fires if component is not locked
 	function clickHandler(e){
-		if(!locked && props.onClick !== undefined){
+		if((!locked) && (!props.loading) && props.onClick){
 			props.onClick(e)
 		} 
 	}
@@ -28,7 +29,10 @@ export default function CoreButton(props) {
 			onBlur = {props.onBlur}
 			type={props.type}
 		>
-			{props.children}
+			{props.loading ? <Loading style={{
+				fontSize: 'inherit',
+				opacity: '100%'
+			}}/> : props.children}
 		</button>
 		
 	)} else{return null}

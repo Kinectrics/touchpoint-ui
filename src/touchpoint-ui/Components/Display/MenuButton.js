@@ -20,7 +20,7 @@ const dropMenu = React.forwardRef(
 					style={{maxWidth: menuMaxWidth, ...props.style, ...props.menuStyle}}
 					onClick={props.onClickBody}
 				>
-					{typeof (props.MenuContent) == 'function' ? <props.MenuContent /> : props.MenuContent}
+					{typeof (props.MenuContent) == 'function' ? <props.MenuContent {...props.menuProps}/> : props.MenuContent}
 				</div>
 			</menuContext.Provider>
 		)
@@ -127,6 +127,7 @@ export default function MenuButton(props){
 				{ReactDOM.createPortal(<Dropdown.Menu 
 					as={dropMenu}
 					MenuContent = {props.menuContent}
+					menuProps = {props.menuProps}
 					menuStyle = {props.menuStyle}
 					onClickBody = {onClickBody}
 				/>, document.body)}
@@ -149,4 +150,5 @@ MenuButton.propTypes = {
 	menuStyle: PropTypes.object,
 	style: PropTypes.object,
 	notificationStyle: PropTypes.object,
+	menuProps: PropTypes.object,
 }
