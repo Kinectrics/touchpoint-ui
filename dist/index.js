@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router';
 import PropTypes from 'prop-types';
 import { HashRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { faCircleNotch, faTimes, faTimesCircle, faCaretRight, faSortAlphaDown, faSortAlphaDownAlt, faCaretDown, faFilter, faColumns, faCheck, faWindowRestore, faPlus, faMinus, faCaretLeft, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faTimesCircle, faCaretRight, faSortAlphaDown, faSortAlphaDownAlt, faCaretDown, faFilter, faColumns, faCheck, faWindowRestore, faPlus, faMinus, faCaretLeft, faCircleNotch, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import ReactDOM from 'react-dom';
 import { v4 } from 'uuid';
 import { Dropdown, Tabs, Tab } from 'react-bootstrap';
@@ -837,6 +837,25 @@ styleInject(css_248z$5);
 var css_248z$6 = ".CoreButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n}";
 styleInject(css_248z$6);
 
+var css_248z$7 = ".Loading{\n\tfont-size: 30pt;\n\tdisplay: inline-block;\n\topacity: 60%;\n}\n\n.Loading .rotate{\n\tanimation: spin 0.7s infinite linear;\n\tdisplay: inline-block;\n}\n\n.Loading .pulse{\n\tanimation: pulse 0.7s infinite ease-in-out;\n\tdisplay: inline-block;\n}\n\n@keyframes spin {\n    0% {transform:rotate(0deg);}\n    100% {transform:rotate(360deg);}\n}\n\n@keyframes pulse {\n    0% {transform:scale(1);}\n    20% {transform:scale(1.2);}\n    100% {transform:scale(1);}\n}";
+styleInject(css_248z$7);
+
+function Loading(props) {
+  return /*#__PURE__*/React.createElement("span", {
+    className: 'Loading ' + props.className,
+    style: props.style
+  }, /*#__PURE__*/React.createElement("span", {
+    className: props.animation ? props.animation : 'rotate'
+  }, props.children ? props.children : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faCircleNotch
+  })));
+}
+Loading.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+  animation: PropTypes.string
+};
+
 function CoreButton(props) {
   //deccides if the component is locked based on props and parents in the tree
   var lockedFromAbove = useContext(lockedContext);
@@ -849,7 +868,7 @@ function CoreButton(props) {
 
 
   function clickHandler(e) {
-    if (!locked && props.onClick !== undefined) {
+    if (!locked && !props.loading && props.onClick) {
       props.onClick(e);
     }
   }
@@ -861,7 +880,12 @@ function CoreButton(props) {
       style: props.style,
       onBlur: props.onBlur,
       type: props.type
-    }, props.children);
+    }, props.loading ? /*#__PURE__*/React.createElement(Loading, {
+      style: {
+        fontSize: 'inherit',
+        opacity: '100%'
+      }
+    }) : props.children);
   } else {
     return null;
   }
@@ -877,8 +901,8 @@ CoreButton.propTypes = {
   type: PropTypes.string
 };
 
-var css_248z$7 = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparent;\n\toutline: none !important;\n\tposition: relative;\n\tcolor: var(--lockedTextColor);\n}\n\n.CloseButton:active{\n\tfilter: brightness(70%);\n}";
-styleInject(css_248z$7);
+var css_248z$8 = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparent;\n\toutline: none !important;\n\tposition: relative;\n\tcolor: var(--lockedTextColor);\n}\n\n.CloseButton:active{\n\tfilter: brightness(70%);\n}";
+styleInject(css_248z$8);
 
 function CloseButton(props) {
   return /*#__PURE__*/React.createElement(CoreButton, {
@@ -971,8 +995,8 @@ AppDrawer.propTypes = {
   locked: PropTypes.bool
 };
 
-var css_248z$8 = ".FreeButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\t\n\tfont-size: 12pt;\n\tfont-weight: bold;\n\tpadding: 8px 17px;\n\tborder-radius: 30px;\n\tbox-sizing: border-box;\n}\n\n.FreeButton.wide{\n\twidth: 100%;\n\tdisplay: block;\n\tmargin: 0;\n}\n\n.FreeButton.neutral{\n\tbackground-color: var(--freeButtonNeutralBG);\n}\n\n.FreeButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.FreeButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.FreeButton:hover{\n\tfilter: brightness(110%);\n}\n\n.FreeButton:active{\n\tfilter: brightness(95%);\n}\n\n.FreeButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}\n";
-styleInject(css_248z$8);
+var css_248z$9 = ".FreeButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\t\n\tfont-size: 12pt;\n\tfont-weight: bold;\n\tpadding: 8px 17px;\n\tborder-radius: 30px;\n\tbox-sizing: border-box;\n}\n\n.FreeButton.wide{\n\twidth: 100%;\n\tdisplay: block;\n\tmargin: 0;\n}\n\n.FreeButton.neutral{\n\tbackground-color: var(--freeButtonNeutralBG);\n}\n\n.FreeButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.FreeButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.FreeButton:hover{\n\tfilter: brightness(110%);\n}\n\n.FreeButton:active{\n\tfilter: brightness(95%);\n}\n\n.FreeButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}\n";
+styleInject(css_248z$9);
 
 function FreeButton(props) {
   var purpose = 'neutral ';
@@ -992,7 +1016,8 @@ function FreeButton(props) {
     hidden: props.hidden,
     className: "FreeButton " + purpose + ' ' + wideClass + ' ' + props.className,
     style: props.style,
-    type: props.type
+    type: props.type,
+    loading: props.loading
   }, props.children);
 } //Proptypes
 
@@ -1006,8 +1031,8 @@ FreeButton.propTypes = {
   type: PropTypes.string
 };
 
-var css_248z$9 = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
-styleInject(css_248z$9);
+var css_248z$a = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
+styleInject(css_248z$a);
 
 function ConfirmButton(props) {
   var _useState = useState(false),
@@ -1039,6 +1064,7 @@ function ConfirmButton(props) {
     hidden: props.hidden,
     onClick: clickHandler,
     style: props.style,
+    loading: props.loading,
     onBlur: blurHandler
   }, expanded ? props.expandedContent : props.content);
 } //
@@ -1055,15 +1081,15 @@ ConfirmButton.propTypes = {
   purpose: PropTypes.string
 };
 
-var css_248z$a = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}\n\n.Tile .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: -2px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 4px 6px;\n}";
-styleInject(css_248z$a);
+var css_248z$b = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}\n\n.Tile .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: -2px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 4px 6px;\n}";
+styleInject(css_248z$b);
 
 function Tile(props) {
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
 
   function clickHandler() {
-    if (!locked && props.onClick) {
+    if (!locked && !props.loading && props.onClick) {
       props.onClick();
     }
   }
@@ -1081,7 +1107,12 @@ function Tile(props) {
     onClick: clickHandler
   }, notificationBadge, /*#__PURE__*/React.createElement("div", {
     className: "logo flexCenter"
-  }, props.children), /*#__PURE__*/React.createElement("div", {
+  }, props.loading ? /*#__PURE__*/React.createElement(Loading, {
+    style: {
+      fontSize: 'inherit',
+      opacity: '100%'
+    }
+  }) : props.children), /*#__PURE__*/React.createElement("div", {
     className: "title"
   }, props.title)));
 } //Proptypes
@@ -1176,8 +1207,8 @@ function useModuleContext() {
   };
 }
 
-var css_248z$b = ".SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}";
-styleInject(css_248z$b);
+var css_248z$c = ".SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}";
+styleInject(css_248z$c);
 
 function SearchBar(props) {
   var moduleData = useModuleContext();
@@ -1309,8 +1340,8 @@ RadioGroup.propTypes = {
   value: PropTypes.any
 };
 
-var css_248z$c = ".RadioButton{\n\tpadding: 5px;\n}\n\n.RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n\tmargin-bottom: 0;\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
-styleInject(css_248z$c);
+var css_248z$d = ".RadioButton{\n\tpadding: 5px;\n}\n\n.RadioButton label, .RadioButton .input{\n\tcursor: pointer;\n}\n\n.RadioButton input{\n\tmargin-right: 5px;\n}\t\n\n.RadioButton label{\n\tcolor: var(--mainTextColor);\n\tmargin-bottom: 0;\n}\n\n.RadioButton .locked{\n\tcursor: default !important;\n}";
+styleInject(css_248z$d);
 
 function RadioButton(props) {
   var radioData = useContext(radioContext);
@@ -1365,8 +1396,8 @@ RadioButton.propTypes = {
   buttonStyle: PropTypes.object
 };
 
-var css_248z$d = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 5px 10px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n\tposition: relative;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tleft: 10px;\n\tbackground-color: var(--navColor);\n\theight: 100%;\n\t\n}\n\n.ControlBar .searchContainer{\n\tposition: absolute;\n\tright: 5px;\n\tbox-sizing: border-box;\n\twidth: max(20%, 250px);\n\theight: 100%;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}\n\n.ControlBar .input{\n\tborder: none;\n}\n\n/* ControlButton */\n.ControlBar button:not(.searchButton){\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\theight: 100%;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: var(--navColor);\n\tbackground-color: transparent;\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n\twhite-space: nowrap;\n}\n\n.ControlBar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlBar button:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlBar button.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}";
-styleInject(css_248z$d);
+var css_248z$e = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 5px 10px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n\tposition: relative;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tleft: 10px;\n\tbackground-color: var(--navColor);\n\theight: 100%;\n\t\n}\n\n.ControlBar .searchContainer{\n\tposition: absolute;\n\tright: 5px;\n\tbox-sizing: border-box;\n\twidth: max(20%, 250px);\n\theight: 100%;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}\n\n.ControlBar .input{\n\tborder: none;\n}\n\n/* ControlButton */\n.ControlBar button:not(.searchButton){\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\theight: 100%;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: var(--navColor);\n\tbackground-color: transparent;\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n\twhite-space: nowrap;\n}\n\n.ControlBar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlBar button:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlBar button.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}";
+styleInject(css_248z$e);
 
 function ControlBar(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -1402,8 +1433,8 @@ ControlBar.propTypes = {
   style: PropTypes.object
 };
 
-var css_248z$e = ".CommentBox{\n\tresize: none;\n\tpadding: 5px;\n\tborder-radius: 7px;\n}";
-styleInject(css_248z$e);
+var css_248z$f = ".CommentBox{\n\tresize: none;\n\tpadding: 5px;\n\tborder-radius: 7px;\n}";
+styleInject(css_248z$f);
 
 function CommentBox(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1467,8 +1498,8 @@ CommentBox.propTypes = {
   autoFocus: PropTypes.bool
 };
 
-var css_248z$f = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
-styleInject(css_248z$f);
+var css_248z$g = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
+styleInject(css_248z$g);
 
 function ComboBox(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1569,8 +1600,8 @@ CheckBox.propTypes = {
 
 var menuContext = /*#__PURE__*/createContext({});
 
-var css_248z$g = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\n.MenuButton:hover{\n\tfilter: brightness(95%)\n}\n\n.MenuButton:active{\n\tfilter: brightness(90%)\n}\n\n.MenuButton.locked{\n\tcursor: default;\n\tfilter: none;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\toverflow-x: visible;\n}\n\n.MenuButton .notifications{\n\tposition: absolute;\n\ttop: -10px;\n\tright: -10px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 2px 6px;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):not(.ConfirmButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
-styleInject(css_248z$g);
+var css_248z$h = ".menuButtonContainer{\n\tpadding: 0;\n\tmargin: 0;\n}\n\n.MenuButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\tposition: relative;\n}\n\n.MenuButton:hover{\n\tfilter: brightness(95%)\n}\n\n.MenuButton:active{\n\tfilter: brightness(90%)\n}\n\n.MenuButton.locked{\n\tcursor: default;\n\tfilter: none;\n}\n\n.MenuButton .smallIcon{\n\tfont-size: 8pt;\n}\n\n.dropdown-menu{\n\tbackground-color: var(--cardBG);\n\tpadding: 0;\n\tborder-radius: 7px;\n\toverflow: hidden;\n}\n\n.Menu{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tpadding-top: 7px;\n\tpadding-top: 0;\n\tposition: relative;\n\tz-index: 10;\n\toverflow-x: visible;\n}\n\n.MenuButton .notifications{\n\tposition: absolute;\n\ttop: -10px;\n\tright: -10px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 2px 6px;\n}\n\n/* Buttons and links */\n.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){\n\twidth: 100%;\n\tcolor: var(--mainTextColor) !important;\n\tbackground-color: var(--cardBG);\n\tborder: none;\n\toutline: none !important;\n\ttext-align: left;\n\tpadding: 4px 20px;\n\tmargin: 0 !important;\n\tcursor: pointer;\n\tmargin: 3px 0;\n\twhite-space: nowrap;\n}\n\n.Menu a:hover, \n.Menu button:not(.FreeButton):not(.ConfirmButton):hover{\n\tbackground-color: var(--cardBG);\n\tfilter: brightness(95%);\n\tcolor: var(--mainTextColor);\n}\n\n.Menu a:not(.nav-item):not(.disabled):active, .Menu button:not(.FreeButton):not(.disabled):not(.ConfirmButton):active{\n\tfilter: brightness(91%) !important;\n}\n\n.Menu .FreeButton{\n\twidth: 100% - 20px;\n\tmargin: 0;\n}\n\n.Menu>div{\n\tmax-height: inherit;\n}\n\n/* Inputs */\n.Menu .TextBox{\n\twidth: calc(100% - 20px);\n\tmargin: 0 10px;\n\t\n}\n\n/* Tabbed menus */\n.Menu .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.Menu .nav{\n\tpadding: 0 10px;\n\tmargin: 0 !important;\n\tposition: sticky;\n\ttop:0;\n\twidth: 100% !important;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .InfoTabContainer .nav-tabs,\n.Menu .InfoTabContainer .nav-tabs a{\n\twidth: fit-content;\n\tbackground-color:var(--cardBG) !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 10px;\n\tz-index: 3;\n\tfilter: none;\n\tfont-size: 13pt;\n\theight: 30px;\n\tpadding-top: 0px !important;\n}\n\n.Menu .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 3px !important;\n}\n\n.Menu .InfoTabContainer, .tab-content, .tab-pane, \n.InfoTab{\n\tmax-height: inherit;\n}\n\n.Menu .InfoTabContainer{\n\toverflow-y: hidden;\n\t\n}\n\n/* Submenus */\n.Menu .MenuButton{\n\tposition: relative;\n}\n\n.Menu .subMenuIcon{\n\tposition: absolute;\t\n\tright: 5px;\n\tbackground-color: var(--cardBG);\n}\n\n.Menu .menuButtonContainer{\n\twidth: 100%;\n}";
+styleInject(css_248z$h);
 
 var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var menuMaxWidth = props.menuStyle && props.menuStyle.width ? null : '180px';
@@ -1585,7 +1616,7 @@ var dropMenu = /*#__PURE__*/React.forwardRef(function (props, ref) {
       maxWidth: menuMaxWidth
     }, props.style), props.menuStyle),
     onClick: props.onClickBody
-  }, typeof props.MenuContent == 'function' ? /*#__PURE__*/React.createElement(props.MenuContent, null) : props.MenuContent));
+  }, typeof props.MenuContent == 'function' ? /*#__PURE__*/React.createElement(props.MenuContent, props.menuProps) : props.MenuContent));
 });
 function MenuButton(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1680,6 +1711,7 @@ function MenuButton(props) {
   }), /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement(Dropdown.Menu, {
     as: dropMenu,
     MenuContent: props.menuContent,
+    menuProps: props.menuProps,
     menuStyle: props.menuStyle,
     onClickBody: onClickBody
   }), document.body)));
@@ -1695,11 +1727,12 @@ MenuButton.propTypes = {
   onClose: PropTypes.func,
   menuStyle: PropTypes.object,
   style: PropTypes.object,
-  notificationStyle: PropTypes.object
+  notificationStyle: PropTypes.object,
+  menuProps: PropTypes.object
 };
 
-var css_248z$h = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n\tpadding-left: 0;\n\tpadding-right: 0;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\ttext-align: center;\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
-styleInject(css_248z$h);
+var css_248z$i = ".DockIcon{\n\twidth: var(--dockWidth);\n\tcolor: var(--dockTextColor);\n\tmargin-bottom: 8px;\n\tposition: relative;\n\tpadding-left: 0;\n\tpadding-right: 0;\n}\n\n.DockIcon .pic{\n\twidth: 100%;\n\ttext-align: center;\n\tmargin-bottom: -2px;\n}\n\n.DockIcon .title{\n\ttext-align: center;\n\tfont-size: 9pt;\n}\n\n.DockIcon:not(.locked):hover{\n\tfilter: brightness(75%);\n}\n\n.DockIcon:not(.locked):active{\n\tfilter: brightness(60%);\n}\n\n.DockIcon.locked{\n\topacity: 80%;\n\tfilter: brightness(70%);\n\tcursor: default;\n}\n\n.DockIcon .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: 5px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 0 3px;\n}";
+styleInject(css_248z$i);
 
 function DockIcon(props) {
   //deccides if the component is locked based on props and parents in the tree
@@ -1728,7 +1761,8 @@ function DockIcon(props) {
       onOpen: props.onClick,
       menuContent: props.menuContent,
       direction: "left",
-      menuStyle: props.menuStyle
+      menuStyle: props.menuStyle,
+      menuProps: props.menuProps
     }, notificationBadge, /*#__PURE__*/React.createElement("div", {
       className: "pic",
       style: iconStyle
@@ -1761,8 +1795,8 @@ DockIcon.propTypes = {
   menuStyle: PropTypes.object
 };
 
-var css_248z$i = ".InfoCard{\n\tpadding: 10px 20px;\n\tmargin: 0;\n\ttransition: padding 0.25s;\n\t\n}\n\n.InfoCard .InfoCard .cardContainer{\n\tbox-shadow: none;\n\tborder: 1px solid var(--borderColor);\n}\n\n.InfoCard .CloseButton{\n\tposition: absolute;\n\tright: 6px;\n\ttop: 6px;\n}\n\n.InfoCard.dynamicX:hover{\n\tpadding-left: 13px;\n\tpadding-right: 13px;\n\tcursor: pointer;\n}\n\n.InfoCard.dynamicX:hover .cardContainer{\n\tbox-shadow: var(--dynamicCardShadow);\n}\n\n.InfoCard.dynamicX:active{\n\tpadding-left: 21px;\n\tpadding-right: 21px;\n\ttransition: padding 0.05s;\n}\n\n.InfoCard .cardContainer{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tborder-radius: 11px;\n\toverflow: hidden;\n\tbox-shadow: var(--cardShadow);\n\theight: 100%;\n\twidth: 100%;\n\tposition: relative;\n}\n\n.InfoCard .textBox{\n\tpadding: 11px;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n}\n\n.InfoCard .textBox.stripe{\n\tborder-left-width: 5px;\n\tborder-left-style: solid;\n\tborder-left-color: var(--labelColor);\n\tfloat:left;\n\theight: 100%;\n}\n\n.InfoCard label{\n\tmargin:0 10px 0px 0;\n\tfont-size: 12pt;\n\tcolor: var(--labelColor);\n\n}\n\n.InfoCard h1{\n\tfont-size: 15pt;\n\tfont-weight: bold;\n\tcolor: var(--labelColor);\n\tmargin-top: 0;\n}\n\n.InfoCard h2{\n\tmargin: 7px 0px;\n\tfont-size: 12pt;\n\tfont-weight: bold;\n}\n\n.InfoCard p{\n\tmargin:0;\n}\n\n/* Tabs in an infocard */\n.InfoCard .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.InfoCard .InfoTabContainer .nav-tabs,\n.InfoCard .InfoTabContainer .nav-tabs a{\n\tbackground-color: transparent !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 0;\n\tmargin-right: 20px;\n\tmargin-bottom: 6px;\t\n}\n\n.InfoCard .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n/* Maintable in an infocard */\n.InfoCard .MainTable{\n\tbackground-color: transparent;\n}\n\n.InfoCard .MainTable .titleBar{\n\tfont-weight: bold;\n}\n";
-styleInject(css_248z$i);
+var css_248z$j = ".InfoCard{\n\tpadding: 10px 20px;\n\tmargin: 0;\n\ttransition: padding 0.25s;\n\t\n}\n\n.InfoCard .InfoCard .cardContainer{\n\tbox-shadow: none;\n\tborder: 1px solid var(--borderColor);\n}\n\n.InfoCard .CloseButton{\n\tposition: absolute;\n\tright: 6px;\n\ttop: 6px;\n}\n\n.InfoCard.dynamicX:hover{\n\tpadding-left: 13px;\n\tpadding-right: 13px;\n\tcursor: pointer;\n}\n\n.InfoCard.dynamicX:hover .cardContainer{\n\tbox-shadow: var(--dynamicCardShadow);\n}\n\n.InfoCard.dynamicX:active{\n\tpadding-left: 21px;\n\tpadding-right: 21px;\n\ttransition: padding 0.05s;\n}\n\n.InfoCard .cardContainer{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tborder-radius: 11px;\n\toverflow: hidden;\n\tbox-shadow: var(--cardShadow);\n\theight: 100%;\n\twidth: 100%;\n\tposition: relative;\n}\n\n.InfoCard .textBox{\n\tpadding: 11px;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n}\n\n.InfoCard .textBox.stripe{\n\tborder-left-width: 5px;\n\tborder-left-style: solid;\n\tborder-left-color: var(--labelColor);\n\tfloat:left;\n\theight: 100%;\n}\n\n.InfoCard label{\n\tmargin:0 10px 0px 0;\n\tfont-size: 12pt;\n\tcolor: var(--labelColor);\n\n}\n\n.InfoCard h1{\n\tfont-size: 15pt;\n\tfont-weight: bold;\n\tcolor: var(--labelColor);\n\tmargin-top: 0;\n}\n\n.InfoCard h2{\n\tmargin: 7px 0px;\n\tfont-size: 12pt;\n\tfont-weight: bold;\n}\n\n.InfoCard p{\n\tmargin:0;\n}\n\n/* Tabs in an infocard */\n.InfoCard .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.InfoCard .InfoTabContainer .nav-tabs,\n.InfoCard .InfoTabContainer .nav-tabs a{\n\tbackground-color: transparent !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 0;\n\tmargin-right: 20px;\n\tmargin-bottom: 6px;\t\n}\n\n.InfoCard .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n/* Maintable in an infocard */\n.InfoCard .MainTable{\n\tbackground-color: transparent;\n}\n\n.InfoCard .MainTable .titleBar{\n\tfont-weight: bold;\n}\n";
+styleInject(css_248z$j);
 
 function InfoCard(props) {
   var lockedFromAbove = useContext(lockedContext);
@@ -1846,8 +1880,8 @@ InfoCard.propTypes = {
   stripeColor: PropTypes.string
 };
 
-var css_248z$j = ".PopupCard{\n\tmax-width: 90%;\n}\n\n.PopupCard .cardContainer{\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: var(--labelColor);\n\tbox-sizing: var(--dynamicCardShadow);\n}\n\n.popupBlockClicks{\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\theight: 100%;\n\twidth: 100%;\n\tcursor: default;\n}\n\n";
-styleInject(css_248z$j);
+var css_248z$k = ".PopupCard{\n\tmax-width: 90%;\n}\n\n.PopupCard .cardContainer{\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: var(--labelColor);\n\tbox-sizing: var(--dynamicCardShadow);\n}\n\n.popupBlockClicks{\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\theight: 100%;\n\twidth: 100%;\n\tcursor: default;\n}\n\n";
+styleInject(css_248z$k);
 
 function PopupCard(props) {
   var system = useSystem();
@@ -1912,11 +1946,11 @@ PopupCard.propTypes = {
   innerStyle: PropTypes.object
 };
 
-var css_248z$k = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 29px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\ttop: var(--topBarHeight);\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 10px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: -2px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}";
-styleInject(css_248z$k);
-
-var css_248z$l = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
+var css_248z$l = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 29px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\ttop: var(--topBarHeight);\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 10px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: -2px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}";
 styleInject(css_248z$l);
+
+var css_248z$m = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
+styleInject(css_248z$m);
 
 function FilterMenu(props) {
   var values = props.header.uniqueValues;
@@ -2446,8 +2480,8 @@ function ColumnSettings(props) {
   }), " Column Settings");
 }
 
-var css_248z$m = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
-styleInject(css_248z$m);
+var css_248z$n = ".SaveTableLayout .inputMenu{\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding: 5px 5px;\n\tpadding-left: 15px;\n\tposition: relative;\n\tpadding-bottom: 10px;\n}\n\n.SaveTableLayout .input{\n\tfont-size: 10pt;\n\tmargin-right: 10px;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 25px);\n}\n\n.SaveTableLayout .layoutButton{\n\tposition: relative;\n}\n\n.SaveTableLayout .cancelIcon{\n\tposition: absolute;  \n\tright: 5px;\n\ttop: 4px;\n\tcursor: pointer;\n\twidth: fit-content !important;\n\tz-index: 2;\n\tfilter: none !important;\n}\n\n.SaveTableLayout .commitIcon{\n\tposition: absolute; \n\tright: 5px;\n\tbottom: 9px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.SaveTableLayout .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.SaveTableLayout .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.SaveTableLayout .layoutButtonText{\n\tmax-width: calc(100% - 30px);\n\ttext-align: left;\n\tpadding-left: 0;\n}\n";
+styleInject(css_248z$n);
 
 function SaveTableLayout(props) {
   var _useState = useState(''),
@@ -2690,11 +2724,11 @@ function PageContols(props) {
   } else return null;
 }
 
-var css_248z$n = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 32px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
-styleInject(css_248z$n);
-
-var css_248z$o = ".MainTableRow .InputCell{\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 20px;\n\tbox-sizing: border-box;\n\tcolor: inherit;\n\tcolor: var(--mainTextColor);\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .inputWrapper{\n\theight: 100%;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tcolor: inherit;\n\tpadding: 4px 0;\n\tborder: none;\n}\n\n/* Cells for nested tables */\n.MainTableRow .MainTableRow .InputCell{\n\theight: calc(100% - 3px);\n}\n\n";
+var css_248z$o = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 32px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
 styleInject(css_248z$o);
+
+var css_248z$p = ".MainTableRow .InputCell{\n\toutline: none !important;\n\tfont-family: inherit;\n\tfont-size: inherit;\n\twidth: 100%;\n\tmargin: none;\n\theight: 20px;\n\tbox-sizing: border-box;\n\tcolor: inherit;\n\tcolor: var(--mainTextColor);\n\tpadding: 1px 10px;\n\tborder-radius: 10px;\n\ttransition: background-color 750ms ease-out;\n}\n\n.MainTableRow .inputWrapper{\n\theight: 100%;\n}\n\n.MainTableRow .badge.inputWrapper{\n\tpadding: 0;\n}\n\n.MainTableRow .InputCell.invalid,\n.MainTableRow .InputCell.valid{\n\ttransition: all 0ms;\n}\n\n.MainTableRow .badge .InputCell{\n\tbackground-color: transparent;\n\tborder-radius: 0;\n\theight: 100%;\n\twidth: 100%;\n\ttext-align: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n\tcolor: inherit;\n\tpadding: 4px 0;\n\tborder: none;\n}\n\n/* Cells for nested tables */\n.MainTableRow .MainTableRow .InputCell{\n\theight: calc(100% - 3px);\n}\n\n";
+styleInject(css_248z$p);
 
 function InputCell(props) {
   var _useState = useState(props.dataRow[props.header.headerID] ? props.header.format(props.dataRow[props.header.headerID]) : ''),
@@ -2994,25 +3028,6 @@ function MainTableRow(props) {
     rowIndex: props.rowIndex
   })))) : null);
 }
-
-var css_248z$p = ".Loading{\n\tfont-size: 30pt;\n\tdisplay: inline-block;\n\topacity: 60%;\n}\n\n.Loading .rotate{\n\tanimation: spin 0.7s infinite linear;\n\tdisplay: inline-block;\n}\n\n.Loading .pulse{\n\tanimation: pulse 0.7s infinite ease-in-out;\n\tdisplay: inline-block;\n}\n\n@keyframes spin {\n    0% {transform:rotate(0deg);}\n    100% {transform:rotate(360deg);}\n}\n\n@keyframes pulse {\n    0% {transform:scale(1);}\n    20% {transform:scale(1.2);}\n    100% {transform:scale(1);}\n}";
-styleInject(css_248z$p);
-
-function Loading(props) {
-  return /*#__PURE__*/React.createElement("span", {
-    className: 'Loading ' + props.className,
-    style: props.style
-  }, /*#__PURE__*/React.createElement("span", {
-    className: props.animation ? props.animation : 'rotate'
-  }, props.children ? props.children : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faCircleNotch
-  })));
-}
-Loading.propTypes = {
-  className: PropTypes.string,
-  style: PropTypes.object,
-  animation: PropTypes.string
-};
 
 function TableBody(props) {
   //Counter for rendered rows
