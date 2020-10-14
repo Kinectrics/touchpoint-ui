@@ -28,7 +28,8 @@ export default function RubricHeader(props) {
 						content = {<span><FontAwesomeIcon icon={faTimes}/> Click</span>}
 						expandedContent = 'Are you sure'
 						onClick = {()=>{console.log('button')}}
-
+						expandedStyle={{ color: 'red' }}
+						style={{color: 'white'}}
 					/>
 
 					<table><tbody>

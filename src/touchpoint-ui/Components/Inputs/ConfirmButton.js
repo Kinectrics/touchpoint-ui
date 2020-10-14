@@ -30,7 +30,7 @@ export default function ConfirmButton(props) {
 			locked = {props.locked}
 			hidden = {props.hidden}
 			onClick = {clickHandler}
-			style = {props.style}
+			style = {expanded ? {...props.style, ...props.expandedStyle} : props.style}
 			loading = {props.loading}
 			onBlur = {blurHandler}
 		>

@@ -17,7 +17,7 @@ const parseFunctions = {
 		
 		if (testVal === 'tomorrow' || testVal === 'tm') { return moment().add(1, 'day').toISOString() }
 		
-		if (testVal === 'yesterday' || testVal === 'tm') { return moment().subtract(1, 'day').toISOString() }
+		if (testVal === 'yesterday' || testVal === 'yd') { return moment().subtract(1, 'day').toISOString() }
 		
 		return moment( new Date(input) ).toISOString()
 	},
