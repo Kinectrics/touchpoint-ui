@@ -123,7 +123,6 @@ export default function useDataset(fetchFunction, options = {}) {
 		
 		set: (newData)=>{
 			setData(newData)
-			setLastEdited(Date())
 			selectRecord(activeRecord[options.primaryKey], newData)
 		}
 	})

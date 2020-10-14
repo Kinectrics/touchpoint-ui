@@ -64,7 +64,7 @@ export default function VendorRubrics(){
 					console.log(data)
 					console.log(data.read())
 				}}>
-					<FontAwesomeIcon icon={faCalendarAlt} /> Log Data
+			 		<FontAwesomeIcon icon={faCalendarAlt} /> Log Data
 				</button>
 				
 				<button onClick={() => {
