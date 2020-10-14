@@ -111,7 +111,7 @@ export default function CoreTable(props){
 						clearFilter={clearFilter}
 						noOptions={noOptions}
 						dataHeaders={props.headers}
-						dataset={props.dataset}
+						data={props.data}
 						setTransitionClass={setTransitionClass}
 						setExpandTrigger = {setExpandTrigger}
 						setCollapseTrigger = {setCollapseTrigger}
