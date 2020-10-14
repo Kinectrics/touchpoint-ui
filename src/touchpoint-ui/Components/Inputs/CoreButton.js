@@ -47,4 +47,5 @@ CoreButton.propTypes = {
 	style: PropTypes.object,
 	onBlur: PropTypes.func,
 	type: PropTypes.string,
+	loading: PropTypes.bool
 }

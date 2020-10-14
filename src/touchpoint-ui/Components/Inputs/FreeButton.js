@@ -36,4 +36,5 @@ FreeButton.propTypes = {
 	wide: PropTypes.bool,
 	style: PropTypes.object,
 	type: PropTypes.string,
+	loading: PropTypes.bool
 }

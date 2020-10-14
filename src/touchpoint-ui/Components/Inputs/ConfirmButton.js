@@ -52,4 +52,5 @@ ConfirmButton.propTypes = {
 	content: PropTypes.any,
 	expandedContent: PropTypes.any,
 	purpose: PropTypes.string,
+	loading: PropTypes.bool
 }

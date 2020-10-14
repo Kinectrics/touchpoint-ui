@@ -45,4 +45,5 @@ Tile.propTypes = {
 	title: PropTypes.string,
 	onClick: PropTypes.func,
 	style: PropTypes.object,
+	loading: PropTypes.bool
 }

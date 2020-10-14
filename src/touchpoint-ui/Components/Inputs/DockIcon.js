@@ -67,5 +67,6 @@ DockIcon.propTypes = {
 	onClick: PropTypes.func,
 	menuContent: PropTypes.any,
 	menuStyle: PropTypes.object,
+	menuProps: PropTypes.object,
 }
 

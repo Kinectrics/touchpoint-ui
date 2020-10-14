@@ -25,15 +25,18 @@ export default function ColumnSettings(props) {
 			menuContent={
 				<div style = {{overflowY: 'auto'}}>
 					{props.headers.get().map((h) => {
-						return (
-							<CheckButton
-								key={'customizeHeader' + h.headerID}
-								disabled={h.required}
-								checked={h.visible}
-								value={h.index}
-								onClick={clickHandler}
-							>{h.displayName}</CheckButton>
-						)
+						if(h.displayName){
+							return (
+								<CheckButton
+									key={'customizeHeader' + h.headerID}
+									disabled={h.required}
+									checked={h.visible}
+									value={h.index}
+									onClick={clickHandler}
+								>{h.displayName}</CheckButton>
+							)
+						}else return null
+						
 					})}
 				</div>
 			}>
