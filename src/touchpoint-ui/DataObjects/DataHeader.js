@@ -30,11 +30,9 @@ export default class DataHeader{
 		}
 		
 		this.dataType = new DataType(this.type)
-		
 		this.format = this.dataType.format
 		this.parse = this.dataType.parse
 		this.compare = this.dataType.compare
-		
 	}
 
 	

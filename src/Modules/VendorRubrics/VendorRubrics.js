@@ -100,8 +100,8 @@ export default function VendorRubrics(){
 					pageSize={50}
 					searchable
 					settingsID={'VendorRubricsMainTable'}
-					// nestedComponent = {TestExpandedRows}
-					// nestedProps={{fitToWidth:true}}
+					nestedComponent = {TestExpandedRows}
+					nestedProps={{fitToWidth:true}}
 				/>
 				
 				<InfoTabContainer defaultTab='RubricHeader'>
