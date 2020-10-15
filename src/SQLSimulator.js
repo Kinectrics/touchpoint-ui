@@ -26,7 +26,7 @@ function createState() {
 
 export function csqQuery(){
 	const list = []
-	const n = 60
+	const n = 500
 
 	for (let i = 0; i < n; i++) {
 		const row = {
@@ -53,43 +53,12 @@ export function csqQuery(){
 	}
 	
 	return new Promise((resolve)=>{
-		setTimeout(resolve(list),500)
-	})
-}
-
-
-
-export function unplannedQuery(){
-	const list2 = []
-	const n2 = 60
-
-	for (let i = 0; i < n2; i++) {
-		const row = {
-			id: i,
-			tds: '3' + Math.floor(Math.random() * 10000),
-			scopetitle: faker.lorem.words(),
-			dateadded: faker.date.future().toString(),
-			addedby: faker.name.findName(),
-			comments: faker.lorem.sentences(),
-			cids: [...new Array(9)].map((r,j) => {
-				return {
-					id: 'CID' + i.toString() + '.' + j.toString(),
-					number: Math.round(Math.random() * 100000),
-					desc: faker.lorem.sentence()
-				}
-			})
-
-		}
-		list2.push(row)
-	}
-
-	return new Promise((resolve) => {
-		setTimeout(resolve(list2), 0)
+		setTimeout(resolve(list),0)
 	})
 }
 
 //
-function fakeDataEngine(n = 500){
+export function fakeData(n = 500){
 	
 	const data = []
 	const statuses = ['Complete', 'In Progress', 'Pending Approval']
@@ -123,15 +92,9 @@ function fakeDataEngine(n = 500){
 		})
 	}
 
-	return (JSON.parse(JSON.stringify(data)))
-}
-
-export function fakeData(n){
-	
-	return new Promise((resolve, reject)=>{
-		setTimeout(()=>{
-			const data = fakeDataEngine(n)
-			resolve(data)
-		},0)
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(JSON.parse(JSON.stringify(data)))
+		}, 0)
 	})
 }

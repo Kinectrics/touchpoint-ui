@@ -99,7 +99,7 @@ export default function useDataset(fetchFunction, options = {}) {
 	//Automatically run the fetching function the first time, then wait for a refresh
 	//If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 	useEffect(()=>{ 
-		setTimeout(()=>fetchData(true),0)
+		fetchData(true)
 	},[])
 	
 	//Return a Dataset object
@@ -114,6 +114,7 @@ export default function useDataset(fetchFunction, options = {}) {
 		
 		status: status,
 		lastResolved: lastResolved,
+		setLastResolved: setLastResolved,
 		lastEdited: '',
 		
 		//TouchPoint Controls

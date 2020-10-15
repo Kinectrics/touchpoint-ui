@@ -3,7 +3,7 @@ import { Module, Dock, ControlBar, CoreButton, DockIcon, ControlledTabContainer,
 import { faCopy, faSave, faCogs, faTimesCircle, faPrint, faSync, faHome, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Nest from './Nest'
-import {csqQuery, unplannedQuery} from '../../SQLSimulator'
+import {csqQuery} from '../../SQLSimulator'
 
 
 export default function WIP() {

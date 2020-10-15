@@ -9,7 +9,7 @@ import TableBody from './TableBody'
 export default function CoreTable(props){
 	
 	//Sorting and filtering are optional (via props), only supported with if a dataset is provided
-	const {noSort, noFilter, searchable, noActive, locked} = props
+	const {noSort, noFilter, noActive, locked} = props
 	const noOptions = props.noOptions || !props.settingsID
 	
 	//expanded rows (if applicable)
@@ -20,16 +20,10 @@ export default function CoreTable(props){
 	const metaData = props.metaData
 	
 	//Settings token support 
-	const [sortTrigger, setSortTrigger] = useState(false)
 	const saveSettings = useSettings(props.settingsID, (token) => {
 		props.headers.applyToken(token)
-		if(!noSort){setSortTrigger(true)}
+		props.data.setLastResolved(new Date()) //Sort trigger to make it sort on the next render using the below useEffect
 	})
-	
-	if (sortTrigger) { 
-		setSortTrigger(false)
-		setTimeout(props.data.sort, 0)
-	}
 	
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)
