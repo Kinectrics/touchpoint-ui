@@ -52,8 +52,10 @@ export function csqQuery(){
 		list.push(row)
 	}
 	
+	// return JSON.parse(JSON.stringify(list))
+	
 	return new Promise((resolve)=>{
-		setTimeout(resolve(list),0)
+		setTimeout(resolve(list),1000)
 	})
 }
 
@@ -91,7 +93,10 @@ export function fakeData(n = 500){
 			}}),
 		})
 	}
-
+	
+	
+	// return JSON.parse(JSON.stringify(data))
+	
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(JSON.parse(JSON.stringify(data)))

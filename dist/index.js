@@ -3100,7 +3100,6 @@ function CoreTable(props) {
   //Sorting and filtering are optional (via props), only supported with if a dataset is provided
   var noSort = props.noSort,
       noFilter = props.noFilter,
-      searchable = props.searchable,
       noActive = props.noActive,
       locked = props.locked;
   var noOptions = props.noOptions || !props.settingsID; //expanded rows (if applicable)
@@ -3110,29 +3109,15 @@ function CoreTable(props) {
   var data = props.data.read();
   var metaData = props.metaData; //Settings token support 
 
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      sortTrigger = _useState2[0],
-      setSortTrigger = _useState2[1];
-
   var saveSettings = useSettings(props.settingsID, function (token) {
     props.headers.applyToken(token);
+    props.data.setLastResolved(new Date()); //Sort trigger to make it sort on the next render using the below useEffect
+  }); //Active page handling
 
-    if (!noSort) {
-      setSortTrigger(true);
-    }
-  });
-
-  if (sortTrigger) {
-    setSortTrigger(false);
-    setTimeout(props.data.sort, 0);
-  } //Active page handling
-
-
-  var _useState3 = useState(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      activePage = _useState4[0],
-      setActivePage = _useState4[1]; //get the length of the data with the filter applied
+  var _useState = useState(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      activePage = _useState2[0],
+      setActivePage = _useState2[1]; //get the length of the data with the filter applied
 
 
   var dataLength = 0;
@@ -3197,21 +3182,21 @@ function CoreTable(props) {
     props.data.filter();
   }
 
-  var _useState5 = useState(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      transitionClass = _useState6[0],
-      setTransitionClass = _useState6[1]; //Positioning for nested components
+  var _useState3 = useState(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      transitionClass = _useState4[0],
+      setTransitionClass = _useState4[1]; //Positioning for nested components
 
+
+  var _useState5 = useState(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      expandTrigger = _useState6[0],
+      setExpandTrigger = _useState6[1];
 
   var _useState7 = useState(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      expandTrigger = _useState8[0],
-      setExpandTrigger = _useState8[1];
-
-  var _useState9 = useState(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      collapseTrigger = _useState10[0],
-      setCollapseTrigger = _useState10[1];
+      collapseTrigger = _useState8[0],
+      setCollapseTrigger = _useState8[1];
 
   var tableRef = useRef(); //Render
 
@@ -3445,9 +3430,7 @@ function useDataset(fetchFunction) {
 
 
   useEffect(function () {
-    setTimeout(function () {
-      return fetchData(true);
-    }, 0);
+    fetchData(true);
   }, []); //Return a Dataset object
 
   return {
@@ -3463,6 +3446,7 @@ function useDataset(fetchFunction) {
     setRecord: editSpecificRecord,
     status: status,
     lastResolved: lastResolved,
+    setLastResolved: setLastResolved,
     lastEdited: '',
     //TouchPoint Controls
     isDataset: true,
