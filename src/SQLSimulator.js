@@ -51,8 +51,10 @@ export function csqQuery(){
 		row.variance = 7
 		list.push(row)
 	}
-
-	return list
+	
+	return new Promise((resolve)=>{
+		setTimeout(resolve(list),500)
+	})
 }
 
 
@@ -81,7 +83,9 @@ export function unplannedQuery(){
 		list2.push(row)
 	}
 
-	return list2
+	return new Promise((resolve) => {
+		setTimeout(resolve(list2), 0)
+	})
 }
 
 //
@@ -117,9 +121,7 @@ function fakeDataEngine(n = 500){
 				status: statuses[(i+idx) % 3],
 			}}),
 		})
-		
 	}
-
 
 	return (JSON.parse(JSON.stringify(data)))
 }

@@ -14,6 +14,7 @@ function TestComp(props){
 		<PopupCard>
 			<FreeButton onClick={()=>{
 				System.Popup.open(<PopupCard>Hi</PopupCard>)
+				System.Popup.open(<PopupCard>Hi</PopupCard>)
 			}}>TestNest</FreeButton>
 			<h2>{count}</h2>
 			<FreeButton onClick={()=>setCount(count+1)}>+</FreeButton>

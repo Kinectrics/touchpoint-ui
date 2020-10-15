@@ -898,7 +898,8 @@ CoreButton.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   onBlur: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
+  loading: PropTypes.bool
 };
 
 var css_248z$8 = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparent;\n\toutline: none !important;\n\tposition: relative;\n\tcolor: var(--lockedTextColor);\n}\n\n.CloseButton:active{\n\tfilter: brightness(70%);\n}";
@@ -1028,7 +1029,8 @@ FreeButton.propTypes = {
   purpose: PropTypes.string,
   wide: PropTypes.bool,
   style: PropTypes.object,
-  type: PropTypes.string
+  type: PropTypes.string,
+  loading: PropTypes.bool
 };
 
 var css_248z$a = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
@@ -1063,7 +1065,7 @@ function ConfirmButton(props) {
     locked: props.locked,
     hidden: props.hidden,
     onClick: clickHandler,
-    style: props.style,
+    style: expanded ? _objectSpread2(_objectSpread2({}, props.style), props.expandedStyle) : props.style,
     loading: props.loading,
     onBlur: blurHandler
   }, expanded ? props.expandedContent : props.content);
@@ -1078,7 +1080,8 @@ ConfirmButton.propTypes = {
   className: PropTypes.string,
   content: PropTypes.any,
   expandedContent: PropTypes.any,
-  purpose: PropTypes.string
+  purpose: PropTypes.string,
+  loading: PropTypes.bool
 };
 
 var css_248z$b = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}\n\n.Tile .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: -2px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 4px 6px;\n}";
@@ -1121,7 +1124,8 @@ Tile.propTypes = {
   locked: PropTypes.bool,
   title: PropTypes.string,
   onClick: PropTypes.func,
-  style: PropTypes.object
+  style: PropTypes.object,
+  loading: PropTypes.bool
 };
 
 var _TextBox$propTypes;
@@ -1792,7 +1796,8 @@ DockIcon.propTypes = {
   notifications: PropTypes.number,
   onClick: PropTypes.func,
   menuContent: PropTypes.any,
-  menuStyle: PropTypes.object
+  menuStyle: PropTypes.object,
+  menuProps: PropTypes.object
 };
 
 var css_248z$j = ".InfoCard{\n\tpadding: 10px 20px;\n\tmargin: 0;\n\ttransition: padding 0.25s;\n\t\n}\n\n.InfoCard .InfoCard .cardContainer{\n\tbox-shadow: none;\n\tborder: 1px solid var(--borderColor);\n}\n\n.InfoCard .CloseButton{\n\tposition: absolute;\n\tright: 6px;\n\ttop: 6px;\n}\n\n.InfoCard.dynamicX:hover{\n\tpadding-left: 13px;\n\tpadding-right: 13px;\n\tcursor: pointer;\n}\n\n.InfoCard.dynamicX:hover .cardContainer{\n\tbox-shadow: var(--dynamicCardShadow);\n}\n\n.InfoCard.dynamicX:active{\n\tpadding-left: 21px;\n\tpadding-right: 21px;\n\ttransition: padding 0.05s;\n}\n\n.InfoCard .cardContainer{\n\tbackground-color: var(--cardBG);\n\tcolor: var(--mainTextColor);\n\tborder-radius: 11px;\n\toverflow: hidden;\n\tbox-shadow: var(--cardShadow);\n\theight: 100%;\n\twidth: 100%;\n\tposition: relative;\n}\n\n.InfoCard .textBox{\n\tpadding: 11px;\n\twidth: 100%;\n\theight: 100%;\n\toverflow-y: auto;\n}\n\n.InfoCard .textBox.stripe{\n\tborder-left-width: 5px;\n\tborder-left-style: solid;\n\tborder-left-color: var(--labelColor);\n\tfloat:left;\n\theight: 100%;\n}\n\n.InfoCard label{\n\tmargin:0 10px 0px 0;\n\tfont-size: 12pt;\n\tcolor: var(--labelColor);\n\n}\n\n.InfoCard h1{\n\tfont-size: 15pt;\n\tfont-weight: bold;\n\tcolor: var(--labelColor);\n\tmargin-top: 0;\n}\n\n.InfoCard h2{\n\tmargin: 7px 0px;\n\tfont-size: 12pt;\n\tfont-weight: bold;\n}\n\n.InfoCard p{\n\tmargin:0;\n}\n\n/* Tabs in an infocard */\n.InfoCard .InfoTabContainer{\n\tbackground-color: transparent;\n}\n\n.InfoCard .InfoTabContainer .nav-tabs,\n.InfoCard .InfoTabContainer .nav-tabs a{\n\tbackground-color: transparent !important;\n\tcolor: var(--labelColor) !important;\n\ttext-align: left;\n\tpadding: 0;\n\tmargin-left: 0;\n\tmargin-right: 20px;\n\tmargin-bottom: 6px;\t\n}\n\n.InfoCard .InfoTabContainer .nav-tabs a.active{\n\ttext-shadow: 1px 0px 0px var(--labelColor);\n\t\n\t\n\tborder-bottom-color: var(--labelColor) !important;\n\tborder-bottom-width: 5px !important;\n}\n\n/* Maintable in an infocard */\n.InfoCard .MainTable{\n\tbackground-color: transparent;\n}\n\n.InfoCard .MainTable .titleBar{\n\tfont-weight: bold;\n}\n";
@@ -2467,13 +2472,15 @@ function ColumnSettings(props) {
         overflowY: 'auto'
       }
     }, props.headers.get().map(function (h) {
-      return /*#__PURE__*/React.createElement(CheckButton, {
-        key: 'customizeHeader' + h.headerID,
-        disabled: h.required,
-        checked: h.visible,
-        value: h.index,
-        onClick: clickHandler
-      }, h.displayName);
+      if (h.displayName) {
+        return /*#__PURE__*/React.createElement(CheckButton, {
+          key: 'customizeHeader' + h.headerID,
+          disabled: h.required,
+          checked: h.visible,
+          value: h.index,
+          onClick: clickHandler
+        }, h.displayName);
+      } else return null;
     }))
   }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faColumns
@@ -3223,7 +3230,7 @@ function CoreTable(props) {
     clearFilter: clearFilter,
     noOptions: noOptions,
     dataHeaders: props.headers,
-    dataset: props.dataset,
+    data: props.data,
     setTransitionClass: setTransitionClass,
     setExpandTrigger: setExpandTrigger,
     setCollapseTrigger: setCollapseTrigger,
@@ -3307,15 +3314,10 @@ function useDataset(fetchFunction) {
       lastResolved = _useState6[0],
       setLastResolved = _useState6[1];
 
-  var _useState7 = useState(),
+  var _useState7 = useState({}),
       _useState8 = _slicedToArray(_useState7, 2),
-      lastEdited = _useState8[0],
-      setLastEdited = _useState8[1];
-
-  var _useState9 = useState({}),
-      _useState10 = _slicedToArray(_useState9, 2),
-      activeRecord = _useState10[0],
-      setActiveRecord = _useState10[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
+      activeRecord = _useState8[0],
+      setActiveRecord = _useState8[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
 
 
   function _selectRecord(newPrimaryKey) {
@@ -3461,13 +3463,12 @@ function useDataset(fetchFunction) {
     setRecord: editSpecificRecord,
     status: status,
     lastResolved: lastResolved,
-    lastEdited: lastEdited,
+    lastEdited: '',
     //TouchPoint Controls
     isDataset: true,
     primaryKey: options.primaryKey,
     set: function set(newData) {
       setData(newData);
-      setLastEdited(Date());
 
       _selectRecord(activeRecord[options.primaryKey], newData);
     }
@@ -3500,7 +3501,7 @@ var parseFunctions = {
       return moment().add(1, 'day').toISOString();
     }
 
-    if (testVal === 'yesterday' || testVal === 'tm') {
+    if (testVal === 'yesterday' || testVal === 'yd') {
       return moment().subtract(1, 'day').toISOString();
     }
 

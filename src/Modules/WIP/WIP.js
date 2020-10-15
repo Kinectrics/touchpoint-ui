@@ -25,7 +25,6 @@ export default function WIP() {
 	}
 
 	const data = useDataset(csqQuery, { primaryKey: 'id' })
-	const data2 = useDataset(unplannedQuery, { primaryKey: 'id' })
 
 	const headers = [
 		{ headerID: 'commitment', displayName: 'Commitment', width: 120, type: 'date' },
@@ -38,20 +37,6 @@ export default function WIP() {
 		{ headerID: 'csvnDate', displayName: 'CSVN Date', width: 150, type: 'date' },
 	]
 
-	const headers2 = [
-		{ headerID: 'tds', displayName: 'TDS #', width: 120 },
-		{ headerID: 'scopetitle', displayName: 'Scope', width: 120 },
-		{ headerID: 'dateadded', displayName: 'Date Added', width: 120, type: 'date' },
-		{ headerID: 'addedby', displayName: 'Added By', width: 200 },
-		{ headerID: 'comments', displayName: 'Comments', width: 500 },
-	]
-	
-	function testSetActive(){
-		const newRow = {...data2.getActiveRecord()}
-		newRow.cids[0].number = 1000
-		data2.setActiveRecord(newRow)
-	}
-	
 
 	return (
 		<Module>
@@ -70,14 +55,13 @@ export default function WIP() {
 				
 				<CoreButton style={buttonStyle} onClick={()=>{
 					data.refresh()
-					data2.refresh()
 				}}> <FontAwesomeIcon icon={faSync} /> Refresh</CoreButton>
 				<MenuButton style={buttonStyle} menuContent={<div>
 					<button>Hello</button>
 					<button>Hello</button>
 					<button>Hello</button>
 				</div>}>Menu</MenuButton>
-				<CoreButton style={buttonStyle} onClick={testSetActive}><FontAwesomeIcon icon={faTimesCircle} /> Set Active</CoreButton>
+				<CoreButton style={buttonStyle}><FontAwesomeIcon icon={faTimesCircle} /> Set Active</CoreButton>
 				<CoreButton style={buttonStyle}><FontAwesomeIcon icon={faPrint} /> Print</CoreButton>
 				<MenuButton menuContent={<div>
 					<button>Hello</button>
@@ -88,29 +72,14 @@ export default function WIP() {
 
 	
 			<div style={{height: 'calc(100% - var(--controlBarHeight))'}}>
-				<ControlledTabContainer activeTab={activeTab}>
-					<InfoTab tabTitle='BL Commitments' tabID='tab1'>
-						<MainTable
-							pageSize={50}
-							headers={headers}
-							data={data}
-							settingsID={'WIP_Table_1'}
-							searchable
-						/>
-					</InfoTab>
 
-					<InfoTab tabTitle='Unplanned Work' tabID='tab2'>
-						<MainTable
-							pageSize={50}
-							headers={headers2}
-							data={data2}
-							settingsID={'WIP_Table_2'}
-							searchable
-							nestedComponent={Nest}
-							nestedProps={{ content: 'Hello' }}
-						/>
-					</InfoTab>
-				</ControlledTabContainer>
+				<MainTable
+					pageSize={50}
+					headers={headers}
+					data={data}
+					settingsID={'WIP_Table_1'}
+					searchable
+				/>
 
 			</div>
 
