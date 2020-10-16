@@ -1472,7 +1472,7 @@ function CommentBox(props) {
     }
   }
 
-  return /*#__PURE__*/React.createElement("textarea", {
+  return /*#__PURE__*/React.createElement("textarea", _defineProperty({
     className: "input CommentBox " + lockedClass + ' ' + props.className,
     defaultValue: props.defaultValue,
     onChange: changeHandler,
@@ -1483,8 +1483,9 @@ function CommentBox(props) {
     value: props.value,
     maxLength: props.maxLength,
     onKeyPress: keyPressHandler,
-    autoFocus: props.autoFocus
-  });
+    autoFocus: props.autoFocus,
+    onFocus: props.onFocus
+  }, "onBlur", props.onBlur));
 } //Proptypes
 
 CommentBox.propTypes = {
@@ -1534,7 +1535,7 @@ function ComboBox(props) {
     return null;
   } else {
     return /*#__PURE__*/React.createElement("select", {
-      className: "ComboBox input " + lockedClass,
+      className: "ComboBox input " + lockedClass + ' ' + props.className,
       defaultValue: props.defaultValue,
       onChange: changeHandler,
       disabled: locked,
@@ -1549,6 +1550,7 @@ ComboBox.propTypes = {
   locked: PropTypes.bool,
   style: PropTypes.object,
   value: PropTypes.string,
+  className: PropTypes.string,
   defaultValue: PropTypes.string
 };
 

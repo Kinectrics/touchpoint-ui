@@ -28,7 +28,7 @@ export default function ComboBox(props) {
 	//If it's hidden, don't render anything
 	if (props.hidden){return null} else{return(
 			<select 
-				className={"ComboBox input " + lockedClass} 
+				className={"ComboBox input " + lockedClass + ' ' + props.className} 
 				defaultValue={props.defaultValue}
 				onChange = {changeHandler}
 				disabled = {locked}
@@ -46,5 +46,6 @@ ComboBox.propTypes = {
 	locked: PropTypes.bool,
 	style: PropTypes.object,
 	value: PropTypes.string,
+	className: PropTypes.string,
 	defaultValue: PropTypes.string,
 }

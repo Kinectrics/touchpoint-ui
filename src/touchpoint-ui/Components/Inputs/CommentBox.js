@@ -47,6 +47,8 @@ export default function CommentBox(props) {
 			maxLength={props.maxLength}
 			onKeyPress={keyPressHandler}
 			autoFocus ={props.autoFocus}
+			onFocus={props.onFocus}
+			onBlur={props.onBlur}
 		></textarea>
 	)
 }
