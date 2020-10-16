@@ -89,17 +89,23 @@ export default function useHeaders(dataHeaders = []) {
 	}
 	
 	function applyToken(token){
-		const newSettings = JSON.parse(token)
-		setSavedLayouts(newSettings.savedLayouts)
+		try{
+			const newSettings = JSON.parse(token)
+			setSavedLayouts(newSettings.savedLayouts)
+
+			const newHeaders = [...headers]
+
+			newHeaders.forEach((h) => {
+				h.visible = newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID] ? 
+				newSettings.headerOptions[h.headerID].visible : true
+			})
+
+			setSortRules(newSettings.sortRules ? newSettings.sortRules : [])
+			setHeaders(newHeaders)
+		} catch(err){
+			console.error(err)
+		}
 		
-		const newHeaders = [...headers]
-		
-		newHeaders.forEach((h)=>{
-			h.visible = newSettings.headerOptions[h.headerID].visible
-		})
-		
-		setSortRules(newSettings.sortRules ? newSettings.sortRules : [])
-		setHeaders(newHeaders)
 	}
 	
 	function setVisible(index, bool){
