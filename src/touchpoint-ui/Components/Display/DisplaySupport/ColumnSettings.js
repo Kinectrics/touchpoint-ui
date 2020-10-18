@@ -17,11 +17,12 @@ export default function ColumnSettings(props) {
 	return (<MenuButton 
 			locked={false} 
 			menuStyle={{
-				maxHeight: '300px'
+				maxHeight: '300px',
+				maxWidth: '300px'
 			}}
 			onClose={applyHandler}
 			menuContent={
-				<div style = {{overflowY: 'auto'}}>
+				<div style={{ overflowY: 'auto', overflowX: 'hidden'}}>
 					{props.headers.get().map((h) => {
 						if(h.displayName){
 							return (

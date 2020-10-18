@@ -46,11 +46,24 @@
 	padding-left: 10px;
 }
 
-.MainTable .TheadButton{
+.MainTable .TheadButton, 
+.MainTable .theadBarComponentWrapper{
 	white-space: nowrap;
 	text-align: left;
 	padding-left: 0;
 	color: var(--mainTextColor);	
+}
+
+.MainTable .theadBarComponentWrapper{
+	overflow: hidden;
+}
+
+.MainTable .theadBarTheadButtonWrapper
+.menuButtonContainer,
+.MainTable .theadBarTheadButtonWrapper
+.menuButtonContainer .TheadButton{
+	width: 100%;
+	overflow: hidden;
 }
 
 

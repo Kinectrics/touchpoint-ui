@@ -126,12 +126,12 @@ export default function CoreTable(props){
 				{props.headers.get().map((hdr, i) => {
 					if (hdr.visible || hdr.required) {
 						//Custom component type headers have no filters
-						if (hdr.component) return <span style={{ width: hdr.width + 'px' }} key={'header' + i}>
+						if (hdr.component) return <span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarComponentWrapper'>
 							{hdr.displayName + ' '}
 						</span>
 						
 						return (
-							<span style={{ width: hdr.width + 'px' }} key={'header' + i}>
+							<span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarTheadButtonWrapper'>
 
 								<TheadButton
 									header={hdr}
