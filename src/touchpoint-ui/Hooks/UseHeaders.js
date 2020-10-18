@@ -52,12 +52,21 @@ export default function useHeaders(dataHeaders = []) {
 			const newHeaders = []
 			
 			headers.forEach(h=>{
-				h.clearFilter()
-				h.visible = savedLayouts[id].headerOptions[h.headerID].visible 
-				
-				savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f)=>{
-					h.addFilter(f)
-				})
+				try{
+					h.clearFilter()
+					
+					//If there's no setting for this header it means it was added in an update. Hide it since its not selected. If its requried, it will show anyway. 
+					h.visible = savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID] ?
+					savedLayouts[id].headerOptions[h.headerID].visible :
+					false
+
+					savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f) => {
+						h.addFilter(f)
+					})
+					
+				}catch(err){
+					console.error(err)
+				}
 				
 				newHeaders.push(h)
 			})

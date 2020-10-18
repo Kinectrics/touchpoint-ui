@@ -38,6 +38,9 @@ export default function VendorRubrics(){
 	const dataHeaders = [
 		{headerID: 'id',displayName:'', width: 100, required: true},
 		{headerID: 'vendor', displayName:'My Vendor', width: 300},
+		{headerID: 'vendor2', displayName:'My Vendor', width: 300},
+		{headerID: 'vendor3', displayName:'My Vendor', width: 300},
+		{headerID: 'vendor4', displayName:'My Vendor', width: 300},
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number', type:'component', component: TestCells},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true},
