@@ -80,8 +80,6 @@ export default function CoreTable(props){
 		props.headers.set(newHeaders)
 		props.data.filter()
 	}
-	
-	const [transitionClass, setTransitionClass] = useState('')
 
 	//Positioning for nested components
 	const [expandTrigger, setExpandTrigger] = useState(false)
@@ -106,7 +104,6 @@ export default function CoreTable(props){
 						noOptions={noOptions}
 						dataHeaders={props.headers}
 						data={props.data}
-						setTransitionClass={setTransitionClass}
 						setExpandTrigger = {setExpandTrigger}
 						setCollapseTrigger = {setCollapseTrigger}
 						expandTrigger = {expandTrigger}
@@ -153,7 +150,7 @@ export default function CoreTable(props){
 			</div>
 			
 			
-			<div className={"mainSection" + transitionClass} style={{
+			<div className={"mainSection"} style={{
 				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
 			}}>
 				<TableBody

@@ -28,7 +28,6 @@ export default function TableControls(props) {
 		settingsButton = <ColumnSettings
 			headers={props.dataHeaders}
 			data={props.data}
-			setTransitionClass = {props.setTransitionClass}
 		/>
 	}
 	

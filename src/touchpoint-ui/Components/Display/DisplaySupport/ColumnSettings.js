@@ -7,14 +7,11 @@ import MenuButton from '../MenuButton'
 export default function ColumnSettings(props) {
 
 	function clickHandler(checked, idx){
-		
-		props.setTransitionClass('noTransition')
 		props.headers.setVisible(idx, checked)
-		
-		setTimeout(()=>{
-			props.data.sort()
-			props.setTransitionClass('')
-		},0)
+	}
+	
+	function applyHandler(){
+		props.data.sort()
 	}
 	
 	return (<MenuButton 
@@ -22,6 +19,7 @@ export default function ColumnSettings(props) {
 			menuStyle={{
 				maxHeight: '300px'
 			}}
+			onClose={applyHandler}
 			menuContent={
 				<div style = {{overflowY: 'auto'}}>
 					{props.headers.get().map((h) => {
