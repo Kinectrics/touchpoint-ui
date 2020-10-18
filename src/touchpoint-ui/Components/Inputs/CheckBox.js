@@ -37,6 +37,7 @@ export default function CheckBox(props) {
 				style = {props.style}
 				checked = {props.checked}
 				readOnly={props.checked !== undefined ? true : false}
+				tabIndex={props.tabIndex}
 			/>
 			<span className="checkmark"></span>
 			{props.label}
@@ -51,4 +52,5 @@ CheckBox.propTypes = {
 	defaultValue: PropTypes.bool,
 	style: PropTypes.object,
 	checked: PropTypes.bool,
+	tabIndex: PropTypes.any,
 }

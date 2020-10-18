@@ -88,6 +88,7 @@ export default function SearchBar(props) {
 				value = {searchBarValue}
 				inputRef = {searchRef}
 				style = {props.style}
+				tabIndex={props.tabIndex}
 			/>
 			
 			{searchBarValue ? <button className="searchButton"
@@ -105,4 +106,5 @@ SearchBar.propTypes = {
 	defaultValue: PropTypes.string,
 	style: PropTypes.object,
 	onChange: PropTypes.func,
+	tabIndex: PropTypes.any,
 }

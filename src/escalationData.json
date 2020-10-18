@@ -1,0 +1,1731 @@
+{
+	"success": true,
+	"body": [
+		{
+			"PK_ID": "0f401f36-e433-4b76-b9f8-2866f1b3b003",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Dont,\\",
+			"RaisedBy": "Shannon King",
+			"FK_ProjectID": "CS-22484",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Gwendolyn Prohaska",
+			"ActionDue": "",
+			"Program": "Prog",
+			"Type": "Eng tech",
+			"LastModified": null,
+			"Project ID": "CS-22484",
+			"Project Name": "Test",
+			"CS-PCS": "cspcs",
+			"Owner's Engineer": "oe",
+			"Project Manager": "pm",
+			"Project Planner": "planner",
+			"Program Manager": "prog",
+			"EscalationComments": [
+				{
+					"PK_ID": "1572f4e1-2d1f-4bda-91a2-d452b7c3c400",
+					"FK_EscalationID": "0f401f36-e433-4b76-b9f8-2866f1b3b003",
+					"Body": "hello",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-16T18:04:32.435Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "0c78d6ca-a21b-4b8d-bb05-1bcc7f5109ab",
+					"FK_EscalationID": "0f401f36-e433-4b76-b9f8-2866f1b3b003",
+					"Body": "Comment 2",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-16T17:43:26.001Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "6227a254-db00-478e-b21f-59780a0f2934",
+					"FK_EscalationID": "0f401f36-e433-4b76-b9f8-2866f1b3b003",
+					"Body": "Comment",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-16T17:43:17.742Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "fa54d28c-5049-4917-a0cb-83ff3cfdbecf",
+					"FK_EscalationID": "0f401f36-e433-4b76-b9f8-2866f1b3b003",
+					"Body": "Hello World",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-15T23:31:18.264Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": "hello"
+		},
+		{
+			"PK_ID": "abbeefd4-e0e4-42c2-84ce-b19f1f30526e",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Intelligent Cottonwdahwhdlawdoiahwd;awdahdddIntelligent Cottonwdahwhdlawdoiahwd;awdahdddIntelligent Cottonwdahwhdlawdoiahwd;awdahdddIntelligent Cottonwdahwhdlawdoiahwd;awdahdddIntelligent Cottonwdahwhdlawdoiahwd;awdahdddIntelligent Cottonwdahwhdlawdoiahw",
+			"RaisedBy": "Michele Bernier",
+			"FK_ProjectID": "CS-46045",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Clayton Hirthe",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": "Program",
+			"Type": "Buyer Analyst",
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "94785875-40ba-4a2f-9587-8aeff3ffa6a6",
+					"FK_EscalationID": "abbeefd4-e0e4-42c2-84ce-b19f1f30526e",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:12:13.066Z"
+				},
+				{
+					"PK_ID": "f44a7918-04d1-4df8-a6f6-0c34d47a8019",
+					"FK_EscalationID": "abbeefd4-e0e4-42c2-84ce-b19f1f30526e",
+					"NewStatus": "Cancelled",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-14T01:19:03.921Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "7689c3f9-5a8f-4e51-b784-1036b6f68a78",
+					"FK_EscalationID": "abbeefd4-e0e4-42c2-84ce-b19f1f30526e",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:11:06.988Z"
+				},
+				{
+					"PK_ID": "353f7e8b-5836-41af-9b3f-ee5270cb29c2",
+					"FK_EscalationID": "abbeefd4-e0e4-42c2-84ce-b19f1f30526e",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:12:12.679Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "0a810a86-eb2e-47e6-b580-fe170cc836c2",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Sleek Fresh Chicken",
+			"RaisedBy": "Lloyd Jacobi",
+			"FK_ProjectID": "CS-11914",
+			"CreatedDate": "2020-10-01T04:00:00.000Z",
+			"ActionWith": "Victor Oberbrunner V",
+			"ActionDue": "2020-10-01T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "5a5b27ae-6549-4042-a7a7-6a6f072a78f2",
+					"FK_EscalationID": "0a810a86-eb2e-47e6-b580-fe170cc836c2",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-14T01:16:17.150Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "64171c34-3a10-4fd0-a9f3-401eecc89c26",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Un",
+			"RaisedBy": "Lee Streich",
+			"FK_ProjectID": "CS-44413",
+			"CreatedDate": "2020-10-01T04:00:00.000Z",
+			"ActionWith": "April Goyette",
+			"ActionDue": "2020-10-01T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "2686d079-35ce-4173-8d61-6855e874fa9d",
+					"FK_EscalationID": "64171c34-3a10-4fd0-a9f3-401eecc89c26",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:09:35.175Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "f5cf1cf9-385a-4938-acde-6213bfbf8306",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Incredible Granite Bacon",
+			"RaisedBy": "Jody Zulauf",
+			"FK_ProjectID": "CS-43458",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Corey Rath",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "0f449325-6a99-4512-999c-ea6e6db0ef7a",
+					"FK_EscalationID": "f5cf1cf9-385a-4938-acde-6213bfbf8306",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:06:08.416Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "ef0c56eb-f60a-409d-a61c-ee89f0fb2158",
+					"FK_EscalationID": "f5cf1cf9-385a-4938-acde-6213bfbf8306",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:05:55.239Z"
+				},
+				{
+					"PK_ID": "4023419b-b503-40e3-a992-3d16c5373854",
+					"FK_EscalationID": "f5cf1cf9-385a-4938-acde-6213bfbf8306",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:05:54.212Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "ea0a17fb-4f1c-4811-9c79-6c9a66406ac0",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Gorgeous Metal Sausages",
+			"RaisedBy": "Otis Rosenbaum Jr.",
+			"FK_ProjectID": "CS-31628",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Ms. Patricia Schinner",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [
+				{
+					"PK_ID": "b5ac6efb-dd1a-404b-9cc5-493a281ab1ba",
+					"FK_EscalationID": "ea0a17fb-4f1c-4811-9c79-6c9a66406ac0",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:10:55.829Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "dd8979cb-0428-48ed-a158-db4ef7a9b902",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Sleek Rub",
+			"RaisedBy": "Tami Bins III",
+			"FK_ProjectID": "CS-30883",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Mindy Hoppe",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "bbfbd67e-83c5-4874-a0bb-0436333ba492",
+					"FK_EscalationID": "dd8979cb-0428-48ed-a158-db4ef7a9b902",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:09:41.498Z"
+				},
+				{
+					"PK_ID": "c3ade678-d6e9-4f51-9eb0-70d727c9c183",
+					"FK_EscalationID": "dd8979cb-0428-48ed-a158-db4ef7a9b902",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:10:32.729Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "1d67a1fb-ee58-4fd9-9aa1-b4cd61191561",
+					"FK_EscalationID": "dd8979cb-0428-48ed-a158-db4ef7a9b902",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:10:30.753Z"
+				},
+				{
+					"PK_ID": "3dad68ff-2126-437a-92f5-673252ff3e25",
+					"FK_EscalationID": "dd8979cb-0428-48ed-a158-db4ef7a9b902",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:10:32.347Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "efaae255-ac1a-4bdb-92de-10a64f31b473",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Sleek Rubber Cheese",
+			"RaisedBy": "Virgil Funk",
+			"FK_ProjectID": "CS-39209",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Luz Schneider",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "d4c0afe3-5463-4284-bbcf-739efe8d4a44",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Intelligent Wooden Towels",
+			"RaisedBy": "Corey MacGyver",
+			"FK_ProjectID": "CS-3095",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Laverne Miller",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "dbeac05d-f54a-4351-ac56-eae5d57fe669",
+					"FK_EscalationID": "d4c0afe3-5463-4284-bbcf-739efe8d4a44",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:06:10.208Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "5319decb-158c-4fd7-b03d-ef53084c8c6b",
+					"FK_EscalationID": "d4c0afe3-5463-4284-bbcf-739efe8d4a44",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:05:58.250Z"
+				},
+				{
+					"PK_ID": "2922fd36-5369-462b-9834-30998dea7b7c",
+					"FK_EscalationID": "d4c0afe3-5463-4284-bbcf-739efe8d4a44",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:05:59.243Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "d4355619-0898-44e7-9c67-5cf1fe83368c",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Unbranded Frozen Computer",
+			"RaisedBy": "Rosa Stroman",
+			"FK_ProjectID": "CS-44744",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Miss Johnny Mueller",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [
+				{
+					"PK_ID": "4c176962-4aad-4889-aa16-8b77d844d66b",
+					"FK_EscalationID": "d4355619-0898-44e7-9c67-5cf1fe83368c",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-16T17:21:38.969Z"
+				},
+				{
+					"PK_ID": "e4d1b4de-5d51-41c1-9264-eb0efa335743",
+					"FK_EscalationID": "d4355619-0898-44e7-9c67-5cf1fe83368c",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-16T17:21:40.775Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "f86fcea2-215a-41c3-a89b-7e76315fd587",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Rustic Plastic Computer",
+			"RaisedBy": "Dwight Jerde",
+			"FK_ProjectID": "CS-35027",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Toby Hilpert",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "4370fb9f-f947-44a7-9d34-a1b7bd8e4344",
+					"FK_EscalationID": "f86fcea2-215a-41c3-a89b-7e76315fd587",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:10:24.700Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "e5b18c17-88a7-45b6-b479-25299ebdd636",
+					"FK_EscalationID": "f86fcea2-215a-41c3-a89b-7e76315fd587",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:05.658Z"
+				},
+				{
+					"PK_ID": "9129e42f-cc68-4051-baa5-ece90d1641e1",
+					"FK_EscalationID": "f86fcea2-215a-41c3-a89b-7e76315fd587",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:06.659Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "e2dcacda-2719-4d90-ad16-38aea1c47490",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Generic Cotton Chips",
+			"RaisedBy": "Nicolas Brakus",
+			"FK_ProjectID": "CS-30848",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Cedric Gottlieb",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "ea8e8c9f-684a-4ee5-b0b1-693cd90a9140",
+					"FK_EscalationID": "e2dcacda-2719-4d90-ad16-38aea1c47490",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-16T17:22:02.212Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "cd757793-4f00-4642-ad5a-1357d00ca535",
+					"FK_EscalationID": "e2dcacda-2719-4d90-ad16-38aea1c47490",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-16T17:21:59.866Z"
+				},
+				{
+					"PK_ID": "926d2ba9-22a4-4b52-b326-a7520fc23fdd",
+					"FK_EscalationID": "e2dcacda-2719-4d90-ad16-38aea1c47490",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-16T17:22:01.662Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "5a3fe22f-e3e2-4eac-a4ce-8eec42840627",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Intelligent Concrete Chair",
+			"RaisedBy": "Miss Megan Weber",
+			"FK_ProjectID": "CS-17233",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Marjorie Langworth",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "33f1a64a-fe6e-4db0-93dd-c3f24cfde932",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Refined Fresh Pizza",
+			"RaisedBy": "Charlene Fadel",
+			"FK_ProjectID": "CS-46",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Salvador Paucek",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "973a88fb-1eb7-45fe-bd53-eeda45a570af",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Resolved",
+			"Title": "Intelligent Cotton Chicken",
+			"RaisedBy": "Winifred Osinski",
+			"FK_ProjectID": "CS-24049",
+			"CreatedDate": "2002-10-03T04:00:00.000Z",
+			"ActionWith": "Darryl Bahringer",
+			"ActionDue": "2002-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "576fefeb-dad4-46ec-b6b5-f360ae5febff",
+					"FK_EscalationID": "973a88fb-1eb7-45fe-bd53-eeda45a570af",
+					"Body": "Comment",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:16:42.308Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "39c31eb7-0110-4c55-91fe-879bcd29262e",
+					"FK_EscalationID": "973a88fb-1eb7-45fe-bd53-eeda45a570af",
+					"Body": "Comment 2",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:15:29.937Z",
+					"StatusSnapshot": "Resolved",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "05d226c5-d2ec-49de-899c-25d89056925d",
+					"FK_EscalationID": "973a88fb-1eb7-45fe-bd53-eeda45a570af",
+					"Body": "Hello world",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:15:06.356Z",
+					"StatusSnapshot": "Resolved",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [
+				{
+					"PK_ID": "3d73db2c-f903-404b-bb71-c077f864f47f",
+					"FK_EscalationID": "973a88fb-1eb7-45fe-bd53-eeda45a570af",
+					"NewStatus": "Resolved",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-16T17:25:30.148Z"
+				},
+				{
+					"PK_ID": "d905a526-c9c2-4f4a-8774-2c35056ae45b",
+					"FK_EscalationID": "973a88fb-1eb7-45fe-bd53-eeda45a570af",
+					"NewStatus": "Cancelled",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:16:30.848Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": "Comment"
+		},
+		{
+			"PK_ID": "14f58873-822f-4ac3-974e-9c99a4cee231",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Gorgeous Steel Shoes",
+			"RaisedBy": "Miss Duane Stamm",
+			"FK_ProjectID": "CS-37071",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Meredith Satterfield",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "68432fdf-2b9a-460f-aab1-0d91f6b1bb07",
+					"FK_EscalationID": "14f58873-822f-4ac3-974e-9c99a4cee231",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:06:13.914Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "112bea78-2adf-4351-8f60-0be8520f2953",
+					"FK_EscalationID": "14f58873-822f-4ac3-974e-9c99a4cee231",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:06:02.321Z"
+				},
+				{
+					"PK_ID": "5600cb62-78e9-4699-a1a9-31a211859138",
+					"FK_EscalationID": "14f58873-822f-4ac3-974e-9c99a4cee231",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:06:03.281Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "05a5f9e9-f4a5-4674-81da-a1b8b1058d01",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Unbranded Frozen Fish",
+			"RaisedBy": "Jeffrey Pagac",
+			"FK_ProjectID": "CS-22484",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Edmond Oberbrunner",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": "CS-22484",
+			"Project Name": "Test",
+			"CS-PCS": "cspcs",
+			"Owner's Engineer": "oe",
+			"Project Manager": "pm",
+			"Project Planner": "planner",
+			"Program Manager": "prog",
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Resolved",
+			"Title": "Incredible Cotton Pats",
+			"RaisedBy": "Miss Rodolfo Wunsch",
+			"FK_ProjectID": "CS-28464",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Youssof Fahmy",
+			"ActionDue": "2020-10-13T20:31:53.724Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "f871fbcf-c691-426f-98a8-2c6715d5d218",
+					"FK_EscalationID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+					"Body": "@KAVURU",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:29:43.449Z",
+					"StatusSnapshot": "Resolved",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "ef5ba182-468d-458b-86ea-159b98a5abdb",
+					"FK_EscalationID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+					"Body": "@Andrew Screening",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:25:35.770Z",
+					"StatusSnapshot": "Resolved",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "43ee0c5d-52dd-446f-9295-dfa2c2bdc46e",
+					"FK_EscalationID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+					"Body": "Andrew to ....",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:25:17.024Z",
+					"StatusSnapshot": "Resolved",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "813c8624-07b8-4281-9a1b-c8eca3e1575a",
+					"FK_EscalationID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+					"Body": "@FAHMYY @KAVURUA",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:23:24.593Z",
+					"StatusSnapshot": "Resolved",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [],
+			"Approvals": [
+				{
+					"PK_ID": "67203b2a-648b-451c-b5c4-1458ef4aaa8c",
+					"FK_EscalationID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:37:25.714Z"
+				},
+				{
+					"PK_ID": "a14b055d-aa2d-400f-99af-6ca8a171b2c9",
+					"FK_EscalationID": "c7c21f41-83f2-4f0e-b202-172c3c46caff",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T20:37:27.123Z"
+				}
+			],
+			"LatestComment": "@KAVURU"
+		},
+		{
+			"PK_ID": "a42ce592-0bdb-413e-a4ff-f75b5391dac8",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Rustic Concrete Computer",
+			"RaisedBy": "Lindsey Schimmel",
+			"FK_ProjectID": "CS-21093",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Isaac Hauck",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "3c6106e5-a72d-41db-b38c-e3bdc49c5498",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Creating an es",
+			"RaisedBy": "Admin",
+			"FK_ProjectID": "CS-7777",
+			"CreatedDate": "2020-10-13T19:28:38.925Z",
+			"ActionWith": "",
+			"ActionDue": "2020-01-12T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "81122ca9-6a2e-4a5a-a1b3-37381f4d47bf",
+					"FK_EscalationID": "3c6106e5-a72d-41db-b38c-e3bdc49c5498",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:28:38.925Z"
+				},
+				{
+					"PK_ID": "098491b7-feff-43ec-8984-0d663dd479b2",
+					"FK_EscalationID": "3c6106e5-a72d-41db-b38c-e3bdc49c5498",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T23:58:43.424Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "85f9fcd4-30fc-4412-864b-58c82c0521ee",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Admin Escalation",
+			"RaisedBy": "Youssof fahmy",
+			"FK_ProjectID": "CS-7777",
+			"CreatedDate": "2020-10-13T20:17:18.995Z",
+			"ActionWith": "",
+			"ActionDue": "2020-05-12T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "7a65f2fb-98f3-4d79-b315-6d19048ef8c7",
+					"FK_EscalationID": "85f9fcd4-30fc-4412-864b-58c82c0521ee",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:17:18.995Z"
+				},
+				{
+					"PK_ID": "2a6acc76-0178-4381-b0a7-7d1144af3650",
+					"FK_EscalationID": "85f9fcd4-30fc-4412-864b-58c82c0521ee",
+					"NewStatus": "Cancelled",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:17:40.135Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "480257f3-22bb-4eb4-b60a-2f02dbaac48d",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "haidw",
+			"RaisedBy": "dawd",
+			"FK_ProjectID": "CS-dwadw",
+			"CreatedDate": "2020-10-13T20:18:16.125Z",
+			"ActionWith": "",
+			"ActionDue": "2020-05-12T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "20fdbb3c-c28f-4e2b-bab3-935146f391ea",
+					"FK_EscalationID": "480257f3-22bb-4eb4-b60a-2f02dbaac48d",
+					"Body": "Hanna to ... Abhi to...",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:18:57.046Z",
+					"StatusSnapshot": "Pending Approval",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [
+				{
+					"PK_ID": "206e09f2-3756-4a3d-8106-c9e552df9ff5",
+					"FK_EscalationID": "480257f3-22bb-4eb4-b60a-2f02dbaac48d",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T20:18:16.125Z"
+				},
+				{
+					"PK_ID": "d2e8812a-d46c-4d8d-88a1-026ee00a5525",
+					"FK_EscalationID": "480257f3-22bb-4eb4-b60a-2f02dbaac48d",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T23:58:32.689Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "6236c6b7-6668-4d1c-afb9-f4a229776466",
+					"FK_EscalationID": "480257f3-22bb-4eb4-b60a-2f02dbaac48d",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T23:58:29.772Z"
+				},
+				{
+					"PK_ID": "1b91c758-a122-41e7-84cf-987fd1bffa57",
+					"FK_EscalationID": "480257f3-22bb-4eb4-b60a-2f02dbaac48d",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T23:58:31.454Z"
+				}
+			],
+			"LatestComment": "Hanna to ... Abhi to..."
+		},
+		{
+			"PK_ID": "b15a4d76-3404-4de5-8396-9e118b44626f",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Hello",
+			"RaisedBy": "Youssof",
+			"FK_ProjectID": "CS-7",
+			"CreatedDate": "2020-10-15T23:37:41.203Z",
+			"ActionWith": "",
+			"ActionDue": "",
+			"Program": "",
+			"Type": "",
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "8654539b-6d6e-48a4-80db-1319fefbf6a5",
+					"FK_EscalationID": "b15a4d76-3404-4de5-8396-9e118b44626f",
+					"Body": "Cement",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-15T23:37:41.756Z",
+					"StatusSnapshot": "Pending Approval",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [
+				{
+					"PK_ID": "bdf33a1e-750a-4738-804c-664fccd49397",
+					"FK_EscalationID": "b15a4d76-3404-4de5-8396-9e118b44626f",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-15T23:37:41.203Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": "Cement"
+		},
+		{
+			"PK_ID": "4ab4b106-c15c-49ab-959e-0dce920c647d",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Comment Tesr",
+			"RaisedBy": "YF",
+			"FK_ProjectID": "CS-42948902",
+			"CreatedDate": "2020-10-16T17:44:29.647Z",
+			"ActionWith": "kkk",
+			"ActionDue": "",
+			"Program": "ICE",
+			"Type": "",
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "d61b63f2-7b55-4209-b640-3b87a133d62a",
+					"FK_EscalationID": "4ab4b106-c15c-49ab-959e-0dce920c647d",
+					"Body": "Comment",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-16T17:44:30.555Z",
+					"StatusSnapshot": "Pending Approval",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [
+				{
+					"PK_ID": "7ec97f77-39db-424b-b1fc-d5a5f73763ec",
+					"FK_EscalationID": "4ab4b106-c15c-49ab-959e-0dce920c647d",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-16T17:44:29.647Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": "Comment"
+		},
+		{
+			"PK_ID": "0b64e4e2-41ff-475c-8043-b96b319f6605",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "",
+			"RaisedBy": "",
+			"FK_ProjectID": "CS-",
+			"CreatedDate": "2020-10-16T17:54:37.281Z",
+			"ActionWith": "",
+			"ActionDue": "",
+			"Program": "",
+			"Type": "",
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "4c35c565-9a1a-4a8a-b4ca-500b447d5060",
+					"FK_EscalationID": "0b64e4e2-41ff-475c-8043-b96b319f6605",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-16T17:54:37.281Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "89757da6-e3e7-4d14-b728-12c6db215fdb",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "",
+			"RaisedBy": "",
+			"FK_ProjectID": "CS-",
+			"CreatedDate": "2020-10-17T19:16:23.490Z",
+			"ActionWith": "Me",
+			"ActionDue": "",
+			"Program": "",
+			"Type": "",
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "b497fa3e-7556-4952-9d55-d1e5dbde057c",
+					"FK_EscalationID": "89757da6-e3e7-4d14-b728-12c6db215fdb",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-17T19:16:23.490Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "eb15dbdb-40b3-43ca-b6b7-ed9d4ef06e57",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Test 1",
+			"RaisedBy": "Youssof",
+			"FK_ProjectID": "CS-34567",
+			"CreatedDate": "2019-05-02T04:00:00.000Z",
+			"ActionWith": "ActionWith",
+			"ActionDue": "2019-05-02T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "ac58b59a-9630-439f-a4c7-f8e3a366c1ea",
+					"FK_EscalationID": "eb15dbdb-40b3-43ca-b6b7-ed9d4ef06e57",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T03:53:54.308Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "30b432ec-c240-4475-965a-0a34cfb8d233",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Test 2",
+			"RaisedBy": "Youssof",
+			"FK_ProjectID": "CS-67777",
+			"CreatedDate": "2020-08-02T04:00:00.000Z",
+			"ActionWith": "No one",
+			"ActionDue": "2020-08-02T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "7d7ea672-90cf-40bb-9de6-8042105f595a",
+					"FK_EscalationID": "30b432ec-c240-4475-965a-0a34cfb8d233",
+					"Body": "Youssof Was here",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T04:09:53.739Z",
+					"StatusSnapshot": "Pending Approval",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [
+				{
+					"PK_ID": "902f8129-3581-426f-8834-139a315f8a5e",
+					"FK_EscalationID": "30b432ec-c240-4475-965a-0a34cfb8d233",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T03:54:37.489Z"
+				}
+			],
+			"Approvals": [],
+			"LatestComment": "Youssof Was here"
+		},
+		{
+			"PK_ID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "New Escalation",
+			"RaisedBy": "Me!",
+			"FK_ProjectID": "CS-7777",
+			"CreatedDate": "2020-05-02T04:00:00.000Z",
+			"ActionWith": "Abhi",
+			"ActionDue": "2020-05-02T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "09c84705-b3cd-4b49-8c05-761a86712c5b",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"Body": "Comment",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T04:08:38.428Z",
+					"StatusSnapshot": "In Progress",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "5ccdc03c-a8e9-400d-9da0-ddf0c575da85",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"Body": "Quickly",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T04:08:17.226Z",
+					"StatusSnapshot": "Pending Approval",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "e9df9fe1-bfcd-4471-8780-f359e23d5fad",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"Body": "Hurry up!!!",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T04:08:08.891Z",
+					"StatusSnapshot": "Pending Approval",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [
+				{
+					"PK_ID": "bebf7ef7-80a8-4dbf-a0bf-09b88895835d",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"NewStatus": "Pending Approval",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T04:07:52.487Z"
+				},
+				{
+					"PK_ID": "31c4ff41-1896-458d-915a-2502cc6a359c",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T04:08:32.189Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "5178f295-14a4-4ad5-896b-6cc56e628a66",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T04:08:29.948Z"
+				},
+				{
+					"PK_ID": "5c4dd222-32fa-4f12-b87b-24a11f3cc3bd",
+					"FK_EscalationID": "9faa83e3-357b-4ddd-8dc4-b64f0bf880c1",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T04:08:31.688Z"
+				}
+			],
+			"LatestComment": "Comment"
+		},
+		{
+			"PK_ID": "ba17fd57-c943-445c-98f0-438d4f1bfb02",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Rustic Soft Soap",
+			"RaisedBy": "Gerardo Block",
+			"FK_ProjectID": "CS-43058",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Grace Considine",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "5b9d35d0-9187-4df4-a450-ce9bbd42d3d7",
+					"FK_EscalationID": "ba17fd57-c943-445c-98f0-438d4f1bfb02",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:11:29.647Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "454f8a38-080a-4017-84ca-a0664e967c9a",
+					"FK_EscalationID": "ba17fd57-c943-445c-98f0-438d4f1bfb02",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:09.467Z"
+				},
+				{
+					"PK_ID": "f9fbc477-f289-4367-bd86-ced06c456369",
+					"FK_EscalationID": "ba17fd57-c943-445c-98f0-438d4f1bfb02",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:11:24.947Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "93101428-69bd-4608-9153-4835c06be061",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Licensed Wooden Soap",
+			"RaisedBy": "Luz Kemmer",
+			"FK_ProjectID": "CS-33643",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Loren Ullrich",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "623b906f-8c2b-4d28-b369-d3723d36cb06",
+					"FK_EscalationID": "93101428-69bd-4608-9153-4835c06be061",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:10:39.769Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "5e400764-2f11-4e25-b924-2758125ad968",
+					"FK_EscalationID": "93101428-69bd-4608-9153-4835c06be061",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:12.876Z"
+				},
+				{
+					"PK_ID": "5298bd6d-1b0c-4740-918f-959331882bfd",
+					"FK_EscalationID": "93101428-69bd-4608-9153-4835c06be061",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:13.856Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "d739528d-ee96-4b40-aeee-666c337b40a6",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Gorgeous Cotton Fish",
+			"RaisedBy": "Shaun Schumm",
+			"FK_ProjectID": "CS-37894",
+			"CreatedDate": "2020-10-03T04:00:00.000Z",
+			"ActionWith": "Dr. Naomi Pagac",
+			"ActionDue": "2020-10-03T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "baf15b27-0c59-40ad-95ec-f15f26388782",
+					"FK_EscalationID": "d739528d-ee96-4b40-aeee-666c337b40a6",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:10:28.635Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "866fec9e-6153-47ae-8702-a3b4fae471b1",
+					"FK_EscalationID": "d739528d-ee96-4b40-aeee-666c337b40a6",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:16.431Z"
+				},
+				{
+					"PK_ID": "fe0f5b0c-11fa-41b2-bcad-820a27d9ef01",
+					"FK_EscalationID": "d739528d-ee96-4b40-aeee-666c337b40a6",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:17.329Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "1d04df34-1565-43bd-a3e1-a4b99a833586",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Pending Approval",
+			"Title": "Generic Wooden Chair",
+			"RaisedBy": "Ben Doyle MD",
+			"FK_ProjectID": "CS-23536",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Kathryn Ernser",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "127418a1-436e-4946-a310-8d217187bb48",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Gorgeous Metal Computer",
+			"RaisedBy": "Doris Graham",
+			"FK_ProjectID": "CS-5472",
+			"CreatedDate": "2020-10-01T04:00:00.000Z",
+			"ActionWith": "Abhi x Youssof x ",
+			"ActionDue": "2020-10-01T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [
+				{
+					"PK_ID": "113f5a84-e606-490c-9c13-0d88d3beed76",
+					"FK_EscalationID": "127418a1-436e-4946-a310-8d217187bb48",
+					"Body": "I am done",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:27:08.369Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				},
+				{
+					"PK_ID": "a5d78f7b-f832-4159-9f60-a9c675d98015",
+					"FK_EscalationID": "127418a1-436e-4946-a310-8d217187bb48",
+					"Body": "Update - I",
+					"FK_Username": "youssof",
+					"CreatedDate": "2020-10-13T20:26:59.759Z",
+					"StatusSnapshot": "Cancelled",
+					"EditedDate": ""
+				}
+			],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": "I am done"
+		},
+		{
+			"PK_ID": "f87bd037-37f4-4aae-b75d-bf802b1f3008",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Resolved",
+			"Title": "Tasty Wooden Keyboard",
+			"RaisedBy": "Wayne Zboncak",
+			"FK_ProjectID": "CS-20572",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Grace",
+			"ActionDue": "2020-10-13T20:32:08.170Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "b25e6247-a2d4-4157-9d61-c8fb9f3b4684",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Small Granite Towels",
+			"RaisedBy": "Paul Hermiston",
+			"FK_ProjectID": "CS-35230",
+			"CreatedDate": "2020-10-01T04:00:00.000Z",
+			"ActionWith": "Lionel Heathcote",
+			"ActionDue": "2020-10-01T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "0b83a2c9-405c-4ba8-8dee-50390908c697",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Intelligent Concrete Bacon",
+			"RaisedBy": "Kerry Upton",
+			"FK_ProjectID": "CS-49068",
+			"CreatedDate": "2020-10-04T04:00:00.000Z",
+			"ActionWith": "Grace",
+			"ActionDue": "2020-10-04T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "a17c751c-7998-4339-8a09-e3cb906331bc",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "Cancelled",
+			"Title": "Licensed Rubber Chair",
+			"RaisedBy": "Toby Feeney",
+			"FK_ProjectID": "CS-15887",
+			"CreatedDate": "2020-10-01T04:00:00.000Z",
+			"ActionWith": "Traci Roob Sr.",
+			"ActionDue": "2020-10-01T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [],
+			"Approvals": [],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "98781eff-85c1-4868-ba23-3e6f26c1b576",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Practical Frozen Cheese",
+			"RaisedBy": "Mary Lehner",
+			"FK_ProjectID": "CS-37181",
+			"CreatedDate": "2021-10-14T04:00:00.000Z",
+			"ActionWith": "Me",
+			"ActionDue": "2021-10-14T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "3e56e3f1-6374-4db9-b5c0-7d3ac9990398",
+					"FK_EscalationID": "98781eff-85c1-4868-ba23-3e6f26c1b576",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:10:31.258Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "0bcc7d8f-e390-48a9-a180-eeca5f8d52fe",
+					"FK_EscalationID": "98781eff-85c1-4868-ba23-3e6f26c1b576",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:20.161Z"
+				},
+				{
+					"PK_ID": "b5499500-6e9d-452f-8411-446992f9a46f",
+					"FK_EscalationID": "98781eff-85c1-4868-ba23-3e6f26c1b576",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:10:21.021Z"
+				}
+			],
+			"LatestComment": ""
+		},
+		{
+			"PK_ID": "481c54f5-fa55-46ad-924d-fcfa4cb3080d",
+			"FK_FragnetID": null,
+			"FK_Username": "youssof",
+			"Status": "In Progress",
+			"Title": "Tasty Rubber Shoes",
+			"RaisedBy": "Jermaine Brown",
+			"FK_ProjectID": "CS-9528",
+			"CreatedDate": "2022-10-14T04:00:00.000Z",
+			"ActionWith": "Me",
+			"ActionDue": "2022-10-14T04:00:00.000Z",
+			"Program": null,
+			"Type": null,
+			"LastModified": null,
+			"Project ID": null,
+			"Project Name": null,
+			"CS-PCS": null,
+			"Owner's Engineer": null,
+			"Project Manager": null,
+			"Project Planner": null,
+			"Program Manager": null,
+			"EscalationComments": [],
+			"EscalationLog": [
+				{
+					"PK_ID": "30c6af38-e5d7-4f9b-8b31-06153d2130fd",
+					"FK_EscalationID": "481c54f5-fa55-46ad-924d-fcfa4cb3080d",
+					"NewStatus": "In Progress",
+					"FK_Username": "youssof",
+					"ChangeDate": "2020-10-13T19:11:10.450Z"
+				}
+			],
+			"Approvals": [
+				{
+					"PK_ID": "2c703c89-d011-4918-b7ee-ace06b6822f5",
+					"FK_EscalationID": "481c54f5-fa55-46ad-924d-fcfa4cb3080d",
+					"Approver": "FLM",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:11:01.397Z"
+				},
+				{
+					"PK_ID": "51943fe4-5267-44f1-ad03-c7a42be4e6dc",
+					"FK_EscalationID": "481c54f5-fa55-46ad-924d-fcfa4cb3080d",
+					"Approver": "Program Manager",
+					"Approved": false,
+					"ApprovedDate": "2020-10-13T19:11:02.445Z"
+				}
+			],
+			"LatestComment": ""
+		}
+	]
+}

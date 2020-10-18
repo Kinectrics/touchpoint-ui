@@ -34,6 +34,7 @@ export default function ComboBox(props) {
 				disabled = {locked}
 				style = {props.style}
 				value = {props.value}
+				tabIndex = {props.tabIndex}
 			>
 				{kids}
 			</select>
@@ -48,4 +49,5 @@ ComboBox.propTypes = {
 	value: PropTypes.string,
 	className: PropTypes.string,
 	defaultValue: PropTypes.string,
+	tabIndex: PropTypes.any,
 }

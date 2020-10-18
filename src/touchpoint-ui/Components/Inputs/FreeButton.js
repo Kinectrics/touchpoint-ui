@@ -21,6 +21,7 @@ export default function FreeButton(props) {
 			style = {props.style}
 			type={props.type}
 			loading={props.loading}
+			tabIndex={props.tabIndex}
 		>
 			{props.children}
 		</CoreButton>
@@ -36,5 +37,6 @@ FreeButton.propTypes = {
 	wide: PropTypes.bool,
 	style: PropTypes.object,
 	type: PropTypes.string,
-	loading: PropTypes.bool
+	loading: PropTypes.bool,
+	tabIndex: PropTypes.any,
 }

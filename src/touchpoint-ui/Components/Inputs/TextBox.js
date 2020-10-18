@@ -46,6 +46,7 @@ export default function TextBox(props) {
 			style = {props.style}
 			value = {props.value}
 			maxLength={props.maxLength}
+			tabIndex={props.tabIndex}
 		/>
 	)
 }
@@ -66,5 +67,6 @@ TextBox.propTypes = {
 	onEscape: PropTypes.func,
 	type: PropTypes.string,
 	maxLength:PropTypes.number,
+	tabIndex: PropTypes.any,
 }
 

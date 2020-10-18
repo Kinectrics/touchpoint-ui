@@ -21,7 +21,6 @@ export default function TouchPointApp(props){
 	const [popupEffect, setPopupEffect] = useState('')
 	const [moduleLock, setModuleLock] = useState(props.locked)
 	
-	const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 	const [screenEffect, setScreenEffect] = useState('')
 	const [drawerExists, setDrawerExists] = useState(false)
 	
@@ -124,6 +123,7 @@ export default function TouchPointApp(props){
 				newPopups.pop()
 				setTimeout(() => setPopups(newPopups), 100)
 				
+				const drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open')
 				if(!drawerIsOpen){setScreenEffect('')}
 			},
 			
@@ -132,6 +132,7 @@ export default function TouchPointApp(props){
 				setPopupEffect('transparent')
 
 				setTimeout(() => setPopups([]), 100)
+				const drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open')
 
 				if (!drawerIsOpen) { setScreenEffect('') }
 			},
@@ -165,8 +166,6 @@ export default function TouchPointApp(props){
 				
 				setScreenEffect('')
 			},
-			
-			isOpen: drawerIsOpen,
 			
 			Exists: drawerExists,
 			setExists: setDrawerExists,
@@ -216,7 +215,7 @@ export default function TouchPointApp(props){
 						<HashRouter>
 						{screenBlocker}
 						
-						<div ref = {portalDestination}>
+						<div ref={portalDestination}>
 							{/* Portal Destination for App Drawer */}
 						</div>
 						

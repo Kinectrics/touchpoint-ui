@@ -1,4 +1,5 @@
 import faker from 'faker'
+import escalationData from './escalationData.json'
 
 
 //returns a lis of pending actions actions for a given user in a given module
@@ -65,13 +66,11 @@ export function fakeData(n = 500){
 	const data = []
 	const statuses = ['Complete', 'In Progress', 'Pending Approval']
 	
-	const c = Math.round(Math.random() * 10)
-	
 	for (let i = 0; i < n; i++) {
 		
 		data.push({
-			id: i + c + 1,
-			vendor: faker.company.companyName(),
+			id: i,
+			vendor: i%2 === 0 ? 'Vendor' : 'Other',
 			project: faker.random.number(40000),
 			SM: faker.name.findName(),
 			projectName: faker.company.catchPhrase(),
@@ -102,4 +101,12 @@ export function fakeData(n = 500){
 			resolve(JSON.parse(JSON.stringify(data)))
 		}, 0)
 	})
+}
+
+
+export function escalationQuery(){
+	return new Promise((resolve=>{
+		setTimeout(()=>resolve(escalationData.body), 200)
+	}))
+		
 }

@@ -41,7 +41,7 @@ export default function MainTable(props){
 	const searchText = useModuleData().get('TouchPointSearchText')
 	
 	function searchData() {
-		if(props.searchable){
+		if(props.searchable && searchText){
 			const values = data.read()
 			const newMetaData = []
 
@@ -64,7 +64,7 @@ export default function MainTable(props){
 		}
 	}
 	
-	useEffect(searchData, [searchText])
+	useEffect(searchData, [searchText, data.lastResolved])
 	
 	//FILTER
 	function filterData(values) {

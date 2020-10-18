@@ -49,6 +49,7 @@ export default function CommentBox(props) {
 			autoFocus ={props.autoFocus}
 			onFocus={props.onFocus}
 			onBlur={props.onBlur}
+			tabIndex={props.tabIndex}
 		></textarea>
 	)
 }
@@ -67,5 +68,6 @@ CommentBox.propTypes = {
 	value: PropTypes.string,
 	maxLength: PropTypes.number,
 	autoFocus: PropTypes.bool,
+	tabIndex: PropTypes.any,
 }
 

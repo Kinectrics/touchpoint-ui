@@ -92,7 +92,7 @@ export default function VendorRubrics(){
 				
 			</ControlBar>
 			
-			<SplitScreen defaultSize={50}>
+			{/* <SplitScreen defaultSize={50}> */}
 				
 				<MainTable
 					data={data}
@@ -104,7 +104,7 @@ export default function VendorRubrics(){
 					nestedProps={{fitToWidth:true}}
 				/>
 				
-				<InfoTabContainer defaultTab='RubricHeader'>
+				{/* <InfoTabContainer defaultTab='RubricHeader'>
 					
 					<InfoTab tabID = "RubricHeader" tabTitle='Rubric Header'>
 						<RubricHeader 
@@ -114,15 +114,15 @@ export default function VendorRubrics(){
 					</InfoTab>	
 					
 					<InfoTab tabID = "RubricDetail" tabTitle='Rubric Detail'>
-						{/* <RubricDetail /> */}
+						<RubricDetail />
 					</InfoTab>	
 					
 					<InfoTab tabID = "StatusLog" tabTitle='Status Log'>
-						{/* <StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/> */}
+						<StatusLog dataRow={data.getActiveRecord()} statusStyle={statusStyle}/>
 					</InfoTab>								
 							
-				</InfoTabContainer>
-			</SplitScreen>
+				</InfoTabContainer> */}
+			{/* </SplitScreen> */}
 		</Module>
 	)
 }
