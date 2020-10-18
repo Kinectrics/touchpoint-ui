@@ -138,17 +138,33 @@ export default function TouchPointApp(props){
 		},
 		
 		Drawer:{
-			open: ()=>{ if(!drawerIsOpen){
-				if(drawerExists){
-					setScreenEffect('blurScreenEffect')
-					setDrawerIsOpen(true)
+			open: ()=>{
+				const drawerHandler = document.getElementById('TouchPointDrawerHandler')
+				if(drawerHandler){
+					drawerHandler.classList.add('SystemDrawerHandler')
 				}
-			}},
+				
+				const drawerBox = document.getElementById('TouchPointAppDrawer')
+				if (drawerBox) {
+					drawerBox.classList.add('open')
+				}
+				
+				setScreenEffect('blurScreenEffect')
+			},
 			
-			close: () => { if(drawerIsOpen){
-				setDrawerIsOpen(false)
-				if(activePopups.length === 0){setScreenEffect('')}
-			}},
+			close: () => {
+				const drawerHandler = document.getElementById('TouchPointDrawerHandler')
+				if (drawerHandler) {
+					drawerHandler.classList.remove('SystemDrawerHandler')
+				}
+				
+				const drawerBox = document.getElementById('TouchPointAppDrawer')
+				if (drawerBox) {
+					drawerBox.classList.remove('open')
+				}
+				
+				setScreenEffect('')
+			},
 			
 			isOpen: drawerIsOpen,
 			

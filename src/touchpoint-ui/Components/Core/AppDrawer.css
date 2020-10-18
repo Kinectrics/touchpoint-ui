@@ -14,8 +14,12 @@
 	position: fixed;
 	z-index: 10;
 	left: 0;
-	transition: all 500ms ease;
 	padding: 15px 15px;
+	display: none;
+}
+
+.AppDrawer.open{
+	display: block;
 }
 
 .AppDrawer .drawerContainer{

@@ -14,16 +14,8 @@ export default function AppDrawer(props) {
 	
 	const {Drawer} = useSystem()
 	
-	const trueLeft = props.style && props.style.width ? props.style.width : 'var(--drawerWidth)'
-	const [drawerLeft, setDrawerLeft] = useState(!Drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null)
-	
-	useEffect(()=>{
-		setDrawerLeft(!Drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null)
-	},[Drawer.isOpen])
-	
 	useEffect(()=>{
 		Drawer.setExists(true)
-		
 		return ()=>Drawer.setExists(false)
 	},[])
 	
@@ -34,22 +26,20 @@ export default function AppDrawer(props) {
 		}
 	}
 	
-	const handlerClass = Drawer.isOpen ? 'SystemDrawerHandler' : ''
-	
 	if (Drawer.portalDestination.current){ return ( 
 		ReactDOM.createPortal(
-			<div className={handlerClass} onClick = {clickBackdrop}>
+			<div id='TouchPointDrawerHandler' onClick = {clickBackdrop}>
 				<lockedContext.Provider value={locked}>
 					<div 
-						className={'AppDrawer ' + Drawer.className} 
-						style={{...props.style, left: drawerLeft, opacity: '93%'}}
+						className={'AppDrawer'}
+						id={'TouchPointAppDrawer'}
+						style={{...props.style, opacity: '93%'}}
 					>
 						<div className="drawerContainer" style={props.innerStyle}>
 							<div className='scroller'>
 								<div style={{
 									width: '100%',
 									height: '100%',
-									display: Drawer.isOpen ? null : 'none'
 								}}>
 									<h1>{props.title}</h1>
 									<CloseButton
