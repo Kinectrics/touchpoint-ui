@@ -69,5 +69,7 @@ CommentBox.propTypes = {
 	maxLength: PropTypes.number,
 	autoFocus: PropTypes.bool,
 	tabIndex: PropTypes.any,
+	onFocus: PropTypes.func,
+	onBlur: PropTypes.func,
 }
 

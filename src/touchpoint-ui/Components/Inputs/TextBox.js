@@ -18,12 +18,6 @@ export default function TextBox(props) {
 		} 
 	}
 	
-	function blurHandler(e){
-		if(!locked && props.onBlur){
-			props.onBlur(e)
-		} 
-	}
-	
 	//For the onEnter event
 	function keyPressHandler(e){
 		if(!locked && e.key === 'Enter' && props.onEnter !==undefined){
@@ -40,7 +34,8 @@ export default function TextBox(props) {
 			readOnly={locked}
 			onKeyPress={keyPressHandler}
 			placeholder = {props.placeholder}
-			onBlur = {blurHandler}
+			onBlur = {props.onBlur}
+			onFocus = {props.onFocus}
 			ref = {props.inputRef}
 			autoFocus = {props.autoFocus}
 			style = {props.style}
@@ -68,5 +63,7 @@ TextBox.propTypes = {
 	type: PropTypes.string,
 	maxLength:PropTypes.number,
 	tabIndex: PropTypes.any,
+	onFocus: PropTypes.func,
+	onBlur: PropTypes.func,
 }
 
