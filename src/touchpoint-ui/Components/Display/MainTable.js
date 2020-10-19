@@ -54,7 +54,6 @@ export default function MainTable(props){
 
 					const testVal = JSON.stringify(r).toLowerCase()
 					rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase())
-
 				}
 
 				newMetaData.push(rowMeta)
@@ -64,7 +63,7 @@ export default function MainTable(props){
 		}
 	}
 	
-	useEffect(searchData, [searchText, data.lastResolved])
+	useEffect(searchData, [searchText])
 	
 	//FILTER
 	function filterData(values) {

@@ -28,6 +28,11 @@ export default function CoreTable(props){
 	//Active page handling
 	const [activePage, setActivePage] = useState(0)
 	
+	//When you search, return to page 0 in case the search results don't reach the current page
+	useEffect(()=>{
+		setActivePage(0)
+	}, [props.searchText])
+	
 	//get the length of the data with the filter applied
 	let dataLength = 0
 	data.forEach((r, idx)=>{
