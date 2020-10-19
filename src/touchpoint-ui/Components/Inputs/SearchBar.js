@@ -16,7 +16,6 @@ export default function SearchBar(props) {
 	
 	const searchContext = moduleData.get('TouchPointSearchText')
 	
-	
 	function focusSearchBar(){
 		searchRef.current.focus()
 	}
