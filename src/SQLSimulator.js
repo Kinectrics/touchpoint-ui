@@ -72,7 +72,7 @@ export function fakeData(n = 500){
 			id: i,
 			vendor: i%2 === 0 ? 'Vendor' : 'Other',
 			project: faker.random.number(40000),
-			SM: faker.name.findName(),
+			SM: Math.random() > 0.5 ? undefined : faker.name.findName(),
 			projectName: faker.company.catchPhrase(),
 			status: statuses[i % 3],
 			due: faker.date.future(),

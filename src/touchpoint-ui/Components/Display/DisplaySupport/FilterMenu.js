@@ -77,7 +77,7 @@ export default function FilterMenu(props){
 					<span 
 						style={spanStyle}
 					>
-						{v !== 0 && !v ? 'Blank' : props.header.format(v)}
+						{v !== 0 && ((!v) || (v.toString() === 'undefined')) ? 'Blank' : props.header.format(v)}
 					</span>
 					
 				</button>)} else return null
