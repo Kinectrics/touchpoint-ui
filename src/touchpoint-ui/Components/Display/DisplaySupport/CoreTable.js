@@ -22,7 +22,7 @@ export default function CoreTable(props){
 	//Settings token support 
 	const saveSettings = useSettings(props.settingsID, (token) => {
 		props.headers.applyToken(token)
-		props.data.setLastResolved(new Date()) //Sort trigger to make it sort on the next render using the below useEffect
+		props.data.setLastResolved(new Date().toISOString()) //Sort trigger to make it sort on the next render using the below useEffect
 	})
 	
 	//Active page handling

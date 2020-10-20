@@ -38,7 +38,6 @@ export default function VendorRubrics(){
 	const dataHeaders = [
 		{headerID: 'id',displayName:'ID', width: 100, required: true},
 		{headerID: 'project', displayName: 'Project', width: 100, type: 'number', type:'component', component: TestCells},
-		{headerID: 'project2', displayName: 'Long long long name name name name', width: 100, type: 'number'},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: ({cellValue})=>console.log({cellValue})},

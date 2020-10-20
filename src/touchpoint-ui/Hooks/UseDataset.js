@@ -38,7 +38,7 @@ export default function useDataset(fetchFunction, options = {}) {
 				selectRecord(activeRecord[options.primaryKey], newData)
 
 				setStatus('Resolved')
-				setLastResolved(new Date())
+				setLastResolved(new Date().toISOString())
 				return 'Resolved'
 
 			} catch (e) {

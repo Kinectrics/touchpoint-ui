@@ -67,6 +67,10 @@ export default function MainTable(props){
 		searchData()
 	}, [searchText])
 	
+	useEffect(() => {
+		if(searchText){searchData()}
+	}, [data.lastResolved])
+	
 	//FILTER
 	function filterData(values) {
 		const newMetaData = []
