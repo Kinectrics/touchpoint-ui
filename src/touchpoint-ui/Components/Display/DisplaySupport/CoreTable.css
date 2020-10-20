@@ -63,7 +63,7 @@
 .MainTable .theadBarTheadButtonWrapper
 .menuButtonContainer .TheadButton{
 	width: 100%;
-	overflow: hidden;
+	/* overflow: hidden; removed as it causes the theadbutton to be very tall for no reason */
 }
 
 

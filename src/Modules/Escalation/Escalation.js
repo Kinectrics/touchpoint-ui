@@ -131,7 +131,7 @@ export default function Escalation() {
 			
 			<MainTable
 				style={{ height: 'calc(100% - var(--controlBarHeight))' }}
-				pageSize={30}
+				pageSize={40}
 				headers={headers}
 				data={dataset}
 				searchable
