@@ -29,7 +29,7 @@ export default function MainTable(props){
 	cleanProps.headers = headers
 	
 	//Sort, search, and filter functionality
-	const [metaData, setMetaData] = useState([{ visible: true, filteredBy: '' }])
+	const [metaData, setMetaData] = useState([])
 	
 	useEffect(()=>{
 		if(!props.data.isDataset){
@@ -40,7 +40,7 @@ export default function MainTable(props){
 	//SEARCH
 	const searchText = useModuleData().get('TouchPointSearchText')
 	
-	function searchData() {
+	data.search = ()=>{
 		if(props.searchable){
 			const values = data.read()
 			const newMetaData = []
@@ -64,12 +64,8 @@ export default function MainTable(props){
 	}
 	
 	useEffect(()=>{
-		searchData()
+		data.search()
 	}, [searchText])
-	
-	useEffect(() => {
-		if(searchText){searchData()}
-	}, [data.lastResolved])
 	
 	//FILTER
 	function filterData(values) {
@@ -103,6 +99,7 @@ export default function MainTable(props){
 		setMetaData(newMeta)
 		headers.embedData(data.read(), newMeta)
 	}
+	
 	
 	//SORT
 	function sortData(values) {
@@ -149,9 +146,9 @@ export default function MainTable(props){
 	//cleanProps - if a dataset is passed to the table, then no need to create one
 	//newProps - if a dataset is not passed to the table, then create one and pass it
 	if(props.data.isDataset){
-		return (<CoreTable {...cleanProps} metaData = {metaData} locked={locked}/>)
+		return (<CoreTable {...cleanProps} metaData = {metaData} locked={locked} searchText={searchText}/>)
 	} else{
-		return (<CoreTable {...newProps} metaData={metaData} locked={locked}/>)
+		return (<CoreTable {...newProps} metaData={metaData} locked={locked} searchText={searchText}/>)
 	}
 }
 

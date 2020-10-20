@@ -49,8 +49,13 @@ export default function CoreTable(props){
 		if (!noOptions) { props.headers.setSettingsEngine({ save: saveSettings }) }
 		
 		props.data.sort()
-
-	}, [props.data.lastResolved, props.data.lastEdited])
+		props.data.setLastEdited(new Date().toISOString())
+		if (props.searchText) { props.data.search() }
+	}, [props.data.lastResolved])
+	
+	useEffect(() => { 
+		props.data.filter()
+	}, [props.data.lastEdited])
 	
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled

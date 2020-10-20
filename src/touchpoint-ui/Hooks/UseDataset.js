@@ -7,6 +7,7 @@ export default function useDataset(fetchFunction, options = {}) {
 	const [data, setData] = useState(options.defaultValue ? options.defaultValue : [])
 	const [status, setStatus] = useState('Pending')
 	const [lastResolved, setLastResolved] = useState()
+	const [lastEdited, setLastEdited] = useState()
 	const [activeRecord, setActiveRecord] = useState({})
 	
 	//Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
@@ -115,7 +116,8 @@ export default function useDataset(fetchFunction, options = {}) {
 		status: status,
 		lastResolved: lastResolved,
 		setLastResolved: setLastResolved,
-		lastEdited: '',
+		setLastEdited: setLastEdited,
+		lastEdited: lastEdited,
 		
 		//TouchPoint Controls
 		isDataset: true,
