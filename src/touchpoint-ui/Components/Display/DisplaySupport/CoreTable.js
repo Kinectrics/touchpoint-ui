@@ -54,6 +54,7 @@ export default function CoreTable(props){
 	}, [props.data.lastResolved])
 	
 	useEffect(() => { 
+		//Filtering a second time when data is refreshed. This is required because otherwise the wrong rows appear on screen if you refresh while a filter is on 
 		props.data.filter()
 	}, [props.data.lastEdited])
 	
@@ -94,7 +95,6 @@ export default function CoreTable(props){
 	//Positioning for nested components
 	const tableRef = useRef()
 	const [expandedRows, setExpandedRows] = useState({})
-	const [expandTrigger, setExpandTrigger] = useState(false)
 
 	//Render
 	return (
@@ -117,8 +117,6 @@ export default function CoreTable(props){
 						showExpandControls = {props.nestedComponent ? true : false}
 						expandedRows={expandedRows}
 						setExpandedRows={setExpandedRows}
-						expandTrigger={expandTrigger}
-						setExpandTrigger={setExpandTrigger}
 					/>
 					<PageControls 
 						activePage = {activePage}
@@ -178,7 +176,6 @@ export default function CoreTable(props){
 					metaData={metaData}
 					dataArray = {data}
 					noLoading = {props.noLoading}
-					expandTrigger={expandTrigger}
 					expandedRows={expandedRows}
 					setExpandedRows={setExpandedRows}
 				/>

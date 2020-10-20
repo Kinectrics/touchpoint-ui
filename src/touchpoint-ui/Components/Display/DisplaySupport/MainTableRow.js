@@ -130,8 +130,13 @@ export default function MainTableRow(props) {
 	</span> : null
 	
 	useEffect(()=>{
-		
-	},[props.expandTrigger])
+		//yes... I know. Trust me its okay here. 
+		if(props.nestedComponent){
+			const newExpanded = props.expandedRows
+			newExpanded[props.dataRow[props.dataset.primaryKey]] = props.expandedRows[props.dataRow[props.dataset.primaryKey]] ? true : false
+			props.setExpandedRows(newExpanded)
+		}
+	}, [])
 	
 	return(
 		<div

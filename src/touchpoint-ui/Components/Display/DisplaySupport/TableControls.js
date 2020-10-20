@@ -34,11 +34,19 @@ export default function TableControls(props) {
 	if(props.showExpandControls){
 		expandControls = <>
 			<button onClick={()=>{
-				//Expandall
+				const newExpanded = { ...props.expandedRows }
+				Object.keys(newExpanded).map(k => {
+					newExpanded[k] = true
+				})
+				props.setExpandedRows(newExpanded)
 			}}><FontAwesomeIcon icon={faPlus} /> Expand All</button>
 			
 			<button onClick={()=>{
-				props.setExpandedRows({})
+				const newExpanded = {...props.expandedRows}
+				Object.keys(newExpanded).map(k=>{
+					newExpanded[k]=false
+				})
+				props.setExpandedRows(newExpanded)
 			}}><FontAwesomeIcon icon={faMinus} /> Collapse All</button>
 		</>
 	}

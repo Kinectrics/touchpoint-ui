@@ -55,7 +55,6 @@ export default function TableBody(props) {
 							tableRef={props.tableRef}
 							expandedRows={props.expandedRows}
 							setExpandedRows={props.setExpandedRows}
-							expandTrigger={props.expandTrigger}
 						/> 
 					} else{
 						return null
