@@ -109,7 +109,14 @@ export default function MainTableRow(props) {
 	})
 	
 	//Nested rows
-	const [expanded, setExpanded] = useState(false)
+	const expanded = props.expandedRows[props.dataRow[props.dataset.primaryKey]]
+	
+	function setExpanded(value){
+		const newExpanded = {...props.expandedRows}
+		newExpanded[props.dataRow[props.dataset.primaryKey]] = value
+		props.setExpandedRows(newExpanded)
+	}
+	
 	const expandedClass = expanded ? ' expanded ' : ''
 	
 	function expandHandler(e){
@@ -118,18 +125,13 @@ export default function MainTableRow(props) {
 		setExpanded(!expanded)
 	}
 	
-	//Listeners to expand all and collapse all events from the parent maintable
-	useEffect(()=>{
-		setExpanded(true)
-	},[props.expandTrigger])
-	
-	useEffect(() => {
-		setExpanded(false)
-	}, [props.collapseTrigger])
-	
 	const expandIcon = props.nestedComponent ? <span className='expandButton' onClick={expandHandler}>
 		{expanded ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />}
 	</span> : null
+	
+	useEffect(()=>{
+		
+	},[props.expandTrigger])
 	
 	return(
 		<div

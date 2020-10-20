@@ -92,9 +92,9 @@ export default function CoreTable(props){
 	}
 
 	//Positioning for nested components
-	const [expandTrigger, setExpandTrigger] = useState(false)
-	const [collapseTrigger, setCollapseTrigger] = useState(false)
 	const tableRef = useRef()
+	const [expandedRows, setExpandedRows] = useState({})
+	const [expandTrigger, setExpandTrigger] = useState(false)
 
 	//Render
 	return (
@@ -114,11 +114,11 @@ export default function CoreTable(props){
 						noOptions={noOptions}
 						dataHeaders={props.headers}
 						data={props.data}
-						setExpandTrigger = {setExpandTrigger}
-						setCollapseTrigger = {setCollapseTrigger}
-						expandTrigger = {expandTrigger}
-						collapseTrigger = {collapseTrigger}
 						showExpandControls = {props.nestedComponent ? true : false}
+						expandedRows={expandedRows}
+						setExpandedRows={setExpandedRows}
+						expandTrigger={expandTrigger}
+						setExpandTrigger={setExpandTrigger}
 					/>
 					<PageControls 
 						activePage = {activePage}
@@ -171,8 +171,6 @@ export default function CoreTable(props){
 					dynamic={dynamic}
 					nestedComponent={props.nestedComponent}
 					nestedProps={props.nestedProps}
-					expandTrigger={expandTrigger}
-					collapseTrigger={collapseTrigger}
 					noActive={noActive}
 					tableRef={tableRef}
 					pageSize={props.pageSize}
@@ -180,6 +178,9 @@ export default function CoreTable(props){
 					metaData={metaData}
 					dataArray = {data}
 					noLoading = {props.noLoading}
+					expandTrigger={expandTrigger}
+					expandedRows={expandedRows}
+					setExpandedRows={setExpandedRows}
 				/>
 			</div>
 		</div>

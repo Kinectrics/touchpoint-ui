@@ -34,11 +34,11 @@ export default function TableControls(props) {
 	if(props.showExpandControls){
 		expandControls = <>
 			<button onClick={()=>{
-				props.setExpandTrigger(!props.expandTrigger)
+				//Expandall
 			}}><FontAwesomeIcon icon={faPlus} /> Expand All</button>
 			
 			<button onClick={()=>{
-				props.setCollapseTrigger(!props.collapseTrigger)
+				props.setExpandedRows({})
 			}}><FontAwesomeIcon icon={faMinus} /> Collapse All</button>
 		</>
 	}

@@ -51,10 +51,11 @@ export default function TableBody(props) {
 							rowIndex={idx}
 							nestedComponent={props.nestedComponent}
 							nestedProps={props.nestedProps}
-							expandTrigger={props.expandTrigger}
-							collapseTrigger={props.collapseTrigger}
 							noActive={props.noActive}
 							tableRef={props.tableRef}
+							expandedRows={props.expandedRows}
+							setExpandedRows={props.setExpandedRows}
+							expandTrigger={props.expandTrigger}
 						/> 
 					} else{
 						return null
