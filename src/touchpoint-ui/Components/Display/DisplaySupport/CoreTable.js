@@ -5,6 +5,7 @@ import TableControls from './TableControls'
 import useSettings from '../../../Hooks/UseSettings'
 import PageControls from './PageContols'
 import TableBody from './TableBody'
+import lockedContext from '../../../Contexts/LockedContext'
 
 export default function CoreTable(props){
 	
@@ -98,88 +99,89 @@ export default function CoreTable(props){
 
 	//Render
 	return (
-		<div 
-			className={'MainTable ' + hasActiveClass + hasNestedClass} 
-			ref = {tableRef} 
-			style={props.style}
-		>
+		<lockedContext.Provider value={props.locked}>
+			<div 
+				className={'MainTable ' + hasActiveClass + hasNestedClass} 
+				ref = {tableRef} 
+				style={props.style}
+			>
+				<div className="topBar">
+					<div className='topBarContainer'></div>
+						<TableControls
+							hasFilter={hasFilter}
+							noFilter={noFilter}
+							noSort={noSort}
+							clearFilter={clearFilter}
+							noOptions={noOptions}
+							dataHeaders={props.headers}
+							data={props.data}
+							showExpandControls = {props.nestedComponent ? true : false}
+							expandedRows={expandedRows}
+							setExpandedRows={setExpandedRows}
+						/>
+						<PageControls 
+							activePage = {activePage}
+							setActivePage = {setActivePage}
+							dataLength = {dataLength}
+							pageSize = {props.pageSize}
+							tableRef={tableRef}
+						/>
+				</div>
 
-			<div className="topBar">
-				<div className='topBarContainer'></div>
-					<TableControls
-						hasFilter={hasFilter}
-						noFilter={noFilter}
-						noSort={noSort}
-						clearFilter={clearFilter}
-						noOptions={noOptions}
-						dataHeaders={props.headers}
+
+				<div className="theadBar" style={{
+					width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
+				}}>
+					{props.headers.get().map((hdr, i) => {
+						if (hdr.visible || hdr.required) {
+							//Custom component type headers have no filters
+							if (hdr.component) return <span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarComponentWrapper'>
+								{hdr.displayName + ' '}
+							</span>
+							
+							return (
+								<span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarTheadButtonWrapper'>
+
+									<TheadButton
+										header={hdr}
+										data={props.data}
+										dataHeaders={props.headers}
+										noFilter={noFilter} 
+										noSort={noSort}
+									>
+										{hdr.displayName + ' '}
+									</TheadButton>
+
+								</span>
+							)
+						} else return null
+					})}
+				</div>
+				
+				
+				<div className={"mainSection"} style={{
+					width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
+				}}>
+					<TableBody
+						searchable={props.searchable}
 						data={props.data}
-						showExpandControls = {props.nestedComponent ? true : false}
+						dataHeaders={props.headers.get()}
+						locked={locked}
+						dynamic={dynamic}
+						nestedComponent={props.nestedComponent}
+						nestedProps={props.nestedProps}
+						noActive={noActive}
+						tableRef={tableRef}
+						pageSize={props.pageSize}
+						activePage={activePage}
+						metaData={metaData}
+						dataArray = {data}
+						noLoading = {props.noLoading}
 						expandedRows={expandedRows}
 						setExpandedRows={setExpandedRows}
 					/>
-					<PageControls 
-						activePage = {activePage}
-						setActivePage = {setActivePage}
-						dataLength = {dataLength}
-						pageSize = {props.pageSize}
-						tableRef={tableRef}
-					/>
+				</div>
 			</div>
-
-
-			<div className="theadBar" style={{
-				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
-			}}>
-				{props.headers.get().map((hdr, i) => {
-					if (hdr.visible || hdr.required) {
-						//Custom component type headers have no filters
-						if (hdr.component) return <span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarComponentWrapper'>
-							{hdr.displayName + ' '}
-						</span>
-						
-						return (
-							<span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarTheadButtonWrapper'>
-
-								<TheadButton
-									header={hdr}
-									data={props.data}
-									dataHeaders={props.headers}
-									noFilter={noFilter} 
-									noSort={noSort}
-								>
-									{hdr.displayName + ' '}
-								</TheadButton>
-
-							</span>
-						)
-					} else return null
-				})}
-			</div>
-			
-			
-			<div className={"mainSection"} style={{
-				width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)' 
-			}}>
-				<TableBody
-					searchable={props.searchable}
-					data={props.data}
-					dataHeaders={props.headers.get()}
-					locked={locked}
-					dynamic={dynamic}
-					nestedComponent={props.nestedComponent}
-					nestedProps={props.nestedProps}
-					noActive={noActive}
-					tableRef={tableRef}
-					pageSize={props.pageSize}
-					activePage={activePage}
-					metaData={metaData}
-					dataArray = {data}
-					noLoading = {props.noLoading}
-					expandedRows={expandedRows}
-					setExpandedRows={setExpandedRows}
-				/>
-			</div>
-		</div>
+		</lockedContext.Provider>
 	)
 }
