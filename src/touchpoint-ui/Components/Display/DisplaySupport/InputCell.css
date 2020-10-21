@@ -44,3 +44,8 @@
 	height: calc(100% - 3px);
 }
 
+/* Combobox cell */
+select.InputCell{
+	vertical-align: top;
+	padding-top: 0 !important;
+}

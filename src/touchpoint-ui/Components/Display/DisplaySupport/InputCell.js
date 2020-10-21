@@ -24,11 +24,6 @@ export default function InputCell(props) {
 		setInitialValue(e.target.value)
 	}
 	
-	//Chaches the value and updates the dataset when you're done editing
-	function changeHandler(e){
-		setCurrentValue(e.target.value)
-	}
-	
 	const escRef = useRef(false)
 	
 	//Handles keypresses, for enter or esc keys
@@ -54,8 +49,16 @@ export default function InputCell(props) {
 		setTimeout(() => setValidClass(''), 0)
 	}
 	
+	//Chaches the value and updates the dataset when you're done editing
+	function selectHandler(e) {
+		setCurrentValue(e.target.value)
+		commitChanges(e.target.value)
+	}
+	
 	//Check if the input is valid and commit
-	async function commitChanges(){
+	async function commitChanges(val){
+		
+		const newValue = val ? val : currentValue
 		
 		if(escRef.current){
 			escRef.current = false
@@ -71,9 +74,9 @@ export default function InputCell(props) {
 		}
 		
 		try{
-			if (props.header.compare(props.dataRow[props.header.headerID], currentValue)) { return }
+			if (props.header.compare(props.dataRow[props.header.headerID], newValue)) { return }
 			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
-			const newCellValue = props.header.parse(currentValue)
+			const newCellValue = props.header.parse(newValue)
 			
 			newData[props.rowIndex][props.header.headerID] = newCellValue
 			
@@ -105,12 +108,33 @@ export default function InputCell(props) {
 		}
 	}
 	
+	//Chaches the value and updates the dataset when you're done editing
+	function changeHandler(e) {
+		setCurrentValue(e.target.value)
+	}
+	
+	
+	//Combobox cells
+	if(props.header.options){
+		return <select
+			className={'InputCell input ' + validClass}
+			onKeyDown={keyHandler}
+			onFocus={focusHandler}
+			value={currentValue}
+			onChange={selectHandler}
+		>
+			{props.header.options.map(v=>{
+				return<option key={v} value={v}>{v}</option>
+			})}
+		</select>
+	}
+	
 	return(<input
 		type = 'text'
 		className = {'InputCell input ' + validClass}
 		onKeyDown = {keyHandler}
 		onFocus = {focusHandler}
-		onBlur = {commitChanges}
+		onBlur = {()=>commitChanges()}
 		value = {currentValue}
 		onChange = {changeHandler}
 	/>)
