@@ -26,22 +26,30 @@ export default function DockIcon(props) {
 	
 	if(props.hidden){return null}
 	
-	if(props.menuContent){return(
-		<MenuButton
-			className='DockIcon'
-			style={props.style}
-			locked={props.locked}
-			onOpen={props.onClick}
-			menuContent={props.menuContent}
-			direction='left'
-			menuStyle={props.menuStyle}
-			menuProps = {props.menuProps}
-		>
-			{notificationBadge}
-			<div className='pic' style={iconStyle}>{icon}{props.children}</div>
-			<div className='title'>{props.title}</div>
-		</MenuButton>
-	)}
+	if(props.menuContent){
+		function openHandler(){
+			if(props.onClick){props.onClick()}
+			if(props.onOpen){props.onOpen()}
+		}
+		
+		return(
+			<MenuButton
+				className='DockIcon'
+				style={props.style}
+				locked={props.locked}
+				onOpen={openHandler}
+				onClose={props.onClose}
+				menuContent={props.menuContent}
+				direction='left'
+				menuStyle={props.menuStyle}
+				menuProps = {props.menuProps}
+			>
+				{notificationBadge}
+				<div className='pic' style={iconStyle}>{icon}{props.children}</div>
+				<div className='title'>{props.title}</div>
+			</MenuButton>
+		)
+	}
 	
 	return (
 		<CoreButton 
