@@ -86,6 +86,7 @@ export default function InputCell(props) {
 				oldCellValue: initalValue, 
 				oldRow: props.dataset.read()[props.rowIndex],
 				setRow: customSetRow,
+				parse: props.header.parse
 			})
 			
 			if(res || res === undefined){
