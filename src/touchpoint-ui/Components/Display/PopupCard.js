@@ -24,8 +24,17 @@ export default function PopupCard(props) {
 	useEffect(()=>{
 		if(props.onOpen){ props.onOpen() }
 		
+		function handlKeypress(e){
+			if (e.key === 'Escape' && !props.forceOpen){
+				system.Popup.close()
+			}
+		}
+		
+		document.addEventListener('keydown', handlKeypress)
+		
 		return(()=>{
 			if(props.onClose){ props.onClose() }
+			document.removeEventListener('keydown', handlKeypress)
 		})
 		
 	},[])
