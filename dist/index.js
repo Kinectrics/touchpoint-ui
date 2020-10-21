@@ -238,7 +238,7 @@ function styleInject(css, ref) {
 var css_248z = ":root{\n\t/*Theme Variables*/\n\t\n\t/* Nav */\n\t--navColor: #008ae6;\n\t--navTextColor: white;\n\t--navHoverColor: rgb(196, 196, 196);\n\t--navClickedColor: rgb(177, 177, 177);\n\t--dockColor: rgb(37, 37, 37);\n\t--dockTextColor: var(--navTextColor);\n\t\n\t/* Body Background */\n\t--bodyAltBG: rgb(224, 230, 245);\n\t\n\t/* Text */\n\t--mainTextColor: rgb(26, 26, 26);\n\t--labelColor: var(--navColor);\n\t--lockedTextColor: rgb(122, 122, 122);\n\t\n\t/* Cards */\n\t--cardBG: white;\n\t--borderColor:  rgba(211, 211, 211, 0.705);\n\t\n\t/* Main Table */\n\t--tableActiveColor: rgb(2, 187, 219);\n\t\n\t/* FreeButtons */\n\t--freeButtonNeutralBG: var(--labelColor);\n\t--freeButtonPositiveBG: rgb(0, 138, 230);\n\t--freeButtonNegativeBG: rgb(211, 67, 0);\n\t--freeButtonTextColor: white;\n\t\n\t/* Inputs */\n\t--inputColor: rgb(238, 238, 238);\n\t--inputInvalidColor: rgb(236, 171, 171);\n\t--inputValidColor: rgb(153, 238, 153);\n\t\n\t/* Structure Variables */\n\t--appToolbarHeight: 30px;\n\t--controlBarHeight: 49px;\n\t--tabHeaderHeight: 30px;\n\t--dockWidth: 65px;\n\t--drawerWidth: 350px;\n}\n\nbody {\n\tmargin: 0;\n\tfont-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n\t  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n\t  sans-serif;\n\t-webkit-font-smoothing: antialiased;\n\t-moz-osx-font-smoothing: grayscale;\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n}\n\n*{\n\tbox-sizing: border-box;\n}\n\na{\n\tcolor: var(--labelColor)\n}\n\n/* App Structure CSS */\n.TouchPointApp{\n\theight: 100vh;\n\twidth: 100vw;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--navColor);\n\tcolor: var(--mainTextColor);\n}\n\n.moduleContainer{\n\toverflow: hidden;\n\tbackground-color: var(--bodyAltBG);\n\tmargin: 0;\n\tpadding: 0;\n\tposition: fixed;\n}\n\n.screenBlocker{\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100vw;\n\theight: 100vh;\n\tz-index: 999;\n}\n\n/* Screen Effects */\n.screenEffect{\n\twidth:100%;\n\theight: 100%;\n\toverflow: hidden;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.blurScreenEffect{\n\ttransition: filter 200ms ease-in-out;\n\tfilter: blur(8px) brightness(90%);\n}\n\n\n/* Quick Styles */\n.flexCenter{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.flexY{ \n\t/*Centers content inside a div in both directions*/\n\tdisplay: flex;\n\talign-items: center;\n}\n";
 styleInject(css_248z);
 
-var css_248z$1 = "/* Styles for all Input type components */\n\n.input{\n\tbackground-color: var(--inputColor);\n\tcolor: var(--mainTextColor);\n\toutline: none !important;\n\tpadding: 5px 15px;\n\tborder-radius: 20px;\n\tborder: 1px solid var(--borderColor);\n\tfont-size: 12pt;\n}\n\n.input.invalid{\n\tbackground-color: var(--inputInvalidColor);\n}\n\n.input.valid{\n\tbackground-color: var(--inputValidColor);\n}\n\n.input:focus{\n\t/* filter: brightness(102%); */\n\tborder-color: var(--tableActiveColor);\n}\n\n.input.locked, .locked .input\n.input.locked:hover, .locked .input:hover\n.input.locked:focus, .locked .input:focus{\n\tcursor: default !important;\n\tfilter: grayscale(50%);\n\topacity: 85%;\n\tcolor: var(--lockedTextColor);\n}\n";
+var css_248z$1 = "/* Styles for all Input type components */\n\n.input{\n\tbackground-color: var(--inputColor);\n\tcolor: var(--mainTextColor);\n\toutline: none !important;\n\tpadding: 5px 15px;\n\tborder-radius: 15px;\n\tborder: 1px solid var(--borderColor);\n\tfont-size: 12pt;\n}\n\n.input.invalid{\n\tbackground-color: var(--inputInvalidColor);\n}\n\n.input.valid{\n\tbackground-color: var(--inputValidColor);\n}\n\n.input:focus{\n\t/* filter: brightness(102%); */\n\tborder-color: var(--tableActiveColor);\n}\n\n.input.locked, .locked .input\n.input.locked:hover, .locked .input:hover\n.input.locked:focus, .locked .input:focus{\n\tcursor: default !important;\n\tfilter: grayscale(50%);\n\topacity: 85%;\n\tcolor: var(--lockedTextColor);\n}\n";
 styleInject(css_248z$1);
 
 var css_248z$2 = ".systemPopupBackdrop{\n\tz-index: 300;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100vw;\n\theight: 100vh;\n\tposition: fixed;\n\ttop:0;\n\t\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\t\n\ttransition: opacity 300ms ease-out;\n}\n\n.systemPopupBackdrop:Hover{\n\tcursor: pointer;\n}\n\n.systemPopupBackdrop.forceOpen:Hover{\n\tcursor: default;\n}\n\n.systemPopupBackdrop.transparent{\n\topacity: 0;\n}\n\n.systemPopupBackdrop>.InfoCard,\n.systemPopupBackdrop>div>.InfoCard{\n\twidth: 35%;\n\theight: 20%;\n\tcursor: default;\t\n}\n\n\n";
@@ -473,30 +473,25 @@ function TouchPointApp(props) {
       moduleLock = _useState8[0],
       setModuleLock = _useState8[1];
 
-  var _useState9 = useState(false),
+  var _useState9 = useState(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      drawerIsOpen = _useState10[0],
-      setDrawerIsOpen = _useState10[1];
+      screenEffect = _useState10[0],
+      setScreenEffect = _useState10[1];
 
-  var _useState11 = useState(''),
+  var _useState11 = useState(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      screenEffect = _useState12[0],
-      setScreenEffect = _useState12[1];
+      drawerExists = _useState12[0],
+      setDrawerExists = _useState12[1];
 
-  var _useState13 = useState(false),
-      _useState14 = _slicedToArray(_useState13, 2),
-      drawerExists = _useState14[0],
-      setDrawerExists = _useState14[1];
-
-  var _useState15 = useState({
+  var _useState13 = useState({
     heightCSS: '100%',
     widthCSS: '100%',
     widths: {},
     heights: {}
   }),
-      _useState16 = _slicedToArray(_useState15, 2),
-      layout = _useState16[0],
-      setLayout = _useState16[1];
+      _useState14 = _slicedToArray(_useState13, 2),
+      layout = _useState14[0],
+      setLayout = _useState14[1];
 
   function saveSettings(settingsID, settingsToken) {
     if (props.saveSettings && settingsID) {
@@ -624,6 +619,7 @@ function TouchPointApp(props) {
         setTimeout(function () {
           return setPopups(newPopups);
         }, 100);
+        var drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open');
 
         if (!drawerIsOpen) {
           setScreenEffect('');
@@ -635,6 +631,7 @@ function TouchPointApp(props) {
         setTimeout(function () {
           return setPopups([]);
         }, 100);
+        var drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open');
 
         if (!drawerIsOpen) {
           setScreenEffect('');
@@ -643,23 +640,35 @@ function TouchPointApp(props) {
     },
     Drawer: {
       open: function open() {
-        if (!drawerIsOpen) {
-          if (drawerExists) {
-            setScreenEffect('blurScreenEffect');
-            setDrawerIsOpen(true);
-          }
+        var drawerHandler = document.getElementById('TouchPointDrawerHandler');
+
+        if (drawerHandler) {
+          drawerHandler.classList.add('SystemDrawerHandler');
         }
+
+        var drawerBox = document.getElementById('TouchPointAppDrawer');
+
+        if (drawerBox) {
+          drawerBox.classList.add('open');
+        }
+
+        setScreenEffect('blurScreenEffect');
       },
       close: function close() {
-        if (drawerIsOpen) {
-          setDrawerIsOpen(false);
+        var drawerHandler = document.getElementById('TouchPointDrawerHandler');
 
-          if (activePopups.length === 0) {
-            setScreenEffect('');
-          }
+        if (drawerHandler) {
+          drawerHandler.classList.remove('SystemDrawerHandler');
         }
+
+        var drawerBox = document.getElementById('TouchPointAppDrawer');
+
+        if (drawerBox) {
+          drawerBox.classList.remove('open');
+        }
+
+        setScreenEffect('');
       },
-      isOpen: drawerIsOpen,
       Exists: drawerExists,
       setExists: setDrawerExists,
       portalDestination: portalDestination,
@@ -831,7 +840,7 @@ function AppFooter(props) {
   }, props.children);
 }
 
-var css_248z$5 = ".SystemDrawerHandler{\n\tz-index: 10;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100%;\n\theight: 100%;\n\tposition: fixed;\n\ttop:0;\n\tcursor: pointer;\n}\n\n.AppDrawer{\n\theight: 100%;\n\twidth: var(--drawerWidth);\n\tposition: fixed;\n\tz-index: 10;\n\tleft: 0;\n\ttransition: all 500ms ease;\n\tpadding: 15px 15px;\n}\n\n.AppDrawer .drawerContainer{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\tborder-radius: 10px;\n\tposition: relative;\n\tcursor: default;\n\toverflow: hidden;\n}\n\n.AppDrawer .scroller{\n\tpadding: 10px;\n\tpadding-top: 30px;\n\toverflow-x: hidden;\n\theight: 100%;\n}\n\n.AppDrawer .CloseButton{\n\tposition: absolute;\n\ttop:8px;\n\tright: 10px;\n\tfont-size: 15pt;\n}\n\n.AppDrawer h1{\n\tfont-size: 16pt;\n\tposition: absolute;\n\ttop:8px;\n\tleft: 10px;\n\tcolor: var(--labelColor);\n}\n\n";
+var css_248z$5 = ".SystemDrawerHandler{\n\tz-index: 10;\n\tbackground-color: var(--overlayBackdropColor);\n\twidth: 100%;\n\theight: 100%;\n\tposition: fixed;\n\ttop:0;\n\tcursor: pointer;\n}\n\n.AppDrawer{\n\theight: 100%;\n\twidth: var(--drawerWidth);\n\tposition: fixed;\n\tz-index: 10;\n\tleft: 0;\n\tpadding: 15px 15px;\n\tdisplay: none;\n}\n\n.AppDrawer.open{\n\tdisplay: block;\n}\n\n.AppDrawer .drawerContainer{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\tborder-radius: 10px;\n\tposition: relative;\n\tcursor: default;\n\toverflow: hidden;\n}\n\n.AppDrawer .scroller{\n\tpadding: 10px;\n\tpadding-top: 30px;\n\toverflow-x: hidden;\n\theight: 100%;\n}\n\n.AppDrawer .CloseButton{\n\tposition: absolute;\n\ttop:8px;\n\tright: 10px;\n\tfont-size: 15pt;\n}\n\n.AppDrawer h1{\n\tfont-size: 16pt;\n\tposition: absolute;\n\ttop:8px;\n\tleft: 10px;\n\tcolor: var(--labelColor);\n}\n\n";
 styleInject(css_248z$5);
 
 var css_248z$6 = ".CoreButton{\n\toutline: none !important;\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: inherit;\n\tfont-size: inherit;\n\tfont-weight: inherit;\n}";
@@ -879,7 +888,8 @@ function CoreButton(props) {
       onClick: clickHandler,
       style: props.style,
       onBlur: props.onBlur,
-      type: props.type
+      type: props.type,
+      tabIndex: props.tabIndex
     }, props.loading ? /*#__PURE__*/React.createElement(Loading, {
       style: {
         fontSize: 'inherit',
@@ -899,7 +909,8 @@ CoreButton.propTypes = {
   style: PropTypes.object,
   onBlur: PropTypes.func,
   type: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  tabIndex: PropTypes.any
 };
 
 var css_248z$8 = ".CloseButton{\n\tborder: none;\n\tbackground-color: transparent;\n\toutline: none !important;\n\tposition: relative;\n\tcolor: var(--lockedTextColor);\n}\n\n.CloseButton:active{\n\tfilter: brightness(70%);\n}";
@@ -911,7 +922,8 @@ function CloseButton(props) {
     onClick: props.onClick,
     locked: props.locked,
     hidden: props.hidden,
-    style: props.style
+    style: props.style,
+    tabIndex: props.tabIndex
   }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faTimes
   }));
@@ -921,7 +933,8 @@ CloseButton.propTypes = {
   locked: PropTypes.bool,
   onClick: PropTypes.func,
   hidden: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
+  tabIndex: PropTypes.any
 };
 
 function AppDrawer(props) {
@@ -932,16 +945,6 @@ function AppDrawer(props) {
   var _useSystem = useSystem(),
       Drawer = _useSystem.Drawer;
 
-  var trueLeft = props.style && props.style.width ? props.style.width : 'var(--drawerWidth)';
-
-  var _useState = useState(!Drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null),
-      _useState2 = _slicedToArray(_useState, 2),
-      drawerLeft = _useState2[0],
-      setDrawerLeft = _useState2[1];
-
-  useEffect(function () {
-    setDrawerLeft(!Drawer.isOpen ? 'calc( ' + trueLeft + ' * -1 )' : null);
-  }, [Drawer.isOpen]);
   useEffect(function () {
     Drawer.setExists(true);
     return function () {
@@ -955,18 +958,16 @@ function AppDrawer(props) {
     }
   }
 
-  var handlerClass = Drawer.isOpen ? 'SystemDrawerHandler' : '';
-
   if (Drawer.portalDestination.current) {
     return /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement("div", {
-      className: handlerClass,
+      id: "TouchPointDrawerHandler",
       onClick: clickBackdrop
     }, /*#__PURE__*/React.createElement(lockedContext.Provider, {
       value: locked
     }, /*#__PURE__*/React.createElement("div", {
-      className: 'AppDrawer ' + Drawer.className,
+      className: 'AppDrawer',
+      id: 'TouchPointAppDrawer',
       style: _objectSpread2(_objectSpread2({}, props.style), {}, {
-        left: drawerLeft,
         opacity: '93%'
       })
     }, /*#__PURE__*/React.createElement("div", {
@@ -977,8 +978,7 @@ function AppDrawer(props) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         width: '100%',
-        height: '100%',
-        display: Drawer.isOpen ? null : 'none'
+        height: '100%'
       }
     }, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement(CloseButton, {
       locked: false,
@@ -996,7 +996,7 @@ AppDrawer.propTypes = {
   locked: PropTypes.bool
 };
 
-var css_248z$9 = ".FreeButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\t\n\tfont-size: 12pt;\n\tfont-weight: bold;\n\tpadding: 8px 17px;\n\tborder-radius: 30px;\n\tbox-sizing: border-box;\n}\n\n.FreeButton.wide{\n\twidth: 100%;\n\tdisplay: block;\n\tmargin: 0;\n}\n\n.FreeButton.neutral{\n\tbackground-color: var(--freeButtonNeutralBG);\n}\n\n.FreeButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.FreeButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.FreeButton:hover{\n\tfilter: brightness(110%);\n}\n\n.FreeButton:active{\n\tfilter: brightness(95%);\n}\n\n.FreeButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}\n";
+var css_248z$9 = ".FreeButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\t\n\tfont-size: 12pt;\n\tfont-weight: bold;\n\tpadding: 8px 17px;\n\tbox-sizing: border-box;\n}\n\n.FreeButton.wide{\n\twidth: 100%;\n\tdisplay: block;\n\tmargin: 0;\n}\n\n.FreeButton.neutral{\n\tbackground-color: var(--freeButtonNeutralBG);\n}\n\n.FreeButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.FreeButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.FreeButton:hover{\n\tfilter: brightness(110%);\n}\n\n.FreeButton:active{\n\tfilter: brightness(95%);\n}\n\n.FreeButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}\n";
 styleInject(css_248z$9);
 
 function FreeButton(props) {
@@ -1018,7 +1018,8 @@ function FreeButton(props) {
     className: "FreeButton " + purpose + ' ' + wideClass + ' ' + props.className,
     style: props.style,
     type: props.type,
-    loading: props.loading
+    loading: props.loading,
+    tabIndex: props.tabIndex
   }, props.children);
 } //Proptypes
 
@@ -1030,7 +1031,8 @@ FreeButton.propTypes = {
   wide: PropTypes.bool,
   style: PropTypes.object,
   type: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  tabIndex: PropTypes.any
 };
 
 var css_248z$a = "\n.ConfirmButton{\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\t\n\tcolor: var(--freeButtonTextColor);\n\tbackground-color: var(--freeButtonNeutralBG);\n\t\n\tfont-size: 11pt;\n\tfont-weight: bold;\n\tpadding: 0px 6px;\n\tbox-sizing: border-box;\n}\n\n.ConfirmButton.positive{\n\tbackground-color: var(--freeButtonPositiveBG);\n\t\n}\n\n.ConfirmButton.negative{\n\tbackground-color: var(--freeButtonNegativeBG);\n}\n\n.ConfirmButton:hover{\n\tfilter: brightness(110%);\n}\n\n.ConfirmButton:active{\n\tfilter: brightness(95%);\n}\n\n.ConfirmButton.locked{\n\tcursor: default !important;\n\tfilter: grayscale(95%) brightness(70%) !important;\n\topacity: 50% !important;\n}";
@@ -1144,12 +1146,6 @@ function TextBox(props) {
     if (!locked && props.onChange) {
       props.onChange(e);
     }
-  }
-
-  function blurHandler(e) {
-    if (!locked && props.onBlur) {
-      props.onBlur(e);
-    }
   } //For the onEnter event
 
 
@@ -1167,12 +1163,14 @@ function TextBox(props) {
     readOnly: locked,
     onKeyPress: keyPressHandler,
     placeholder: props.placeholder,
-    onBlur: blurHandler,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
     ref: props.inputRef,
     autoFocus: props.autoFocus,
     style: props.style,
     value: props.value,
-    maxLength: props.maxLength
+    maxLength: props.maxLength,
+    tabIndex: props.tabIndex
   });
 } //Proptypes
 
@@ -1187,7 +1185,7 @@ TextBox.propTypes = (_TextBox$propTypes = {
   value: PropTypes.string,
   inputRef: PropTypes.object,
   autoFocus: PropTypes.bool
-}, _defineProperty(_TextBox$propTypes, "value", PropTypes.string), _defineProperty(_TextBox$propTypes, "onEscape", PropTypes.func), _defineProperty(_TextBox$propTypes, "type", PropTypes.string), _defineProperty(_TextBox$propTypes, "maxLength", PropTypes.number), _TextBox$propTypes);
+}, _defineProperty(_TextBox$propTypes, "value", PropTypes.string), _defineProperty(_TextBox$propTypes, "onEscape", PropTypes.func), _defineProperty(_TextBox$propTypes, "type", PropTypes.string), _defineProperty(_TextBox$propTypes, "maxLength", PropTypes.number), _defineProperty(_TextBox$propTypes, "tabIndex", PropTypes.any), _defineProperty(_TextBox$propTypes, "onFocus", PropTypes.func), _defineProperty(_TextBox$propTypes, "onBlur", PropTypes.func), _TextBox$propTypes);
 
 function useModuleContext() {
   var _useContext = useContext(moduleContext),
@@ -1290,7 +1288,8 @@ function SearchBar(props) {
     placeholder: "Search",
     value: searchBarValue,
     inputRef: searchRef,
-    style: props.style
+    style: props.style,
+    tabIndex: props.tabIndex
   }), searchBarValue ? /*#__PURE__*/React.createElement("button", {
     className: "searchButton",
     onClick: clearHandler
@@ -1302,7 +1301,8 @@ function SearchBar(props) {
 SearchBar.propTypes = {
   defaultValue: PropTypes.string,
   style: PropTypes.object,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  tabIndex: PropTypes.any
 };
 
 //Context hooks for variable and functions that are system wide
@@ -1386,7 +1386,8 @@ function RadioButton(props) {
     style: props.buttonStyle,
     id: id,
     checked: radioData.value !== undefined ? radioData.value === props.value : undefined,
-    readOnly: radioData.value !== undefined
+    readOnly: radioData.value !== undefined,
+    tabIndex: props.tabIndex
   }), /*#__PURE__*/React.createElement("label", {
     className: lockedClass,
     htmlFor: id,
@@ -1397,7 +1398,8 @@ RadioButton.propTypes = {
   value: PropTypes.any,
   style: PropTypes.object,
   labelStyle: PropTypes.object,
-  buttonStyle: PropTypes.object
+  buttonStyle: PropTypes.object,
+  tabIndex: PropTypes.any
 };
 
 var css_248z$e = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 5px 10px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n\tposition: relative;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tleft: 10px;\n\tbackground-color: var(--navColor);\n\theight: 100%;\n\t\n}\n\n.ControlBar .searchContainer{\n\tposition: absolute;\n\tright: 5px;\n\tbox-sizing: border-box;\n\twidth: max(20%, 250px);\n\theight: 100%;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}\n\n.ControlBar .input{\n\tborder: none;\n}\n\n/* ControlButton */\n.ControlBar button:not(.searchButton){\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\theight: 100%;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: var(--navColor);\n\tbackground-color: transparent;\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n\twhite-space: nowrap;\n}\n\n.ControlBar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlBar button:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlBar button.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}";
@@ -1441,6 +1443,8 @@ var css_248z$f = ".CommentBox{\n\tresize: none;\n\tpadding: 5px;\n\tborder-radiu
 styleInject(css_248z$f);
 
 function CommentBox(props) {
+  var _React$createElement;
+
   //deccides if the component is locked based on props and parents in the tree
   var lockedFromAbove = useContext(lockedContext);
   var locked = props.locked || lockedFromAbove && props.locked === undefined;
@@ -1472,7 +1476,7 @@ function CommentBox(props) {
     }
   }
 
-  return /*#__PURE__*/React.createElement("textarea", _defineProperty({
+  return /*#__PURE__*/React.createElement("textarea", (_React$createElement = {
     className: "input CommentBox " + lockedClass + ' ' + props.className,
     defaultValue: props.defaultValue,
     onChange: changeHandler,
@@ -1485,7 +1489,7 @@ function CommentBox(props) {
     onKeyPress: keyPressHandler,
     autoFocus: props.autoFocus,
     onFocus: props.onFocus
-  }, "onBlur", props.onBlur));
+  }, _defineProperty(_React$createElement, "onBlur", props.onBlur), _defineProperty(_React$createElement, "tabIndex", props.tabIndex), _React$createElement));
 } //Proptypes
 
 CommentBox.propTypes = {
@@ -1500,7 +1504,10 @@ CommentBox.propTypes = {
   width: PropTypes.string,
   value: PropTypes.string,
   maxLength: PropTypes.number,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  tabIndex: PropTypes.any,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 var css_248z$g = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
@@ -1540,7 +1547,8 @@ function ComboBox(props) {
       onChange: changeHandler,
       disabled: locked,
       style: props.style,
-      value: props.value
+      value: props.value,
+      tabIndex: props.tabIndex
     }, kids);
   }
 } //
@@ -1551,7 +1559,8 @@ ComboBox.propTypes = {
   style: PropTypes.object,
   value: PropTypes.string,
   className: PropTypes.string,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.string,
+  tabIndex: PropTypes.any
 };
 
 function CheckBox(props) {
@@ -1588,7 +1597,8 @@ function CheckBox(props) {
     onClick: clickHandler,
     style: props.style,
     checked: props.checked,
-    readOnly: props.checked !== undefined ? true : false
+    readOnly: props.checked !== undefined ? true : false,
+    tabIndex: props.tabIndex
   }), /*#__PURE__*/React.createElement("span", {
     className: "checkmark"
   }), props.label);
@@ -1599,7 +1609,8 @@ CheckBox.propTypes = {
   onChange: PropTypes.func,
   defaultValue: PropTypes.bool,
   style: PropTypes.object,
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
+  tabIndex: PropTypes.any
 };
 
 //Context hooks for variable and functions that are system wide
@@ -1953,7 +1964,7 @@ PopupCard.propTypes = {
   innerStyle: PropTypes.object
 };
 
-var css_248z$l = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 29px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\ttop: var(--topBarHeight);\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 10px;\n}\n\n.MainTable .TheadButton{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: -2px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}";
+var css_248z$l = ".MainTable{\n\twidth: 100%;\n\tposition: relative;\n\theight: 100%;\n\toverflow-x: auto;\n\toverflow-y: auto;\n\t--topBarHeight: 29px;\n\tcolor: var(--mainTextColor);\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable.noTransition *{\n\ttransition: none !important;\n}\n\n.MainTable .topBar{\n\tpadding: 7px 0px;\n\tpadding-top: 3px;\n\tpadding-left: 30px;\n\tbackground-color: var(--bodyAltBG);\n\tposition: sticky;\n\tleft: 0;\n\tz-index: 2;\n\ttop:0;\n\theight: var(--topBarHeight);\n}\n\n.MainTable .topBar .menuButtonContainer{\n\tpadding: 0;\n\tmargin-right: 10px;\n\tz-index: 11;\n}\n\n.MainTable .theadBar{\n\ttop: var(--topBarHeight);\n\toverflow-y: visible;\n\tbackground-color: var(--bodyAltBG);\n\tpadding-left: 25px;\n\tpadding-right: 25px;\n\tdisplay: flex;\n\tposition: sticky;\n\tz-index: 1;\n}\n\n.MainTable.hasNested .theadBar>span:first-child{\n\tpadding-left: 10px;\n}\n\n.MainTable .TheadButton, \n.MainTable .theadBarComponentWrapper{\n\twhite-space: nowrap;\n\ttext-align: left;\n\tpadding-left: 0;\n\tcolor: var(--mainTextColor);\t\n}\n\n.MainTable .theadBarComponentWrapper{\n\toverflow: hidden;\n}\n\n.MainTable .theadBarTheadButtonWrapper\n.menuButtonContainer,\n.MainTable .theadBarTheadButtonWrapper\n.menuButtonContainer .TheadButton{\n\twidth: 100%;\n\t/* overflow: hidden; removed as it causes the theadbutton to be very tall for no reason */\n}\n\n\n.MainTable .TheadButton:active,\n.MainTable .TheadButton:focus,\n.MainTable .TheadButton.open{\n\tcolor: var(--labelColor);\n\tfilter: brightness(70%);\n}\n\n.MainTable .TheadButton.locked{\n\tcolor: var(--mainTextColor)\t!important;\n\tfilter: none !important;\n}\n\n.MainTable span{\n\tbox-sizing: border-box;\n\tdisplay: inline-block;\n\ttext-align: left;\n\tpadding: 0 3px;\n\tmargin: 0;\n\tmax-height: 100%;\n\tpadding-left: 23px;\n}\n\n.MainTable span:first-child{\n\tpadding-left: 3px;\n}\n\n/* Controls */\n.MainTable .topBarContainer{\n\tposition: relative;\n}\n\n.MainTable .tableControls{\n\tcolor: var(--lockedTextColor);\n\tfont-size: 12pt;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .pageControls{\n\ttext-align: right;\n\tpadding: 0 10px;\n\tmargin: 0;\n\theight: 25px;\n\tcolor: var(--lockedTextColor);\n\tposition: absolute;\n\tright: 0;\n\ttop: -2px;\n\tbackground-color: var(--bodyAltBG);\n}\n\n.MainTable .topBar button{\n\tborder: none;\n\tbackground-color: transparent;\n\tcolor: var(--lockedTextColor);\n\tfont-size: 15pt;\n\tpadding: 0 10px;\n\toutline: none !important;\n}\n\n.MainTable .topBar button:hover{\n\tcolor: var(--labelColor);\n}\n\n.MainTable .topBar button:active{\n\tfilter: brightness(70%);\n}\n\n.MainTable .tableControls button{\n\tfont-size: 12pt;\n\tpadding-left: 0;\n\tmargin-right: 10px;\n}\n\n.MainTable .textButton{\n\tfont-size: 13pt !important;\n\theight: 100%;\n}\n\n.MainTable .smallIcon{\n\tfont-size: 10pt;\n} \n\n.MainTable .smallerIcon{\n\tfont-size: 9pt;\n}";
 styleInject(css_248z$l);
 
 var css_248z$m = ".TheadMenu{\n\tdisplay: flex;\n\twidth: 100%;\t\n}\n\n.TheadMenu .compactText{\n\tfont-size: 11.5pt !important;\n\tpadding-left: 9px !important;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.TheadMenu .compactText span{\n\ttext-overflow: ellipsis;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 100%;\n}\n\n.TheadMenu .FilterMenu{\n\tmax-height: inherit;\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tposition: relative;\n\twidth: 55%;\n\tborder-right: 1px solid var(--borderColor);\n}\n\n.TheadMenu .sideMenu{\n\twidth: 45%;\n\tposition: relative;\n\toverflow-y: auto;\n}\n\n.TheadMenu .SortMenu{\n\tposition: sticky;\n\ttop: 0;\n\tborder-bottom: 1px solid var(--borderColor);\n\tpadding-top: 10px;\n\tpadding-bottom: 10px;\n\tz-index: 1;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .SortMenu .sortButton{\n\tposition: relative;\n}\n\n.TheadMenu .SortMenu .sortIcon{\n\tposition: absolute;\n\tright: 9px;\n\topacity: 75%;\n}\n\n\n.TheadMenu .FilterMenu .stickyMenu{\n\tz-index: 1;\n\tposition: sticky;\n\ttop: 0;\n}\n\n.TheadMenu .FilterMenu .selectAll{\n\tfont-weight: bold;\n\tbackground-color: var(--cardBG);\n}\n\n.TheadMenu .MoreFilters{\n\twidth: 100%;\n}\n\n.TheadMenu .MoreFilters .cancelIcon{\n\tposition: absolute; \n\tright: 5px;\n\ttop: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n}\n\n.TheadMenu .MoreFilters .commitIcon{\n\tposition: absolute; \n\tright: 3px;\n\tbottom: 3px;\n\tcolor: var(--lockedTextColor);\n\tcursor: pointer;\n\tfont-size: 11pt;\n}\n\n.TheadMenu .MoreFilters .closeIcon:hover,\n.TheadMenu .MoreFilters .commitIcon:hover{\n\tfilter: brightness(115%);\n}\n\n.TheadMenu .MoreFilters .closeIcon:active,\n.TheadMenu .MoreFilters .commitIcon:active{\n\tfilter: brightness(90%);\n}\n\n.TheadMenu .MoreFilterButtonActive{\n\ttext-align: left;\n\tpadding-left: 20px;\n\tfilter: none !important;\n\tposition: relative;\n\twidth: 60%;\n}\n\n.TheadMenu .MoreFilterButtonActive .activeFilterButton .tag{\n\tdisplay: block;\n\tpadding-right: '10px';\n}\n\n.TheadMenu .MoreFilterButtonActive .input{\n\tfont-size: 10pt;\n\tpadding-top: 2px;\n\tpadding-bottom: 2px;\n\twidth: calc(100% - 10px);\n}";
@@ -2040,7 +2051,7 @@ function FilterMenu(props) {
           readOnly: true
         }), /*#__PURE__*/React.createElement("span", {
           style: spanStyle
-        }, v !== 0 && !v ? 'Blank' : props.header.format(v)));
+        }, v !== 0 && (!v || v.toString() === 'undefined') ? 'Blank' : props.header.format(v)));
       } else return null;
     }), count >= lim ? /*#__PURE__*/React.createElement("button", null, "... ", count - lim, " More") : null);
   } else return null;
@@ -2456,22 +2467,24 @@ CheckButton.propTypes = {
 
 function ColumnSettings(props) {
   function clickHandler(checked, idx) {
-    props.setTransitionClass('noTransition');
     props.headers.setVisible(idx, checked);
-    setTimeout(function () {
-      props.data.sort();
-      props.setTransitionClass('');
-    }, 0);
+  }
+
+  function applyHandler() {
+    props.data.sort();
   }
 
   return /*#__PURE__*/React.createElement(MenuButton, {
     locked: false,
     menuStyle: {
-      maxHeight: '300px'
+      maxHeight: '300px',
+      maxWidth: '300px'
     },
+    onClose: applyHandler,
     menuContent: /*#__PURE__*/React.createElement("div", {
       style: {
-        overflowY: 'auto'
+        overflowY: 'auto',
+        overflowX: 'hidden'
       }
     }, props.headers.get().map(function (h) {
       if (h.displayName) {
@@ -2615,21 +2628,30 @@ function TableControls(props) {
   if (!props.noOptions) {
     settingsButton = /*#__PURE__*/React.createElement(ColumnSettings, {
       headers: props.dataHeaders,
-      data: props.data,
-      setTransitionClass: props.setTransitionClass
+      data: props.data
     });
   }
 
   if (props.showExpandControls) {
     expandControls = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
-        props.setExpandTrigger(!props.expandTrigger);
+        var newExpanded = _objectSpread2({}, props.expandedRows);
+
+        Object.keys(newExpanded).map(function (k) {
+          newExpanded[k] = true;
+        });
+        props.setExpandedRows(newExpanded);
       }
     }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faPlus
     }), " Expand All"), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
-        props.setCollapseTrigger(!props.collapseTrigger);
+        var newExpanded = _objectSpread2({}, props.expandedRows);
+
+        Object.keys(newExpanded).map(function (k) {
+          newExpanded[k] = false;
+        });
+        props.setExpandedRows(newExpanded);
       }
     }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faMinus
@@ -2988,10 +3010,14 @@ function MainTableRow(props) {
     }
   }); //Nested rows
 
-  var _useState = useState(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      expanded = _useState2[0],
-      setExpanded = _useState2[1];
+  var expanded = props.expandedRows[props.dataRow[props.dataset.primaryKey]];
+
+  function setExpanded(value) {
+    var newExpanded = _objectSpread2({}, props.expandedRows);
+
+    newExpanded[props.dataRow[props.dataset.primaryKey]] = value;
+    props.setExpandedRows(newExpanded);
+  }
 
   var expandedClass = expanded ? ' expanded ' : '';
 
@@ -3002,15 +3028,8 @@ function MainTableRow(props) {
     }
 
     setExpanded(!expanded);
-  } //Listeners to expand all and collapse all events from the parent maintable
+  }
 
-
-  useEffect(function () {
-    setExpanded(true);
-  }, [props.expandTrigger]);
-  useEffect(function () {
-    setExpanded(false);
-  }, [props.collapseTrigger]);
   var expandIcon = props.nestedComponent ? /*#__PURE__*/React.createElement("span", {
     className: "expandButton",
     onClick: expandHandler
@@ -3019,6 +3038,14 @@ function MainTableRow(props) {
   }) : /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faPlus
   })) : null;
+  useEffect(function () {
+    //yes... I know. Trust me its okay here. 
+    if (props.nestedComponent) {
+      var newExpanded = props.expandedRows;
+      newExpanded[props.dataRow[props.dataset.primaryKey]] = props.expandedRows[props.dataRow[props.dataset.primaryKey]] ? true : false;
+      props.setExpandedRows(newExpanded);
+    }
+  }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: 'MainTableRow ' + expandedClass,
     onClick: rowClickHandler
@@ -3082,10 +3109,10 @@ function TableBody(props) {
           rowIndex: idx,
           nestedComponent: props.nestedComponent,
           nestedProps: props.nestedProps,
-          expandTrigger: props.expandTrigger,
-          collapseTrigger: props.collapseTrigger,
           noActive: props.noActive,
-          tableRef: props.tableRef
+          tableRef: props.tableRef,
+          expandedRows: props.expandedRows,
+          setExpandedRows: props.setExpandedRows
         });
       } else {
         return null;
@@ -3113,14 +3140,18 @@ function CoreTable(props) {
 
   var saveSettings = useSettings(props.settingsID, function (token) {
     props.headers.applyToken(token);
-    props.data.setLastResolved(new Date()); //Sort trigger to make it sort on the next render using the below useEffect
+    props.data.setLastResolved(new Date().toISOString()); //Sort trigger to make it sort on the next render using the below useEffect
   }); //Active page handling
 
   var _useState = useState(0),
       _useState2 = _slicedToArray(_useState, 2),
       activePage = _useState2[0],
-      setActivePage = _useState2[1]; //get the length of the data with the filter applied
+      setActivePage = _useState2[1]; //When you search, return to page 0 in case the search results don't reach the current page
 
+
+  useEffect(function () {
+    setActivePage(0);
+  }, [props.searchText]); //get the length of the data with the filter applied
 
   var dataLength = 0;
   data.forEach(function (r, idx) {
@@ -3145,7 +3176,16 @@ function CoreTable(props) {
     }
 
     props.data.sort();
-  }, [props.data.lastResolved, props.data.lastEdited]); //If clicking sets the active record then its animated
+    props.data.setLastEdited(new Date().toISOString());
+
+    if (props.searchText) {
+      props.data.search();
+    }
+  }, [props.data.lastResolved]);
+  useEffect(function () {
+    //Filtering a second time when data is refreshed. This is required because otherwise the wrong rows appear on screen if you refresh while a filter is on 
+    props.data.filter();
+  }, [props.data.lastEdited]); //If clicking sets the active record then its animated
   //if there are editable cells the animations will be cancelled
 
   var dynamic;
@@ -3182,25 +3222,16 @@ function CoreTable(props) {
     });
     props.headers.set(newHeaders);
     props.data.filter();
-  }
+  } //Positioning for nested components
 
-  var _useState3 = useState(''),
+
+  var tableRef = useRef();
+
+  var _useState3 = useState({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      transitionClass = _useState4[0],
-      setTransitionClass = _useState4[1]; //Positioning for nested components
+      expandedRows = _useState4[0],
+      setExpandedRows = _useState4[1]; //Render
 
-
-  var _useState5 = useState(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      expandTrigger = _useState6[0],
-      setExpandTrigger = _useState6[1];
-
-  var _useState7 = useState(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      collapseTrigger = _useState8[0],
-      setCollapseTrigger = _useState8[1];
-
-  var tableRef = useRef(); //Render
 
   return /*#__PURE__*/React.createElement("div", {
     className: 'MainTable ' + hasActiveClass + hasNestedClass,
@@ -3218,12 +3249,9 @@ function CoreTable(props) {
     noOptions: noOptions,
     dataHeaders: props.headers,
     data: props.data,
-    setTransitionClass: setTransitionClass,
-    setExpandTrigger: setExpandTrigger,
-    setCollapseTrigger: setCollapseTrigger,
-    expandTrigger: expandTrigger,
-    collapseTrigger: collapseTrigger,
-    showExpandControls: props.nestedComponent ? true : false
+    showExpandControls: props.nestedComponent ? true : false,
+    expandedRows: expandedRows,
+    setExpandedRows: setExpandedRows
   }), /*#__PURE__*/React.createElement(PageContols, {
     activePage: activePage,
     setActivePage: setActivePage,
@@ -3242,13 +3270,15 @@ function CoreTable(props) {
         style: {
           width: hdr.width + 'px'
         },
-        key: 'header' + i
+        key: 'header' + i,
+        className: "theadBarComponentWrapper"
       }, hdr.displayName + ' ');
       return /*#__PURE__*/React.createElement("span", {
         style: {
           width: hdr.width + 'px'
         },
-        key: 'header' + i
+        key: 'header' + i,
+        className: "theadBarTheadButtonWrapper"
       }, /*#__PURE__*/React.createElement(TheadButton, {
         header: hdr,
         data: props.data,
@@ -3258,7 +3288,7 @@ function CoreTable(props) {
       }, hdr.displayName + ' '));
     } else return null;
   })), /*#__PURE__*/React.createElement("div", {
-    className: "mainSection" + transitionClass,
+    className: "mainSection",
     style: {
       width: 'max(calc(' + totalHeaderWidth + 'px + 70px), 100%)'
     }
@@ -3270,15 +3300,15 @@ function CoreTable(props) {
     dynamic: dynamic,
     nestedComponent: props.nestedComponent,
     nestedProps: props.nestedProps,
-    expandTrigger: expandTrigger,
-    collapseTrigger: collapseTrigger,
     noActive: noActive,
     tableRef: tableRef,
     pageSize: props.pageSize,
     activePage: activePage,
     metaData: metaData,
     dataArray: data,
-    noLoading: props.noLoading
+    noLoading: props.noLoading,
+    expandedRows: expandedRows,
+    setExpandedRows: setExpandedRows
   })));
 }
 
@@ -3301,10 +3331,15 @@ function useDataset(fetchFunction) {
       lastResolved = _useState6[0],
       setLastResolved = _useState6[1];
 
-  var _useState7 = useState({}),
+  var _useState7 = useState(),
       _useState8 = _slicedToArray(_useState7, 2),
-      activeRecord = _useState8[0],
-      setActiveRecord = _useState8[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
+      lastEdited = _useState8[0],
+      setLastEdited = _useState8[1];
+
+  var _useState9 = useState({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      activeRecord = _useState10[0],
+      setActiveRecord = _useState10[1]; //Allowing you to choose the data arary you use, so you can set the active row right after fetching/setting new data
 
 
   function _selectRecord(newPrimaryKey) {
@@ -3356,7 +3391,7 @@ function useDataset(fetchFunction) {
               _selectRecord(activeRecord[options.primaryKey], newData);
 
               setStatus('Resolved');
-              setLastResolved(new Date());
+              setLastResolved(new Date().toISOString());
               return _context.abrupt("return", 'Resolved');
 
             case 13:
@@ -3449,7 +3484,8 @@ function useDataset(fetchFunction) {
     status: status,
     lastResolved: lastResolved,
     setLastResolved: setLastResolved,
-    lastEdited: '',
+    setLastEdited: setLastEdited,
+    lastEdited: lastEdited,
     //TouchPoint Controls
     isDataset: true,
     primaryKey: options.primaryKey,
@@ -3728,11 +3764,17 @@ function useHeaders() {
     if (savedLayouts[id]) {
       var newHeaders = [];
       headers.forEach(function (h) {
-        h.clearFilter();
-        h.visible = savedLayouts[id].headerOptions[h.headerID].visible;
-        savedLayouts[id].headerOptions[h.headerID].filterList.forEach(function (f) {
-          h.addFilter(f);
-        });
+        try {
+          h.clearFilter(); //If there's no setting for this header it means it was added in an update. Hide it since its not selected. If its requried, it will show anyway. 
+
+          h.visible = savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID] ? savedLayouts[id].headerOptions[h.headerID].visible : false;
+          savedLayouts[id].headerOptions[h.headerID].filterList.forEach(function (f) {
+            h.addFilter(f);
+          });
+        } catch (err) {
+          console.error(err);
+        }
+
         newHeaders.push(h);
       });
       setHeaders(newHeaders);
@@ -3760,16 +3802,20 @@ function useHeaders() {
   }
 
   function applyToken(token) {
-    var newSettings = JSON.parse(token);
-    setSavedLayouts(newSettings.savedLayouts);
+    try {
+      var newSettings = JSON.parse(token);
+      setSavedLayouts(newSettings.savedLayouts);
 
-    var newHeaders = _toConsumableArray(headers);
+      var newHeaders = _toConsumableArray(headers);
 
-    newHeaders.forEach(function (h) {
-      h.visible = newSettings.headerOptions[h.headerID].visible;
-    });
-    setSortRules(newSettings.sortRules ? newSettings.sortRules : []);
-    setHeaders(newHeaders);
+      newHeaders.forEach(function (h) {
+        h.visible = newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID] ? newSettings.headerOptions[h.headerID].visible : true;
+      });
+      setSortRules(newSettings.sortRules ? newSettings.sortRules : []);
+      setHeaders(newHeaders);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function setVisible(index, bool) {
@@ -3870,10 +3916,7 @@ function MainTable(props) {
   cleanProps.data = data;
   cleanProps.headers = headers; //Sort, search, and filter functionality
 
-  var _useState = useState([{
-    visible: true,
-    filteredBy: ''
-  }]),
+  var _useState = useState([]),
       _useState2 = _slicedToArray(_useState, 2),
       metaData = _useState2[0],
       setMetaData = _useState2[1];
@@ -3886,7 +3929,7 @@ function MainTable(props) {
 
   var searchText = useModuleContext().get('TouchPointSearchText');
 
-  function searchData() {
+  data.search = function () {
     if (props.searchable) {
       var values = data.read();
       var newMetaData = [];
@@ -3903,9 +3946,11 @@ function MainTable(props) {
       });
       setMetaData(newMetaData);
     }
-  }
+  };
 
-  useEffect(searchData, [searchText]); //FILTER
+  useEffect(function () {
+    data.search();
+  }, [searchText]); //FILTER
 
   function filterData(values) {
     var newMetaData = [];
@@ -3975,12 +4020,14 @@ function MainTable(props) {
   if (props.data.isDataset) {
     return /*#__PURE__*/React.createElement(CoreTable, _extends({}, cleanProps, {
       metaData: metaData,
-      locked: locked
+      locked: locked,
+      searchText: searchText
     }));
   } else {
     return /*#__PURE__*/React.createElement(CoreTable, _extends({}, newProps, {
       metaData: metaData,
-      locked: locked
+      locked: locked,
+      searchText: searchText
     }));
   }
 } //Proptypes
