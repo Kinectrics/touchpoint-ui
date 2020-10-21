@@ -59,7 +59,6 @@ TextBox.propTypes = {
 	inputRef: PropTypes.object,
 	autoFocus: PropTypes.bool,
 	value: PropTypes.string,
-	onEscape: PropTypes.func,
 	type: PropTypes.string,
 	maxLength:PropTypes.number,
 	tabIndex: PropTypes.any,
