@@ -29,6 +29,7 @@ export default function CoreButton(props) {
 			onBlur = {props.onBlur}
 			type={props.type}
 			tabIndex={props.tabIndex}
+			title={props.title}
 		>
 			{props.loading ? <Loading style={{
 				fontSize: 'inherit',
@@ -50,4 +51,5 @@ CoreButton.propTypes = {
 	type: PropTypes.string,
 	loading: PropTypes.bool,
 	tabIndex: PropTypes.any,
+	title: PropTypes.string,
 }

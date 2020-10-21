@@ -84,6 +84,7 @@ export default function MenuButton(props){
 				onClick={clickHandler}
 				ref={ref}
 				style={props.style}
+				title={props.title}
 			>
 				{notificationBadge}
 				{props.children}
@@ -106,6 +107,7 @@ export default function MenuButton(props){
 	if(locked){
 		
 		return (<button
+				title={props.title}
 				className={'MenuButton ' + props.className + ' ' + lockedClass}
 				style={props.style}
 			>
@@ -151,4 +153,5 @@ MenuButton.propTypes = {
 	style: PropTypes.object,
 	notificationStyle: PropTypes.object,
 	menuProps: PropTypes.object,
+	title: PropTypes.string,
 }

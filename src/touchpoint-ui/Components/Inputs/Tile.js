@@ -22,7 +22,7 @@ export default function Tile(props) {
 	: null
 	
 	return (
-		<div style={props.style} className={'Tile' + (locked ? ' locked ' : '')}>
+		<div style={props.style} className={'Tile' + (locked ? ' locked ' : '')} title={props.title}>
 			<div style = {props.innserStyle} className={'TileContainer '} onClick = {clickHandler}> 
 				{notificationBadge}
 				<div className='logo flexCenter'>
@@ -46,4 +46,5 @@ Tile.propTypes = {
 	onClick: PropTypes.func,
 	style: PropTypes.object,
 	loading: PropTypes.bool,
+	title: PropTypes.string,
 }

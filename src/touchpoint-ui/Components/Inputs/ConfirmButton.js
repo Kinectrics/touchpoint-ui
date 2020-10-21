@@ -27,6 +27,7 @@ export default function ConfirmButton(props) {
 			className = {props.className + ' ConfirmButton ' + 
 				(expanded ? ' expanded ' : '') + props.purpose
 			}
+			title={props.title}
 			locked = {props.locked}
 			hidden = {props.hidden}
 			onClick = {clickHandler}
@@ -52,5 +53,6 @@ ConfirmButton.propTypes = {
 	content: PropTypes.any,
 	expandedContent: PropTypes.any,
 	purpose: PropTypes.string,
-	loading: PropTypes.bool
+	loading: PropTypes.bool,
+	title: PropTypes.string,
 }
