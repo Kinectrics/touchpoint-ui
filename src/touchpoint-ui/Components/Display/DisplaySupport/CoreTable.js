@@ -139,8 +139,17 @@ export default function CoreTable(props){
 								{hdr.displayName + ' '}
 							</span>
 							
+							let headerClass = hdr.onEdit ? ' theadBarTheadButtonWrapper ' : ' shiftLeft theadBarTheadButtonWrapper '
+							if(hdr.styling && (!hdr.styling.textAlign)){
+								headerClass = headerClass + ' centeredHeader '
+							}
+							
 							return (
-								<span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarTheadButtonWrapper'>
+								<span 
+									style={{ width: hdr.width + 'px' }} 
+									key={'header' + i} 
+									className={headerClass}
+								>
 
 									<TheadButton
 										header={hdr}

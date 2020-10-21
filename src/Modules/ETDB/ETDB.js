@@ -79,8 +79,15 @@ export default function ETDB() {
 						<button>Hello</button>
 						<button>Hello</button>
 					</div>
-				} faIcon={faFileSignature} title={'CSQ'} notifications={20}/>
-				<DockIcon faIcon={faExclamationCircle} title={'Emergent'} notifications={200}/>
+				} faIcon={faFileSignature} title={'CSQ'} notifications={20} 
+					// onClick={()=>console.log('click')}
+					onOpen={()=>console.log('Open')}
+					onClose={()=>console.log('close')}
+				/>
+				<DockIcon 
+					faIcon={faExclamationCircle} title={'Emergent'} 
+					notifications={200}
+				/>
 				<DockIcon faIcon={faLayerGroup} title={'All TDS'}/>
 				<DockIcon faIcon={faPlusSquare} title={'New TDS'} style={{ marginTop: '50px' }}/>
 				<DockIcon faIcon={faSearch} title={'Lookup'} />

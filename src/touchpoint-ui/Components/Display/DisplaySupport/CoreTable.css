@@ -66,6 +66,17 @@
 	/* overflow: hidden; removed as it causes the theadbutton to be very tall for no reason */
 }
 
+.MainTable .theadBarTheadButtonWrapper.shiftLeft
+.menuButtonContainer{
+	padding-left: 0;
+}
+
+.MainTable .theadBarTheadButtonWrapper.centeredHeader,
+.MainTable .theadBarTheadButtonWrapper.centeredHeader .TheadButton
+{
+	text-align: center;
+}
+
 
 .MainTable .TheadButton:active,
 .MainTable .TheadButton:focus,
