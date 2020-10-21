@@ -99,7 +99,7 @@ export default function VendorRubrics(){
 					pageSize={50}
 					searchable
 					settingsID={'VendorRubricsMainTable'}
-					// nestedComponent = {TestExpandedRows}
+					nestedComponent = {TestExpandedRows}
 					nestedProps={{fitToWidth:true}}
 				/>
 				
