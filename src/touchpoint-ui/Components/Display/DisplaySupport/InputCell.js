@@ -116,6 +116,8 @@ export default function InputCell(props) {
 	
 	//Combobox cells
 	if(props.header.options){
+		const myOptions = props.header.options
+		
 		return <select
 			className={'InputCell input ' + validClass}
 			onKeyDown={keyHandler}
@@ -123,7 +125,7 @@ export default function InputCell(props) {
 			value={currentValue}
 			onChange={selectHandler}
 		>
-			{props.header.options.map(v=>{
+			{myOptions.map(v=>{
 				return<option key={v} value={v}>{v}</option>
 			})}
 		</select>

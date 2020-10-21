@@ -37,7 +37,7 @@ export default function VendorRubrics(){
 	//Headers for table
 	const dataHeaders = [
 		{headerID: 'id',displayName:'ID', width: 100, required: true},
-		{headerID: 'project', displayName: 'Project', width: 100, options:[1,2,3,4], onEdit:(e)=>console.log(e.cellValue)},
+		{headerID: 'project', displayName: 'Project', width: 100, options:[2,100,200], onEdit:(e)=>false},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: ({cellValue})=>console.log({cellValue})},

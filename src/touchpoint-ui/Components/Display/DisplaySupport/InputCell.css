@@ -49,3 +49,7 @@ select.InputCell{
 	vertical-align: top;
 	padding-top: 0 !important;
 }
+
+select.InputCell:focus{
+	border: 1px solid var(--borderColor)
+}
