@@ -53,7 +53,7 @@ export default function DockIcon(props) {
 	
 	return (
 		<CoreButton 
-			className = 'DockIcon' 
+			className = {props.active ? 'DockIcon active' : 'DockIcon'} 
 			style = {props.style} 
 			locked = {props.locked}
 			onClick = {props.onClick}
@@ -76,5 +76,6 @@ DockIcon.propTypes = {
 	menuContent: PropTypes.any,
 	menuStyle: PropTypes.object,
 	menuProps: PropTypes.object,
+	active: PropTypes.bool,
 }
 

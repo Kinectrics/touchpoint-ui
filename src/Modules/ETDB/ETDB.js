@@ -85,6 +85,7 @@ export default function ETDB() {
 					onClose={()=>console.log('close')}
 				/>
 				<DockIcon 
+					active
 					faIcon={faExclamationCircle} title={'Emergent'} 
 					notifications={200}
 				/>
