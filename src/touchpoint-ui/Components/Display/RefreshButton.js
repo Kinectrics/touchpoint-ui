@@ -19,10 +19,17 @@ export default function RefreshButton(props) {
 		</CoreButton>
 	}
 	
-	return (
-		<CoreButton title={props.title} style={props.style} className={props.className} onClick={() => {
+	function clickHandler(){
+		if(Array.isArray(props.data)){
+			props.data.map(d=>d.refresh())
+		}else{
 			props.data.refresh()
-		}}>
+		}
+		
+	}
+	
+	return (
+		<CoreButton title={props.title} style={props.style} className={props.className} onClick={clickHandler}>
 			{props.icon ? props.icon : <FontAwesomeIcon icon={faSyncAlt} />} 
 			{props.title ? props.title : ' Refresh'}
 		</CoreButton>
@@ -32,7 +39,7 @@ export default function RefreshButton(props) {
 RefreshButton.propTypes={
 	className: propTypes.string,
 	style: propTypes.object,
-	data: propTypes.object.isRequired,
+	data: propTypes.oneOfType([propTypes.object, propTypes.array]).isRequired,
 	icon: propTypes.object,
 	title: propTypes.string,
 }

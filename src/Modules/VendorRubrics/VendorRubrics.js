@@ -52,6 +52,7 @@ export default function VendorRubrics(){
 		return sqlRes
 	}, {primaryKey: 'id'})
 	
+	
 	return (
 		<Module moduleName = "VendorRubrics" >
 			
