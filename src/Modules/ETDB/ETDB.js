@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {ConfirmButton, Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, CoreButton, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset, CommentBox} from '../../touchpoint-ui'
+import {useShortcuts, ConfirmButton, Module, Dock, DockIcon, useSystem, FreeButton, Popup, SearchBar, ControlBar, CoreButton, ControlButton, RadioGroup, RadioButton, TextBox, InfoCard, SplitScreen, PopupCard, Tile, MenuButton, useDataset, CommentBox} from '../../touchpoint-ui'
 import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -31,6 +31,10 @@ function MenuComp(props){
 }
 
 export default function ETDB() {
+	
+	useShortcuts([
+		{key: 'e', ctrl:true, callback: ()=>console.log(9)}
+	])
 	
 	const data = useDataset(()=>{
 		return [...new Array(20)].map((r, idx)=>{
