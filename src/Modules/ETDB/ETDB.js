@@ -95,7 +95,7 @@ export default function ETDB() {
 			</Dock>
 			
 			<TextBox maxLength={4}/>
-			<CommentBox maxLength={4}/>
+			<CommentBox/>
 			
 			<InfoCard stripe>
 				<InfoCard>
