@@ -17,7 +17,7 @@ export default function ControlBar(props) {
 				<div className="ControlBar flexY" style = {props.style}>
 					
 					<div className="searchContainer">
-						<SearchBar />
+						<SearchBar {...props.searchBarProps}/>
 					</div>
 					
 					<div className="buttonContainer flexY" >{props.children}</div>
