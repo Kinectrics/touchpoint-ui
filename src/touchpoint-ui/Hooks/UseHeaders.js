@@ -44,7 +44,11 @@ export default function useHeaders(dataHeaders = []) {
 			//save array filter if there are selected values
 			if(h.filterList.arrayFilter && Object.keys(h.uniqueValues).length){
 				const vals = Object.keys(h.uniqueValues)
-				newLayouts[saveID].headerOptions[h.headerID].arrayFilterValues = vals.filter(v=>!h.uniqueValues[v])
+				const unselectedValues = vals.filter(v=>!h.uniqueValues[v])
+				if(unselectedValues.length < 100){
+					newLayouts[saveID].headerOptions[h.headerID].arrayFilterValues = unselectedValues
+				}
+				
 			}
 		})
 		
