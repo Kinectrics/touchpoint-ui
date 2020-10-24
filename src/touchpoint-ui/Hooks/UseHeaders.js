@@ -45,7 +45,7 @@ export default function useHeaders(dataHeaders = []) {
 			if(h.filterList.arrayFilter && Object.keys(h.uniqueValues).length){
 				const vals = Object.keys(h.uniqueValues)
 				const unselectedValues = vals.filter(v=>!h.uniqueValues[v])
-				if(unselectedValues.length < 100){
+				if(unselectedValues.length < 50){
 					newLayouts[saveID].headerOptions[h.headerID].arrayFilterValues = unselectedValues
 				}
 				
