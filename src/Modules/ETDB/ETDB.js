@@ -127,6 +127,13 @@ export default function ETDB() {
 				<RadioButton value = {3}>3</RadioButton>
 			</RadioGroup>
 			
+			<ConfirmButton
+				content={'hello'}
+				expandedContent={'AAAAAAA'}
+				onExpand={()=>console.log(':)')}
+				onClick={()=>console.log('Open')}
+			/>
+			
 
 			
 		</Module>

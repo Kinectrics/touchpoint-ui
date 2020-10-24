@@ -14,6 +14,7 @@ export default function ConfirmButton(props) {
 		} else{
 			e.stopPropagation()
 			setExpanded(true)
+			if(props.onExpand){props.onExpand(e)}
 			e.stopPropagation()
 		}
 	}
@@ -55,4 +56,5 @@ ConfirmButton.propTypes = {
 	purpose: PropTypes.string,
 	loading: PropTypes.bool,
 	title: PropTypes.string,
+	onExpand: PropTypes.func,
 }
