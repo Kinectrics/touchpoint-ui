@@ -1055,6 +1055,10 @@ function ConfirmButton(props) {
       }
 
       setExpanded(false);
+
+      if (props.onCollapse) {
+        props.onCollapse();
+      }
     } else {
       e.stopPropagation();
       setExpanded(true);
@@ -1069,6 +1073,10 @@ function ConfirmButton(props) {
 
   function blurHandler() {
     setExpanded(false);
+
+    if (props.onCollapse) {
+      props.onCollapse();
+    }
   }
 
   return /*#__PURE__*/React.createElement(CoreButton, {
@@ -1095,7 +1103,8 @@ ConfirmButton.propTypes = {
   purpose: PropTypes.string,
   loading: PropTypes.bool,
   title: PropTypes.string,
-  onExpand: PropTypes.func
+  onExpand: PropTypes.func,
+  onCollapse: PropTypes.func
 };
 
 var css_248z$b = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}\n\n.Tile .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: -2px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 4px 6px;\n}";

@@ -11,6 +11,7 @@ export default function ConfirmButton(props) {
 		if(expanded){
 			if(props.onClick){props.onClick(e)}
 			setExpanded(false)
+			if(props.onCollapse){ props.onCollapse()}
 		} else{
 			e.stopPropagation()
 			setExpanded(true)
@@ -21,6 +22,7 @@ export default function ConfirmButton(props) {
 	
 	function blurHandler(){
 		setExpanded(false)
+		if(props.onCollapse){ props.onCollapse()}
 	}
 	
 	return (
@@ -57,4 +59,5 @@ ConfirmButton.propTypes = {
 	loading: PropTypes.bool,
 	title: PropTypes.string,
 	onExpand: PropTypes.func,
+	onCollapse: PropTypes.func,
 }

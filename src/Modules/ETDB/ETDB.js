@@ -136,6 +136,7 @@ export default function ETDB() {
 				expandedContent={'AAAAAAA'}
 				onExpand={()=>console.log(':)')}
 				onClick={()=>console.log('Open')}
+				onCollapse={()=>console.log('Collapse')}
 			/>
 			
 		</Module>
