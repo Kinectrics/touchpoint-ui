@@ -1,5 +1,4 @@
-import {useRef} from 'react'
-import {useEffect} from 'react'
+import {useRef, useEffect} from 'react'
 
 export default function useShortcuts(shortcuts){
 	
@@ -14,7 +13,7 @@ export default function useShortcuts(shortcuts){
 		code = code + e.key.toString().toLowerCase()
 		
 		if(keymap.current[code]){
-			keymap.current[code]()
+			keymap.current[code](e)
 		}
 	}
 	
