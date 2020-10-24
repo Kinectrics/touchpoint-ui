@@ -38,8 +38,14 @@ export default function useHeaders(dataHeaders = []) {
 			}
 			
 			Object.values(h.filterList).forEach((f) => {
-				if (f.options) { newLayouts[saveID].headerOptions[h.headerID].filterList.push( f.options )}
+				if (f.options) { newLayouts[saveID].headerOptions[h.headerID].filterList.push( f.options )} //everything but arrayFilters
 			})
+			
+			//save array filter if there are selected values
+			if(h.filterList.arrayFilter && Object.keys(h.uniqueValues).length){
+				const vals = Object.keys(h.uniqueValues)
+				newLayouts[saveID].headerOptions[h.headerID].arrayFilterValues = vals.filter(v=>!h.uniqueValues[v])
+			}
 		})
 		
 		setSavedLayouts(newLayouts)
@@ -63,6 +69,13 @@ export default function useHeaders(dataHeaders = []) {
 					savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f) => {
 						h.addFilter(f)
 					})
+					
+					//apply array filter
+					if(savedLayouts[id].headerOptions[h.headerID].arrayFilterValues){
+						savedLayouts[id].headerOptions[h.headerID].arrayFilterValues.map(v=>{
+							h.uniqueValues[v]=false
+						})
+					}
 					
 				}catch(err){
 					console.error(err)
@@ -114,7 +127,6 @@ export default function useHeaders(dataHeaders = []) {
 		} catch(err){
 			console.error(err)
 		}
-		
 	}
 	
 	function setVisible(index, bool){

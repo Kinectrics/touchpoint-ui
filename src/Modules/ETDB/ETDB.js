@@ -134,8 +134,6 @@ export default function ETDB() {
 				onClick={()=>console.log('Open')}
 			/>
 			
-
-			
 		</Module>
 	)
 }
