@@ -109,20 +109,23 @@ export default function MainTable(props){
 
 			if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
 				newValues = newValues.sort((aRow, bRow) => {
+					
+					const aVal = aRow[sr.headerID] ? aRow[sr.headerID].toString().toLowerCase() : ''
+					const bVal = bRow[sr.headerID] ? bRow[sr.headerID].toString().toLowerCase() : ''
 
 					if (sr.direction === 'asc') {
-						if (aRow[sr.headerID] > bRow[sr.headerID]) {
+						if (aVal > bVal) {
 							return 1
-						} else if (aRow[sr.headerID] < bRow[sr.headerID]) {
+						} else if (aVal < bVal) {
 							return -1
 						}
 
 						return 0
 
 					} else {
-						if (aRow[sr.headerID] < bRow[sr.headerID]) {
+						if (aVal < bVal) {
 							return 1
-						} else if (aRow[sr.headerID] > bRow[sr.headerID]) {
+						} else if (aVal > bVal) {
 							return -1
 						}
 						return 0

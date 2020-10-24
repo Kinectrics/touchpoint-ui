@@ -43,7 +43,7 @@ export default function VendorRubrics(){
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true},
 		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: ({cellValue})=>console.log({cellValue})},
 		{headerID: 'SM', displayName:'SM', width: 200, onEdit: editHandler},
-		{headerID: 'intern', displayName:'Intern', width: 300},
+		{headerID: 'intern', displayName:'Intern', width: 300, onEdit: ()=>true},
 	]
 	
 	//Data from the 'server'
