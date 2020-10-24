@@ -11,6 +11,7 @@ import StatusLog from './StatusLog'
 import TestExpandedRows from './TestExpandedRows'
 import TestCells from './TestCells'
 import {RefreshButton} from '../../touchpoint-ui'
+import SearchNest from './SearchNest'
 
 //And begin
 export default function VendorRubrics(){
@@ -56,7 +57,12 @@ export default function VendorRubrics(){
 	return (
 		<Module moduleName = "VendorRubrics" >
 			
-			<ControlBar searchBar locked={false}>
+			<ControlBar searchBar searchBarProps={{
+				nestedComponent:SearchNest,
+				nestedProps: {
+					hello:'testing hello'
+				}
+			}}>
 				
 				<button onClick={System.Drawer.open}>Drawer</button>
 				

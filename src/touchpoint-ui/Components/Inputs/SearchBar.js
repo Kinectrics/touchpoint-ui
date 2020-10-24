@@ -95,6 +95,14 @@ export default function SearchBar(props) {
 			>
 				<FontAwesomeIcon icon={faTimesCircle} />
 			</button> : null}
+			
+			{searchBarValue && props.nestedComponent ? <div className='searchComponentWrapper' style={props.nestedProps ? props.nestedProps.style : null}>
+				
+				{typeof (props.nestedComponent) == 'function' ? 
+				<props.nestedComponent {...props.nestedProps} searchBarValue={searchBarValue}/> 
+				: props.nestedComponent}
+				
+			</div>: null}
 		</span>
 	)
 }

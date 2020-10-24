@@ -1,3 +1,7 @@
+.SearchBar{
+	position: relative;
+}
+
 .SearchBar .searchButton{
 	background-color: transparent;
 	border: none;
@@ -21,4 +25,17 @@
 	background-color: transparent;
 	border: none;
 	color: var(--lockedTextColor);
+}
+
+.SearchBar .searchComponentWrapper{
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	height: fit-content;
+	background-color: var(--cardBG);
+	border: 1px solid var(--borderColor);
+	border-radius: 15px;
+	z-index: 20;
+	color: var(--mainTextColor);
+	padding: 10px;
 }
