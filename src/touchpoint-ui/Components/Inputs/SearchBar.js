@@ -90,19 +90,22 @@ export default function SearchBar(props) {
 				tabIndex={props.tabIndex}
 			/>
 			
-			{searchBarValue ? <button className="searchButton"
-				onClick = {clearHandler}
+			{searchBarValue && props.nestedComponent ? <div 
+				className={props.alwaysShow ? 'searchComponentWrapper alwaysShow' : 'searchComponentWrapper'} 
+				style={props.nestedProps ? props.nestedProps.style : null}
 			>
-				<FontAwesomeIcon icon={faTimesCircle} />
-			</button> : null}
-			
-			{searchBarValue && props.nestedComponent ? <div className='searchComponentWrapper' style={props.nestedProps ? props.nestedProps.style : null}>
 				
 				{typeof (props.nestedComponent) == 'function' ? 
 				<props.nestedComponent {...props.nestedProps} searchBarValue={searchBarValue}/> 
 				: props.nestedComponent}
 				
 			</div>: null}
+			
+			{searchBarValue ? <button className="searchButton"
+				onClick={clearHandler}
+			>
+				<FontAwesomeIcon icon={faTimesCircle} />
+			</button> : null}
 		</span>
 	)
 }
@@ -114,4 +117,7 @@ SearchBar.propTypes = {
 	style: PropTypes.object,
 	onChange: PropTypes.func,
 	tabIndex: PropTypes.any,
+	alwaysShow: PropTypes.bool,
+	nestedComponent: PropTypes.any,
+	nestedProps: PropTypes.object,
 }

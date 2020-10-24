@@ -38,4 +38,13 @@
 	z-index: 20;
 	color: var(--mainTextColor);
 	padding: 10px;
+	
+	display: none;
+}
+
+.SearchBar input:focus + 
+.searchComponentWrapper,
+.SearchBar .searchComponentWrapper.alwaysShow
+{
+	display: block;
 }

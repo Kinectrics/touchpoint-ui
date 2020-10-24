@@ -60,8 +60,9 @@ export default function VendorRubrics(){
 			<ControlBar searchBar searchBarProps={{
 				nestedComponent:SearchNest,
 				nestedProps: {
-					hello:'testing hello'
-				}
+					hello:'testing hello',
+				},
+				// alwaysShow: true
 			}}>
 				
 				<button onClick={System.Drawer.open}>Drawer</button>
