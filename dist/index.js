@@ -1058,6 +1058,11 @@ function ConfirmButton(props) {
     } else {
       e.stopPropagation();
       setExpanded(true);
+
+      if (props.onExpand) {
+        props.onExpand(e);
+      }
+
       e.stopPropagation();
     }
   }
@@ -1089,7 +1094,8 @@ ConfirmButton.propTypes = {
   expandedContent: PropTypes.any,
   purpose: PropTypes.string,
   loading: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
+  onExpand: PropTypes.func
 };
 
 var css_248z$b = ".Tile{\n\theight: 100px;\n\twidth: 100px;\n\tpadding: 10px;\n}\n\n.TileContainer{\n\tpadding-top: 4px;\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: var(--cardBG);\n\ttransition: all 0.2s;\n\tfont-size: 10pt;\n\ttext-align: center;\n\tcolor: var(--mainTextColor);\n\tborder-radius: 15px;\n\tline-height: 10pt;\n\tposition: relative;\n}\n\n.Tile .logo{\n\theight: 65%;\n\tfont-size: 30pt;\n\tcolor: var(--labelColor)\n}\n\n.Tile .title{\n\tposition: absolute;\n\tbottom: 5px;\n\ttext-align: center;\n\twidth: 100%;\n}\n\n.TileContainer:hover{\n\tcursor: pointer;\n\tfilter: brightness(90%);\n}\n\n.Tile img{\n\theight: 90%;\n}\n\n.TileContainer:active{\n\tfilter: brightness(80%);\n\ttransition: all 0.05s;\n}\n\n.Tile.locked .TileContainer{\n\tfilter: opacity(60%);\n\tcursor: default;\n}\n\n.Tile.locked .logo{\n\tfilter: brightness(50%);\n}\n\n.Tile .notifications{\n\tposition: absolute;\n\ttop: -8px;\n\tright: -2px;\n\tfont-size: 9pt;\n\tcolor: white;\n\tbackground-color: red;\n\tfont-weight: bold;\n\tborder-radius: 10px;\n\tpadding: 4px 6px;\n}";
@@ -1216,7 +1222,7 @@ function useModuleContext() {
   };
 }
 
-var css_248z$c = ".SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}";
+var css_248z$c = ".SearchBar{\n\tposition: relative;\n}\n\n.SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}\n\n.SearchBar .searchComponentWrapper{\n\tposition: absolute;\n\ttop: 100%;\n\twidth: 100%;\n\theight: fit-content;\n\tbackground-color: var(--cardBG);\n\tborder: 1px solid var(--borderColor);\n\tborder-radius: 15px;\n\tz-index: 20;\n\tcolor: var(--mainTextColor);\n\tpadding: 10px;\n\t\n\tdisplay: none;\n}\n\n.SearchBar input:focus + \n.searchComponentWrapper,\n.SearchBar .searchComponentWrapper.alwaysShow\n{\n\tdisplay: block;\n}";
 styleInject(css_248z$c);
 
 function SearchBar(props) {
@@ -1297,7 +1303,12 @@ function SearchBar(props) {
     inputRef: searchRef,
     style: props.style,
     tabIndex: props.tabIndex
-  }), searchBarValue ? /*#__PURE__*/React.createElement("button", {
+  }), searchBarValue && props.nestedComponent ? /*#__PURE__*/React.createElement("div", {
+    className: props.alwaysShow ? 'searchComponentWrapper alwaysShow' : 'searchComponentWrapper',
+    style: props.nestedProps ? props.nestedProps.style : null
+  }, typeof props.nestedComponent == 'function' ? /*#__PURE__*/React.createElement(props.nestedComponent, _extends({}, props.nestedProps, {
+    searchBarValue: searchBarValue
+  })) : props.nestedComponent) : null, searchBarValue ? /*#__PURE__*/React.createElement("button", {
     className: "searchButton",
     onClick: clearHandler
   }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
@@ -1309,7 +1320,10 @@ SearchBar.propTypes = {
   defaultValue: PropTypes.string,
   style: PropTypes.object,
   onChange: PropTypes.func,
-  tabIndex: PropTypes.any
+  tabIndex: PropTypes.any,
+  alwaysShow: PropTypes.bool,
+  nestedComponent: PropTypes.any,
+  nestedProps: PropTypes.object
 };
 
 //Context hooks for variable and functions that are system wide
@@ -1424,7 +1438,7 @@ function ControlBar(props) {
       style: props.style
     }, /*#__PURE__*/React.createElement("div", {
       className: "searchContainer"
-    }, /*#__PURE__*/React.createElement(SearchBar, null)), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(SearchBar, props.searchBarProps)), /*#__PURE__*/React.createElement("div", {
       className: "buttonContainer flexY"
     }, props.children)));
   } else {
@@ -1517,7 +1531,7 @@ CommentBox.propTypes = {
   onBlur: PropTypes.func
 };
 
-var css_248z$g = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 5px;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
+var css_248z$g = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 50%;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
 styleInject(css_248z$g);
 
 function ComboBox(props) {
@@ -1781,7 +1795,7 @@ function DockIcon(props) {
   }
 
   if (props.menuContent) {
-    var openHandler = function openHandler() {
+    function openHandler() {
       if (props.onClick) {
         props.onClick();
       }
@@ -1789,7 +1803,7 @@ function DockIcon(props) {
       if (props.onOpen) {
         props.onOpen();
       }
-    };
+    }
 
     return /*#__PURE__*/React.createElement(MenuButton, {
       className: "DockIcon",
@@ -3001,7 +3015,7 @@ function MainTableRow(props) {
 
   var rowContent = props.dataHeaders.map(function (hdr, i) {
     if (hdr.visible || hdr.required) {
-      var cellClickHandler = function cellClickHandler() {
+      function cellClickHandler() {
         if (hdr.onClick && !hdr.locked && !props.locked) {
           hdr.onClick({
             cellValue: props.dataRow[hdr.headerID],
@@ -3009,7 +3023,7 @@ function MainTableRow(props) {
             setRow: setRow
           });
         }
-      }; //Decide if the cell is editable or not based on the locked status, and the header onEdit function
+      } //Decide if the cell is editable or not based on the locked status, and the header onEdit function
 
 
       var cellContent;
@@ -3821,8 +3835,20 @@ function useHeaders() {
       Object.values(h.filterList).forEach(function (f) {
         if (f.options) {
           newLayouts[saveID].headerOptions[h.headerID].filterList.push(f.options);
+        } //everything but arrayFilters
+
+      }); //save array filter if there are selected values
+
+      if (h.filterList.arrayFilter && Object.keys(h.uniqueValues).length) {
+        var vals = Object.keys(h.uniqueValues);
+        var unselectedValues = vals.filter(function (v) {
+          return !h.uniqueValues[v];
+        });
+
+        if (unselectedValues.length < 50) {
+          newLayouts[saveID].headerOptions[h.headerID].arrayFilterValues = unselectedValues;
         }
-      });
+      }
     });
     setSavedLayouts(newLayouts);
     setTokenTrigger(true);
@@ -3838,7 +3864,13 @@ function useHeaders() {
           h.visible = savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID] ? savedLayouts[id].headerOptions[h.headerID].visible : false;
           savedLayouts[id].headerOptions[h.headerID].filterList.forEach(function (f) {
             h.addFilter(f);
-          });
+          }); //apply array filter
+
+          if (savedLayouts[id].headerOptions[h.headerID].arrayFilterValues) {
+            savedLayouts[id].headerOptions[h.headerID].arrayFilterValues.map(function (v) {
+              h.uniqueValues[v] = false;
+            });
+          }
         } catch (err) {
           console.error(err);
         }
@@ -4053,18 +4085,21 @@ function MainTable(props) {
     headers.getSortRules().forEach(function (sr) {
       if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
         newValues = newValues.sort(function (aRow, bRow) {
+          var aVal = aRow[sr.headerID] ? aRow[sr.headerID].toString().toLowerCase() : '';
+          var bVal = bRow[sr.headerID] ? bRow[sr.headerID].toString().toLowerCase() : '';
+
           if (sr.direction === 'asc') {
-            if (aRow[sr.headerID] > bRow[sr.headerID]) {
+            if (aVal > bVal) {
               return 1;
-            } else if (aRow[sr.headerID] < bRow[sr.headerID]) {
+            } else if (aVal < bVal) {
               return -1;
             }
 
             return 0;
           } else {
-            if (aRow[sr.headerID] < bRow[sr.headerID]) {
+            if (aVal < bVal) {
               return 1;
-            } else if (aRow[sr.headerID] > bRow[sr.headerID]) {
+            } else if (aVal > bVal) {
               return -1;
             }
 
@@ -4326,5 +4361,60 @@ Dock.propTypes = {
   style: PropTypes.object
 };
 
-export { AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ConfirmButton, ControlBar, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, Loading, MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, RefreshButton, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useSystem };
+function useShortcuts(shortcuts) {
+  var keymap = useRef({});
+
+  function keyHandler(e) {
+    var code = '';
+
+    if (e.ctrlKey || e.metaKey) {
+      code = code + 'ctrl';
+    }
+
+    if (e.shiftKey) {
+      code = code + 'shift';
+    }
+
+    if (e.altKey) {
+      code = code + 'alt';
+    }
+
+    code = code + e.key.toString().toLowerCase();
+
+    if (keymap.current[code]) {
+      keymap.current[code](e);
+    }
+  }
+
+  useEffect(function () {
+    shortcuts.map(function (e) {
+      var code = '';
+
+      if (e.ctrl || e.metaKey) {
+        code = code + 'ctrl';
+      }
+
+      if (e.shift) {
+        code = code + 'shift';
+      }
+
+      if (e.alt) {
+        code = code + 'alt';
+      }
+
+      code = code + e.key.toString().toLowerCase();
+      keymap.current[code] = e.callback;
+    });
+
+    if (shortcuts.length) {
+      document.addEventListener('keydown', keyHandler);
+    }
+
+    return function () {
+      return document.addEventListener('keydown', keyHandler);
+    };
+  }, []);
+}
+
+export { AppDrawer, AppFooter, AppToolbar, CheckBox, CloseButton, ComboBox, CommentBox, ConfirmButton, ControlBar, ControlledTabContainer, CoreButton, DataHeader, Dock, DockIcon, FreeButton, InfoCard, InfoTab, InfoTabContainer, Loading, MainTable, MenuButton, Module, PopupCard, RadioButton, RadioGroup, RefreshButton, SearchBar, SplitScreen, TextBox, Tile, TouchPointApp, useDataset, useModuleContext as useModuleData, usePresence, useSettings, useShortcuts, useSystem };
 //# sourceMappingURL=index.js.map
