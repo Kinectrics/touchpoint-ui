@@ -33,7 +33,7 @@ function MenuComp(props){
 export default function ETDB() {
 	
 	useShortcuts([
-		{key: 'e', ctrl:true, callback: ()=>console.log(9)}
+		
 	])
 	
 	const data = useDataset(()=>{

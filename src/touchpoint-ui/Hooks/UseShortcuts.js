@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import {useRef} from 'react'
 import {useEffect} from 'react'
 
 export default function useShortcuts(shortcuts){
@@ -30,7 +30,7 @@ export default function useShortcuts(shortcuts){
 			keymap.current[code] = e.callback
 		})
 		
-		document.addEventListener('keydown', keyHandler)
+		if(shortcuts.length){document.addEventListener('keydown', keyHandler)}
 		return ()=>document.addEventListener('keydown', keyHandler)
 	},[])
 }
