@@ -41,6 +41,7 @@ export default function RadioButton(props) {
 				checked = {radioData.value !== undefined ? (radioData.value === props.value) : undefined}
 				readOnly={radioData.value !== undefined}
 				tabIndex={props.tabIndex}
+				ref = {props.inputRef}
 			/>
 			<label 
 				className = {lockedClass}
@@ -60,5 +61,6 @@ RadioButton.propTypes = {
 	style: PropTypes.object,
 	labelStyle: PropTypes.object,
 	buttonStyle: PropTypes.object,
-	tabIndex: PropTypes.any
+	tabIndex: PropTypes.any,
+	inputRef: PropTypes.object,
 }

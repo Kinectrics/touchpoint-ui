@@ -35,6 +35,7 @@ export default function ComboBox(props) {
 				style = {props.style}
 				value = {props.value}
 				tabIndex = {props.tabIndex}
+				ref={props.inputRef}
 			>
 				{kids}
 			</select>
@@ -50,4 +51,5 @@ ComboBox.propTypes = {
 	className: PropTypes.string,
 	defaultValue: PropTypes.string,
 	tabIndex: PropTypes.any,
+	inputRef: PropTypes.object,
 }

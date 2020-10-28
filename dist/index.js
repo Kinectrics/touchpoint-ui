@@ -1417,7 +1417,8 @@ function RadioButton(props) {
     id: id,
     checked: radioData.value !== undefined ? radioData.value === props.value : undefined,
     readOnly: radioData.value !== undefined,
-    tabIndex: props.tabIndex
+    tabIndex: props.tabIndex,
+    ref: props.inputRef
   }), /*#__PURE__*/React.createElement("label", {
     className: lockedClass,
     htmlFor: id,
@@ -1429,7 +1430,8 @@ RadioButton.propTypes = {
   style: PropTypes.object,
   labelStyle: PropTypes.object,
   buttonStyle: PropTypes.object,
-  tabIndex: PropTypes.any
+  tabIndex: PropTypes.any,
+  inputRef: PropTypes.object
 };
 
 var css_248z$e = ".ControlBar{\n\twidth:100%;\n\tbackground-color: var(--navColor);\t\n\tpadding: 5px 10px;\n\tcolor: var(--navTextColor);\n\theight: var(--controlBarHeight);\n\tbox-sizing: border-box;\n\tposition: relative;\n}\n\n.ControlBar .buttonContainer{\n\tbox-sizing: border-box;\n\tposition: absolute;\n\tleft: 10px;\n\tbackground-color: var(--navColor);\n\theight: 100%;\n\t\n}\n\n.ControlBar .searchContainer{\n\tposition: absolute;\n\tright: 5px;\n\tbox-sizing: border-box;\n\twidth: max(20%, 250px);\n\theight: 100%;\n\tdisplay: flex;\n\talign-items: center;\n}\n\n.ControlBar .SearchBar{\n\twidth: 100%;\n}\n\n.ControlBar .input{\n\tborder: none;\n}\n\n/* ControlButton */\n.ControlBar button:not(.searchButton){\n\toutline: none !important;\n\tborder: none;\n\tborder-radius: 15px;\n\theight: 100%;\n\t\n\tcolor: var(--navTextColor);\n\tbackground-color: var(--navColor);\n\tbackground-color: transparent;\n\t\n\tfont-size: 14pt;\n\tfont-weight: bold;\n\tmargin:0;\n\tmargin-right: 30px;\n\twhite-space: nowrap;\n}\n\n.ControlBar button:hover{\n\tcolor: var(--navHoverColor);\n}\n\n.ControlBar button:active{\n\tcolor: var(--navClickedColor);\n}\n\n.ControlBar button.locked{\n\tcolor: var(--navTextColor) !important;\n\tfilter: brightness(80%);\n\topacity: 60%;\n\tcursor: default;\n}";
@@ -1519,7 +1521,7 @@ function CommentBox(props) {
     onKeyPress: keyPressHandler,
     autoFocus: props.autoFocus,
     onFocus: props.onFocus
-  }, _defineProperty(_React$createElement, "onBlur", props.onBlur), _defineProperty(_React$createElement, "tabIndex", props.tabIndex), _React$createElement));
+  }, _defineProperty(_React$createElement, "onBlur", props.onBlur), _defineProperty(_React$createElement, "tabIndex", props.tabIndex), _defineProperty(_React$createElement, "ref", props.inputRef), _React$createElement));
 } //Proptypes
 
 CommentBox.propTypes = {
@@ -1537,7 +1539,8 @@ CommentBox.propTypes = {
   autoFocus: PropTypes.bool,
   tabIndex: PropTypes.any,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  inputRef: PropTypes.object
 };
 
 var css_248z$g = ".ComboBox{\n\tappearance: none !important;\n\t\n\tbackground-image: url(\"data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\");\n\tbackground-repeat: no-repeat;\n\tbackground-position-x: 97%;\n\tbackground-position-y: 50%;\n}\n\n.ComboBox.locked{\n\tbackground-image: none;\n}\n\n\n\n\n";
@@ -1578,7 +1581,8 @@ function ComboBox(props) {
       disabled: locked,
       style: props.style,
       value: props.value,
-      tabIndex: props.tabIndex
+      tabIndex: props.tabIndex,
+      ref: props.inputRef
     }, kids);
   }
 } //
@@ -1590,7 +1594,8 @@ ComboBox.propTypes = {
   value: PropTypes.string,
   className: PropTypes.string,
   defaultValue: PropTypes.string,
-  tabIndex: PropTypes.any
+  tabIndex: PropTypes.any,
+  inputRef: PropTypes.object
 };
 
 function CheckBox(props) {
@@ -1628,7 +1633,8 @@ function CheckBox(props) {
     style: props.style,
     checked: props.checked,
     readOnly: props.checked !== undefined ? true : false,
-    tabIndex: props.tabIndex
+    tabIndex: props.tabIndex,
+    ref: props.inputRef
   }), /*#__PURE__*/React.createElement("span", {
     className: "checkmark"
   }), props.label);
@@ -1640,7 +1646,8 @@ CheckBox.propTypes = {
   defaultValue: PropTypes.bool,
   style: PropTypes.object,
   checked: PropTypes.bool,
-  tabIndex: PropTypes.any
+  tabIndex: PropTypes.any,
+  inputRef: PropTypes.object
 };
 
 //Context hooks for variable and functions that are system wide
