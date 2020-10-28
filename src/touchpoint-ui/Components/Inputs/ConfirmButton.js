@@ -43,8 +43,6 @@ export default function ConfirmButton(props) {
 	)
 }
 
-
-
 //
 ConfirmButton.propTypes = {
 	hidden: PropTypes.bool,

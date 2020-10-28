@@ -60,7 +60,7 @@ export default function VendorRubrics(){
 			<ControlBar searchBar searchBarProps={{
 				nestedComponent:SearchNest,
 				nestedProps: {
-					hello:'testing hello',
+					hello:'testing hellodahd',
 				},
 				// alwaysShow: true
 			}}>

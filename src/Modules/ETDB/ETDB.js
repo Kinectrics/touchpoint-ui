@@ -32,10 +32,6 @@ function MenuComp(props){
 
 export default function ETDB() {
 	
-	useShortcuts([
-		
-	])
-	
 	const data = useDataset(()=>{
 		return [...new Array(20)].map((r, idx)=>{
 			return {id: idx, selected: idx%4}
@@ -107,7 +103,7 @@ export default function ETDB() {
 				</InfoCard>
 			</InfoCard>
 			
-			<FreeButton onClick={pop}>
+			<FreeButton onClick={pop} locked>
 				Pop
 			</FreeButton>
 			

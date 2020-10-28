@@ -179,7 +179,6 @@ export default function TouchPointApp(props){
 		
 		Settings: {
 			save: saveSettings,
-			
 			get: getSettings
 		},
 		
@@ -198,13 +197,12 @@ export default function TouchPointApp(props){
 		}
 		
 		applySavedTheme()
-	},[])
+	}, [])
 	
 	//Input blocker for clicks
 	let screenBlocker = null
 	if(screenBlock){
 		screenBlocker = <div className="screenBlocker" />
-		
 	} else screenBlocker = null
 	
 	//The App JSX itself
