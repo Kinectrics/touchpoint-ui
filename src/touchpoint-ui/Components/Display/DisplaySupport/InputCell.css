@@ -53,3 +53,8 @@ select.InputCell{
 select.InputCell:focus{
 	border: 1px solid var(--borderColor)
 }
+
+.MainTableRow .badge select.InputCell{
+	padding-bottom: 0;
+	padding-left: 5px;
+}
