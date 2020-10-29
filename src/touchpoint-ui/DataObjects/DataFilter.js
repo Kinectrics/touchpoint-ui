@@ -29,7 +29,7 @@ export default class DataFilter{
 				func: (val, options) => {
 					return val.toString().toLowerCase().includes(options.value)
 				},
-				displayName: 'Includes',
+				displayName: 'Search',
 				availableTo: ['string'],
 			},
 
