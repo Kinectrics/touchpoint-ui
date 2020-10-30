@@ -18,6 +18,12 @@ export default function DateCell(props) {
 		
 		setSelectedDate(d)
 	}
+	
+	function openHandler(){
+		setSelectedDate(
+			props.currentValue ? new Date(props.header.parse(props.currentValue)) : new Date()
+		)
+	}
 
 	return (
 		<span className='dateCellWrapper'>
@@ -30,7 +36,7 @@ export default function DateCell(props) {
 				onBlur={() => props.commitChanges()}
 			/>
 
-			<MenuButton style={{ opacity: '50%' }} menuStyle={{ height: 'fit-content', width: 'fit-content' }} menuContent={
+			<MenuButton  onOpen ={openHandler} style={{ opacity: '50%' }} menuStyle={{ height: 'fit-content', width: 'fit-content' }} menuContent={
 				<div className='dateCellMenu'>
 					<DatePicker
 						selected={selectedDate}

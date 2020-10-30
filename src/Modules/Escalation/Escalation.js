@@ -70,23 +70,7 @@ export default function Escalation() {
 			}
 		},
 		{
-			headerID: "ActionDue", displayName: "Action Due", width: 170, onEdit: async (e) => {
-				let actDue
-				if (e.cellValue === null) {
-					actDue = '';
-				}
-				else {
-					actDue = e.cellValue
-				}
-
-				const response = await window.ipcRenderer.invoke('escalation-update', {
-					PK_ID: e.row.PK_ID,
-					Name: 'ActionDue',
-					ActionDue: actDue,
-				})
-				return response.success
-			}, type: 'date'
-		},
+			headerID: "ActionDue", displayName: "Action Due", width: 170, type: 'date', onEdit: ()=>true},
 		{
 			headerID: "Type", displayName: "Escalation Type", width: 150, onEdit: async (e) => {
 				if (e.cellValue.trim() === '') { return false }
