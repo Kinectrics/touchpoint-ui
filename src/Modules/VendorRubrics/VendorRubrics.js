@@ -41,7 +41,7 @@ export default function VendorRubrics(){
 		{headerID: 'project', displayName: 'Project', width: 100, options:[2,100,200], onEdit:(e)=>false},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true, options: ['Complete', 'Pending Approval', 'In Progress']},
-		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: ({cellValue})=>console.log({cellValue})},
+		{headerID: 'due', displayName: 'Due', width: 150, type: 'date', onEdit: ({cellValue})=>{}},
 		{headerID: 'SM', displayName:'SM', width: 200, onEdit: editHandler},
 		{headerID: 'intern', displayName:'Intern', width: 300, onEdit: ()=>true},
 	]
