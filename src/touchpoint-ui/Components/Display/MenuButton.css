@@ -62,7 +62,7 @@
 }
 
 /* Buttons and links */
-.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton){
+.Menu a, .Menu button:not(.FreeButton):not(.ConfirmButton):not(.react-datepicker__navigation){
 	width: 100%;
 	color: var(--mainTextColor) !important;
 	background-color: var(--cardBG);

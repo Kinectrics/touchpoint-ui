@@ -59,3 +59,25 @@ select.InputCell:focus{
 	padding-bottom: 0;
 	padding-left: 5px;
 }
+
+/* Dates */
+.dateCellWrapper{
+	position: relative;
+}
+
+.MainTableRow .dateCellWrapper .menuButtonContainer{
+	position: absolute;
+	right: 2px;
+	top: 0;
+	padding-top: 2px;
+	font-size: 9pt;
+	color: var(--mainTextColor);
+}
+
+.dateCellMenu button.react-datepicker__navigation{
+	width: 10px !important;
+	background-color: transparent !important;
+	text-align: initial;
+	padding: 0 !important;
+	outline: none !important;
+}
