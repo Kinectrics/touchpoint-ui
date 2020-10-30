@@ -19,6 +19,15 @@ const parseFunctions = {
 		
 		if (testVal === 'yesterday' || testVal === 'yd') { return moment().subtract(1, 'day').toISOString() }
 		
+		//Special case for dates with no year - default to current year
+		// const regNodash = /^[0-9]*(?:_?[a-z]+)*$/
+		// const regWithDash = /^[0-9]*[-](?:_?[a-z])*$/
+		
+		if(isNaN(parseFloat(input.slice(-1)))){
+			const newInput = input + new Date().getFullYear()
+			return moment(new Date(newInput)).toISOString()
+		}
+		
 		return moment( new Date(input) ).toISOString()
 	},
 

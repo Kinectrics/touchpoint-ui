@@ -48,6 +48,7 @@
 select.InputCell{
 	vertical-align: top;
 	padding-top: 0 !important;
+	cursor: pointer;
 }
 
 select.InputCell:focus{
