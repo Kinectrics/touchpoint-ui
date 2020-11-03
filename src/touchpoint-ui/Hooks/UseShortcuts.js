@@ -12,24 +12,13 @@ export default function useShortcuts(shortcuts){
 		if(e.altKey){code = code + 'alt'}
 		code = code + e.key.toString().toLowerCase()
 		
-		if(keymap.current[code]){
-			keymap.current[code](e)
+		if (shortcuts.current[code]){
+			shortcuts[code](e)
 		}
 	}
 	
 	useEffect(()=>{
-		
-		shortcuts.map(e=>{
-			let code = ''
-			if(e.ctrl || e.metaKey){ code = code + 'ctrl' }
-			if(e.shift){ code = code + 'shift' }
-			if(e.alt){ code = code + 'alt' }
-			code = code + e.key.toString().toLowerCase()
-			
-			keymap.current[code] = e.callback
-		})
-		
-		if(shortcuts.length){document.addEventListener('keydown', keyHandler)}
-		return ()=>document.addEventListener('keydown', keyHandler)
+		if(Object.keys(shortcuts).length){document.addEventListener('keydown', keyHandler)}
+		return ()=>document.removeEventListener('keydown', keyHandler)
 	},[])
 }

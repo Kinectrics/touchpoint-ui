@@ -1,9 +1,12 @@
 import React from 'react'
+import { FreeButton } from '../../touchpoint-ui'
 
 export default function SearchNest(props) {
 	return (
 		<div>
-			{props.hello}
+			<FreeButton onClick={()=>{
+				props.setSearchbarValue('I am here')
+			}}>Test</FreeButton>
 		</div>
 	)
 }

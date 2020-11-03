@@ -1,5 +1,5 @@
 import React from 'react'
-import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, MainTable} from '../../touchpoint-ui'
+import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, MainTable, useShortcuts} from '../../touchpoint-ui'
 import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle, faPenFancy} from "@fortawesome/free-solid-svg-icons"
@@ -39,7 +39,7 @@ export default function VendorRubrics(){
 	const dataHeaders = [
 		{headerID: 'id',displayName:'ID', width: 100, required: true},
 		{headerID: 'project', displayName: 'Project', width: 100, options:[2,100,200], onEdit:(e)=>false},
-		{headerID: 'projectName', displayName:'Project Name', width: 220},
+		{headerID: 'projectName', after: 'project', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true, options: ['Complete', 'Pending Approval', 'In Progress']},
 		{headerID: 'due', displayName: 'Due', width: 200, type: 'date', onEdit: ()=>{
 			return new Promise(resolve=>{
@@ -66,7 +66,7 @@ export default function VendorRubrics(){
 				nestedProps: {
 					hello:'testing hellodahd',
 				},
-				// alwaysShow: true
+				alwaysShow: true
 			}}>
 				
 				<button onClick={System.Drawer.open}>Drawer</button>

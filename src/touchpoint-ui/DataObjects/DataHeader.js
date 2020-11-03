@@ -17,6 +17,7 @@ export default class DataHeader{
 		this.type = options.type ? options.type : 'string'
 		this.onClick = options.onClick
 		this.options=options.options
+		this.position = options.position ? options.position : 0
 		
 		this.component = options.component 
 		this.props = options.props

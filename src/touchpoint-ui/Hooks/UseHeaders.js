@@ -3,6 +3,20 @@ import DataHeader  from '../DataObjects/DataHeader'
 import {v4 as uuid} from 'uuid'
 
 
+function compareByPosition(aRow, bRow){
+	const aVal = aRow.position
+	const bVal = bRow.position
+
+	if (aVal > bVal) {
+		return 1
+	} else if (aVal < bVal) {
+		return -1
+	}
+	
+	return 0
+}
+
+
 //Crates a set of DataHeaders, for use with a mainTable
 export default function useHeaders(dataHeaders = []) {
 	
@@ -34,7 +48,8 @@ export default function useHeaders(dataHeaders = []) {
 		headers.forEach((h)=>{
 			newLayouts[saveID].headerOptions[h.headerID] = {
 				visible: h.visible,
-				filterList: []
+				filterList: [],
+				position: h.position,
 			}
 			
 			Object.values(h.filterList).forEach((f) => {
@@ -69,6 +84,11 @@ export default function useHeaders(dataHeaders = []) {
 					h.visible = savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID] ?
 					savedLayouts[id].headerOptions[h.headerID].visible :
 					false
+					
+					//position
+					if(savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID]){
+						h.position = savedLayouts[id].headerOptions[h.headerID].position
+					}
 
 					savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f) => {
 						h.addFilter(f)
@@ -124,6 +144,10 @@ export default function useHeaders(dataHeaders = []) {
 			newHeaders.forEach((h) => {
 				h.visible = newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID] ? 
 				newSettings.headerOptions[h.headerID].visible : true
+				
+				if(newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID]){
+					h.position = newSettings.headerOptions[h.headerID].position
+				}
 			})
 
 			setSortRules(newSettings.sortRules ? newSettings.sortRules : [])
@@ -154,6 +178,7 @@ export default function useHeaders(dataHeaders = []) {
 		headers.forEach((hdr)=>{
 			res.headerOptions[hdr.headerID] = {
 				visible: hdr.visible,
+				position: hdr.position,
 			}
 		})
 
@@ -172,6 +197,13 @@ export default function useHeaders(dataHeaders = []) {
 		newSortRules.push({headerID: headerID, direction: direction, index: headerIndex})
 		setSortRules(newSortRules)
 		setTokenTrigger(true)
+	}
+	
+	//
+	function setPosition(headerIndex, newPosition){
+		const newHeaders = [...headers]
+		newHeaders[headerIndex] = newPosition
+	
 	}
 
 	return ({
