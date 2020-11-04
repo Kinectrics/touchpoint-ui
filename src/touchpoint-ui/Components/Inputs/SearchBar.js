@@ -76,6 +76,12 @@ export default function SearchBar(props) {
 		}
 	}
 	
+	//for nested components
+	function customizeValue(newValue) {
+		const fakeEvent = {target: {value: newValue}}
+		changeHandler(fakeEvent)
+	}
+	
 	
 	return(
 		<span className="SearchBar"> 
@@ -96,7 +102,7 @@ export default function SearchBar(props) {
 			>
 				
 				{typeof (props.nestedComponent) == 'function' ? 
-				<props.nestedComponent {...props.nestedProps} searchBarValue={searchBarValue}/> 
+				<props.nestedComponent {...props.nestedProps} searchBarValue={searchBarValue} setSearchBarValue={customizeValue}/> 
 				: props.nestedComponent}
 				
 			</div>: null}
@@ -109,7 +115,6 @@ export default function SearchBar(props) {
 		</span>
 	)
 }
-
 
 //Proptypes
 SearchBar.propTypes = {

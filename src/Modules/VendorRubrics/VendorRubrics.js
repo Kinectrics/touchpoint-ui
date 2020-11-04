@@ -66,7 +66,7 @@ export default function VendorRubrics(){
 				nestedProps: {
 					hello:'testing hellodahd',
 				},
-				// alwaysShow: true
+				alwaysShow: true
 			}}>
 				
 				<button onClick={System.Drawer.open}>Drawer</button>
