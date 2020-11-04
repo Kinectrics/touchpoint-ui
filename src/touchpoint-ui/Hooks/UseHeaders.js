@@ -3,20 +3,6 @@ import DataHeader  from '../DataObjects/DataHeader'
 import {v4 as uuid} from 'uuid'
 
 
-function compareByPosition(aRow, bRow){
-	const aVal = aRow.position
-	const bVal = bRow.position
-
-	if (aVal > bVal) {
-		return 1
-	} else if (aVal < bVal) {
-		return -1
-	}
-	
-	return 0
-}
-
-
 //Crates a set of DataHeaders, for use with a mainTable
 export default function useHeaders(dataHeaders = []) {
 	
