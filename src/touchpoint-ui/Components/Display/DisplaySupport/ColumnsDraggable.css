@@ -1,0 +1,14 @@
+.ColumnsDraggable .dragWrapper{
+	outline: none !important;
+	cursor: grab;
+	padding: 1px 6px;
+	overflow: visible;
+}
+
+.ColumnsDraggable, .ColumnsDraggable *{
+	overflow-x: hidden;
+}
+
+.ColumnsDraggable div:active{
+	cursor: grabbing;
+}

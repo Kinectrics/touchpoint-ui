@@ -4,12 +4,13 @@ import DataType from './DataType'
 export default class DataHeader {
 
 	constructor(options) {
+		this.index = options.index
 		this.headerID = options.headerID
+		this.after = options.after
 		this.displayName = options.displayName
 		this.width = options.width ? options.width : 100
 		this.required = options.required ? options.required : false
 		this.visible = (!options.visible === undefined) ? options.visible : true
-		this.index = options.index
 		this.onEdit = options.onEdit ? options.onEdit : null
 		this.locked = options.locked ? options.locked : false
 		this.styling = options.styling ? options.styling : null
@@ -17,8 +18,6 @@ export default class DataHeader {
 		this.type = options.type ? options.type : 'string'
 		this.onClick = options.onClick
 		this.options = options.options
-		this.position = options.index
-		this.after = options.after
 
 		this.component = options.component
 		this.props = options.props

@@ -8,10 +8,7 @@ export default function CheckButton(props) {
 	
 	function clickHandler(e, id) {
 		if(!props.disabled){
-			const cb = document.getElementById(id)
-			if (e.target !== cb) {cb.checked = !cb.checked}
-			
-			if(props.onClick){props.onClick(cb.checked, props.value)}
+			if(props.onClick){props.onClick(e.target.checked, props.value)}
 		}
 	}
 	
@@ -20,12 +17,12 @@ export default function CheckButton(props) {
 		paddingLeft: '7px',
 	}
 	
-	return (<button
-		onClick={(e) => clickHandler(e, checkID)}
+	return (<div
 		style ={{color: 'var(--mainTextColor)'}}
 	>
 
 		<input
+			onClick={(e) => clickHandler(e, checkID)}
 			type='checkbox'
 			defaultChecked={props.defaultChecked}
 			id={checkID}
@@ -38,7 +35,7 @@ export default function CheckButton(props) {
 		<span style={spanStyle}>{props.children}</span>
 		
 
-	</button>)
+	</div>)
 	
 }
 

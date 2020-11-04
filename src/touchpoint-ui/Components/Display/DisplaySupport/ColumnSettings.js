@@ -1,8 +1,8 @@
 import React from 'react'
-import CheckButton from './CheckButton'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faColumns} from '@fortawesome/free-solid-svg-icons'
 import MenuButton from '../MenuButton'
+import ColumnsDraggable from './ColumnsDraggable'
 
 export default function ColumnSettings(props) {
 
@@ -17,27 +17,17 @@ export default function ColumnSettings(props) {
 	return (<MenuButton 
 			locked={false} 
 			menuStyle={{
-				maxHeight: '300px',
-				maxWidth: '300px'
+				maxWidth: '300px',
+				height: 'fit-content',
+				maxHeight: 'fit-content',
+				overflow: 'hidden'
 			}}
 			onClose={applyHandler}
 			menuContent={
-				<div style={{ overflowY: 'auto', overflowX: 'hidden'}}>
-					{props.headers.get().map((h) => {
-						if(h.displayName){
-							return (
-								<CheckButton
-									key={'customizeHeader' + h.headerID}
-									disabled={h.required}
-									checked={h.visible}
-									value={h.index}
-									onClick={clickHandler}
-								>{h.displayName}</CheckButton>
-							)
-						}else return null
-						
-					})}
-				</div>
+				<ColumnsDraggable
+					headers={props.headers}
+					clickHandler={clickHandler}
+				/>
 			}>
 			<FontAwesomeIcon icon={faColumns} /> Column Settings
 	</MenuButton>

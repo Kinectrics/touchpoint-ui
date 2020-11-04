@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react'
 import DataHeader  from '../DataObjects/DataHeader'
 import {v4 as uuid} from 'uuid'
+import {setHeaderPosition, sortByPosition} from './HooksSupport/HeaderSupport'
 
 
 //Crates a set of DataHeaders, for use with a mainTable
@@ -93,6 +94,8 @@ export default function useHeaders(dataHeaders = []) {
 				
 				newHeaders.push(h)
 			})
+			
+			sortByPosition(headers, setHeaders)
 				
 			setHeaders(newHeaders)
 			setSortRules(savedLayouts[id].sortRules)
@@ -138,6 +141,8 @@ export default function useHeaders(dataHeaders = []) {
 
 			setSortRules(newSettings.sortRules ? newSettings.sortRules : [])
 			setHeaders(newHeaders)
+			
+			sortByPosition(headers, setHeaders)
 		} catch(err){
 			console.error(err)
 		}
@@ -184,13 +189,6 @@ export default function useHeaders(dataHeaders = []) {
 		setSortRules(newSortRules)
 		setTokenTrigger(true)
 	}
-	
-	//
-	function setPosition(headerIndex, newPosition){
-		const newHeaders = [...headers]
-		newHeaders[headerIndex] = newPosition
-	
-	}
 
 	return ({
 		get: () => {return headers},
@@ -204,6 +202,8 @@ export default function useHeaders(dataHeaders = []) {
 		getSavedLayouts: ()=>{return savedLayouts},
 		setSettingsEngine: setSettingsEngine,
 		setVisible: setVisible,
+		
+		setPosition: (headerIndex, newPosition)=>{setHeaderPosition(headers, setHeaders, headerIndex, newPosition)},
 		
 		addSortRule: addSortRule,
 		removeSortRule: removeSortRule,
