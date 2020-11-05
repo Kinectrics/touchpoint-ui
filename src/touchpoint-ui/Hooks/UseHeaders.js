@@ -36,7 +36,7 @@ export default function useHeaders(dataHeaders = []) {
 			newLayouts[saveID].headerOptions[h.headerID] = {
 				visible: h.visible,
 				filterList: [],
-				position: h.position,
+				index: h.index,
 			}
 			
 			Object.values(h.filterList).forEach((f) => {
@@ -61,7 +61,7 @@ export default function useHeaders(dataHeaders = []) {
 	function loadLayout(id){
 		if(savedLayouts[id]){
 			
-			const newHeaders = []
+			let newHeaders = []
 			
 			headers.forEach(h=>{
 				try{
@@ -73,8 +73,8 @@ export default function useHeaders(dataHeaders = []) {
 					false
 					
 					//position
-					if(savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID]){
-						h.position = savedLayouts[id].headerOptions[h.headerID].position
+					if (savedLayouts[id].headerOptions && savedLayouts[id].headerOptions[h.headerID] && savedLayouts[id].headerOptions[h.headerID].index){
+						h.index = savedLayouts[id].headerOptions[h.headerID].index
 					}
 
 					savedLayouts[id].headerOptions[h.headerID].filterList.forEach((f) => {
@@ -95,8 +95,8 @@ export default function useHeaders(dataHeaders = []) {
 				newHeaders.push(h)
 			})
 			
-			sortByPosition(headers, setHeaders)
-				
+			newHeaders = sortByPosition(newHeaders)
+			
 			setHeaders(newHeaders)
 			setSortRules(savedLayouts[id].sortRules)
 			setTokenTrigger(true)
@@ -127,22 +127,22 @@ export default function useHeaders(dataHeaders = []) {
 		try{
 			const newSettings = JSON.parse(token)
 			setSavedLayouts(newSettings.savedLayouts)
-
-			const newHeaders = [...headers]
+			
+			let newHeaders = [...headers]
 
 			newHeaders.forEach((h) => {
 				h.visible = newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID] ? 
 				newSettings.headerOptions[h.headerID].visible : true
 				
-				if(newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID]){
-					h.position = newSettings.headerOptions[h.headerID].position
+				if (newSettings.headerOptions && newSettings.headerOptions && newSettings.headerOptions[h.headerID] && newSettings.headerOptions[h.headerID].index){
+					h.index = newSettings.headerOptions[h.headerID].index
 				}
 			})
 
 			setSortRules(newSettings.sortRules ? newSettings.sortRules : [])
+			newHeaders = sortByPosition(headers)
 			setHeaders(newHeaders)
 			
-			sortByPosition(headers, setHeaders)
 		} catch(err){
 			console.error(err)
 		}
@@ -169,7 +169,7 @@ export default function useHeaders(dataHeaders = []) {
 		headers.forEach((hdr)=>{
 			res.headerOptions[hdr.headerID] = {
 				visible: hdr.visible,
-				position: hdr.position,
+				index: hdr.index,
 			}
 		})
 
@@ -203,7 +203,10 @@ export default function useHeaders(dataHeaders = []) {
 		setSettingsEngine: setSettingsEngine,
 		setVisible: setVisible,
 		
-		setPosition: (headerIndex, newPosition)=>{setHeaderPosition(headers, setHeaders, headerIndex, newPosition)},
+		setPosition: (headerIndex, newPosition)=>{
+			setHeaderPosition(headers, setHeaders, headerIndex, newPosition)
+			setTokenTrigger(true)
+		},
 		
 		addSortRule: addSortRule,
 		removeSortRule: removeSortRule,

@@ -28,6 +28,5 @@ export default function DraggableColumnButton(props) {
 			)}
 			
 		</Draggable>
-		
 	)
 }

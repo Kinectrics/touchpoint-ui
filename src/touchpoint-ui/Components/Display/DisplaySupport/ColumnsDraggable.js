@@ -15,7 +15,7 @@ export default function ColumnDraggable(props) {
 	return (
 		<div style={{height: 'fit-content', overflow: 'hidden' }} className='ColumnsDraggable'>
 			<DragDropContext onDragEnd={onDragEnd}>
-				<Droppable droppableId="droppable">
+				<Droppable droppableId="columnSettings">
 					{(provided, snapshot) => (
 						<div
 							{...provided.droppableProps}
@@ -23,7 +23,7 @@ export default function ColumnDraggable(props) {
 							style={{paddingBottom: snapshot.isDraggingOver ? '40px' : 0}}
 						>
 							{props.headers.get().map((h) => {
-								if (h.displayName) {
+								if (h.displayName && !h.after) {
 									return <DraggableColumnButton
 										key={'customizeHeader' + h.headerID}
 										h={h}
