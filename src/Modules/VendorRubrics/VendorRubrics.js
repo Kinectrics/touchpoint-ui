@@ -53,7 +53,7 @@ export default function VendorRubrics(){
 	//Data from the 'server'
 	const data  = useDataset(async()=>{
 		const c = Math.round(Math.random()*10)
-		const sqlRes = await fakeData((52 * c) + 1)
+		const sqlRes = await fakeData(100)
 		return sqlRes
 	}, {primaryKey: 'id'})
 	
