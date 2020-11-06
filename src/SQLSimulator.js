@@ -1,5 +1,5 @@
 import faker from 'faker'
-import escalationData from './escalationData.json'
+import escalation from './escalationData.json'
 
 
 
@@ -103,7 +103,8 @@ export function fakeData(n = 500){
 
 export function escalationQuery(){
 	return new Promise((resolve=>{
-		setTimeout(()=>resolve(escalationData.body), 200)
+		const data = [...escalation.body]
+		setTimeout(()=>resolve(data), 200)
 	}))
 		
 }
