@@ -29,7 +29,7 @@ export default function RefreshButton(props) {
 	}
 	
 	return (
-		<CoreButton title={props.title} style={props.style} className={props.className} onClick={clickHandler}>
+		<CoreButton title={props.title} style={props.style} className={props.className} onClick={clickHandler} locked={props.locked} hidden = {props.hidden}>
 			{props.icon ? props.icon : <FontAwesomeIcon icon={faSyncAlt} />} 
 			{props.title ? props.title : ' Refresh'}
 		</CoreButton>
