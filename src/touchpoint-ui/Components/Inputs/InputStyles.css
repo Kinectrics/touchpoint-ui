@@ -18,7 +18,7 @@
 	background-color: var(--inputValidColor);
 }
 
-.input:focus{
+.input:focus:not(.locked){
 	/* filter: brightness(102%); */
 	border-color: var(--tableActiveColor);
 }
