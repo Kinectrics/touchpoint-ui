@@ -28,7 +28,6 @@ export default function TableBody(props) {
 
 					let renderRow = dr !== []
 					
-					
 					if (props.searchable && props.metaData[idx]) {
 						renderRow = !props.metaData[idx].searchHidden
 					}
