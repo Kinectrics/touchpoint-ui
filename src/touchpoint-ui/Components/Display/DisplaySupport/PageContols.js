@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -6,6 +6,16 @@ export default function PageContols(props) {
 	
 	const showPageBack = props.activePage > 0
 	const showPageForward = ((props.activePage + 1) * props.pageSize) < props.dataLength
+	
+	//If the data gets shorter than the active page then go back to page 1
+	useEffect(() => {
+		const lastRow = (props.activePage + 1) * props.pageSize
+		const diff = props.dataLength - lastRow
+		
+		if(diff + props.pageSize < 0){
+			props.setActivePage(0)
+		}
+	})
 	
 	if(!props.pageSize){
 		return null

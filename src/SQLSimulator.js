@@ -1,5 +1,6 @@
 import faker from 'faker'
-import escalationData from './escalationData.json'
+import escalation from './escalationData.json'
+
 
 
 //returns a lis of pending actions actions for a given user in a given module
@@ -96,17 +97,14 @@ export function fakeData(n = 500){
 	
 	// return JSON.parse(JSON.stringify(data))
 	
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(JSON.parse(JSON.stringify(data)))
-		}, 0)
-	})
+	return JSON.parse(JSON.stringify(data))
 }
 
 
 export function escalationQuery(){
 	return new Promise((resolve=>{
-		setTimeout(()=>resolve(escalationData.body), 200)
+		const data = [...escalation.body]
+		setTimeout(()=>resolve(data), 200)
 	}))
 		
 }

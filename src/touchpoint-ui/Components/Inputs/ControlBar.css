@@ -36,7 +36,7 @@
 }
 
 /* ControlButton */
-.ControlBar button:not(.searchButton){
+.ControlBar button:not(.searchButton):not(.FreeButton){
 	outline: none !important;
 	border: none;
 	border-radius: 15px;
@@ -53,11 +53,11 @@
 	white-space: nowrap;
 }
 
-.ControlBar button:hover{
+.ControlBar button:not(.FreeButton):hover{
 	color: var(--navHoverColor);
 }
 
-.ControlBar button:active{
+.ControlBar button:not(.FreeButton):active{
 	color: var(--navClickedColor);
 }
 

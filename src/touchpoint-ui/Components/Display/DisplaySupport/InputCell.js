@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import './InputCell.css'
+import DateCell from './DateCell'
+
 
 export default function InputCell(props) {
 	
@@ -112,6 +114,22 @@ export default function InputCell(props) {
 	//Chaches the value and updates the dataset when you're done editing
 	function changeHandler(e) {
 		setCurrentValue(e.target.value)
+	}
+	
+	//Datebox cells
+	if(props.header.type === 'date'){
+		return <DateCell
+			currentValue={currentValue}
+			setCurrentValue={setCurrentValue}
+			commitChanges={commitChanges}
+			header={props.header}
+			validClass={validClass}
+			keyHandler={keyHandler}
+			focusHandler={focusHandler}
+			changeHandler={changeHandler}
+			initalValue={initalValue}
+			selectHandler={selectHandler}
+		/>
 	}
 	
 	

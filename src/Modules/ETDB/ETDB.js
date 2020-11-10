@@ -4,6 +4,8 @@ import './ETDB.css'
 import { faBars, faExclamationCircle, faFileSignature, faSearch, faLayerGroup, faPlusSquare, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import RubricDetail from '../VendorRubrics/RubricDetail'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 
 function TestComp(props){
 	
@@ -94,6 +96,12 @@ export default function ETDB() {
 				<DockIcon faIcon={faSearch} title={'Lookup'} />
 			</Dock>
 			
+			<DatePicker
+				selected={new Date()}
+				onChange={console.log}
+				inline
+			/>
+			
 			<TextBox maxLength={4}/>
 			<CommentBox/>
 			
@@ -134,6 +142,8 @@ export default function ETDB() {
 				onClick={()=>console.log('Open')}
 				onCollapse={()=>console.log('Collapse')}
 			/>
+			
+			
 			
 		</Module>
 	)

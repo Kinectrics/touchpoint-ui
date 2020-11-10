@@ -8,7 +8,7 @@ import propTypes from 'prop-types'
 export default function RefreshButton(props) {
 	
 	if(props.data.status === 'Pending'){
-		return <CoreButton style = {props.style} className={props.className} title={props.title}>
+		return <CoreButton locked = {props.locked} style = {props.style} className={props.className} title={props.title}>
 			<Loading style={{
 				fontSize: 'inherit',
 				opacity: '100%'
@@ -29,7 +29,7 @@ export default function RefreshButton(props) {
 	}
 	
 	return (
-		<CoreButton title={props.title} style={props.style} className={props.className} onClick={clickHandler}>
+		<CoreButton title={props.title} style={props.style} className={props.className} onClick={clickHandler} locked={props.locked} hidden = {props.hidden}>
 			{props.icon ? props.icon : <FontAwesomeIcon icon={faSyncAlt} />} 
 			{props.title ? props.title : ' Refresh'}
 		</CoreButton>
