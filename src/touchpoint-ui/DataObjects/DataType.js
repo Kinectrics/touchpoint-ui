@@ -11,7 +11,10 @@ const formatFunctions = {
 //Takes a user input and changes it to the correct data type (eg. Date string to new Date object)
 const parseFunctions = {
 	date: (input) => {
+		
 		const testVal = input.toString().toLowerCase()
+
+		if(testVal.trim() === '') { return ''}
 		
 		if (testVal === 'today' || testVal === 'td') { return moment().toISOString() }
 		
