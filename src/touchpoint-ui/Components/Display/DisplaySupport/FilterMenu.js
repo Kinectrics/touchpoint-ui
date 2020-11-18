@@ -5,7 +5,7 @@ export default function FilterMenu(props){
 	const values = props.header.uniqueValues
 	
 	function clickHandler(e, id){
-		const cb = document.getElementById(id)
+		const cb = document.getElementById(id) //change to a ref
 		if(e.target !== cb){cb.checked = !cb.checked}
 		
 		const newHeaders = [...props.dataHeaders.get()]
@@ -14,8 +14,8 @@ export default function FilterMenu(props){
 	}
 	
 	function selectAll(e){
-		const cb = document.getElementById(props.header.headerID + 'selectAll')
-		if (e.target !== cb) { cb.checked = !cb.checked }
+		const cb = document.getElementById(props.header.headerID + 'selectAll') //change to a ref
+		// if (e.target !== cb) { cb.checked = !cb.checked }
 		
 		const newHeaders = [...props.dataHeaders.get()]
 		
