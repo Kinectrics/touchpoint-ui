@@ -14,9 +14,7 @@ const parseFunctions = {
 		const testVal = input.toString().toLowerCase()
 		
 		if (testVal === 'today' || testVal === 'td') { return moment().toISOString() }
-		
 		if (testVal === 'tomorrow' || testVal === 'tm') { return moment().add(1, 'day').toISOString() }
-		
 		if (testVal === 'yesterday' || testVal === 'yd') { return moment().subtract(1, 'day').toISOString() }
 		
 		//Special case for dates with no year - default to current year
@@ -37,7 +35,7 @@ const parseFunctions = {
 			return true
 		} else return false
 	},
-
+	
 	number: (input) => {
 		const newValue = Number(input)
 		if (!isNaN(newValue)) {

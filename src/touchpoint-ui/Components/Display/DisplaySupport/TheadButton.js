@@ -31,7 +31,7 @@ export default function TheadButton(props){
 		}}><FontAwesomeIcon icon={faFilter} /></span>
 	}
 	
-	//changes every time the menu opens. Used by useEffect listeners in teh menu to respond to the open event
+	//changes every time the menu opens. Used by useEffect listeners in the menu to respond to the open event
 	const [openTrigger, setOpenTrigger] = useState(false) 
 	const [isOpen, setIsOpen] = useState(false)
 	
