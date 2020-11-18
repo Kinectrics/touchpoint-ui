@@ -2046,22 +2046,17 @@ styleInject(css_248z$m);
 
 function FilterMenu(props) {
   var values = props.header.uniqueValues;
+  var selectAllRef = useRef({});
 
-  function clickHandler(e, id) {
-    var cb = document.getElementById(id);
-
-    if (e.target !== cb) {
-      cb.checked = !cb.checked;
-    }
-
+  function clickHandler(val) {
     var newHeaders = _toConsumableArray(props.dataHeaders.get());
 
-    newHeaders[props.header.index].uniqueValues[cb.value] = cb.checked;
+    newHeaders[props.header.index].uniqueValues[val] = !newHeaders[props.header.index].uniqueValues[val];
     props.dataHeaders.set(newHeaders);
   }
 
   function selectAll(e) {
-    var cb = document.getElementById(props.header.headerID + 'selectAll');
+    var cb = selectAllRef.current;
 
     if (e.target !== cb) {
       cb.checked = !cb.checked;
@@ -2096,7 +2091,7 @@ function FilterMenu(props) {
     }, /*#__PURE__*/React.createElement("input", {
       type: "checkbox",
       checked: !props.header.hasFilter(),
-      id: props.header.headerID + 'selectAll',
+      ref: selectAllRef,
       style: {
         cursor: 'pointer'
       },
@@ -2111,7 +2106,7 @@ function FilterMenu(props) {
           className: 'fullButton compactText',
           key: props.header.id + 'fv' + count,
           onClick: function onClick(e) {
-            return clickHandler(e, props.header.headerID + 'fcb' + i);
+            return clickHandler(v);
           },
           title: props.header.format(v)
         }, /*#__PURE__*/React.createElement("input", {
@@ -2442,7 +2437,7 @@ function TheadButton(props) {
     }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faFilter
     }));
-  } //changes every time the menu opens. Used by useEffect listeners in teh menu to respond to the open event
+  } //changes every time the menu opens. Used by useEffect listeners in the menu to respond to the open event
 
 
   var _useState = useState(false),
@@ -3702,6 +3697,10 @@ var formatFunctions = {
 var parseFunctions = {
   date: function date(input) {
     var testVal = input.toString().toLowerCase();
+
+    if (testVal.trim() === '') {
+      return '';
+    }
 
     if (testVal === 'today' || testVal === 'td') {
       return moment().toISOString();
