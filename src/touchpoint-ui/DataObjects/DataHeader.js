@@ -108,7 +108,7 @@ function uniqueByColumn(data, metaData, columnID, oldValues) {
 	
 	data.forEach((r, idx) => {
 		
-		if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';')){
+		if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';') && !metaData[idx].searchHidden){
 			//New vales added as true, old values keep their value
 			if (oldValues[r[columnID]] === undefined){
 				res[r[columnID]] = true
