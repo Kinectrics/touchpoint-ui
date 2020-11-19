@@ -64,6 +64,11 @@ export default function MainTable(props){
 		}
 		
 		setMetaData(newMeta)
+		
+		//Update each header's value list 
+		if (!props.noFilter){
+			headers.embedData(newData, newMeta)
+		}
 	}
 	
 	
