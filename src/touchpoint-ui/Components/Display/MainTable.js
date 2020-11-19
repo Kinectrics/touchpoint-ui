@@ -5,6 +5,7 @@ import useModuleData from '../../Hooks/UseModuleData'
 import PropTypes from 'prop-types'
 import useHeaders from '../../Hooks/UseHeaders'
 import lockedContext from '../../Contexts/LockedContext'
+import {sortData, filterData, searchData} from './DisplaySupport/DataProcessing'
 
 export default function MainTable(props){
 	
@@ -28,122 +29,54 @@ export default function MainTable(props){
 	cleanProps.data = data
 	cleanProps.headers = headers
 	
-	//Sort, search, and filter functionality
-	const [metaData, setMetaData] = useState([])
+	const searchText = useModuleData().get('TouchPointSearchText')
 	
+	//Escape hatch for wraper dataset. If the array changes update the wrapper dataset to match
 	useEffect(()=>{
 		if(!props.data.isDataset){
 			data.refresh()
 		}
 	},[props.data])
 	
-	//SEARCH
-	const searchText = useModuleData().get('TouchPointSearchText')
 	
-	data.search = ()=>{
-		if(props.searchable){
-			const values = data.read()
-			const newMetaData = []
-
-			values.forEach((r, idx) => {
-
-				const rowMeta = metaData[idx] ? metaData[idx] : {}
-				rowMeta.searchHidden = false
-
-				if (searchText) {
-
-					const testVal = JSON.stringify(r).toLowerCase()
-					rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase())
-				}
-
-				newMetaData.push(rowMeta)
-			})
-
-			setMetaData(newMetaData)
+	
+	//Sort, search, and filter functionality
+	const [metaData, setMetaData] = useState([])
+	
+	function generateMetadata(){
+		let newMeta = [...metaData]
+		let newData = data.read()
+		
+		//sort
+		if(!props.noSort){
+			newData = sortData(data.read(), headers)
+			data.set(newData)
 		}
+		
+		//filter
+		if(!props.noFilter){
+			newMeta = filterData(newData, headers, newMeta)
+		}
+		
+		//search
+		if(props.searchable){
+			newMeta = searchData(newData, searchText, newMeta)
+		}
+		
+		setMetaData(newMeta)
 	}
+	
 	
 	useEffect(()=>{
-		data.search()
+		generateMetadata()
 	}, [searchText])
 	
-	//FILTER
-	function filterData(values) {
-		const newMetaData = []
-
-		values.forEach((r, idx) => {
-
-			const rowMeta = metaData[idx] ? metaData[idx] : {}
-			rowMeta.filteredBy = ''
-
-			let noRender = false
-
-			headers.get().forEach((h) => {
-				const fltr = h.filter(r[h.headerID], r)
-
-				if (!fltr && fltr != 'arrayFilter' && h.visible) {
-					noRender = true
-					rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';'
-				}
-			})
-
-			rowMeta.visible = !noRender
-			newMetaData.push(rowMeta)
-		})
-		
-		return newMetaData
-	}
 	
-	data.filter = () => {
-		const newMeta = filterData(data.read())
-		setMetaData(newMeta)
-		headers.embedData(data.read(), newMeta)
-	}
-	
-	
-	//SORT
-	function sortData(values) {
-		let newValues = [...values]
-
-		headers.getSortRules().forEach((sr) => {
-
-			if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
-				newValues = newValues.sort((aRow, bRow) => {
-					
-					const aVal = aRow[sr.headerID] ? aRow[sr.headerID].toString().toLowerCase() : ''
-					const bVal = bRow[sr.headerID] ? bRow[sr.headerID].toString().toLowerCase() : ''
-
-					if (sr.direction === 'asc') {
-						if (aVal > bVal) {
-							return 1
-						} else if (aVal < bVal) {
-							return -1
-						}
-
-						return 0
-
-					} else {
-						if (aVal < bVal) {
-							return 1
-						} else if (aVal > bVal) {
-							return -1
-						}
-						return 0
-					}
-				})
-			}
-
-		})
-		
-		return newValues
-	}
-	
-	data.sort = () => {
-		const newData = props.noSort ? [...data.read()] : sortData(data.read()) 
-		
-		data.set(newData)
-		data.filter()
-	}
+	//Maintable was created when data had separate, search, sort, and filter functions called at different times. 
+	//Now, its all part of generateMetadata, so any time it tries to search, sort or filter it can just generate metadata
+	data.sort = generateMetadata
+	data.filter = generateMetadata
+	data.search = generateMetadata
 	
 	//Select and return:
 	//cleanProps - if a dataset is passed to the table, then no need to create one

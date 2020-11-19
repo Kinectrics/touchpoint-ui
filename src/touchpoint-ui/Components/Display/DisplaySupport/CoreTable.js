@@ -57,7 +57,6 @@ export default function CoreTable(props){
 	useEffect(() => { 
 		//Filtering a second time when data is refreshed. This is required because otherwise the wrong rows appear on screen if you refresh while a filter is on 
 		props.data.filter()
-		if (props.searchText) { props.data.search() }
 	}, [props.data.lastEdited])
 	
 	//If clicking sets the active record then its animated
