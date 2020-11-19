@@ -43,18 +43,18 @@ export default function MainTable(props){
 	//Sort, search, and filter functionality
 	const [metaData, setMetaData] = useState([])
 	
-	function generateMetadata(){
+	function generateMetadata(metaOptions = {}){
 		let newMeta = [...metaData]
 		let newData = data.read()
 		
 		//sort
-		if(!props.noSort){
+		if((!metaOptions.searchOnly) && (!props.noSort)){
 			newData = sortData(data.read(), headers)
 			data.set(newData)
 		}
 		
 		//filter
-		if(!props.noFilter){
+		if ((!metaOptions.searchOnly) && (!props.noFilter)){
 			newMeta = filterData(newData, headers, newMeta)
 		}
 		
@@ -73,7 +73,7 @@ export default function MainTable(props){
 	
 	
 	useEffect(()=>{
-		generateMetadata()
+		generateMetadata({searchOnly: true})
 	}, [searchText])
 	
 	
