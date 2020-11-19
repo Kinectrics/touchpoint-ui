@@ -70,19 +70,18 @@ export default function VendorRubrics(){
 	//Data from the 'server'
 	const data  = useDataset(async()=>{
 		const c = Math.round(Math.random()*10)
-		const sqlRes = await fakeData(100)
+		const sqlRes = await fakeData(c*20)
 		return sqlRes
 	}, {primaryKey: 'id'})
 	
 	//Data from the 'server'
 	const data2 = useDataset(async () => {
-		const c = Math.round(Math.random() * 10)
-		const sqlRes = await fakeData(100)
+		const sqlRes = await fakeData(20)
 		return sqlRes
 	}, { primaryKey: 'id' })
 	
 	
-	const [activeTab, setActiveTab] = useState('tab1')
+	const [activeTab, setActiveTab] = useState('tab2')
 	
 	return (
 		<Module moduleName = "VendorRubrics" >
