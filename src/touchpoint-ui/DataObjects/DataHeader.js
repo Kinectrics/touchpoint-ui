@@ -19,6 +19,14 @@ export default class DataHeader{
 		this.options=options.options
 		
 		this.component = options.component 
+		
+		//Adds type = 'component' unless you explicitly give a type in the options
+		//Used to determine if a filter should appear or not
+		if(options.component){
+			this.type = options.type ? options.type : 'component'
+			this.onEdit = null
+		}
+		
 		this.props = options.props
 		
 		//Default filter list only has 1 functions (array filter)
