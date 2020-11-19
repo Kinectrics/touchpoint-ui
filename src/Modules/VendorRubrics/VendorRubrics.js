@@ -38,7 +38,7 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = [
-		{headerID: 'id',displayName:'ID', width: 100, required: true, component: TestCells, type: 'string'},
+		{headerID: 'id',displayName:'ID', width: 100, required: true, component: TestCells},
 		{headerID: 'project', displayName: 'Project', width: 100, options:[2,100,200], onEdit:(e)=>false},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true, options: ['Complete', 'Pending Approval', 'In Progress']},

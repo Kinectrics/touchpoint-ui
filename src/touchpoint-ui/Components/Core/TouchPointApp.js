@@ -21,7 +21,11 @@ export default function TouchPointApp(props){
 	const [popupEffect, setPopupEffect] = useState('')
 	const [moduleLock, setModuleLock] = useState(props.locked)
 	
-	const [screenEffect, setScreenEffect] = useState('')
+	function setScreenEffect(newScreenEffect){
+		const effectDiv = document.getElementById('TouchPointScreenEffect')
+		effectDiv.className = 'screenEffect ' + newScreenEffect
+	}
+	
 	const [drawerExists, setDrawerExists] = useState(false)
 	
 	const [layout, setLayout] = useState({
@@ -171,7 +175,6 @@ export default function TouchPointApp(props){
 			setExists: setDrawerExists,
 			
 			portalDestination: portalDestination,
-			className: activePopups.length > 0 ? screenEffect : '',
 		},
 		
 		//Internal variables for structuring the app
@@ -205,7 +208,7 @@ export default function TouchPointApp(props){
 		screenBlocker = <div className="screenBlocker" />
 	} else screenBlocker = null
 	
-	//The App JSX itself
+	
 	return (
 		<div className={"TouchPointApp "}>
 			<lockedContext.Provider value = {props.locked}>
@@ -217,7 +220,7 @@ export default function TouchPointApp(props){
 							{/* Portal Destination for App Drawer */}
 						</div>
 						
-						<div className={'screenEffect ' + screenEffect}>
+						<div className='screenEffect' id='TouchPointScreenEffect'>
 							
 							{props.children}
 							
