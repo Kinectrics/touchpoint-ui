@@ -17,7 +17,6 @@ export default class DataHeader{
 		this.type = options.type ? options.type : 'string'
 		this.onClick = options.onClick
 		this.options=options.options
-		
 		this.component = options.component 
 		
 		//Adds type = 'component' unless you explicitly give a type in the options
