@@ -1,5 +1,5 @@
 
-// //SEARCH
+//SEARCH
 export function searchData(values, searchText, metaData){
 	const newMetaData = []
 

@@ -48,18 +48,18 @@ export default function MainTable(props){
 		let newData = data.read()
 		
 		//sort
-		if((!metaOptions.searchOnly) && (!props.noSort)){
+		if((!metaOptions.noSort) && (!props.noSort)){
 			newData = sortData(data.read(), headers)
 			data.set(newData)
 		}
 		
 		//filter
-		if ((!metaOptions.searchOnly) && (!props.noFilter)){
+		if ((!metaOptions.noFilter) && (!props.noFilter)){
 			newMeta = filterData(newData, headers, newMeta)
 		}
 		
 		//search
-		if(props.searchable){
+		if(props.searchable && (!metaOptions.noSearch) ){
 			newMeta = searchData(newData, searchText, newMeta)
 		}
 		
@@ -73,7 +73,7 @@ export default function MainTable(props){
 	
 	
 	useEffect(()=>{
-		generateMetadata({searchOnly: true})
+		generateMetadata({noSort: true, noFilter: true})
 	}, [searchText])
 	
 	
@@ -82,6 +82,7 @@ export default function MainTable(props){
 	data.sort = generateMetadata
 	data.filter = generateMetadata
 	data.search = generateMetadata
+	data.generateMetadata = generateMetadata
 	
 	//Select and return:
 	//cleanProps - if a dataset is passed to the table, then no need to create one
