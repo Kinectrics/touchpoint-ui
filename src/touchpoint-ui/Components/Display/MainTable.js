@@ -88,9 +88,9 @@ export default function MainTable(props){
 	//cleanProps - if a dataset is passed to the table, then no need to create one
 	//newProps - if a dataset is not passed to the table, then create one and pass it
 	if(props.data.isDataset){
-		return (<CoreTable {...cleanProps} metaData = {metaData} locked={locked} searchText={searchText}/>)
+		return (<CoreTable {...cleanProps} metaData = {metaData} locked={locked} searchText={searchText} generateMetadata={generateMetadata}/>)
 	} else{
-		return (<CoreTable {...newProps} metaData={metaData} locked={locked} searchText={searchText}/>)
+		return (<CoreTable {...newProps} metaData={metaData} locked={locked} searchText={searchText} generateMetadata={generateMetadata}/>)
 	}
 }
 
