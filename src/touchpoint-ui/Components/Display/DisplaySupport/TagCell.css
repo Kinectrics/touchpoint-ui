@@ -1,0 +1,11 @@
+.TagCell{
+	
+	margin: none;
+	height: 100%;
+	padding: 0 2px;
+
+}
+
+.TagCell .tag{
+	max-height: 100%;
+}

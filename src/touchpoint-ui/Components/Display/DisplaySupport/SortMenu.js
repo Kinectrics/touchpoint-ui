@@ -20,7 +20,7 @@ export default function SortMenu(props){
 		<FontAwesomeIcon icon={faTimes} />
 	</span>
 	
-	if(!props.noSort){return (
+	if(props.header.type !== 'tags' && !props.noSort){return (
 		<div className='SortMenu' >
 			<button onClick={sortData} className='fullButton sortButton' value={'asc'}>
 				Sort Ascending

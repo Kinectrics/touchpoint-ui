@@ -26,6 +26,14 @@
 	border-right: 1px solid var(--borderColor);
 }
 
+.TheadMenu.tpuitags .FilterMenu{
+	width: 100%;
+}
+
+.TheadMenu.tpuitags .sideMenu{
+	display: none;
+}
+
 .TheadMenu .sideMenu{
 	width: 45%;
 	position: relative;

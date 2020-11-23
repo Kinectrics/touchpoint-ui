@@ -7,7 +7,7 @@ export default function MoreFilters(props) {
 	
 	const filterList = DataFilter.getFilterTypes()
 	
-	if(!props.noFilter){return (
+	if (props.header.type !== 'tags' && !props.noFilter){return (
 		<div className = 'MoreFilters'>
 			
 			{Object.keys(filterList).map((f, i)=>{

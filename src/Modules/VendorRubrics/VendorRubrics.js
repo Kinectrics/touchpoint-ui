@@ -49,6 +49,7 @@ export default function VendorRubrics(){
 		}},
 		{headerID: 'SM', displayName:'SM', width: 200, onEdit: editHandler},
 		{headerID: 'intern', displayName:'Intern', width: 300, onEdit: ()=>true},
+		{headerID: 'tagTest', displayName:'Tags', width: 400, type: 'tags'},
 	]
 	
 	const dataHeaders2 = [
