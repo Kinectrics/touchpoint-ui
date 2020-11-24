@@ -17,8 +17,15 @@ export default class DataHeader{
 		this.type = options.type ? options.type : 'string'
 		this.onClick = options.onClick
 		this.options=options.options
-		
 		this.component = options.component 
+		
+		//Adds type = 'component' unless you explicitly give a type in the options
+		//Used to determine if a filter should appear or not
+		if(options.component){
+			this.type = options.type ? options.type : 'component'
+			this.onEdit = null
+		}
+		
 		this.props = options.props
 		
 		//Default filter list only has 1 functions (array filter)
@@ -100,7 +107,7 @@ function uniqueByColumn(data, metaData, columnID, oldValues) {
 	
 	data.forEach((r, idx) => {
 		
-		if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';')){
+		if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';') && !metaData[idx].searchHidden){
 			//New vales added as true, old values keep their value
 			if (oldValues[r[columnID]] === undefined){
 				res[r[columnID]] = true

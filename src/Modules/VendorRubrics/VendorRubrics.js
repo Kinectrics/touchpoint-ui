@@ -1,5 +1,5 @@
 import React from 'react'
-import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, MainTable} from '../../touchpoint-ui'
+import {Module, ControlBar, SplitScreen, PopupCard, InfoTab, InfoTabContainer, MainTable, ControlledTabContainer} from '../../touchpoint-ui'
 import {useSystem, useDataset} from '../../touchpoint-ui'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faCalendarAlt, faChartArea, faSyncAlt, faTimesCircle, faPenFancy} from "@fortawesome/free-solid-svg-icons"
@@ -12,6 +12,7 @@ import TestExpandedRows from './TestExpandedRows'
 import TestCells from './TestCells'
 import {RefreshButton} from '../../touchpoint-ui'
 import SearchNest from './SearchNest'
+import { useState } from 'react'
 
 //And begin
 export default function VendorRubrics(){
@@ -37,7 +38,7 @@ export default function VendorRubrics(){
 	
 	//Headers for table
 	const dataHeaders = [
-		{headerID: 'id',displayName:'ID', width: 100, required: true},
+		{headerID: 'id',displayName:'ID', width: 100, required: true, component: TestCells},
 		{headerID: 'project', displayName: 'Project', width: 100, options:[2,100,200], onEdit:(e)=>false},
 		{headerID: 'projectName', displayName:'Project Name', width: 220},
 		{headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: ()=>true, options: ['Complete', 'Pending Approval', 'In Progress']},
@@ -50,13 +51,37 @@ export default function VendorRubrics(){
 		{headerID: 'intern', displayName:'Intern', width: 300, onEdit: ()=>true},
 	]
 	
+	const dataHeaders2 = [
+		{ headerID: 'id', displayName: 'ID', width: 100, required: true },
+		{ headerID: 'project', displayName: 'Project', width: 100, options: [2, 100, 200], onEdit: (e) => false },
+		{ headerID: 'projectName', displayName: 'Project Name', width: 220 },
+		{ headerID: 'status', displayName: 'Status', width: 200, required: true, styling: statusStyle, onEdit: () => true, options: ['Complete', 'Pending Approval', 'In Progress'] },
+		{
+			headerID: 'due', displayName: 'Due', width: 200, type: 'date', onEdit: () => {
+				return new Promise(resolve => {
+					setTimeout(() => resolve(true), 5000)
+				})
+			}
+		},
+		{ headerID: 'SM', displayName: 'SM', width: 200, onEdit: editHandler },
+		{ headerID: 'intern', displayName: 'Intern', width: 300, onEdit: () => true },
+	]
+	
 	//Data from the 'server'
 	const data  = useDataset(async()=>{
 		const c = Math.round(Math.random()*10)
-		const sqlRes = await fakeData(100)
+		const sqlRes = await fakeData(c*20)
 		return sqlRes
 	}, {primaryKey: 'id'})
 	
+	//Data from the 'server'
+	const data2 = useDataset(async () => {
+		const sqlRes = await fakeData(20)
+		return sqlRes
+	}, { primaryKey: 'id' })
+	
+	
+	const [activeTab, setActiveTab] = useState('tab1')
 	
 	return (
 		<Module moduleName = "VendorRubrics" >
@@ -84,6 +109,18 @@ export default function VendorRubrics(){
 					<FontAwesomeIcon icon={faPenFancy} /> Edit Record
 				</button>
 				
+				<button onClick={() => {
+					setActiveTab('tab1')
+				}}>
+					1
+				</button>
+				
+				<button onClick={() => {
+					setActiveTab('tab2')
+				}}>
+					2
+				</button>
+				
 				<RefreshButton
 					data = {data}
 				/>
@@ -104,16 +141,32 @@ export default function VendorRubrics(){
 			</ControlBar>
 			
 			{/* <SplitScreen defaultSize={50}> */}
+				<ControlledTabContainer activeTab={activeTab}>
+					
+					<InfoTab tabID='tab1' tabTitle='tab1'>
+						<MainTable
+							data={data}
+							headers={dataHeaders}
+							pageSize={50}
+							searchable
+							settingsID={'VendorRubricsMainTable'}
+							nestedComponent={TestExpandedRows}
+							nestedProps={{ fitToWidth: true }}
+						/>
+					</InfoTab>
+					
+				<InfoTab tabID='tab2' tabTitle='tab1'>
+					<MainTable
+						data={data2}
+						headers={dataHeaders2}
+						pageSize={50}
+						searchable
+						settingsID={'VendorRubricsMainTable22'}
+					/>
+				</InfoTab>
+					
+				</ControlledTabContainer>
 				
-				<MainTable
-					data={data}
-					headers={dataHeaders}
-					pageSize={50}
-					searchable
-					settingsID={'VendorRubricsMainTable'}
-					nestedComponent = {TestExpandedRows}
-					nestedProps={{fitToWidth:true}}
-				/>
 				
 				{/* <InfoTabContainer defaultTab='RubricHeader'>
 					

@@ -46,18 +46,9 @@ export default function CoreTable(props){
 	
 	//For dataSets - runs when dataSet refreshes (sets the filter options to match)
 	useEffect(() => {
-		if (!noFilter) { props.headers.embedData(data, metaData) }
 		if (!noOptions) { props.headers.setSettingsEngine({ save: saveSettings }) }
-		
-		props.data.sort()
-		props.data.setLastEdited(new Date().toISOString())
-		if (props.searchText) { props.data.search() }
+		props.generateMetadata()
 	}, [props.data.lastResolved])
-	
-	useEffect(() => { 
-		//Filtering a second time when data is refreshed. This is required because otherwise the wrong rows appear on screen if you refresh while a filter is on 
-		props.data.filter()
-	}, [props.data.lastEdited])
 	
 	//If clicking sets the active record then its animated
 	//if there are editable cells the animations will be cancelled
@@ -135,7 +126,7 @@ export default function CoreTable(props){
 					{props.headers.get().map((hdr, i) => {
 						if (hdr.visible || hdr.required) {
 							//Custom component type headers have no filters
-							if (hdr.component) return <span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarComponentWrapper'>
+							if (hdr.type === 'component') return <span style={{ width: hdr.width + 'px' }} key={'header' + i} className='theadBarComponentWrapper'>
 								{hdr.displayName + ' '}
 							</span>
 							

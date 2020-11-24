@@ -36,26 +36,28 @@ export default function PageContols(props) {
 		}
 	}
 	
-
-	if (props.dataLength > props.pageSize) {
-		return (<div className="pageControls">
-			
-			{showPageBack ? 
-				<button onClick={pageBack}><FontAwesomeIcon icon={faCaretLeft} /></button> 
-			: null}
-			
-
-			<button className='textButton'>Showing {1 + props.activePage * props.pageSize}-
-			{Math.min((1 + props.activePage) * props.pageSize, props.dataLength) + ' '}
-			of {`  ${props.dataLength}`}</button>
-			
-
-			{showPageForward ?
-				<button onClick={pageForward}><FontAwesomeIcon icon={faCaretRight} /></button>
-			:null}
-			
-		</div>
+	
+	if(!props.pageSize){return null}
+	
+	return (<div className="pageControls" style={{
+		paddingTop: props.dataLength > props.pageSize ? null : '5px'
+	}}>
 		
-	)} else return null
+		{showPageBack ? 
+			<button onClick={pageBack}><FontAwesomeIcon icon={faCaretLeft} /></button> 
+		: null}
+		
+
+		<button className='textButton'>Showing {1 + props.activePage * props.pageSize}-
+		{Math.min((1 + props.activePage) * props.pageSize, props.dataLength) + ' '}
+		of {`  ${props.dataLength}`}</button>
+		
+
+		{showPageForward ?
+			<button onClick={pageForward}><FontAwesomeIcon icon={faCaretRight} /></button>
+		:null}
+		
+	</div>)
+		
 	
 }

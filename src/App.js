@@ -94,10 +94,7 @@ export default function App() {
 					Version: {io.getVersion().number + ' - ' + io.getVersion().environment}
 				</span>
 			</AppFooter>
-			
 			<DrawerContent/>
-
-			
 		</TouchPointApp>
 	)
 }

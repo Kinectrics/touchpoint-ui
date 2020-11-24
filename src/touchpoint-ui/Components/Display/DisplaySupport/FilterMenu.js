@@ -1,20 +1,18 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 export default function FilterMenu(props){
 
 	const values = props.header.uniqueValues
+	const selectAllRef = useRef({})
 	
-	function clickHandler(e, id){
-		const cb = document.getElementById(id)
-		if(e.target !== cb){cb.checked = !cb.checked}
-		
+	function clickHandler(val){
 		const newHeaders = [...props.dataHeaders.get()]
-		newHeaders[props.header.index].uniqueValues[cb.value] = cb.checked
+		newHeaders[props.header.index].uniqueValues[val] = !newHeaders[props.header.index].uniqueValues[val]
 		props.dataHeaders.set(newHeaders)
 	}
 	
 	function selectAll(e){
-		const cb = document.getElementById(props.header.headerID + 'selectAll')
+		const cb = selectAllRef.current
 		if (e.target !== cb) { cb.checked = !cb.checked }
 		
 		const newHeaders = [...props.dataHeaders.get()]
@@ -46,7 +44,7 @@ export default function FilterMenu(props){
 					<input
 						type='checkbox'
 						checked={!props.header.hasFilter()}
-						id={props.header.headerID + 'selectAll'}
+						ref={selectAllRef}
 						style={{ cursor: 'pointer' }}
 						readOnly
 					/>
@@ -62,7 +60,7 @@ export default function FilterMenu(props){
 				if(count < lim){return (<button
 					className = {'fullButton compactText'}
 					key={props.header.id + 'fv' + count}
-					onClick={(e) => clickHandler(e, props.header.headerID + 'fcb' + i)}
+					onClick={(e) => clickHandler(v)}
 					title = {props.header.format(v)}
 				>
 					

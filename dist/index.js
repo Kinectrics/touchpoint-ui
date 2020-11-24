@@ -475,25 +475,25 @@ function TouchPointApp(props) {
       moduleLock = _useState8[0],
       setModuleLock = _useState8[1];
 
-  var _useState9 = useState(''),
+  function setScreenEffect(newScreenEffect) {
+    var effectDiv = document.getElementById('TouchPointScreenEffect');
+    effectDiv.className = 'screenEffect ' + newScreenEffect;
+  }
+
+  var _useState9 = useState(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      screenEffect = _useState10[0],
-      setScreenEffect = _useState10[1];
+      drawerExists = _useState10[0],
+      setDrawerExists = _useState10[1];
 
-  var _useState11 = useState(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      drawerExists = _useState12[0],
-      setDrawerExists = _useState12[1];
-
-  var _useState13 = useState({
+  var _useState11 = useState({
     heightCSS: '100%',
     widthCSS: '100%',
     widths: {},
     heights: {}
   }),
-      _useState14 = _slicedToArray(_useState13, 2),
-      layout = _useState14[0],
-      setLayout = _useState14[1];
+      _useState12 = _slicedToArray(_useState11, 2),
+      layout = _useState12[0],
+      setLayout = _useState12[1];
 
   function saveSettings(settingsID, settingsToken) {
     if (props.saveSettings && settingsID) {
@@ -673,8 +673,7 @@ function TouchPointApp(props) {
       },
       Exists: drawerExists,
       setExists: setDrawerExists,
-      portalDestination: portalDestination,
-      className: activePopups.length > 0 ? screenEffect : ''
+      portalDestination: portalDestination
     },
     //Internal variables for structuring the app
     Layout: {
@@ -732,8 +731,7 @@ function TouchPointApp(props) {
     screenBlocker = /*#__PURE__*/React.createElement("div", {
       className: "screenBlocker"
     });
-  } else screenBlocker = null; //The App JSX itself
-
+  } else screenBlocker = null;
 
   return /*#__PURE__*/React.createElement("div", {
     className: "TouchPointApp "
@@ -744,7 +742,8 @@ function TouchPointApp(props) {
   }, /*#__PURE__*/React.createElement(HashRouter, null, screenBlocker, /*#__PURE__*/React.createElement("div", {
     ref: portalDestination
   }), /*#__PURE__*/React.createElement("div", {
-    className: 'screenEffect ' + screenEffect
+    className: "screenEffect",
+    id: "TouchPointScreenEffect"
   }, props.children, /*#__PURE__*/React.createElement(SystemModuleContainer, {
     system: System,
     locked: props.locked || moduleLock
@@ -2046,22 +2045,17 @@ styleInject(css_248z$m);
 
 function FilterMenu(props) {
   var values = props.header.uniqueValues;
+  var selectAllRef = useRef({});
 
-  function clickHandler(e, id) {
-    var cb = document.getElementById(id);
-
-    if (e.target !== cb) {
-      cb.checked = !cb.checked;
-    }
-
+  function clickHandler(val) {
     var newHeaders = _toConsumableArray(props.dataHeaders.get());
 
-    newHeaders[props.header.index].uniqueValues[cb.value] = cb.checked;
+    newHeaders[props.header.index].uniqueValues[val] = !newHeaders[props.header.index].uniqueValues[val];
     props.dataHeaders.set(newHeaders);
   }
 
   function selectAll(e) {
-    var cb = document.getElementById(props.header.headerID + 'selectAll');
+    var cb = selectAllRef.current;
 
     if (e.target !== cb) {
       cb.checked = !cb.checked;
@@ -2096,7 +2090,7 @@ function FilterMenu(props) {
     }, /*#__PURE__*/React.createElement("input", {
       type: "checkbox",
       checked: !props.header.hasFilter(),
-      id: props.header.headerID + 'selectAll',
+      ref: selectAllRef,
       style: {
         cursor: 'pointer'
       },
@@ -2111,7 +2105,7 @@ function FilterMenu(props) {
           className: 'fullButton compactText',
           key: props.header.id + 'fv' + count,
           onClick: function onClick(e) {
-            return clickHandler(e, props.header.headerID + 'fcb' + i);
+            return clickHandler(v);
           },
           title: props.header.format(v)
         }, /*#__PURE__*/React.createElement("input", {
@@ -2442,7 +2436,7 @@ function TheadButton(props) {
     }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
       icon: faFilter
     }));
-  } //changes every time the menu opens. Used by useEffect listeners in teh menu to respond to the open event
+  } //changes every time the menu opens. Used by useEffect listeners in the menu to respond to the open event
 
 
   var _useState = useState(false),
@@ -2468,7 +2462,10 @@ function TheadButton(props) {
         setIsOpen(true);
       },
       onClose: function onClose() {
-        props.data.filter();
+        props.data.generateMetadata({
+          noSort: true,
+          noSearch: true
+        });
         setIsOpen(false);
       },
       menuContent: /*#__PURE__*/React.createElement(TheadMenu, {
@@ -2821,21 +2818,26 @@ function PageContols(props) {
     }
   }
 
-  if (props.dataLength > props.pageSize) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "pageControls"
-    }, showPageBack ? /*#__PURE__*/React.createElement("button", {
-      onClick: pageBack
-    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-      icon: faCaretLeft
-    })) : null, /*#__PURE__*/React.createElement("button", {
-      className: "textButton"
-    }, "Showing ", 1 + props.activePage * props.pageSize, "-", Math.min((1 + props.activePage) * props.pageSize, props.dataLength) + ' ', "of ", "  ".concat(props.dataLength)), showPageForward ? /*#__PURE__*/React.createElement("button", {
-      onClick: pageForward
-    }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-      icon: faCaretRight
-    })) : null);
-  } else return null;
+  if (!props.pageSize) {
+    return null;
+  }
+
+  return /*#__PURE__*/React.createElement("div", {
+    className: "pageControls",
+    style: {
+      paddingTop: props.dataLength > props.pageSize ? null : '5px'
+    }
+  }, showPageBack ? /*#__PURE__*/React.createElement("button", {
+    onClick: pageBack
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faCaretLeft
+  })) : null, /*#__PURE__*/React.createElement("button", {
+    className: "textButton"
+  }, "Showing ", 1 + props.activePage * props.pageSize, "-", Math.min((1 + props.activePage) * props.pageSize, props.dataLength) + ' ', "of ", "  ".concat(props.dataLength)), showPageForward ? /*#__PURE__*/React.createElement("button", {
+    onClick: pageForward
+  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
+    icon: faCaretRight
+  })) : null);
 }
 
 var css_248z$o = ".MainTableRow{\n\ttransition: all 0.2s;\n\t\n\tbackground-color: var(--cardBG);\n\tmargin: 8px 15px;\n\tborder-radius: 10px;\n\t\n\ttransition: background-color 0.15 ease-out, color 0.15s ease-out;\t\n\toverflow: hidden;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .topRow{\n\theight: 30px;\n\tpadding: 4px 0px;\n\tposition: relative;\n}\n\n.MainTable.hasActive .MainTableRow .topRow.active{\n\tcolor: var(--tableActiveColor);\n}\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tcolor: var(--mainTextColor);\n}\n\n.MainTable.hasActive .MainTableRow{\n\tcursor: pointer;\n}\n\n.MainTable.hasActive .MainTableRow:active:not(.expanded){\n\ttransition: all 0.05s ease-out;\n\tfilter: brightness(95%);\n}\n\n\n.MainTable:not(.hasActive) .MainTableRow{\n\tfilter: none !important;\n\tcursor: default;\n}\n\n\n.MainTableRow span.tableCell{\n\ttransition: inherit;\n\toverflow: hidden;\n}\n\n.MainTableRow span.plain{\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.MainTableRow .badge{\n\tborder-radius: 10px;\n\ttext-align: center;\n\tpadding: 4px 0;\n\tpadding-top: 2px;\n\tfont-size: 11.5pt;\n\ttransition: none;\n\tdisplay: inline-block;\n\theight: 100%;\n}\n\n/* expanded */\n.MainTableRow.expanded .topRow{\n\tborder-bottom: 1px solid var(--borderColor);\n\theight: 35px;\n\tpadding-bottom: 5px;\n}\n\n.MainTableRow .componentWrapper{\n\tcursor: default;\n\tposition: relative;\n}\n\n.MainTableRow .expandButton{\n\topacity: 50%;\n\tpadding-right: 0;\n\tcolor: var(--mainTextColor);\n\twidth: 18px;\n\tposition: absolute;\n\tleft: -2px;\n\tfont-size: 11pt;\n\tuser-select: none;\n\tcursor: pointer;\n}\n\n.MainTableRow .expandButton:hover{\n\tfilter: brightness(200%) !important;\n}\n\n.MainTableRow .expandButton:active{\n\tfilter: brightness(50%) !important;\n}\n\n/* Nested Tables */\n.MainTableRow .componentWrapper .topBar,\n.MainTableRow .componentWrapper .theadBar,\n.MainTableRow .componentWrapper .tableControls{\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .MainTable{\n\tbackground-color: transparent;\n\twidth: 100%;\n}\n\n.MainTableRow .componentWrapper .MainTableRow{\n\tmargin-top: 2px;\n\tmargin-bottom: 2px;\n\tbackground-color: transparent;\n}\n\n.MainTableRow .componentWrapper .topRow{\n\tborder: none;\n\theight: 32px;\n}\n\n.MainTableRow .componentWrapper .topBar{\n\tdisplay: none;\n}\n\n.MainTableRow .componentWrapper .theadBar{\n\ttop:0;\n\theight: 20px;\n\tz-index: 0;\n}\n\n.MainTableRow .componentWrapper .theadBar span:first-child{\n\tpadding-left: 1px;\n}\n\n.MainTableRow .componentWrapper .mainSection{\n\tpadding-top: 5px;\n}\n\n/* Nested Tabs */\n.MainTableRow .InfoTabContainer{\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTab{\n\tpadding-top: 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs{\n\tborder-radius: 10px;\n\tbackground-color: var(--cardBG);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\tpadding: 0px 10px;\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active{\n\tcolor: var(--navColor);\n\tbackground-color: transparent;\n\ttext-shadow: 1px 0px 0px var(--navColor);\n\tborder-bottom: solid 3px var(--navColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navHoverColor);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a:hover{\n\tcolor:var(--navColor);\n\tfilter: brightness(60%);\n}\n\n.MainTableRow .InfoTabContainer .nav-tabs a.active:hover{\n\tcolor: \tvar(--navColor);\n}";
@@ -3345,27 +3347,14 @@ function CoreTable(props) {
   }); //For dataSets - runs when dataSet refreshes (sets the filter options to match)
 
   useEffect(function () {
-    if (!noFilter) {
-      props.headers.embedData(data, metaData);
-    }
-
     if (!noOptions) {
       props.headers.setSettingsEngine({
         save: saveSettings
       });
     }
 
-    props.data.sort();
-    props.data.setLastEdited(new Date().toISOString());
-
-    if (props.searchText) {
-      props.data.search();
-    }
-  }, [props.data.lastResolved]);
-  useEffect(function () {
-    //Filtering a second time when data is refreshed. This is required because otherwise the wrong rows appear on screen if you refresh while a filter is on 
-    props.data.filter();
-  }, [props.data.lastEdited]); //If clicking sets the active record then its animated
+    props.generateMetadata();
+  }, [props.data.lastResolved]); //If clicking sets the active record then its animated
   //if there are editable cells the animations will be cancelled
 
   var dynamic;
@@ -3448,7 +3437,7 @@ function CoreTable(props) {
   }, props.headers.get().map(function (hdr, i) {
     if (hdr.visible || hdr.required) {
       //Custom component type headers have no filters
-      if (hdr.component) return /*#__PURE__*/React.createElement("span", {
+      if (hdr.type === 'component') return /*#__PURE__*/React.createElement("span", {
         style: {
           width: hdr.width + 'px'
         },
@@ -3651,7 +3640,6 @@ function useDataset(fetchFunction) {
 
     _selectRecord(activeRecord[options.primaryKey], newData);
   } //Automatically run the fetching function the first time, then wait for a refresh
-  //If the dataset was spawned by a parent dataset, send its refresh function to the parent, so it can refresh when the parent refreshes
 
 
   useEffect(function () {
@@ -3674,7 +3662,6 @@ function useDataset(fetchFunction) {
     setLastResolved: setLastResolved,
     setLastEdited: setLastEdited,
     lastEdited: lastEdited,
-    //TouchPoint Controls
     isDataset: true,
     primaryKey: options.primaryKey,
     set: function set(newData) {
@@ -3702,6 +3689,10 @@ var formatFunctions = {
 var parseFunctions = {
   date: function date(input) {
     var testVal = input.toString().toLowerCase();
+
+    if (testVal.trim() === '') {
+      return '';
+    }
 
     if (testVal === 'today' || testVal === 'td') {
       return moment().toISOString();
@@ -3785,7 +3776,14 @@ var DataHeader = /*#__PURE__*/function () {
     this.type = options.type ? options.type : 'string';
     this.onClick = options.onClick;
     this.options = options.options;
-    this.component = options.component;
+    this.component = options.component; //Adds type = 'component' unless you explicitly give a type in the options
+    //Used to determine if a filter should appear or not
+
+    if (options.component) {
+      this.type = options.type ? options.type : 'component';
+      this.onEdit = null;
+    }
+
     this.props = options.props; //Default filter list only has 1 functions (array filter)
 
     this.filterList = {
@@ -3881,7 +3879,7 @@ var DataHeader = /*#__PURE__*/function () {
 function uniqueByColumn(data, metaData, columnID, oldValues) {
   var res = {};
   data.forEach(function (r, idx) {
-    if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';')) {
+    if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';') && !metaData[idx].searchHidden) {
       //New vales added as true, old values keep their value
       if (oldValues[r[columnID]] === undefined) {
         res[r[columnID]] = true;
@@ -4104,6 +4102,75 @@ function useHeaders() {
   };
 }
 
+//SEARCH
+function searchData(values, searchText, metaData) {
+  var newMetaData = [];
+  values.forEach(function (r, idx) {
+    var rowMeta = metaData[idx] ? metaData[idx] : {};
+    rowMeta.searchHidden = false;
+
+    if (searchText) {
+      var testVal = JSON.stringify(r).toLowerCase();
+      rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase());
+    }
+
+    newMetaData.push(rowMeta);
+  });
+  return newMetaData;
+} // //FILTER
+
+function filterData(values, headers, metaData) {
+  var newMetaData = [];
+  values.forEach(function (r, idx) {
+    var rowMeta = metaData[idx] ? metaData[idx] : {};
+    rowMeta.filteredBy = '';
+    var noRender = false;
+    headers.get().forEach(function (h) {
+      var fltr = h.filter(r[h.headerID], r);
+
+      if (!fltr && fltr != 'arrayFilter' && h.visible) {
+        noRender = true;
+        rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';';
+      }
+    });
+    rowMeta.visible = !noRender;
+    newMetaData.push(rowMeta);
+  });
+  return newMetaData;
+} //SORT
+
+function sortData(values, headers) {
+  var newValues = _toConsumableArray(values);
+
+  headers.getSortRules().forEach(function (sr) {
+    if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
+      newValues = newValues.sort(function (aRow, bRow) {
+        var aVal = aRow[sr.headerID] ? aRow[sr.headerID].toString().toLowerCase() : '';
+        var bVal = bRow[sr.headerID] ? bRow[sr.headerID].toString().toLowerCase() : '';
+
+        if (sr.direction === 'asc') {
+          if (aVal > bVal) {
+            return 1;
+          } else if (aVal < bVal) {
+            return -1;
+          }
+
+          return 0;
+        } else {
+          if (aVal < bVal) {
+            return 1;
+          } else if (aVal > bVal) {
+            return -1;
+          }
+
+          return 0;
+        }
+      });
+    }
+  });
+  return newValues;
+}
+
 function MainTable(props) {
   //Converts static data to a dataset
   var wrapperDataset = useDataset(props.data.isDataset ? function () {
@@ -4129,123 +4196,77 @@ function MainTable(props) {
   var cleanProps = _objectSpread2({}, props);
 
   cleanProps.data = data;
-  cleanProps.headers = headers; //Sort, search, and filter functionality
+  cleanProps.headers = headers;
+  var searchText = useModuleContext().get('TouchPointSearchText'); //Escape hatch for wraper dataset. If the array changes update the wrapper dataset to match
+
+  useEffect(function () {
+    if (!props.data.isDataset) {
+      data.refresh();
+    }
+  }, [props.data]); //Sort, search, and filter functionality
 
   var _useState = useState([]),
       _useState2 = _slicedToArray(_useState, 2),
       metaData = _useState2[0],
       setMetaData = _useState2[1];
 
-  useEffect(function () {
-    if (!props.data.isDataset) {
-      data.refresh();
+  function generateMetadata() {
+    var metaOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    var newMeta = _toConsumableArray(metaData);
+
+    var newData = data.read(); //sort
+
+    if (!metaOptions.noSort && !props.noSort) {
+      newData = sortData(data.read(), headers);
+      data.set(newData);
+    } //filter
+
+
+    if (!metaOptions.noFilter && !props.noFilter) {
+      newMeta = filterData(newData, headers, newMeta);
+    } //search
+
+
+    if (props.searchable && !metaOptions.noSearch) {
+      newMeta = searchData(newData, searchText, newMeta);
     }
-  }, [props.data]); //SEARCH
 
-  var searchText = useModuleContext().get('TouchPointSearchText');
+    setMetaData(newMeta); //Update each header's value list 
 
-  data.search = function () {
-    if (props.searchable) {
-      var values = data.read();
-      var newMetaData = [];
-      values.forEach(function (r, idx) {
-        var rowMeta = metaData[idx] ? metaData[idx] : {};
-        rowMeta.searchHidden = false;
-
-        if (searchText) {
-          var testVal = JSON.stringify(r).toLowerCase();
-          rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase());
-        }
-
-        newMetaData.push(rowMeta);
-      });
-      setMetaData(newMetaData);
+    if (!props.noFilter) {
+      headers.embedData(newData, newMeta);
     }
-  };
-
-  useEffect(function () {
-    data.search();
-  }, [searchText]); //FILTER
-
-  function filterData(values) {
-    var newMetaData = [];
-    values.forEach(function (r, idx) {
-      var rowMeta = metaData[idx] ? metaData[idx] : {};
-      rowMeta.filteredBy = '';
-      var noRender = false;
-      headers.get().forEach(function (h) {
-        var fltr = h.filter(r[h.headerID], r);
-
-        if (!fltr && fltr != 'arrayFilter' && h.visible) {
-          noRender = true;
-          rowMeta.filteredBy = rowMeta.filteredBy + [h.headerID] + ';';
-        }
-      });
-      rowMeta.visible = !noRender;
-      newMetaData.push(rowMeta);
-    });
-    return newMetaData;
   }
 
-  data.filter = function () {
-    var newMeta = filterData(data.read());
-    setMetaData(newMeta);
-    headers.embedData(data.read(), newMeta);
-  }; //SORT
-
-
-  function sortData(values) {
-    var newValues = _toConsumableArray(values);
-
-    headers.getSortRules().forEach(function (sr) {
-      if (headers.get()[sr.index] && headers.get()[sr.index].visible) {
-        newValues = newValues.sort(function (aRow, bRow) {
-          var aVal = aRow[sr.headerID] ? aRow[sr.headerID].toString().toLowerCase() : '';
-          var bVal = bRow[sr.headerID] ? bRow[sr.headerID].toString().toLowerCase() : '';
-
-          if (sr.direction === 'asc') {
-            if (aVal > bVal) {
-              return 1;
-            } else if (aVal < bVal) {
-              return -1;
-            }
-
-            return 0;
-          } else {
-            if (aVal < bVal) {
-              return 1;
-            } else if (aVal > bVal) {
-              return -1;
-            }
-
-            return 0;
-          }
-        });
-      }
+  useEffect(function () {
+    generateMetadata({
+      noSort: true,
+      noFilter: true
     });
-    return newValues;
-  }
+  }, [searchText]); //Maintable was created when data had separate, search, sort, and filter functions called at different times. 
+  //Now, its all part of generateMetadata, so any time it tries to search, sort or filter it can just generate metadata
 
-  data.sort = function () {
-    var newData = props.noSort ? _toConsumableArray(data.read()) : sortData(data.read());
-    data.set(newData);
-    data.filter();
-  }; //Select and return:
+  data.sort = generateMetadata;
+  data.filter = generateMetadata;
+  data.search = generateMetadata;
+  data.generateMetadata = generateMetadata; //Select and return:
   //cleanProps - if a dataset is passed to the table, then no need to create one
   //newProps - if a dataset is not passed to the table, then create one and pass it
-
 
   if (props.data.isDataset) {
     return /*#__PURE__*/React.createElement(CoreTable, _extends({}, cleanProps, {
       metaData: metaData,
       locked: locked,
-      searchText: searchText
+      searchText: searchText,
+      generateMetadata: generateMetadata
     }));
   } else {
     return /*#__PURE__*/React.createElement(CoreTable, _extends({}, newProps, {
       metaData: metaData,
       locked: locked,
-      searchText: searchText
+      searchText: searchText,
+      generateMetadata: generateMetadata
     }));
   }
 } //Proptypes
