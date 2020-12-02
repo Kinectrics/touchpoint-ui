@@ -19,11 +19,17 @@ export default function MainTableRow(props) {
 		}
 	}
 	
+	const [renderTrigger, setRenderTrigger] = useState(false)
 	//Allow nested components and onClicks to update their dataRow
 	function setRow(newRow) {
+		//Illegally modifying a piece of state.... reasoning:
+		//If multiple rows are modified asynchronously, the second row may override the first one by using an outdated copy of the data. 
+		//letting them all modify the same array and then forcing a rerender fixes this issue (temporary fix). 
+		setRenderTrigger(!renderTrigger)
 		const newData = props.dataset.read()
 		newData[props.rowIndex] = newRow
 		props.dataset.set(newData)
+
 	}
 	
 	const rowContent = props.dataHeaders.map((hdr, i) => {
