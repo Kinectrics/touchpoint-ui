@@ -21,7 +21,7 @@ export default function MainTableRow(props) {
 	
 	//Allow nested components and onClicks to update their dataRow
 	function setRow(newRow) {
-		const newData = [...props.dataset.read()]
+		const newData = props.dataset.read()
 		newData[props.rowIndex] = newRow
 		props.dataset.set(newData)
 	}
