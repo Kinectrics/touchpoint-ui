@@ -25,6 +25,7 @@ export default function TestExpandedRows(props) {
 	return (
 
 		<div>
+			{props.row.SM}
 			<MainTable
 				style={{width: '50%'}}
 				data={statusLogData}

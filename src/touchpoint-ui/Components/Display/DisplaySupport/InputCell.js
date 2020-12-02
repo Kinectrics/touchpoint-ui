@@ -77,14 +77,17 @@ export default function InputCell(props) {
 		
 		try{
 			if (props.header.compare(props.dataRow[props.header.headerID], newValue)) { return }
-			const newData = JSON.parse(JSON.stringify([...props.dataset.read()]))
 			const newCellValue = props.header.parse(newValue)
 			
-			newData[props.rowIndex][props.header.headerID] = newCellValue
+			//Preview of what the row will look like if the update goes through
+			const cloneRow = JSON.parse(JSON.stringify(
+				props.dataset.read()[props.rowIndex]
+			))
+			cloneRow[props.header.headerID] = newCellValue
 			
 			const res = await props.header.onEdit({
 				cellValue: newCellValue, 
-				row: newData[props.rowIndex], 
+				row: cloneRow, 
 				oldCellValue: initalValue, 
 				oldRow: props.dataset.read()[props.rowIndex],
 				setRow: customSetRow,
@@ -92,10 +95,12 @@ export default function InputCell(props) {
 			})
 			
 			if(res || res === undefined){
-				if(override.value){//if the onEdit handler is assuming control, dont edit the dataset in here
+				if(override.value){//if the onEdit handler is assuming control, don't edit the dataset in here
 					setCurrentValue(props.header.format(override.newRow[props.header.headerID]))
 				} else{
-					props.dataset.set(newData)
+					const newRow = { ...props.dataset.read()[props.rowIndex]}
+					newRow[props.header.headerID] = newCellValue
+					props.setRow(newRow)
 					setCurrentValue(props.header.format(newCellValue))
 				}
 				flashGreen()

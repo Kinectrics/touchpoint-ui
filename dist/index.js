@@ -2968,7 +2968,7 @@ function InputCell(props) {
 
   function _commitChanges() {
     _commitChanges = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(val) {
-      var newValue, override, customSetRow, newData, newCellValue, res;
+      var newValue, override, customSetRow, newCellValue, cloneRow, res, newRow;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -3004,13 +3004,14 @@ function InputCell(props) {
               return _context.abrupt("return");
 
             case 9:
-              newData = JSON.parse(JSON.stringify(_toConsumableArray(props.dataset.read())));
-              newCellValue = props.header.parse(newValue);
-              newData[props.rowIndex][props.header.headerID] = newCellValue;
+              newCellValue = props.header.parse(newValue); //Preview of what the row will look like if the update goes through
+
+              cloneRow = JSON.parse(JSON.stringify(props.dataset.read()[props.rowIndex]));
+              cloneRow[props.header.headerID] = newCellValue;
               _context.next = 14;
               return props.header.onEdit({
                 cellValue: newCellValue,
-                row: newData[props.rowIndex],
+                row: cloneRow,
                 oldCellValue: initalValue,
                 oldRow: props.dataset.read()[props.rowIndex],
                 setRow: customSetRow,
@@ -3022,10 +3023,12 @@ function InputCell(props) {
 
               if (res || res === undefined) {
                 if (override.value) {
-                  //if the onEdit handler is assuming control, dont edit the dataset in here
+                  //if the onEdit handler is assuming control, don't edit the dataset in here
                   setCurrentValue(props.header.format(override.newRow[props.header.headerID]));
                 } else {
-                  props.dataset.set(newData);
+                  newRow = _objectSpread2({}, props.dataset.read()[props.rowIndex]);
+                  newRow[props.header.headerID] = newCellValue;
+                  props.setRow(newRow);
                   setCurrentValue(props.header.format(newCellValue));
                 }
 
@@ -3112,12 +3115,20 @@ function MainTableRow(props) {
     if (!props.noActive) {
       props.dataset.selectRecord(props.dataRow[props.dataset.primaryKey]);
     }
-  } //Allow nested components and onClicks to update their dataRow
+  }
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      renderTrigger = _useState2[0],
+      setRenderTrigger = _useState2[1]; //Allow nested components and onClicks to update their dataRow
 
 
   function setRow(newRow) {
-    var newData = _toConsumableArray(props.dataset.read());
-
+    //Illegally modifying a piece of state.... reasoning:
+    //If multiple rows are modified asynchronously, the second row may override the first one by using an outdated copy of the data. 
+    //letting them all modify the same array and then forcing a rerender fixes this issue (temporary fix). 
+    setRenderTrigger(!renderTrigger);
+    var newData = props.dataset.read();
     newData[props.rowIndex] = newRow;
     props.dataset.set(newData);
   }
