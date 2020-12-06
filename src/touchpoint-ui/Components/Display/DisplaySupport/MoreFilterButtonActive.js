@@ -44,6 +44,7 @@ export default function MoreFilterButtonActive(props) {
 	function keyDownHandler(e){
 		if(e.key === 'Enter'){
 			e.target.blur()
+			document.body.click()
 		} 
 	}
 	
