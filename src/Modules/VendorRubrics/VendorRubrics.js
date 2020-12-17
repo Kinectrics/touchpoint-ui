@@ -142,7 +142,7 @@ export default function VendorRubrics() {
 			</ControlBar>
 
 			{/* <SplitScreen defaultSize={50}> */}
-				<ControlledTabContainer activeTab={activeTab}>
+				<ControlledTabContainer activeTab={activeTab} singleMount>
 					
 					<InfoTab tabID='tab1' tabTitle='tab1'>
 						<MainTable

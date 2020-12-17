@@ -14,8 +14,12 @@ export default function ControlledTabContainer(props) {
 		<lockedContext.Provider value={locked}>
 			<div className="ControlledTabContainer" style={props.style}>
 				{React.Children.map(props.children, (child) => {
+					
+					if ((props.activeTab !== child.props.tabID) && props.singleMount){
+						return null
+					}
+					
 					if (!child.props.hidden) {
-						
 						return (<div 
 							className='tabWrapper' 
 							style={props.activeTab === child.props.tabID ? {} : {display: 'None'}}
@@ -24,6 +28,7 @@ export default function ControlledTabContainer(props) {
 						</div>)
 					} else return null
 				})}
+				
 			</div>
 		</lockedContext.Provider>
 	)
@@ -35,6 +40,7 @@ ControlledTabContainer.propTypes = {
 	onTabChange: PropTypes.func,
 	locked: PropTypes.bool,
 	style: PropTypes.object,
+	singleMount: PropTypes.bool,
 }
 
 
