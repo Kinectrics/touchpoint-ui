@@ -1232,7 +1232,7 @@ function useModuleContext() {
   };
 }
 
-var css_248z$c = ".SearchBar{\n\tposition: relative;\n}\n\n.SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}\n\n.SearchBar .searchComponentWrapper{\n\tposition: absolute;\n\ttop: 100%;\n\twidth: 100%;\n\theight: fit-content;\n\tbackground-color: var(--cardBG);\n\tborder: 1px solid var(--borderColor);\n\tborder-radius: 15px;\n\tz-index: 20;\n\tcolor: var(--mainTextColor);\n\tpadding: 10px;\n\t\n\tdisplay: none;\n}\n\n.SearchBar input:focus + \n.searchComponentWrapper,\n.SearchBar .searchComponentWrapper.alwaysShow\n{\n\tdisplay: block;\n}";
+var css_248z$c = ".SearchBar{\n\tposition: relative;\n}\n\n.SearchBar .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tfont-size: 13pt;\n\ttransition: all 0.1s;\n\toutline: none !important;\n\ttransform: translateX(-35px);\n\tpadding-top: 5px;\n\tposition: absolute;\n\t\n\tcolor: var(--lockedTextColor);\n\topacity: 80%;\n}\n\n.SearchBar input{\n\tpadding-right: 32px;\n\twidth: 100%;\n}\n\n.SearchBar.locked .searchButton{\n\tbackground-color: transparent;\n\tborder: none;\n\tcolor: var(--lockedTextColor);\n}\n\n.SearchBar .searchComponentWrapper{\n\tposition: absolute;\n\ttop: 100%;\n\twidth: 100%;\n\theight: fit-content;\n\tbackground-color: var(--cardBG);\n\tborder: 1px solid var(--borderColor);\n\tborder-radius: 15px;\n\tz-index: 20;\n\tcolor: var(--mainTextColor);\n\tpadding: 10px;\n\t\n\tdisplay: none;\n}\n\n.SearchBar input:focus + \n.searchComponentWrapper,\n.SearchBar .searchComponentWrapper.alwaysShow,\n.SearchBar .searchComponentWrapper:hover\n{\n\tdisplay: block;\n}";
 styleInject(css_248z$c);
 
 function SearchBar(props) {
@@ -2237,6 +2237,7 @@ function MoreFilterButtonActive(props) {
   function keyDownHandler(e) {
     if (e.key === 'Enter') {
       e.target.blur();
+      document.body.click();
     }
   }
 
@@ -4467,6 +4468,10 @@ function ControlledTabContainer(props) {
     className: "ControlledTabContainer",
     style: props.style
   }, React.Children.map(props.children, function (child) {
+    if (props.activeTab !== child.props.tabID && props.singleMount) {
+      return null;
+    }
+
     if (!child.props.hidden) {
       return /*#__PURE__*/React.createElement("div", {
         className: "tabWrapper",
@@ -4482,7 +4487,8 @@ ControlledTabContainer.propTypes = {
   activeTab: PropTypes.string,
   onTabChange: PropTypes.func,
   locked: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
+  singleMount: PropTypes.bool
 };
 
 var css_248z$u = ".Dock{\n\tpadding: 6px 0;\n\twidth: var(--dockWidth);\n\tbackground-color: var(--dockColor);\n\tposition: fixed;\n\tleft:0;\n\theight: 100%;\n}";
