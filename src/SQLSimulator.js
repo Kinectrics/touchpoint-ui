@@ -84,6 +84,8 @@ export function fakeData(n = 500){
 			preparedDate: faker.date.past(),
 			approvedDate: faker.date.past(),
 			
+			tagTest: [...new Array(2 + i % 4)].map(() => faker.random.word()),
+			
 			scrList: [...new Array(2 + i% 7)].map(()=>faker.random.number(2000000)),
 			
 			statusLog: [...new Array(2 + i % 7)].map((ad, idx) => {return {

@@ -9,7 +9,7 @@ export default function TheadMenu(props) {
 	
 	
 	return (
-		<div className = 'TheadMenu'>
+		<div className = {'TheadMenu ' + 'tpui' + props.header.type}>
 			<FilterMenu
 				dataHeaders={props.dataHeaders}
 				header={props.header}

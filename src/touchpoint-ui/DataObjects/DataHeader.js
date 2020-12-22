@@ -1,5 +1,6 @@
 import DataFilter from './DataFilter'
 import DataType from './DataType'
+import {valueFilter, tagFilter, uniqueByColumn} from './headerSupport'
 
 export default class DataHeader{
 	
@@ -17,7 +18,7 @@ export default class DataHeader{
 		this.type = options.type ? options.type : 'string'
 		this.onClick = options.onClick
 		this.options=options.options
-		this.component = options.component 
+		this.component = options.component
 		
 		//Adds type = 'component' unless you explicitly give a type in the options
 		//Used to determine if a filter should appear or not
@@ -31,9 +32,9 @@ export default class DataHeader{
 		//Default filter list only has 1 functions (array filter)
 		this.filterList = {
 			arrayFilter: {
-				func: (cellValue) => {
-					return (this.uniqueValues[cellValue] || this.uniqueValues[cellValue] === undefined)
-				}, 
+				func: this.type === 'tags' ? 
+				(cellValue) => tagFilter(cellValue, this.uniqueValues) 
+				: (cellValue) => valueFilter(cellValue, this.uniqueValues)
 			},
 		}
 		
@@ -101,27 +102,3 @@ export default class DataHeader{
 }
 
 
-//Returns an array of unique values from a column of DataRow objects
-function uniqueByColumn(data, metaData, columnID, oldValues) {
-	const res = {}
-	
-	data.forEach((r, idx) => {
-		
-		if (metaData[idx] && (metaData[idx].visible || metaData[idx].filteredBy === columnID + ';') && !metaData[idx].searchHidden){
-			//New vales added as true, old values keep their value
-			if (oldValues[r[columnID]] === undefined){
-				res[r[columnID]] = true
-			} else{
-				res[r[columnID]] = oldValues[r[columnID]]
-			}
-		}
-	})
-	
-	const orderedRes = {}
-	
-	Object.keys(res).sort().forEach((key)=>{
-		orderedRes[key] = res[key]
-	})
-	
-	return orderedRes
-}
