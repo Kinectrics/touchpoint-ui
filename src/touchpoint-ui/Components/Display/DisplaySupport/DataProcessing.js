@@ -4,7 +4,6 @@ export function searchData(values, searchText, metaData){
 	const newMetaData = []
 
 	values.forEach((r, idx) => {
-
 		const rowMeta = metaData[idx] ? metaData[idx] : {}
 		rowMeta.searchHidden = false
 
