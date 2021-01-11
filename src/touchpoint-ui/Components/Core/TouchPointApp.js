@@ -136,9 +136,12 @@ export default function TouchPointApp(props){
 				setPopupEffect('transparent')
 
 				setTimeout(() => setPopups([]), 100)
-				const drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open')
+				
+				const drawerElement = document.getElementById('TouchPointAppDrawer')
 
-				if (!drawerIsOpen) { setScreenEffect('') }
+				if (!(drawerElement && drawerElement.classList.toString().includes('open'))) { 
+					setScreenEffect('')
+				}
 			},
 		},
 		
@@ -152,9 +155,8 @@ export default function TouchPointApp(props){
 				const drawerBox = document.getElementById('TouchPointAppDrawer')
 				if (drawerBox) {
 					drawerBox.classList.add('open')
+					setScreenEffect('blurScreenEffect')
 				}
-				
-				setScreenEffect('blurScreenEffect')
 			},
 			
 			close: () => {

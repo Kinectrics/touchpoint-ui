@@ -8,7 +8,6 @@ export function searchData(values, searchText, metaData){
 		rowMeta.searchHidden = false
 
 		if (searchText) {
-
 			const testVal = JSON.stringify(r).toLowerCase()
 			rowMeta.searchHidden = !testVal.includes(searchText.toLowerCase())
 		}
@@ -20,7 +19,7 @@ export function searchData(values, searchText, metaData){
 }
 
 
-// //FILTER
+//FILTER
 export function filterData(values, headers, metaData) {
 	const newMetaData = []
 
