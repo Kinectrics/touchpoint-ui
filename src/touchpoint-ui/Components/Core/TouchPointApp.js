@@ -12,12 +12,13 @@ import {HashRouter} from 'react-router-dom'
 export default function TouchPointApp(props){
 	
 	//System-wide state
-	const [activePopups, setPopups] = useState([]);
+	const [activePopups, setPopups] = useState([])
+	const [popupProps, setPopupProps] = useState([])
 	
 	const portalDestination = useRef()
 	
 	//Set moduleTransition to 'transition' while the modules are being switched out
-	const [screenBlock, setScreenBlock] = useState(false) //if true, no clicks will register
+	const [screenBlock, setScreenBlock] = useState(false) //if true, no clicks will register on the screen. use while things are movong to avoid misclicks
 	const [popupEffect, setPopupEffect] = useState('')
 	const [moduleLock, setModuleLock] = useState(props.locked)
 	
@@ -105,7 +106,7 @@ export default function TouchPointApp(props){
 		},
 		
 		Popup: {
-			open: (PopupComponent) => {
+			open: (PopupComponent, props) => {
 				setScreenBlock(true)
 				setTimeout(() => setScreenBlock(false), 400)
 
@@ -113,8 +114,13 @@ export default function TouchPointApp(props){
 				setPopupEffect('transparent')
 				
 				const newPopups = [...activePopups]
+				const newPopupProps = [...popupProps]
+				
 				newPopups.push(PopupComponent)
+				newPopupProps.push(props)
+				
 				setPopups(newPopups)
+				setPopupProps(newPopups)
 				
 				setTimeout(() => setPopupEffect(''), 0)
 			},
@@ -124,7 +130,13 @@ export default function TouchPointApp(props){
 				setPopupEffect('transparent')
 				
 				const newPopups = [...activePopups]
+				const newPopupProps = [...popupProps]
+				
 				newPopups.pop()
+				newPopupProps.pop()
+				
+				setPopupProps(newPopupProps)
+				
 				setTimeout(() => setPopups(newPopups), 100)
 				
 				const drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open')
@@ -237,6 +249,7 @@ export default function TouchPointApp(props){
 							system = {System} 
 							activePopups = {activePopups}
 							popupEffect = {popupEffect}
+							popupProps = {popupProps}
 						/>
 						
 					</HashRouter>

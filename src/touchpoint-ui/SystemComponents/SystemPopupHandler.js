@@ -27,7 +27,7 @@ export default function SystemPopupHandler(props) {
 					height: '100%',
 				}}
 			>
-				{typeof (Pop) == 'function' ? <Pop /> : Pop}
+				{typeof (Pop) == 'function' ? <Pop {...props.popupProps[idx]}/> : Pop}
 			</div> 
 		})
 	)	
