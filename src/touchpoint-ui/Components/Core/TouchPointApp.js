@@ -120,7 +120,7 @@ export default function TouchPointApp(props){
 				newPopupProps.push(props)
 				
 				setPopups(newPopups)
-				setPopupProps(newPopups)
+				setPopupProps(newPopupProps)
 				
 				setTimeout(() => setPopupEffect(''), 0)
 			},
@@ -136,6 +136,7 @@ export default function TouchPointApp(props){
 				newPopupProps.pop()
 				
 				setPopupProps(newPopupProps)
+				setPopups(newPopups)
 				
 				setTimeout(() => setPopups(newPopups), 100)
 				

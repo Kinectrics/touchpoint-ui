@@ -13,6 +13,7 @@ import TestCells from './TestCells'
 import { RefreshButton } from '../../touchpoint-ui'
 import SearchNest from './SearchNest'
 import { useState } from 'react'
+import PopTest from './PopTest'
 
 //And begin
 export default function VendorRubrics() {
@@ -126,16 +127,7 @@ export default function VendorRubrics() {
 					data={data}
 				/>
 
-				<button onClick={() => system.Popup.open(
-					<PopupCard
-						closeButton
-						width='fit-content'
-						height='90%'
-						title='Embedded Reports Coming Soon!'
-					>
-
-					</PopupCard>
-				)}>
+				<button onClick={() => system.Popup.open(PopTest, {words:'Hello'})}>
 					<FontAwesomeIcon icon={faChartArea} /> Business Intelligence
 				</button>
 

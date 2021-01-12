@@ -17,6 +17,7 @@ export default function SystemPopupHandler(props) {
 	
 	return(
 		props.activePopups.map((Pop, idx)=>{
+			
 			return <div 
 				className={"systemPopupBackdrop " + props.popupEffect}
 				onClick={clickBackdrop}
