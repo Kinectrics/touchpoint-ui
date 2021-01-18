@@ -14,7 +14,7 @@ Once you are happy with the results, you can run
 
 to compile it to the dist folder, and then 
 
-	npm version patch
+	npm version [patch/minor/major]
 	npm publish
 
 to update the package. 

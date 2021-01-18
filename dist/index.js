@@ -270,7 +270,7 @@ function SystemPopupHandler(props) {
         width: '100%',
         height: '100%'
       }
-    }, typeof Pop == 'function' ? /*#__PURE__*/React.createElement(Pop, null) : Pop);
+    }, typeof Pop == 'function' ? /*#__PURE__*/React.createElement(Pop, props.popupProps[idx]) : Pop);
   });
 }
 
@@ -457,43 +457,48 @@ function TouchPointApp(props) {
       activePopups = _useState2[0],
       setPopups = _useState2[1];
 
+  var _useState3 = useState([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      popupProps = _useState4[0],
+      setPopupProps = _useState4[1];
+
   var portalDestination = useRef(); //Set moduleTransition to 'transition' while the modules are being switched out
 
-  var _useState3 = useState(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      screenBlock = _useState4[0],
-      setScreenBlock = _useState4[1]; //if true, no clicks will register
-
-
-  var _useState5 = useState(''),
+  var _useState5 = useState(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      popupEffect = _useState6[0],
-      setPopupEffect = _useState6[1];
+      screenBlock = _useState6[0],
+      setScreenBlock = _useState6[1]; //if true, no clicks will register on the screen. use while things are movong to avoid misclicks
 
-  var _useState7 = useState(props.locked),
+
+  var _useState7 = useState(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      moduleLock = _useState8[0],
-      setModuleLock = _useState8[1];
+      popupEffect = _useState8[0],
+      setPopupEffect = _useState8[1];
+
+  var _useState9 = useState(props.locked),
+      _useState10 = _slicedToArray(_useState9, 2),
+      moduleLock = _useState10[0],
+      setModuleLock = _useState10[1];
 
   function setScreenEffect(newScreenEffect) {
     var effectDiv = document.getElementById('TouchPointScreenEffect');
     effectDiv.className = 'screenEffect ' + newScreenEffect;
   }
 
-  var _useState9 = useState(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      drawerExists = _useState10[0],
-      setDrawerExists = _useState10[1];
+  var _useState11 = useState(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      drawerExists = _useState12[0],
+      setDrawerExists = _useState12[1];
 
-  var _useState11 = useState({
+  var _useState13 = useState({
     heightCSS: '100%',
     widthCSS: '100%',
     widths: {},
     heights: {}
   }),
-      _useState12 = _slicedToArray(_useState11, 2),
-      layout = _useState12[0],
-      setLayout = _useState12[1];
+      _useState14 = _slicedToArray(_useState13, 2),
+      layout = _useState14[0],
+      setLayout = _useState14[1];
 
   function saveSettings(settingsID, settingsToken) {
     if (props.saveSettings && settingsID) {
@@ -595,7 +600,7 @@ function TouchPointApp(props) {
       }
     },
     Popup: {
-      open: function open(PopupComponent) {
+      open: function open(PopupComponent, props) {
         setScreenBlock(true);
         setTimeout(function () {
           return setScreenBlock(false);
@@ -605,8 +610,12 @@ function TouchPointApp(props) {
 
         var newPopups = _toConsumableArray(activePopups);
 
+        var newPopupProps = _toConsumableArray(popupProps);
+
         newPopups.push(PopupComponent);
+        newPopupProps.push(props);
         setPopups(newPopups);
+        setPopupProps(newPopupProps);
         setTimeout(function () {
           return setPopupEffect('');
         }, 0);
@@ -617,7 +626,12 @@ function TouchPointApp(props) {
 
         var newPopups = _toConsumableArray(activePopups);
 
+        var newPopupProps = _toConsumableArray(popupProps);
+
         newPopups.pop();
+        newPopupProps.pop();
+        setPopupProps(newPopupProps);
+        setPopups(newPopups);
         setTimeout(function () {
           return setPopups(newPopups);
         }, 100);
@@ -633,9 +647,9 @@ function TouchPointApp(props) {
         setTimeout(function () {
           return setPopups([]);
         }, 100);
-        var drawerIsOpen = document.getElementById('TouchPointAppDrawer').classList.toString().includes('open');
+        var drawerElement = document.getElementById('TouchPointAppDrawer');
 
-        if (!drawerIsOpen) {
+        if (!(drawerElement && drawerElement.classList.toString().includes('open'))) {
           setScreenEffect('');
         }
       }
@@ -652,9 +666,8 @@ function TouchPointApp(props) {
 
         if (drawerBox) {
           drawerBox.classList.add('open');
+          setScreenEffect('blurScreenEffect');
         }
-
-        setScreenEffect('blurScreenEffect');
       },
       close: function close() {
         var drawerHandler = document.getElementById('TouchPointDrawerHandler');
@@ -750,7 +763,8 @@ function TouchPointApp(props) {
   })), /*#__PURE__*/React.createElement(SystemPopupHandler, {
     system: System,
     activePopups: activePopups,
-    popupEffect: popupEffect
+    popupEffect: popupEffect,
+    popupProps: popupProps
   })))));
 } //Proptypes
 
@@ -4147,7 +4161,7 @@ function searchData(values, searchText, metaData) {
     newMetaData.push(rowMeta);
   });
   return newMetaData;
-} // //FILTER
+} //FILTER
 
 function filterData(values, headers, metaData) {
   var newMetaData = [];
