@@ -76,8 +76,6 @@ export default function MainTableRow(props) {
 					<hdr.component
 						row={props.dataRow}
 						setRow={setRow}
-						dataset = {props.dataset}
-						rowIndex = {props.rowIndex}
 						{...hdr.props}
 					/>
 				</span>)
