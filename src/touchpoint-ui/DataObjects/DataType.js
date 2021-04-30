@@ -16,7 +16,7 @@ const parseFunctions = {
 
 		if(testVal.trim() === '') { return ''}
 		
-		if (testVal === 'today' || testVal === 'td') { return moment().toISOString() }
+		if (testVal === 'today' || testVal === 'td') { return moment.utc().toISOString() }
 		if (testVal === 'tomorrow' || testVal === 'tm') { return moment().add(1, 'day').toISOString() }
 		if (testVal === 'yesterday' || testVal === 'yd') { return moment().subtract(1, 'day').toISOString() }
 		
@@ -54,7 +54,7 @@ const parseFunctions = {
 
 //Compares 2 values that may not be directly equal (eg. date object and date string)
 const compareFunctions = {
-	date: (a, b) => moment( new Date(a) ).isSame(new Date(b), 'day'),
+	date: (a, b) => moment.utc( new Date(a) ).isSame(new Date(b), 'day'),
 	boolean: (a, b) => this.parse(a) === this.parse(b),
 	other: (a, b) => a == b,
 }
