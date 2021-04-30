@@ -76,7 +76,7 @@ export function fakeData(n = 500){
 			SM: Math.random() > 0.5 ? undefined : faker.name.findName(),
 			projectName: Math.random() > 0.5 ? faker.company.catchPhrase() : faker.company.catchPhrase().toLowerCase(),
 			status: statuses[i % 3],
-			due: faker.date.future(),
+			due: "2021-04-22T00:00:00.000Z",
 			intern: faker.name.findName(),
 			toq: faker.random.number(7000000),
 			perparedBy: faker.name.findName(),
