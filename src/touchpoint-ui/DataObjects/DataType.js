@@ -2,7 +2,7 @@ import moment from 'moment'
 
 //format for displaying certain types of data
 const formatFunctions = {
-	date: (cellValue) => cellValue ? moment(new Date(cellValue)).add(1,'day').format('DD-MMM-YY') : '',
+	date: (cellValue) => cellValue ? moment.utc(new Date(cellValue)).format('DD-MMM-YY') : '',
 	boolean: (cellValue) => cellValue ? 'True' : 'False',
 	other: (cellValue) => cellValue,
 }
