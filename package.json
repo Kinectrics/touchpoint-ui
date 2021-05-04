@@ -52,7 +52,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build --dest dist",
+		"build": "react-scripts build",
 		"compile": "rollup -c",
 		"test": "react-scripts test"
 	},
