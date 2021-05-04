@@ -1,6 +1,6 @@
 {
 	"name": "touchpoint-ui",
-	"version": "1.5.20",
+	"version": "1.5.21",
 	"description": "Library for building modular apps with React",
 	"input": "src/touchpoint-ui/index.js",
 	"main": "dist/index.js",
@@ -52,7 +52,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"build": "react-scripts build --dest dist",
 		"compile": "rollup -c",
 		"test": "react-scripts test"
 	},
