@@ -26,10 +26,10 @@ const parseFunctions = {
 		
 		if(isNaN(parseFloat(input.slice(-1)))){
 			const newInput = input + new Date().getFullYear()
-			return moment.utc(new Date(newInput)).toISOString()
+			return moment.utc(new Date(newInput)).format('DD-MMM-YY').toISOString()
 		}
 		
-		return moment.utc( new Date(input) ).toISOString()
+		return moment.utc( new Date(input) ).format('DD-MMM-YY').toISOString()
 	},
 
 	boolean: (input) => {
