@@ -1,8 +1,8 @@
-import moment from 'moment'
+import * as moment from 'moment'
 
 //format for displaying certain types of data
 const formatFunctions = {
-	date: (cellValue) => cellValue ? moment.utc(new Date(cellValue)).format('DD-MMM-YY') : '',
+	date: (cellValue) => cellValue ? moment(new Date(cellValue)).format("DD-MMM-YY"): '',
 	boolean: (cellValue) => cellValue ? 'True' : 'False',
 	other: (cellValue) => cellValue,
 }
@@ -26,10 +26,10 @@ const parseFunctions = {
 		
 		if(isNaN(parseFloat(input.slice(-1)))){
 			const newInput = input + new Date().getFullYear()
-			return moment.utc(new Date(newInput)).format('DD-MMM-YY').toISOString()
+			return moment.utc(new Date(newInput)).format('DD-MMM-YY')
 		}
 		
-		return moment.utc( new Date(input) ).format('DD-MMM-YY').toISOString()
+		return moment.utc( new Date(input) ).format('DD-MMM-YY')
 	},
 
 	boolean: (input) => {
