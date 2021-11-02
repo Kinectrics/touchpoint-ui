@@ -1,4 +1,4 @@
-import * as moment from 'moment'
+import moment from 'moment'
 
 //format for displaying certain types of data
 const formatFunctions = {
