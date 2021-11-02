@@ -19,6 +19,8 @@ const dropMenu = React.forwardRef(
 					className={props.className + ' Menu ' + props.menuClass}
 					style={{maxWidth: menuMaxWidth, ...props.style, ...props.menuStyle}}
 					onClick={props.onClickBody}
+					dataDisplay='static'
+					data-display='static'
 				>
 					{typeof (props.MenuContent) == 'function' ? <props.MenuContent {...props.menuProps}/> : props.MenuContent}
 				</div>
