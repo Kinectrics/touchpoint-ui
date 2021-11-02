@@ -85,7 +85,7 @@ export default function MenuButton(props){
 				ref={ref}
 				style={props.style}
 				title={props.title}
-				dataDisplay='static'
+				data-display='static'
 			>
 				{notificationBadge}
 				{props.children}
@@ -111,7 +111,7 @@ export default function MenuButton(props){
 				title={props.title}
 				className={'MenuButton ' + props.className + ' ' + lockedClass}
 				style={props.style}
-				dataDisplay='static'
+				data-display='static'
 			>
 				
 			{props.children}
