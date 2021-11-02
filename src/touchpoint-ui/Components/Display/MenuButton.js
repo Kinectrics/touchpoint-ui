@@ -111,6 +111,7 @@ export default function MenuButton(props){
 				title={props.title}
 				className={'MenuButton ' + props.className + ' ' + lockedClass}
 				style={props.style}
+				dataDisplay='static'
 			>
 				
 			{props.children}
